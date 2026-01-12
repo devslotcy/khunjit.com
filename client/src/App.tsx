@@ -3,14 +3,143 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import { ThemeProvider } from "@/components/theme-provider";
+import { useAuth } from "@/hooks/use-auth";
+import { useQuery } from "@tanstack/react-query";
 
-function Router() {
+import NotFound from "@/pages/not-found";
+import Landing from "@/pages/landing";
+import RoleSelect from "@/pages/role-select";
+import SessionPage from "@/pages/session";
+
+import PatientDashboard from "@/pages/patient/dashboard";
+import PsychologistDiscovery from "@/pages/patient/psychologists";
+import PsychologistProfilePage from "@/pages/patient/psychologist-profile";
+import PatientAppointments from "@/pages/patient/appointments";
+import PatientMessages from "@/pages/patient/messages";
+import PaymentPage from "@/pages/patient/payment";
+
+import PsychologistDashboardPage from "@/pages/psychologist/dashboard";
+import AvailabilitySettings from "@/pages/psychologist/availability";
+
+import AdminDashboard from "@/pages/admin/dashboard";
+import AdminUsers from "@/pages/admin/users";
+import AdminVerify from "@/pages/admin/verify";
+import type { UserProfile } from "@shared/schema";
+
+function LoadingScreen() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+        <p className="text-muted-foreground">Yükleniyor...</p>
+      </div>
+    </div>
+  );
+}
+
+function AuthenticatedRouter() {
+  const { user, isLoading: authLoading } = useAuth();
+
+  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+    queryKey: ["/api/profile"],
+    enabled: !!user,
+  });
+
+  if (authLoading || profileLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!user) {
+    return <Landing />;
+  }
+
+  if (!profile?.role) {
+    return <RoleSelect />;
+  }
+
+  const role = profile.role as "patient" | "psychologist" | "admin";
+
   return (
     <Switch>
-      {/* Add pages below */}
-      {/* <Route path="/" component={Home}/> */}
-      {/* Fallback to 404 */}
+      <Route path="/dashboard">
+        {role === "admin" ? (
+          <AdminDashboard />
+        ) : role === "psychologist" ? (
+          <PsychologistDashboardPage />
+        ) : (
+          <PatientDashboard />
+        )}
+      </Route>
+
+      <Route path="/dashboard/psychologists">
+        <PsychologistDiscovery />
+      </Route>
+      <Route path="/dashboard/psychologists/:id">
+        <PsychologistProfilePage />
+      </Route>
+      <Route path="/dashboard/appointments">
+        {role === "psychologist" ? (
+          <PsychologistDashboardPage />
+        ) : (
+          <PatientAppointments />
+        )}
+      </Route>
+      <Route path="/dashboard/messages">
+        <PatientMessages />
+      </Route>
+      <Route path="/dashboard/payment/:id">
+        <PaymentPage />
+      </Route>
+      <Route path="/dashboard/session/:id">
+        <SessionPage />
+      </Route>
+
+      <Route path="/dashboard/availability">
+        <AvailabilitySettings />
+      </Route>
+      <Route path="/dashboard/earnings">
+        <PsychologistDashboardPage />
+      </Route>
+      <Route path="/dashboard/notes">
+        <PsychologistDashboardPage />
+      </Route>
+
+      <Route path="/dashboard/users">
+        <AdminUsers />
+      </Route>
+      <Route path="/dashboard/verify">
+        <AdminVerify />
+      </Route>
+      <Route path="/dashboard/payments">
+        <AdminDashboard />
+      </Route>
+      <Route path="/dashboard/reports">
+        <AdminDashboard />
+      </Route>
+      <Route path="/dashboard/audit">
+        <AdminDashboard />
+      </Route>
+      <Route path="/dashboard/settings">
+        <AdminDashboard />
+      </Route>
+      <Route path="/dashboard/profile">
+        {role === "admin" ? (
+          <AdminDashboard />
+        ) : role === "psychologist" ? (
+          <PsychologistDashboardPage />
+        ) : (
+          <PatientDashboard />
+        )}
+      </Route>
+
+      <Route path="/">
+        {() => {
+          window.location.href = "/dashboard";
+          return null;
+        }}
+      </Route>
+
       <Route component={NotFound} />
     </Switch>
   );
@@ -19,10 +148,20 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <ThemeProvider defaultTheme="light" storageKey="mindwell-theme">
+        <TooltipProvider>
+          <Toaster />
+          <Switch>
+            <Route path="/">
+              <AuthenticatedRouter />
+            </Route>
+            <Route path="/dashboard/:rest*">
+              <AuthenticatedRouter />
+            </Route>
+            <Route component={NotFound} />
+          </Switch>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
