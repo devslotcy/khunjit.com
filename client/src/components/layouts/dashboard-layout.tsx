@@ -54,7 +54,7 @@ const patientMenuItems = [
   { title: "Psikolog Bul", url: "/dashboard/psychologists", icon: Search },
   { title: "Randevularım", url: "/dashboard/appointments", icon: Calendar },
   { title: "Mesajlar", url: "/dashboard/messages", icon: MessageCircle },
-  { title: "Ödeme Geçmişi", url: "/dashboard/payments", icon: CreditCard },
+  { title: "Ödeme Geçmişi", url: "/dashboard/payment-history", icon: CreditCard },
 ];
 
 const psychologistMenuItems = [

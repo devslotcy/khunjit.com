@@ -21,10 +21,14 @@ import PaymentPage from "@/pages/patient/payment";
 
 import PsychologistDashboardPage from "@/pages/psychologist/dashboard";
 import AvailabilitySettings from "@/pages/psychologist/availability";
+import PsychologistPaymentHistory from "@/pages/psychologist/payment-history";
+import PsychologistSessionNotes from "@/pages/psychologist/session-notes";
 
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminUsers from "@/pages/admin/users";
 import AdminVerify from "@/pages/admin/verify";
+import AdminPayments from "@/pages/admin/payments";
+import PatientPaymentHistory from "@/pages/patient/payment-history";
 import LegalPage from "@/pages/legal";
 import type { UserProfile } from "@shared/schema";
 
@@ -100,10 +104,13 @@ function AuthenticatedRouter() {
         <AvailabilitySettings />
       </Route>
       <Route path="/dashboard/earnings">
-        <PsychologistDashboardPage />
+        <PsychologistPaymentHistory />
       </Route>
       <Route path="/dashboard/notes">
-        <PsychologistDashboardPage />
+        <PsychologistSessionNotes />
+      </Route>
+      <Route path="/dashboard/payment-history">
+        <PatientPaymentHistory />
       </Route>
 
       <Route path="/dashboard/users">
@@ -113,7 +120,7 @@ function AuthenticatedRouter() {
         <AdminVerify />
       </Route>
       <Route path="/dashboard/payments">
-        <AdminDashboard />
+        <AdminPayments />
       </Route>
       <Route path="/dashboard/reports">
         <AdminDashboard />

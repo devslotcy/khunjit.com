@@ -61,6 +61,14 @@ export interface IStorage {
   getAppointmentsByPsychologist(psychologistId: string): Promise<Appointment[]>;
   getUpcomingAppointments(userId: string, role: string): Promise<Appointment[]>;
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
+  reserveAppointmentAtomic(params: {
+    patientId: string;
+    psychologistId: string;
+    startAt: Date;
+    endAt: Date;
+    reservedUntil: Date;
+    meetingRoom: string;
+  }): Promise<Appointment>;
   updateAppointment(id: string, data: Partial<Appointment>): Promise<Appointment | undefined>;
   
   getPayment(id: string): Promise<Payment | undefined>;
@@ -78,6 +86,7 @@ export interface IStorage {
   markMessagesAsRead(conversationId: string, userId: string): Promise<void>;
   
   getSessionNote(appointmentId: string): Promise<SessionNote | undefined>;
+  getSessionNoteById(id: string): Promise<SessionNote | undefined>;
   createSessionNote(note: InsertSessionNote): Promise<SessionNote>;
   updateSessionNote(id: string, data: Partial<SessionNote>): Promise<SessionNote | undefined>;
   
@@ -251,6 +260,32 @@ export class DatabaseStorage implements IStorage {
     return created;
   }
 
+  async reserveAppointmentAtomic(params: {
+    patientId: string;
+    psychologistId: string;
+    startAt: Date;
+    endAt: Date;
+    reservedUntil: Date;
+    meetingRoom: string;
+  }): Promise<Appointment> {
+    const { patientId, psychologistId, startAt, endAt, reservedUntil, meetingRoom } = params;
+    
+    const result = await db.execute<{ reserve_appointment_slot: string }>(`
+      SELECT reserve_appointment_slot(
+        $1::VARCHAR, $2::VARCHAR, $3::TIMESTAMPTZ, $4::TIMESTAMPTZ, $5::TIMESTAMPTZ, $6::VARCHAR
+      )
+    `, [patientId, psychologistId, startAt.toISOString(), endAt.toISOString(), reservedUntil.toISOString(), meetingRoom]);
+    
+    const appointmentId = (result.rows[0] as any).reserve_appointment_slot;
+    
+    const appointment = await this.getAppointment(appointmentId);
+    if (!appointment) {
+      throw new Error("Failed to create appointment");
+    }
+    
+    return appointment;
+  }
+
   async updateAppointment(id: string, data: Partial<Appointment>): Promise<Appointment | undefined> {
     const [updated] = await db.update(appointments)
       .set({ ...data, updatedAt: new Date() })
@@ -340,6 +375,11 @@ export class DatabaseStorage implements IStorage {
 
   async getSessionNote(appointmentId: string): Promise<SessionNote | undefined> {
     const [note] = await db.select().from(sessionNotes).where(eq(sessionNotes.appointmentId, appointmentId));
+    return note || undefined;
+  }
+
+  async getSessionNoteById(id: string): Promise<SessionNote | undefined> {
+    const [note] = await db.select().from(sessionNotes).where(eq(sessionNotes.id, id));
     return note || undefined;
   }
 
