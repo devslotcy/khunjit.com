@@ -10,6 +10,8 @@ import { useQuery } from "@tanstack/react-query";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import RoleSelect from "@/pages/role-select";
+import LoginPage from "@/pages/auth/login";
+import RegisterPage from "@/pages/auth/register";
 import SessionPage from "@/pages/session";
 
 import PatientDashboard from "@/pages/patient/dashboard";
@@ -171,6 +173,12 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Switch>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/register">
+              <RegisterPage />
+            </Route>
             <Route path="/find-psychologist">
               <PublicPsychologistDiscovery />
             </Route>

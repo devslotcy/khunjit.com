@@ -42,11 +42,11 @@ export default function Landing() {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <Button variant="ghost" asChild data-testid="button-login">
-                <a href="/api/login">Giriş Yap</a>
+                <a href="/login">Giriş Yap</a>
               </Button>
               <Button asChild data-testid="button-start">
-                <a href="/api/login">
-                  Başla
+                <a href="/register">
+                  Kayıt Ol
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </a>
               </Button>
@@ -78,7 +78,7 @@ export default function Landing() {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="text-base px-8" asChild data-testid="button-hero-start">
-                  <a href="/api/login">
+                  <a href="/register">
                     Hemen Başla
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </a>
