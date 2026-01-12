@@ -173,10 +173,13 @@ function App() {
             <Route path="/legal">
               <LegalPage />
             </Route>
-            <Route path="/">
+            <Route path="/dashboard/:rest*">
               <AuthenticatedRouter />
             </Route>
-            <Route path="/dashboard/:rest*">
+            <Route path="/dashboard">
+              <AuthenticatedRouter />
+            </Route>
+            <Route path="/">
               <AuthenticatedRouter />
             </Route>
             <Route component={NotFound} />
