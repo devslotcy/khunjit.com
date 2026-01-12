@@ -7,6 +7,7 @@ import { psychologistProfiles, appointments, userProfiles, users } from "@shared
 import { eq, and, gte, lte, or, count, sql } from "drizzle-orm";
 import { addMinutes, addDays, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, differenceInMinutes, isAfter, isBefore, subMinutes } from "date-fns";
 import { randomUUID, createHash } from "crypto";
+import bcrypt from "bcryptjs";
 
 function generateSecureJoinCode(appointmentId: string, secret: string = process.env.SESSION_SECRET || "mindwell-secret"): string {
   const timestamp = Date.now().toString();
@@ -63,6 +64,166 @@ export async function registerRoutes(
 ): Promise<Server> {
   await setupAuth(app);
   registerAuthRoutes(app);
+
+  // Email/Password Register
+  app.post("/api/auth/register", async (req: Request, res: Response) => {
+    try {
+      const { email, username, password, firstName, lastName, role, phone, birthDate, gender, city, profession, bio } = req.body;
+
+      if (!email || !username || !password || !firstName || !lastName) {
+        return res.status(400).json({ message: "Email, kullanıcı adı, şifre, ad ve soyad gereklidir" });
+      }
+
+      if (password.length < 6) {
+        return res.status(400).json({ message: "Şifre en az 6 karakter olmalıdır" });
+      }
+
+      const [existingEmail] = await db.select().from(users).where(eq(users.email, email));
+      if (existingEmail) {
+        return res.status(400).json({ message: "Bu email zaten kullanılıyor" });
+      }
+
+      const [existingUsername] = await db.select().from(users).where(eq(users.username, username));
+      if (existingUsername) {
+        return res.status(400).json({ message: "Bu kullanıcı adı zaten kullanılıyor" });
+      }
+
+      const passwordHash = await bcrypt.hash(password, 10);
+      const userId = randomUUID();
+
+      const [newUser] = await db.insert(users).values({
+        id: userId,
+        email,
+        username,
+        passwordHash,
+        firstName,
+        lastName,
+      }).returning();
+
+      const selectedRole = role === "psychologist" ? "psychologist" : "patient";
+      
+      const profile = await storage.createUserProfile({
+        userId,
+        role: selectedRole,
+        phone: phone || null,
+        birthDate: birthDate ? new Date(birthDate) : null,
+        gender: gender || null,
+        city: city || null,
+        profession: profession || null,
+        bio: bio || null,
+      });
+
+      if (selectedRole === "psychologist") {
+        await storage.createPsychologistProfile({
+          userId,
+          fullName: `${firstName} ${lastName}`,
+          pricePerSession: "500.00",
+          status: "pending",
+        });
+      }
+
+      (req.session as any).userId = userId;
+
+      await storage.createAuditLog({
+        actorUserId: userId,
+        entityType: "user",
+        entityId: userId,
+        action: "registered",
+        afterData: { email, role: selectedRole },
+      });
+
+      res.json({
+        user: { id: newUser.id, email: newUser.email, firstName: newUser.firstName, lastName: newUser.lastName },
+        profile,
+      });
+    } catch (error) {
+      console.error("Register error:", error);
+      res.status(500).json({ message: "Kayıt sırasında bir hata oluştu" });
+    }
+  });
+
+  // Email/Password Login
+  app.post("/api/auth/login", async (req: Request, res: Response) => {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email ve şifre gereklidir" });
+      }
+
+      const [user] = await db.select().from(users).where(eq(users.email, email));
+      if (!user || !user.passwordHash) {
+        return res.status(401).json({ message: "Geçersiz email veya şifre" });
+      }
+
+      const validPassword = await bcrypt.compare(password, user.passwordHash);
+      if (!validPassword) {
+        return res.status(401).json({ message: "Geçersiz email veya şifre" });
+      }
+
+      (req.session as any).userId = user.id;
+
+      const profile = await storage.getUserProfile(user.id);
+
+      await storage.createAuditLog({
+        actorUserId: user.id,
+        entityType: "user",
+        entityId: user.id,
+        action: "logged_in",
+      });
+
+      res.json({
+        user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName },
+        profile,
+      });
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ message: "Giriş sırasında bir hata oluştu" });
+    }
+  });
+
+  // Get current user (supports both Replit Auth and Email/Password)
+  app.get("/api/auth/me", async (req: Request, res: Response) => {
+    try {
+      const userId = (req as AuthenticatedRequest).user?.claims?.sub || (req.session as any).userId;
+      
+      if (!userId) {
+        return res.status(401).json({ message: "Not authenticated" });
+      }
+
+      const [user] = await db.select().from(users).where(eq(users.id, userId));
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const profile = await storage.getUserProfile(userId);
+
+      res.json({
+        user: { 
+          id: user.id, 
+          email: user.email, 
+          username: user.username,
+          firstName: user.firstName, 
+          lastName: user.lastName,
+          profileImageUrl: user.profileImageUrl,
+        },
+        profile,
+      });
+    } catch (error) {
+      console.error("Get current user error:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  // Logout for email/password users
+  app.post("/api/auth/logout", (req: Request, res: Response) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Çıkış yapılırken hata oluştu" });
+      }
+      res.json({ message: "Başarıyla çıkış yapıldı" });
+    });
+  });
 
   app.post("/api/auth/select-role", isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
     try {
