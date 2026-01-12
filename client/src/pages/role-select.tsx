@@ -19,7 +19,8 @@ export default function RoleSelect() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
-      navigate("/dashboard");
+      queryClient.invalidateQueries({ queryKey: ["/api/profile"] });
+      window.location.href = "/dashboard";
     },
     onError: (error: Error) => {
       toast({
