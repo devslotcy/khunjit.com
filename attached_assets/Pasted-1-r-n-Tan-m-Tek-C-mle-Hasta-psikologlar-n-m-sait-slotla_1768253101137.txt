@@ -1,0 +1,453 @@
+1) Ürün Tanımı (Tek Cümle)
+
+Hasta, psikologların müsait slotlarına göre randevu alır, seans öncesi ödeme yapmadan seansa giremez, saat gelince görüntülü görüşme başlar; hasta-psikolog mesajlaşır; admin her şeyi denetler/yönetir (soft delete + audit log ile).
+
+2) Panel Panel Kapsam
+A) Hasta (Kullanıcı) Paneli – Net liste
+
+1) Profil & Güvenlik
+
+Kayıt/giriş/şifre sıfırlama
+
+Profil: ad-soyad, iletişim, timezone
+
+“Hesap kapatma” (hard delete değil, soft delete talebi)
+
+2) Psikolog Keşif
+
+Psikolog listeleme + filtre: uzmanlık, dil, ücret aralığı, müsaitlik
+
+Psikolog profil sayfası: bio, uzmanlıklar, diller, ücret, değerlendirme (opsiyonel)
+
+3) Randevu/Booking
+
+Boş slot görüntüleme (psikolog müsaitliklerinden üretilir)
+
+Slot seçince rezervasyon (slot lock): 10 dk ödeme penceresi
+
+Randevu durumları: reserved → payment_pending → confirmed → ready → in_session → completed / cancelled / expired / refunded
+
+4) Ödeme
+
+Randevuda ödeme: ödenmeden seans açılmaz
+
+Profilde Ödeme Geçmişi:
+
+brüt tutar, KDV, KDV hariç, site komisyonu, psikolog neti, ödeme durumu, iade durumu
+
+Fatura/fiş (MVP’de kayıt yeter; PDF sonra)
+
+5) Seans (Görüntülü Görüşme)
+
+Seans saatinden örn. 10 dk önce “Katıl” aktif
+
+Ödeme yoksa buton pasif + “Ödeme bekleniyor”
+
+6) Mesajlaşma
+
+Sadece “ilişkili” psikologlarla (randevusu olan / olmuş) konuşma açılır
+
+Mesaj geçmişi, okunma (opsiyonel)
+
+“Raporla/şikayet” (admin inceleme tetikler)
+
+B) Psikolog Paneli – Görüntülü görüşme odaklı
+
+1) Profil
+
+Bio, uzmanlık, diller, ücret, çalışma prensipleri
+
+Admin doğrulama durumu: verified/unverified
+
+2) Müsaitlik Yönetimi
+
+Haftalık çalışma saatleri (rule)
+
+İstisna günler (exception): izin, tatil, özel slotlar
+
+Slot süresi: 30/45/60 dk gibi
+
+3) Randevular
+
+Yaklaşan randevular listesi (filtre: bugün/hafta)
+
+İptal / yeniden planlama isteği (kural bazlı)
+
+Ödeme durumu görünür: “confirmed değilse seans başlayamaz”
+
+4) Görüntülü Seans
+
+Seans saatinde “Seansı Başlat / Katıl”
+
+Token/room ile güvenli giriş (sadece o randevunun hasta+psikoloğu)
+
+Cihaz testi (kamera/mikrofon seçimi)
+
+Seans bitir → otomatik “completed”
+
+5) Seans Sonrası
+
+Seans notu (varsayılan: sadece psikolog görür)
+
+Seans geçmişi (tarih, süre, durum, kazanç)
+
+6) Kazançlar
+
+Seans bazında: brüt, KDV, site payı, psikolog net
+
+Haftalık/aylık özet
+
+C) Admin Paneli – “Her şeyi kontrol etsin” ama güvenli
+
+1) Kullanıcı Yönetimi
+
+Hasta/psikolog listeleme, arama, status yönetimi (active/blocked)
+
+Soft delete / restore (opsiyonel)
+
+2) Psikolog Doğrulama
+
+Evrak kontrol (MVP: manuel onay checkbox + not alanı)
+
+verified/unverified yönetimi
+
+3) Randevu Yönetimi
+
+Tüm randevular: filtre (tarih, psikolog, hasta, durum)
+
+İptal / yeniden planlama / override
+
+No-show işaretleme
+
+4) Ödeme & İade Yönetimi
+
+Tüm ödemeler listesi, durumlar
+
+İade başlatma (refund_pending → refunded)
+
+Komisyon/KDV ayarları (tek yerden)
+
+5) Mesaj Denetimi (gizlilik korumalı)
+
+Admin normalde mesaj içeriklerini görmez
+
+Sadece “raporlanan konuşmalar” incelemeye açılır
+
+6) Audit Log
+
+Kim neyi ne zaman değiştirdi (özellikle ödeme, randevu, profil, doğrulama)
+
+Geriye dönük denetim için zorunlu
+
+3) “Söylenmesi Gereken” Kritik Kurallar (işin bel kemiği)
+
+Bunlar yazılımda kural olarak geçmeli:
+
+Ödeme olmadan seans yok
+appointment.status !== confirmed ise meeting link/token üretilmez.
+
+Double-booking asla olmayacak
+Slot seçilince 10 dk rezervasyon + DB transaction/unique constraint.
+
+Soft delete
+Hard delete yok. Her kritik tabloda deleted_at, deleted_by.
+
+Audit log zorunlu
+Admin/psikolog kritik aksiyonları loglanır.
+
+Timezone standardı
+DB’de her şey UTC, ekranda kullanıcı timezone’una çevrilir.
+
+Webhook güvenliği + idempotency (ödeme için)
+Webhook iki kez gelse bile aynı ödemeyi iki kere işlemesin.
+
+Mesaj gizliliği
+Admin mesajı “rastgele” görmez; sadece rapor/şikayetle açılır.
+
+4) Veri Modeli (Minimum ama geleceğe uygun)
+
+Senin konuştuğumuz şemanın “mobil bağlanabilir” hali:
+
+users (role, auth, status)
+
+psychologist_profiles (uzmanlık/dil/ücret/timezone/verified)
+
+availability_rules + availability_exceptions
+
+appointments (status, reserved_until, meeting_room)
+
+payments (muhasebe kırılımı: brüt, KDV, komisyon, net, provider fee)
+
+payouts (psikoloğa ödeme takibi)
+
+conversations + messages
+
+session_notes
+
+audit_logs
+
+Mobil için önemli: “appointment” ve “payment” kayıtları, ekranların hepsini API’dan besleyecek şekilde tasarlanmalı.
+
+5) API (Web şimdi, Mobil sonra) – Endpoint planı
+
+Auth
+
+POST /api/auth/register, POST /api/auth/login, POST /api/auth/logout
+
+GET /api/me
+
+Psikolog keşif
+
+GET /api/psychologists?filters…
+
+GET /api/psychologists/:id
+
+Müsaitlik
+
+GET /api/psychologists/:id/slots?from&to (slot üretir)
+
+Psikolog için: POST /api/availability/rules, POST /api/availability/exceptions
+
+Booking
+
+POST /api/appointments/reserve (slot lock + reserved_until)
+
+POST /api/appointments/:id/cancel
+
+GET /api/appointments (role’e göre filtre)
+
+Ödeme
+
+POST /api/payments/checkout (Stripe veya mock)
+
+POST /api/webhooks/stripe (idempotent)
+
+GET /api/payments (hasta kendi; admin hepsi)
+
+Video
+
+POST /api/appointments/:id/meeting-token (yalnız confirmed + time window)
+
+GET /api/appointments/:id/join-info
+
+Mesaj
+
+POST /api/conversations (ilişki kontrol)
+
+GET /api/conversations
+
+POST /api/messages (rate limit + validation)
+
+POST /api/messages/report (admin inceleme tetikler)
+
+Admin
+
+POST /api/admin/verify-psychologist
+
+GET /api/admin/audit-logs
+
+POST /api/admin/refunds
+
+6) Görüntülü Görüşme (MVP + büyütülebilir yaklaşım)
+
+Şu an web için en pratik MVP:
+
+Jitsi embed ile appointment bazlı unique room name
+
+Room bilgisi ancak:
+
+ödeme confirmed
+
+seans penceresi içinde (örn. start-10dk ile end+15dk arası)
+
+Sonra büyütme:
+
+Daily/Twilio token’lı özel oda (daha profesyonel)
+
+Not: Varsayılan “kayıt alma” kapalı olsun. KVKK/hukuki risk azalır.
+
+7) Ödeme & Muhasebe Kırılımı (net mantık)
+
+Ödeme kaydında kalem kalem sakla:
+
+gross_amount (hasta öder)
+
+vat_rate, vat_amount
+
+net_of_vat
+
+platform_fee (site payı)
+
+platform_vat_amount (modeline göre)
+
+processor_fee (Stripe/iyzico kesintisi)
+
+provider_payout (psikolog net)
+
+currency, status
+
+İade:
+
+refund_pending → refunded ve appointment refunded/cancelled senaryosuna bağlanır.
+
+8) Yapım Sırası (en az çöp, en hızlı “çalışır demo”)
+
+Mobil geleceği de düşünerek en doğru sıra:
+
+Faz 0 – Proje iskeleti
+
+Next.js + Tailwind + UI
+
+Prisma + Postgres bağlantısı
+
+ENV yönetimi, seed ile ilk admin
+
+Faz 1 – Auth + Role Guard
+
+register/login
+
+middleware: /dashboard/patient, /dashboard/psychologist, /dashboard/admin
+
+Faz 2 – Psikolog profili + Admin doğrulama
+
+psikolog profil CRUD
+
+admin verify ekranı
+
+Faz 3 – Müsaitlik sistemi
+
+availability rules/exceptions
+
+slot üretimi (from-to aralığında)
+
+Faz 4 – Booking + Slot lock
+
+reserve endpoint (transaction + reserved_until)
+
+expiry job (cron/interval) veya request-time kontrol
+
+Faz 5 – Ödeme (mock → gerçek)
+
+MOCK ödeme ile status confirmed yap
+
+sonra Stripe checkout + webhook + idempotency
+
+Faz 6 – Video seans (MVP)
+
+confirmed + time-window kontrol
+
+join sayfası + embed
+
+Faz 7 – Mesajlaşma
+
+conversation oluşturma (ilişki kontrol)
+
+mesaj gönder/oku + raporla
+
+Faz 8 – Geçmiş ekranları
+
+Hasta: ödeme geçmişi + randevu geçmişi
+
+Psikolog: seans geçmişi + kazanç
+
+Faz 9 – Admin “tam kontrol”
+
+Users, appointments, payments, refunds, reported chats
+
+Soft delete + audit log ekranları
+
+Faz 10 – Stabilizasyon
+
+rate limit, input validation, logging
+
+edge-case test: concurrent booking, ödeme fail, refund, no-show
+
+9) Mobil app bağlanabilirlik (şimdiden doğru kararlar)
+
+Şimdi web yazarken şunları yaparsan mobil entegrasyon çok kolay olur:
+
+API-first: Tüm iş mantığı /api/* altında; UI sadece tüketir.
+
+Versiyonlama: /api/v1/... (ileride kırmadan geliştirirsin)
+
+Auth: mobile için JWT refresh modeli daha rahat; webde cookie session da olur.
+İstersen baştan “JWT + refresh token” kurgula (hem web hem mobil ortak).
+
+DTO/Schema: Zod şemalarını hem API hem UI’da ortak kullan (tek kaynak).
+
+CORS: Şimdiden mobile origin’e izin verecek şekilde planla.
+
+Push bildirim: Şimdilik email; sonra mobil push eklenebilir (tasarımda event log tut).
+
+10) Replit Agent’a Vereceğin “MASTER PROMPT v2” (tam derlenmiş)
+
+Bunu kopyala-yapıştır yap. (Web only + mobile-ready)
+
+Türkçe konuş. Next.js (App Router) + TypeScript ile fullstack “Online Görüntülü Psikolog Platformu” yap.
+ŞU AN SADECE WEB. Ama ileride mobil app bağlanacağı için API-first tasarla (REST /api/v1).
+3 rol: patient, psychologist, admin. Role-based access zorunlu.
+
+ÇEKİRDEK ŞARTLAR:
+1) Booking: psikolog müsaitliklerinden slot üretilecek. Double-booking asla olmayacak.
+   - Slot seçilince appointment reserved + reserved_until=now+10dk
+   - 10dk içinde ödeme olmazsa expired
+   - DB transaction + unique constraint ile aynı slot iki kişiye verilmesin
+2) Ödeme: Seans başlamadan önce ödeme zorunlu.
+   - confirmed değilse “Katıl” linki/token üretilmez
+   - ödeme webhook’u idempotent olmalı
+3) Muhasebe kırılımı Payment tablosunda ayrı kolonlarla tutulacak:
+   gross_amount, vat_rate, vat_amount, net_of_vat,
+   platform_fee, platform_vat_amount, processor_fee, provider_payout, currency, status
+4) Mesajlaşma: Hasta-psikolog sadece aralarında randevu ilişkisi varsa mesajlaşır.
+   Admin mesaj içeriklerini normalde görmez; sadece “raporlanan konuşmalar” açılır.
+5) Admin her şeyi yönetir: users, psychologist verify, appointments, payments/refunds, settings(KDV/komisyon), reported chats, audit logs.
+6) Hard delete yok: soft delete (deleted_at/deleted_by) + audit log zorunlu.
+7) Timezone: DB’de UTC, UI’da kullanıcı timezone’una çevir.
+8) Video (MVP): Jitsi embed ile unique room. Sadece confirmed + seans time-window içinde join edilir.
+   İleride Daily/Twilio eklenebilir; şimdilik provider interface/stub bırak.
+
+TEKNOLOJİ:
+- Next.js App Router + Tailwind
+- Prisma ORM + PostgreSQL (ENV DATABASE_URL)
+- Auth: email+password (bcrypt). Rolleri users.role’da tut.
+- Validation: zod
+- Rate limit: login ve mesaj endpointlerinde basit koruma
+
+VERİ MODELİ (Prisma):
+User(id, role, email, phone, passwordHash, status, createdAt, deletedAt, deletedBy)
+PsychologistProfile(userId, fullName, title, bio, specialtiesJson, languagesJson, priceGross, timezone, verified)
+AvailabilityRule(id, psychologistId, dayOfWeek, startTime, endTime, slotDurationMin, isActive)
+AvailabilityException(id, psychologistId, date, isOff, customSlotsJson)
+Appointment(id, patientId, psychologistId, startAt, endAt, status, reservedUntil, meetingRoom, createdAt, deletedAt, deletedBy)
+Payment(id, appointmentId, provider, externalRef, status, grossAmount, vatRate, vatAmount, netOfVat, platformFee, platformVatAmount, processorFee, providerPayout, currency, paidAt)
+Payout(id, psychologistId, paymentId, amount, status, paidAt)
+Conversation(id, patientId, psychologistId, lastMessageAt)
+Message(id, conversationId, senderUserId, text, createdAt, readAt, deletedAt, deletedBy, reportedAt, reportReason)
+SessionNote(appointmentId, psychologistId, notes, createdAt, updatedAt)
+AuditLog(id, actorUserId, entityType, entityId, action, beforeJson, afterJson, createdAt)
+
+API ENDPOINTLERİ (/api/v1):
+- auth: register/login/logout/me
+- psychologists: list/detail
+- slots: get available slots
+- appointments: reserve/cancel/list
+- payments: checkout + webhook (Stripe varsa), mock payment modu
+- video: join-info/token (confirmed + time window kontrol)
+- messaging: conversations/messages/report
+- admin: verify psychologist, users, appointments, payments+refund, settings, audit logs, reported chats
+
+ÖDEME:
+- Eğer STRIPE_SECRET_KEY vs varsa Stripe Checkout + webhook yap.
+- Yoksa MOCK_PAYMENT=true ile demo ödeme butonu koy (prod modda kapalı).
+- Webhook/ödeme işlemleri idempotent ve güvenli olmalı.
+
+PANELLER:
+- /dashboard/patient: psikolog listesi, randevu al, upcoming, geçmiş, ödeme geçmişi, mesajlar, join
+- /dashboard/psychologist: profil, müsaitlik, upcoming, seans ekranı, geçmiş, notlar, kazanç
+- /dashboard/admin: verify queue, users, appointments, payments/refunds, settings, reported chats, audit logs, soft-deleted list
+
+ÇIKTILAR:
+- Prisma migration + seed (ENV ile ilk admin: ADMIN_EMAIL/ADMIN_PASSWORD)
+- README: kurulum, migrate/seed, env örnekleri, mock payment açıklaması
+- Güvenlik: role guard, zod validation, basic rate limit, audit log, soft delete
+Projeyi npm run dev ile çalışır teslim et.
