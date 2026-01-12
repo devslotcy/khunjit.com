@@ -54,16 +54,26 @@ MindWell, hasta, psikolog ve admin olmak üzere üç farklı kullanıcı rolüyl
 - 50 dakikalık varsayılan seans süresi
 - 10 dakikalık rezervasyon timeout
 - Slot bazlı müsaitlik yönetimi
+- **Double-booking koruması**: Partial unique index ile DB seviyesinde garanti
+- Slot çakışma kontrolü reserve endpoint'inde
 
 ### Ödeme Sistemi (Mock)
 - %20 KDV
 - %15 platform komisyonu
 - Detaylı ödeme dökümü
+- **Ödeme kilidi**: Seans bilgisi sadece ödeme sonrası erişilebilir
 
 ### Video Görüşme
 - Jitsi Meet embed
 - Seans 10 dakika önce katılım
 - Otomatik seans durumu güncellemesi
+- **Güvenli meeting room**: Crypto hash ile tahmin edilemez oda isimleri
+- **Join code**: Ödeme sonrası oluşturulan katılım kodu
+
+### Timezone Desteği
+- Tüm tarihler UTC olarak saklanır
+- Kullanıcı profili timezone tercihi
+- Frontend'de yerel saat gösterimi
 
 ## Dizin Yapısı
 ```
