@@ -1,0 +1,71 @@
+Liste bayağı dolu ve “ürün” gibi duruyor. Bu noktada ben olsam şunu test eder / geliştirirdim (öncelik sırasıyla). Çünkü bunlar bozulursa tüm sistemin güveni gider:
+
+1) Ödeme kilidi + video erişimi (en kritik)
+
+Test senaryoları
+
+Ödeme yapılmadan Join / Jitsi embed asla açılmıyor mu?
+
+Join sadece time-window içinde mi açılıyor? (örn. start-10dk → end+15dk)
+
+Hasta, join URL’sini kopyalayıp başka cihazda açınca yetkisiz erişim oluyor mu?
+
+“expired/cancelled/refunded” randevuda join tamamen kapalı mı?
+
+Geliştirme
+
+Jitsi room ismi tahmin edilemez olmalı (appointmentId tek başına olmasın; random/hashed).
+
+Join-info endpoint’i her istekte status + time-window doğrulasın.
+
+2) Double-booking (eşzamanlılık stres testi)
+
+Test
+
+Aynı slotu 2 farklı tarayıcıdan aynı anda “reserve” etmeye çalış → sadece 1’i başarılı olmalı.
+
+Reserved slot expire olunca tekrar alınabiliyor mu?
+
+Psikolog müsaitliği değiştirince mevcut rezervasyonlar nasıl etkileniyor?
+
+Geliştirme
+
+DB seviyesinde garanti (unique/transaction) gerçekten çalışıyor mu? (logla ve kanıtla)
+
+3) İade / no-show / iptal kuralı (para ve müşteri memnuniyeti)
+
+Test
+
+Admin iade başlattığında payment + appointment durumları doğru mu değişiyor?
+
+Psikolog “no-show” işaretleyebiliyor mu? (kuralına göre)
+
+İptal politikası (24 saat vb.) doğru uygulanıyor mu?
+
+Geliştirme
+
+İade taleplerinde “sebep”, “kim başlattı”, “audit log” zorunlu olsun.
+
+4) Yetkilendirme ve veri sızıntısı (güvenlik)
+
+Test
+
+Hasta başka hastanın randevusunu/ödemesini görebiliyor mu? (ID değiştirerek dene)
+
+Psikolog başka psikoloğun danışan listesini görebiliyor mu?
+
+Admin dışındaki biri audit log görebiliyor mu?
+
+Geliştirme
+
+Tüm hassas endpointlerde ownership kontrolü zaten var demişsiniz—bunu otomatik testlerle kilitleyin.
+
+5) Geçmiş ekranları (müşterinin ilk baktığı yer)
+
+Test
+
+Hasta ödeme geçmişinde kalem kalem: brüt/KDV/komisyon/net + durum + iade görünümü doğru mu?
+
+Psikolog seans geçmişi ve kazanç toplamları raporlarla tutarlı mı?
+
+Admin filtreler (tarih, psikolog, durum) gerçekten doğru sonuç veriyor mu?

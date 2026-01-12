@@ -265,6 +265,13 @@ export async function registerRoutes(
       const slotStart = new Date(startAt);
       const slotEnd = new Date(endAt);
 
+      await db.update(appointments)
+        .set({ status: "expired" })
+        .where(and(
+          eq(appointments.status, "reserved"),
+          sql`${appointments.reservedUntil} < NOW()`
+        ));
+
       const existingAppointments = await db.select().from(appointments)
         .where(and(
           eq(appointments.psychologistId, psychologistId),
@@ -321,6 +328,49 @@ export async function registerRoutes(
       res.json(appointment);
     } catch (error) {
       console.error("Error reserving appointment:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/appointments/upcoming", isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      if (!userId) {
+        return res.status(401).json({ message: "Not authenticated" });
+      }
+
+      const profile = await storage.getUserProfile(userId);
+      const role = profile?.role || "patient";
+      const now = new Date();
+
+      let appointmentList;
+      if (role === "psychologist") {
+        const psychologist = await storage.getPsychologistByUserId(userId);
+        if (psychologist) {
+          appointmentList = await storage.getAppointmentsByPsychologist(psychologist.id);
+        } else {
+          appointmentList = [];
+        }
+      } else {
+        appointmentList = await storage.getAppointmentsByPatient(userId);
+      }
+
+      const upcomingAppointments = appointmentList
+        .filter(apt => 
+          new Date(apt.startAt) > now && 
+          ["confirmed", "ready", "payment_pending"].includes(apt.status)
+        )
+        .sort((a, b) => new Date(a.startAt).getTime() - new Date(b.startAt).getTime())
+        .slice(0, 5);
+
+      const enriched = await Promise.all(upcomingAppointments.map(async (apt) => {
+        const psychologist = await storage.getPsychologistProfile(apt.psychologistId);
+        return { ...apt, psychologist };
+      }));
+
+      res.json(enriched);
+    } catch (error) {
+      console.error("Error fetching upcoming appointments:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   });
@@ -415,6 +465,18 @@ export async function registerRoutes(
       const startTime = new Date(appointment.startAt);
       const endTime = new Date(appointment.endAt);
 
+      const blockedStatuses = ["cancelled", "refunded", "no_show", "expired"];
+      if (blockedStatuses.includes(appointment.status)) {
+        return res.json({
+          canJoin: false,
+          message: "Bu randevu iptal edilmiş veya geçersiz.",
+          reason: "APPOINTMENT_BLOCKED",
+          status: appointment.status,
+          startsAt: appointment.startAt,
+          endsAt: appointment.endAt,
+        });
+      }
+
       const validStatuses = ["confirmed", "ready", "in_session"];
       const isValidStatus = validStatuses.includes(appointment.status);
       const isWithinTimeWindow = isAfter(now, subMinutes(startTime, 10)) && isBefore(now, addMinutes(endTime, 15));
@@ -485,6 +547,25 @@ export async function registerRoutes(
 
       if (!isPatient && !isPsychologist) {
         return res.status(403).json({ message: "Access denied" });
+      }
+
+      const blockedStatuses = ["cancelled", "refunded", "no_show", "expired"];
+      if (blockedStatuses.includes(appointment.status)) {
+        return res.status(400).json({ message: "Bu randevu için seansa katılamazsınız" });
+      }
+
+      const payment = await storage.getPaymentByAppointment(id);
+      if (!payment || payment.status !== "completed") {
+        return res.status(400).json({ message: "Ödeme yapılmadan seansa katılamazsınız" });
+      }
+
+      const now = new Date();
+      const startTime = new Date(appointment.startAt);
+      const endTime = new Date(appointment.endAt);
+      const isWithinTimeWindow = isAfter(now, subMinutes(startTime, 10)) && isBefore(now, addMinutes(endTime, 15));
+
+      if (!isWithinTimeWindow) {
+        return res.status(400).json({ message: "Seans zaman penceresi dışında" });
       }
 
       if (appointment.status === "confirmed") {
