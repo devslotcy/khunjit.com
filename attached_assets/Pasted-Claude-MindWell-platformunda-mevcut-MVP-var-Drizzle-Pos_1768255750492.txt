@@ -1,0 +1,206 @@
+Claude, MindWell platformunda mevcut MVP var (Drizzle + Postgres, Replit Auth OIDC, soft delete, rol bazlı paneller, booking, mock ödeme, mesaj, Jitsi). Aşağıdaki 9 konuda eksikler/iyileştirmeler var. Lütfen her madde için (a) yapılacaklar (b) acceptance criteria (c) hangi fazda devreye girecek şeklinde çözüm öner ve gerekiyorsa DB/endpoint değişikliklerini belirt.
+
+1) Ödeme olmadan seans açılmaması (en kritik)
+
+Problem: Jitsi join linki/token/room bilgisi “paid/confirmed” olmadan erişilebilir olmamalı.
+İstenilen: Hasta seans öncesi ödeme yapar, ödeme başarılı olunca randevu “confirmed” olur ve ancak o zaman join bilgisi verilir.
+
+Yapılacaklar:
+
+appointments.status ödeme ile confirmed olmadan /join ekranı ve Jitsi embed kesinlikle açılmasın.
+
+GET /api/v1/appointments/:id/join-info endpoint’i sadece şu şartlarda bilgi döndürsün:
+
+appointment.status in (confirmed, ready, in_session)
+
+current_time, seans penceresi içinde (örn. start_at - 10dk <= now <= end_at + 15dk)
+
+Aksi halde 403 + kullanıcıya “Ödeme bekleniyor / Seans zamanı değil” mesajı.
+
+Acceptance criteria:
+
+Paid olmayan kullanıcı Jitsi odasına hiçbir şekilde ulaşamaz (URL tahmin etse bile).
+
+Join butonu UI’da sadece doğru statü + zaman penceresinde görünür.
+
+Ne zaman devreye girecek: Hemen (Faz 1 – ödeme kilidi).
+
+2) Double-booking’in DB seviyesinde garantilenmesi
+
+Problem: Rezervasyon timeout var ama iki kişi aynı slotu aynı anda alabilir.
+Yapılacaklar:
+
+DB’de çakışmayı engelleyen bir garanti ekle:
+
+Ya (psychologist_id, start_at) unique (slotlar sabitse)
+
+Ya da “overlap” önleyen transaction lock mantığı (start_at/end_at)
+
+reserve endpoint’i transaction içinde çalışsın; conflict varsa hata döndürsün.
+
+Expired rezervasyonlar slotu serbest bırakmalı.
+
+Acceptance criteria:
+
+Aynı slot iki farklı browser’dan aynı anda denenince sadece biri başarılı olur.
+
+Ne zaman: Hemen (Faz 1 – booking güvenliği).
+
+3) Mock ödeme → gerçek ödeme (Stripe/iyzico) + webhook + idempotency
+
+Problem: Şu an mock ödeme var; prod’da gerçek ödeme şart.
+İstenilen: Hasta randevu rezervasyonundan sonra ödeme ekranına gider; ödeme başarılı olursa appointment confirmed.
+
+Yapılacaklar:
+
+POST /api/v1/payments/checkout:
+
+appointment reserved ise checkout session oluştur
+
+ödeme sağlayıcıdan external_ref al
+
+payment.status = pending
+
+POST /api/v1/webhooks/<provider>:
+
+event doğrulaması + imza kontrolü
+
+idempotency: aynı event iki kez gelirse ikinci işlem no-op
+
+success: payment.status=succeeded, appointment.status=confirmed, meeting_room oluştur
+
+fail: payment.status=failed, appointment.status=expired/cancelled (kuralına göre)
+
+Acceptance criteria:
+
+Webhook iki kez gelse bile double-confirm olmaz.
+
+Ödeme başarılı olmadan confirmed olmaz.
+
+Ne zaman devreye girecek:
+
+Demo: mock ödeme hemen (zaten var)
+
+Prod: gerçek ödeme Faz 2’de (müşteri canlıya çıkmadan önce).
+
+4) Refund / No-show politikası ve akışları
+
+Problem: İptal/iade kuralları net değil.
+Yapılacaklar:
+
+Admin panelinde “Refund başlat” aksiyonu:
+
+payment.status → refund_pending → refunded
+
+appointment.status → refunded/cancelled
+
+No-show: admin veya psikolog işaretleyebilsin (kural setine göre).
+
+PlatformSettings’e iptal/iade kuralları eklenebilir (örn. 24 saat kala %100 iade).
+
+Acceptance criteria:
+
+Admin bir ödemeyi iade edebilir; iade DB’de ve UI’da görünür.
+
+No-show senaryosu raporlara yansır.
+
+Ne zaman: Faz 2 (prod hazırlık).
+
+5) Admin panel: “Her şeyi ayrı ayrı görme + filtre + aksiyonlar”
+
+Problem: Admin “her şeyi kontrol” isteği tam karşılanmıyor olabilir.
+Yapılacaklar:
+
+Admin menüler: Users, Psychologists Verification, Appointments, Payments/Refunds, Reported Messages, Audit Logs, Settings
+
+Her listede filtre: tarih aralığı, durum, psikolog, hasta.
+
+Aksiyonlar: ban/unban, verify/unverify, cancel/reschedule, refund.
+
+Acceptance criteria:
+
+Admin tüm kayıtları bulur, filtreler, aksiyon alır.
+
+Ne zaman: Faz 1-2 arası (kademeli).
+
+6) Hasta ödeme geçmişi & psikolog seans geçmişi ekranlarının “tam döküm” olması
+
+Problem: UI’da “geçmiş” var denmiş ama kalem kalem döküm ve durumlar şart.
+Yapılacaklar:
+
+Patient profile: Payments listesinde brüt/KDV/net/komisyon/psikolog payout + status + refund status.
+
+Psychologist panel: Session history listesinde seans durumu + kazanç kırılımı.
+
+Admin: tüm geçmiş ve arama.
+
+Acceptance criteria:
+
+Her rol kendi geçmişini eksiksiz görür (role-based).
+
+Ne zaman: Faz 1 (müşteri demo için önemli).
+
+7) Timezone / UTC standardizasyonu
+
+Problem: Slotlar ve seans saatleri timezone yüzünden kayabilir.
+Yapılacaklar:
+
+DB’de tüm datetime UTC.
+
+users/psychologist profile’da timezone alanı.
+
+Slot üretimi ve UI gösterimi timezone’a göre dönüşüm.
+
+Admin listelerinde hem UTC hem local gösterim opsiyonel.
+
+Acceptance criteria:
+
+Farklı timezone kullanıcıları aynı seans saatini doğru görür.
+
+Ne zaman: Faz 1 (temel mimari).
+
+8) Mobil bağlanabilirlik (Auth & API stratejisi)
+
+Problem: Replit Auth OIDC web için iyi; mobil entegrasyonda token stratejisi gerekebilir.
+Yapılacaklar:
+
+API’yi “session cookie”ye kilitlemek yerine:
+
+access token + refresh token veya OIDC token doğrulama mantığını netleştir
+
+/api/v1 endpointleri mobil client’dan çağrılabilir olmalı.
+
+CORS ve token doğrulama planı dokümante edilsin.
+
+Acceptance criteria:
+
+Aynı API’yi web ve mobil tüketebilir (auth net).
+
+Ne zaman: Faz 2-3 (mobil öncesi).
+
+9) Bildirimler + hukuki metinler (prod için)
+
+Problem: Prod’da hatırlatma ve KVKK/şartlar gerekir.
+Yapılacaklar:
+
+Email bildirimleri: ödeme alındı, seans yaklaşımı, iptal/iade.
+
+Statik sayfalar: KVKK aydınlatma, gizlilik, kullanım şartları, iptal/iade politikası.
+
+Rıza checkbox’ları (kayıt olurken).
+
+Acceptance criteria:
+
+Kullanıcılar temel bilgilendirmeyi görür ve onaylar.
+
+Seans yaklaşım bildirimleri çalışır.
+
+Ne zaman: Faz 2 (prod hazırlık).
+
+Ek not: Ödeme yöntemi devreye giriş noktası
+
+Booking akışı: reserve (10 dk lock) → checkout → webhook success → confirmed → join-info açılır.
+
+Join bilgisi kesinlikle ödeme success + time window şartıyla verilsin.
+
+Jitsi room name tahmin edilemeyecek şekilde random/hashed olmalı (appointmentId tek başına yeterli değil).
