@@ -8,9 +8,10 @@ import type { PsychologistProfile } from "@shared/schema";
 
 interface PsychologistCardProps {
   psychologist: PsychologistProfile;
+  isPublic?: boolean;
 }
 
-export function PsychologistCard({ psychologist }: PsychologistCardProps) {
+export function PsychologistCard({ psychologist, isPublic }: PsychologistCardProps) {
   const formatPrice = (price: string | null) => {
     if (!price) return "Belirtilmemiş";
     return new Intl.NumberFormat("tr-TR", {
@@ -94,9 +95,13 @@ export function PsychologistCard({ psychologist }: PsychologistCardProps) {
             </p>
           </div>
           <Button asChild data-testid={`button-view-${psychologist.id}`}>
-            <Link href={`/dashboard/psychologists/${psychologist.id}`}>
-              Profili Gör
-            </Link>
+            {isPublic ? (
+              <a href="/api/login">Giriş Yap</a>
+            ) : (
+              <Link href={`/dashboard/psychologists/${psychologist.id}`}>
+                Profili Gör
+              </Link>
+            )}
           </Button>
         </div>
       </CardContent>

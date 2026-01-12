@@ -145,6 +145,17 @@ function AuthenticatedRouter() {
   );
 }
 
+function PublicPsychologistDiscovery() {
+  const { user } = useAuth();
+  
+  if (user) {
+    window.location.href = "/dashboard/psychologists";
+    return null;
+  }
+  
+  return <PsychologistDiscovery isPublic />;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -152,6 +163,9 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Switch>
+            <Route path="/find-psychologist">
+              <PublicPsychologistDiscovery />
+            </Route>
             <Route path="/">
               <AuthenticatedRouter />
             </Route>
