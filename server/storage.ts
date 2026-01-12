@@ -6,6 +6,7 @@ import {
   appointments,
   payments,
   payouts,
+  refunds,
   conversations,
   messages,
   sessionNotes,
@@ -23,6 +24,8 @@ import {
   type InsertAppointment,
   type Payment,
   type InsertPayment,
+  type Refund,
+  type InsertRefund,
   type Conversation,
   type InsertConversation,
   type Message,
@@ -80,6 +83,20 @@ export interface IStorage {
   
   createAuditLog(log: InsertAuditLog): Promise<AuditLog>;
   getAuditLogs(filters?: { entityType?: string; entityId?: string }): Promise<AuditLog[]>;
+  
+  getRefund(id: string): Promise<Refund | undefined>;
+  getRefundByAppointment(appointmentId: string): Promise<Refund | undefined>;
+  getRefundsByPayment(paymentId: string): Promise<Refund[]>;
+  getAllRefunds(): Promise<Refund[]>;
+  createRefund(refund: InsertRefund): Promise<Refund>;
+  updateRefund(id: string, data: Partial<Refund>): Promise<Refund | undefined>;
+  
+  getAllPayments(filters?: { status?: string; patientId?: string; psychologistId?: string }): Promise<Payment[]>;
+  getPaymentsByPatient(patientId: string): Promise<Payment[]>;
+  getPaymentsByPsychologist(psychologistId: string): Promise<Payment[]>;
+  
+  getAllAppointments(filters?: { status?: string; psychologistId?: string; patientId?: string }): Promise<Appointment[]>;
+  getAllUserProfiles(): Promise<UserProfile[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -360,6 +377,93 @@ export class DatabaseStorage implements IStorage {
     }
     
     return db.select().from(auditLogs).orderBy(desc(auditLogs.createdAt));
+  }
+
+  async getRefund(id: string): Promise<Refund | undefined> {
+    const [refund] = await db.select().from(refunds).where(eq(refunds.id, id));
+    return refund || undefined;
+  }
+
+  async getRefundByAppointment(appointmentId: string): Promise<Refund | undefined> {
+    const [refund] = await db.select().from(refunds).where(eq(refunds.appointmentId, appointmentId));
+    return refund || undefined;
+  }
+
+  async getRefundsByPayment(paymentId: string): Promise<Refund[]> {
+    return db.select().from(refunds).where(eq(refunds.paymentId, paymentId));
+  }
+
+  async getAllRefunds(): Promise<Refund[]> {
+    return db.select().from(refunds).orderBy(desc(refunds.createdAt));
+  }
+
+  async createRefund(refund: InsertRefund): Promise<Refund> {
+    const [created] = await db.insert(refunds).values(refund).returning();
+    return created;
+  }
+
+  async updateRefund(id: string, data: Partial<Refund>): Promise<Refund | undefined> {
+    const [updated] = await db.update(refunds)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(refunds.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async getAllPayments(filters?: { status?: string; patientId?: string; psychologistId?: string }): Promise<Payment[]> {
+    let conditions = [];
+    if (filters?.status) {
+      conditions.push(eq(payments.status, filters.status));
+    }
+    if (filters?.patientId) {
+      conditions.push(eq(payments.patientId, filters.patientId));
+    }
+    if (filters?.psychologistId) {
+      conditions.push(eq(payments.psychologistId, filters.psychologistId));
+    }
+    
+    if (conditions.length > 0) {
+      return db.select().from(payments)
+        .where(and(...conditions))
+        .orderBy(desc(payments.createdAt));
+    }
+    
+    return db.select().from(payments).orderBy(desc(payments.createdAt));
+  }
+
+  async getPaymentsByPatient(patientId: string): Promise<Payment[]> {
+    return db.select().from(payments)
+      .where(eq(payments.patientId, patientId))
+      .orderBy(desc(payments.createdAt));
+  }
+
+  async getPaymentsByPsychologist(psychologistId: string): Promise<Payment[]> {
+    return db.select().from(payments)
+      .where(eq(payments.psychologistId, psychologistId))
+      .orderBy(desc(payments.createdAt));
+  }
+
+  async getAllAppointments(filters?: { status?: string; psychologistId?: string; patientId?: string }): Promise<Appointment[]> {
+    let conditions = [isNull(appointments.deletedAt)];
+    if (filters?.status) {
+      conditions.push(eq(appointments.status, filters.status));
+    }
+    if (filters?.psychologistId) {
+      conditions.push(eq(appointments.psychologistId, filters.psychologistId));
+    }
+    if (filters?.patientId) {
+      conditions.push(eq(appointments.patientId, filters.patientId));
+    }
+    
+    return db.select().from(appointments)
+      .where(and(...conditions))
+      .orderBy(desc(appointments.startAt));
+  }
+
+  async getAllUserProfiles(): Promise<UserProfile[]> {
+    return db.select().from(userProfiles)
+      .where(isNull(userProfiles.deletedAt))
+      .orderBy(desc(userProfiles.createdAt));
   }
 }
 

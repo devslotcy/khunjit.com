@@ -25,6 +25,7 @@ import AvailabilitySettings from "@/pages/psychologist/availability";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminUsers from "@/pages/admin/users";
 import AdminVerify from "@/pages/admin/verify";
+import LegalPage from "@/pages/legal";
 import type { UserProfile } from "@shared/schema";
 
 function LoadingScreen() {
@@ -165,6 +166,12 @@ function App() {
           <Switch>
             <Route path="/find-psychologist">
               <PublicPsychologistDiscovery />
+            </Route>
+            <Route path="/legal/:slug">
+              <LegalPage />
+            </Route>
+            <Route path="/legal">
+              <LegalPage />
             </Route>
             <Route path="/">
               <AuthenticatedRouter />

@@ -209,6 +209,43 @@ export const insertPaymentSchema = createInsertSchema(payments).omit({
 export type InsertPayment = z.infer<typeof insertPaymentSchema>;
 export type Payment = typeof payments.$inferSelect;
 
+// ========== REFUNDS ==========
+
+export const refundTypes = ["patient_cancel", "provider_no_show", "admin_decision", "technical_issue"] as const;
+export type RefundType = (typeof refundTypes)[number];
+
+export const refundStatuses = ["pending", "approved", "rejected", "processed"] as const;
+export type RefundStatus = (typeof refundStatuses)[number];
+
+export const refunds = pgTable("refunds", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  appointmentId: varchar("appointment_id").notNull(),
+  paymentId: varchar("payment_id").notNull(),
+  type: varchar("type").notNull(),
+  status: varchar("status").notNull().default("pending"),
+  requestedBy: varchar("requested_by").notNull(),
+  processedBy: varchar("processed_by"),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  refundPercentage: decimal("refund_percentage", { precision: 5, scale: 2 }).default("100"),
+  reason: text("reason"),
+  adminNotes: text("admin_notes"),
+  processedAt: timestamp("processed_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => [
+  index("idx_refunds_appointment").on(table.appointmentId),
+  index("idx_refunds_payment").on(table.paymentId),
+]);
+
+export const insertRefundSchema = createInsertSchema(refunds).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertRefund = z.infer<typeof insertRefundSchema>;
+export type Refund = typeof refunds.$inferSelect;
+
 // ========== PAYOUTS ==========
 
 export const payouts = pgTable("payouts", {

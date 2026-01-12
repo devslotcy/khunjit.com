@@ -963,5 +963,282 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/admin/appointments", isAuthenticated, requireRole("admin"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const { status, psychologistId, patientId } = req.query;
+      const appointmentList = await storage.getAllAppointments({
+        status: status as string,
+        psychologistId: psychologistId as string,
+        patientId: patientId as string,
+      });
+
+      const enriched = await Promise.all(appointmentList.map(async (apt) => {
+        const psychologist = await storage.getPsychologistProfile(apt.psychologistId);
+        const payment = await storage.getPaymentByAppointment(apt.id);
+        return { ...apt, psychologist, payment };
+      }));
+
+      res.json(enriched);
+    } catch (error) {
+      console.error("Error fetching admin appointments:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/admin/payments", isAuthenticated, requireRole("admin"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const { status, patientId, psychologistId } = req.query;
+      const paymentList = await storage.getAllPayments({
+        status: status as string,
+        patientId: patientId as string,
+        psychologistId: psychologistId as string,
+      });
+
+      const enriched = await Promise.all(paymentList.map(async (payment) => {
+        const psychologist = await storage.getPsychologistProfile(payment.psychologistId);
+        const appointment = await storage.getAppointment(payment.appointmentId);
+        const refund = await storage.getRefundByAppointment(payment.appointmentId);
+        return { ...payment, psychologist, appointment, refund };
+      }));
+
+      res.json(enriched);
+    } catch (error) {
+      console.error("Error fetching admin payments:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/admin/refunds", isAuthenticated, requireRole("admin"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const refundList = await storage.getAllRefunds();
+
+      const enriched = await Promise.all(refundList.map(async (refund) => {
+        const appointment = await storage.getAppointment(refund.appointmentId);
+        const payment = await storage.getPayment(refund.paymentId);
+        const psychologist = appointment ? await storage.getPsychologistProfile(appointment.psychologistId) : null;
+        return { ...refund, appointment, payment, psychologist };
+      }));
+
+      res.json(enriched);
+    } catch (error) {
+      console.error("Error fetching admin refunds:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.post("/api/admin/refunds", isAuthenticated, requireRole("admin"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const actorUserId = req.user?.claims?.sub;
+      const { appointmentId, type, reason, refundPercentage } = req.body;
+
+      const appointment = await storage.getAppointment(appointmentId);
+      if (!appointment) {
+        return res.status(404).json({ message: "Appointment not found" });
+      }
+
+      const payment = await storage.getPaymentByAppointment(appointmentId);
+      if (!payment) {
+        return res.status(400).json({ message: "No payment found for this appointment" });
+      }
+
+      const existingRefund = await storage.getRefundByAppointment(appointmentId);
+      if (existingRefund) {
+        return res.status(400).json({ message: "Refund already exists for this appointment" });
+      }
+
+      const percentage = parseFloat(refundPercentage || "100");
+      if (percentage < 0 || percentage > 100) {
+        return res.status(400).json({ message: "Refund percentage must be between 0 and 100" });
+      }
+
+      if (payment.status === "refunded") {
+        return res.status(400).json({ message: "Payment already refunded" });
+      }
+
+      const refundAmount = parseFloat(payment.grossAmount) * (percentage / 100);
+
+      const refund = await storage.createRefund({
+        appointmentId,
+        paymentId: payment.id,
+        type: type || "admin_decision",
+        requestedBy: actorUserId!,
+        amount: refundAmount.toFixed(2),
+        refundPercentage: percentage.toFixed(2),
+        reason,
+        status: "pending",
+      });
+
+      await storage.createAuditLog({
+        actorUserId,
+        entityType: "refund",
+        entityId: refund.id,
+        action: "created",
+        afterData: { appointmentId, type, refundAmount, reason },
+      });
+
+      res.json(refund);
+    } catch (error) {
+      console.error("Error creating refund:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.patch("/api/admin/refunds/:id", isAuthenticated, requireRole("admin"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const actorUserId = req.user?.claims?.sub;
+      const { id } = req.params;
+      const { status, adminNotes } = req.body;
+
+      const refund = await storage.getRefund(id);
+      if (!refund) {
+        return res.status(404).json({ message: "Refund not found" });
+      }
+
+      if (refund.status === "processed" || refund.status === "rejected") {
+        return res.status(400).json({ message: `Refund already ${refund.status}` });
+      }
+
+      const validStatuses = ["pending", "approved", "processed", "rejected"];
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ message: "Invalid status" });
+      }
+
+      const updated = await storage.updateRefund(id, {
+        status,
+        adminNotes,
+        processedBy: actorUserId,
+        processedAt: status === "processed" ? new Date() : undefined,
+      });
+
+      if (status === "processed") {
+        await storage.updatePayment(refund.paymentId, {
+          status: "refunded",
+          refundedAt: new Date(),
+          refundReason: refund.reason,
+        });
+
+        await storage.updateAppointment(refund.appointmentId, {
+          status: "refunded",
+        });
+      }
+
+      await storage.createAuditLog({
+        actorUserId,
+        entityType: "refund",
+        entityId: id,
+        action: `status_changed_to_${status}`,
+        afterData: { status, adminNotes },
+      });
+
+      res.json(updated);
+    } catch (error) {
+      console.error("Error updating refund:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.post("/api/appointments/:id/no-show", isAuthenticated, requireRole("psychologist", "admin"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const actorUserId = req.user?.claims?.sub;
+      const { id } = req.params;
+
+      const appointment = await storage.getAppointment(id);
+      if (!appointment) {
+        return res.status(404).json({ message: "Appointment not found" });
+      }
+
+      const invalidStatuses = ["cancelled", "refunded", "no_show"];
+      if (invalidStatuses.includes(appointment.status)) {
+        return res.status(400).json({ message: `Cannot report no-show for ${appointment.status} appointment` });
+      }
+
+      const profile = await storage.getUserProfile(actorUserId!);
+      if (profile?.role === "psychologist") {
+        const psychologist = await storage.getPsychologistByUserId(actorUserId!);
+        if (!psychologist || appointment.psychologistId !== psychologist.id) {
+          return res.status(403).json({ message: "Access denied" });
+        }
+      }
+
+      const updated = await storage.updateAppointment(id, {
+        status: "no_show",
+        noShowReportedBy: actorUserId,
+        noShowAt: new Date(),
+      });
+
+      await storage.createAuditLog({
+        actorUserId,
+        entityType: "appointment",
+        entityId: id,
+        action: "no_show_reported",
+      });
+
+      res.json(updated);
+    } catch (error) {
+      console.error("Error reporting no-show:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/patient/payment-history", isAuthenticated, requireRole("patient"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      if (!userId) {
+        return res.status(401).json({ message: "Not authenticated" });
+      }
+
+      const paymentList = await storage.getPaymentsByPatient(userId);
+
+      const enriched = await Promise.all(paymentList.map(async (payment) => {
+        const psychologist = await storage.getPsychologistProfile(payment.psychologistId);
+        const appointment = await storage.getAppointment(payment.appointmentId);
+        const refund = await storage.getRefundByAppointment(payment.appointmentId);
+        return { ...payment, psychologist, appointment, refund };
+      }));
+
+      res.json(enriched);
+    } catch (error) {
+      console.error("Error fetching patient payment history:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/psychologist/session-history", isAuthenticated, requireRole("psychologist"), async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      if (!userId) {
+        return res.status(401).json({ message: "Not authenticated" });
+      }
+
+      const psychologist = await storage.getPsychologistByUserId(userId);
+      if (!psychologist) {
+        return res.status(404).json({ message: "Psychologist profile not found" });
+      }
+
+      const paymentList = await storage.getPaymentsByPsychologist(psychologist.id);
+
+      const enriched = await Promise.all(paymentList.map(async (payment) => {
+        const appointment = await storage.getAppointment(payment.appointmentId);
+        return { 
+          ...payment, 
+          appointment,
+          earnings: {
+            gross: payment.grossAmount,
+            vatAmount: payment.vatAmount,
+            netOfVat: payment.netOfVat,
+            platformFee: payment.platformFee,
+            processorFee: payment.processorFee,
+            payout: payment.providerPayout,
+          }
+        };
+      }));
+
+      res.json(enriched);
+    } catch (error) {
+      console.error("Error fetching psychologist session history:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   return httpServer;
 }

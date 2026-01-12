@@ -294,12 +294,18 @@ export default function Landing() {
               © 2024 MindWell. Tüm hakları saklıdır.
             </p>
             
-            <div className="flex items-center gap-6">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <div className="flex items-center gap-4 flex-wrap justify-center">
+              <a href="/legal/gizlilik" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-privacy">
                 Gizlilik Politikası
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="/legal/kullanim" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-terms">
                 Kullanım Koşulları
+              </a>
+              <a href="/legal/kvkk" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-kvkk">
+                KVKK
+              </a>
+              <a href="/legal/iptal" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-refund">
+                İptal ve İade
               </a>
             </div>
           </div>
