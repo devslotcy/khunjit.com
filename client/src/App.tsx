@@ -13,6 +13,7 @@ import RoleSelect from "@/pages/role-select";
 import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import SessionPage from "@/pages/session";
+import ProfilePage from "@/pages/profile";
 
 import PatientDashboard from "@/pages/patient/dashboard";
 import PsychologistDiscovery from "@/pages/patient/psychologists";
@@ -134,13 +135,7 @@ function AuthenticatedRouter() {
         <AdminDashboard />
       </Route>
       <Route path="/dashboard/profile">
-        {role === "admin" ? (
-          <AdminDashboard />
-        ) : role === "psychologist" ? (
-          <PsychologistDashboardPage />
-        ) : (
-          <PatientDashboard />
-        )}
+        <ProfilePage />
       </Route>
 
       <Route path="/">

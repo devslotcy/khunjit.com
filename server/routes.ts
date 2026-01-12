@@ -278,7 +278,7 @@ export async function registerRoutes(
 
   app.get("/api/profile", isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
     try {
-      const userId = req.user?.claims?.sub;
+      const userId = req.user?.claims?.sub || (req.session as any).userId;
       if (!userId) {
         return res.status(401).json({ message: "Not authenticated" });
       }
@@ -287,6 +287,44 @@ export async function registerRoutes(
       res.json(profile || null);
     } catch (error) {
       console.error("Error fetching profile:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.patch("/api/profile", isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const userId = req.user?.claims?.sub || (req.session as any).userId;
+      if (!userId) {
+        return res.status(401).json({ message: "Not authenticated" });
+      }
+
+      const { phone, birthDate, gender, city, profession, bio, timezone } = req.body;
+
+      const updatedProfile = await storage.updateUserProfile(userId, {
+        phone: phone || null,
+        birthDate: birthDate ? new Date(birthDate) : null,
+        gender: gender || null,
+        city: city || null,
+        profession: profession || null,
+        bio: bio || null,
+        timezone: timezone || "Europe/Istanbul",
+      });
+
+      if (!updatedProfile) {
+        return res.status(404).json({ message: "Profile not found" });
+      }
+
+      await storage.createAuditLog({
+        actorUserId: userId,
+        entityType: "user_profile",
+        entityId: updatedProfile.id,
+        action: "updated",
+        afterData: { phone, city, profession },
+      });
+
+      res.json(updatedProfile);
+    } catch (error) {
+      console.error("Error updating profile:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   });

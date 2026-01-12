@@ -7,9 +7,29 @@ MindWell, hasta, psikolog ve admin olmak üzere üç farklı kullanıcı rolüyl
 - **Frontend**: React + Vite + TypeScript
 - **Backend**: Express.js + TypeScript
 - **Database**: PostgreSQL (Drizzle ORM)
-- **Authentication**: Replit Auth (OIDC)
+- **Authentication**: Dual auth support (Replit Auth OIDC + Email/Password with bcrypt)
 - **Styling**: Tailwind CSS + shadcn/ui
 - **Video**: Jitsi Meet embed
+
+## Authentication Sistemi
+- **Replit Auth**: OIDC tabanlı, mevcut Replit hesabıyla giriş
+- **Email/Password**: bcrypt ile hash, session-based authentication
+- Her iki yöntem de aynı middleware ile desteklenir
+- Kayıt sırasında kullanıcı bilgileri: email, username, password, firstName, lastName, role
+- Profil bilgileri: phone, birthDate, gender, city, profession, bio, timezone
+
+### Auth Endpoints
+- `POST /api/auth/register` - Email/şifre ile kayıt
+- `POST /api/auth/login` - Email/şifre ile giriş
+- `POST /api/auth/logout` - Çıkış
+- `GET /api/auth/me` - Mevcut kullanıcı bilgisi (her iki auth yöntemi)
+- `GET /api/auth/user` - Kullanıcı detayları
+- `GET /api/login` - Replit Auth ile giriş
+- `GET /api/logout` - Replit Auth çıkış
+
+### Auth Sayfaları
+- `/login` - Email/şifre giriş sayfası
+- `/register` - 3 adımlı kayıt formu
 
 ## Kullanıcı Rolleri
 
