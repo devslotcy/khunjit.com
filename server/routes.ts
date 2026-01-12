@@ -6,7 +6,23 @@ import { db } from "./db";
 import { psychologistProfiles, appointments, userProfiles, users } from "@shared/schema";
 import { eq, and, gte, lte, or, count, sql } from "drizzle-orm";
 import { addMinutes, addDays, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, differenceInMinutes, isAfter, isBefore, subMinutes } from "date-fns";
-import { randomUUID } from "crypto";
+import { randomUUID, createHash } from "crypto";
+
+function generateSecureJoinCode(appointmentId: string, secret: string = process.env.SESSION_SECRET || "mindwell-secret"): string {
+  const timestamp = Date.now().toString();
+  return createHash("sha256")
+    .update(`${appointmentId}-${secret}-${timestamp}`)
+    .digest("hex")
+    .slice(0, 16);
+}
+
+function generateSecureMeetingRoom(appointmentId: string): string {
+  const hash = createHash("sha256")
+    .update(`${appointmentId}-${process.env.SESSION_SECRET || "mindwell-secret"}-${randomUUID()}`)
+    .digest("hex")
+    .slice(0, 12);
+  return `mw-${hash}`;
+}
 
 interface AuthenticatedRequest extends Request {
   user?: {
@@ -246,17 +262,53 @@ export async function registerRoutes(
         return res.status(404).json({ message: "Psychologist not found or not verified" });
       }
 
+      const slotStart = new Date(startAt);
+      const slotEnd = new Date(endAt);
+
+      const existingAppointments = await db.select().from(appointments)
+        .where(and(
+          eq(appointments.psychologistId, psychologistId),
+          or(
+            eq(appointments.status, "reserved"),
+            eq(appointments.status, "payment_pending"),
+            eq(appointments.status, "confirmed"),
+            eq(appointments.status, "ready"),
+            eq(appointments.status, "in_session")
+          ),
+          or(
+            and(lte(appointments.startAt, slotStart), gte(appointments.endAt, slotStart)),
+            and(lte(appointments.startAt, slotEnd), gte(appointments.endAt, slotEnd)),
+            and(gte(appointments.startAt, slotStart), lte(appointments.endAt, slotEnd))
+          )
+        ));
+
+      const validConflicts = existingAppointments.filter(apt => {
+        if (apt.status === "reserved" && apt.reservedUntil) {
+          return new Date(apt.reservedUntil) > new Date();
+        }
+        return true;
+      });
+
+      if (validConflicts.length > 0) {
+        return res.status(409).json({ 
+          message: "Bu slot başka bir kullanıcı tarafından rezerve edilmiş", 
+          code: "SLOT_CONFLICT" 
+        });
+      }
+
       const reservedUntil = addMinutes(new Date(), 10);
 
       const appointment = await storage.createAppointment({
         patientId: userId,
         psychologistId,
-        startAt: new Date(startAt),
-        endAt: new Date(endAt),
+        startAt: slotStart,
+        endAt: slotEnd,
         status: "reserved",
         reservedUntil,
-        meetingRoom: `mindwell-${randomUUID().slice(0, 8)}`,
       });
+
+      const secureMeetingRoom = generateSecureMeetingRoom(appointment.id);
+      await storage.updateAppointment(appointment.id, { meetingRoom: secureMeetingRoom });
 
       await storage.createAuditLog({
         actorUserId: userId,
@@ -363,14 +415,49 @@ export async function registerRoutes(
       const startTime = new Date(appointment.startAt);
       const endTime = new Date(appointment.endAt);
 
-      const canJoin = appointment.status === "confirmed" &&
-        isAfter(now, subMinutes(startTime, 10)) &&
-        isBefore(now, addMinutes(endTime, 15));
+      const validStatuses = ["confirmed", "ready", "in_session"];
+      const isValidStatus = validStatuses.includes(appointment.status);
+      const isWithinTimeWindow = isAfter(now, subMinutes(startTime, 10)) && isBefore(now, addMinutes(endTime, 15));
+
+      const payment = await storage.getPaymentByAppointment(id);
+      const isPaid = payment && payment.status === "completed";
+
+      if (!isPaid) {
+        return res.json({
+          canJoin: false,
+          message: "Ödeme bekleniyor. Seansa katılmak için önce ödeme yapmalısınız.",
+          reason: "PAYMENT_REQUIRED",
+          startsAt: appointment.startAt,
+          endsAt: appointment.endAt,
+        });
+      }
+
+      if (!isValidStatus) {
+        return res.json({
+          canJoin: false,
+          message: "Seans durumu katılıma uygun değil.",
+          reason: "INVALID_STATUS",
+          startsAt: appointment.startAt,
+          endsAt: appointment.endAt,
+        });
+      }
+
+      if (!isWithinTimeWindow) {
+        return res.json({
+          canJoin: false,
+          message: "Seans saatinden 10 dakika önce katılabilirsiniz.",
+          reason: "NOT_IN_TIME_WINDOW",
+          startsAt: appointment.startAt,
+          endsAt: appointment.endAt,
+        });
+      }
 
       res.json({
         roomName: appointment.meetingRoom,
-        canJoin,
-        message: canJoin ? undefined : "Seans saatinden 10 dakika önce katılabilirsiniz",
+        joinCode: appointment.joinCode,
+        canJoin: true,
+        startsAt: appointment.startAt,
+        endsAt: appointment.endAt,
       });
     } catch (error) {
       console.error("Error fetching session info:", error);
@@ -491,7 +578,14 @@ export async function registerRoutes(
         paidAt: new Date(),
       });
 
-      await storage.updateAppointment(appointmentId, { status: "confirmed" });
+      const joinCode = generateSecureJoinCode(appointmentId);
+      const joinCodeExpiresAt = addMinutes(new Date(appointment.endAt), 30);
+
+      await storage.updateAppointment(appointmentId, { 
+        status: "confirmed",
+        joinCode,
+        joinCodeExpiresAt,
+      });
 
       const conversation = await storage.getConversationByParticipants(userId, psychologist.id);
       if (!conversation) {
