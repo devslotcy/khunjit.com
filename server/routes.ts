@@ -68,7 +68,12 @@ export async function registerRoutes(
   // Email/Password Register
   app.post("/api/auth/register", async (req: Request, res: Response) => {
     try {
-      const { email, username, password, firstName, lastName, role, phone, birthDate, gender, city, profession, bio } = req.body;
+      const { 
+        email, username, password, firstName, lastName, role, 
+        phone, birthDate, gender, city, profession, bio,
+        title, licenseNumber, yearsOfExperience, education,
+        specialties, therapyApproaches, languages, pricePerSession
+      } = req.body;
 
       if (!email || !username || !password || !firstName || !lastName) {
         return res.status(400).json({ message: "Email, kullanıcı adı, şifre, ad ve soyad gereklidir" });
@@ -117,7 +122,14 @@ export async function registerRoutes(
         await storage.createPsychologistProfile({
           userId,
           fullName: `${firstName} ${lastName}`,
-          pricePerSession: "500.00",
+          title: title || null,
+          bio: bio || null,
+          specialties: specialties || [],
+          languages: languages || ["Türkçe"],
+          pricePerSession: pricePerSession || "500.00",
+          yearsOfExperience: yearsOfExperience ? parseInt(yearsOfExperience) : null,
+          education: education || null,
+          certifications: therapyApproaches || [],
           status: "pending",
         });
       }

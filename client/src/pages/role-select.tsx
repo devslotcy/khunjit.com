@@ -1,39 +1,17 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Brain, User, Stethoscope, ArrowRight } from "lucide-react";
+import { Brain, User, Stethoscope, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function RoleSelect() {
   const [, navigate] = useLocation();
-  const { toast } = useToast();
   const [selectedRole, setSelectedRole] = useState<"patient" | "psychologist" | null>(null);
-
-  const selectRoleMutation = useMutation({
-    mutationFn: async (role: "patient" | "psychologist") => {
-      return apiRequest("POST", "/api/auth/select-role", { role });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/profile"] });
-      window.location.href = "/dashboard";
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Hata",
-        description: error.message || "Rol seçimi başarısız oldu",
-        variant: "destructive",
-      });
-    },
-  });
 
   const handleContinue = () => {
     if (selectedRole) {
-      selectRoleMutation.mutate(selectedRole);
+      navigate(`/register?role=${selectedRole}`);
     }
   };
 
@@ -41,6 +19,9 @@ export default function RoleSelect() {
     <div className="min-h-screen bg-background flex flex-col">
       <header className="h-16 border-b border-border flex items-center justify-between px-6">
         <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" onClick={() => navigate("/")} data-testid="button-back">
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
           <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
             <Brain className="w-6 h-6 text-primary-foreground" />
           </div>
@@ -112,23 +93,23 @@ export default function RoleSelect() {
             </Card>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-4">
             <Button 
               size="lg" 
               className="px-12"
-              disabled={!selectedRole || selectRoleMutation.isPending}
+              disabled={!selectedRole}
               onClick={handleContinue}
               data-testid="button-continue"
             >
-              {selectRoleMutation.isPending ? (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-foreground" />
-              ) : (
-                <>
-                  Devam Et
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </>
-              )}
+              Devam Et
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
+            <p className="text-sm text-muted-foreground">
+              Zaten hesabınız var mı?{" "}
+              <a href="/login" className="text-primary hover:underline" data-testid="link-login">
+                Giriş Yapın
+              </a>
+            </p>
           </div>
         </div>
       </main>

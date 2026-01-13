@@ -45,7 +45,7 @@ export default function Landing() {
                 <a href="/login">Giriş Yap</a>
               </Button>
               <Button asChild data-testid="button-start">
-                <a href="/register">
+                <a href="/role-select">
                   Kayıt Ol
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </a>
@@ -78,7 +78,7 @@ export default function Landing() {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="text-base px-8" asChild data-testid="button-hero-start">
-                  <a href="/register">
+                  <a href="/role-select">
                     Hemen Başla
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </a>
@@ -272,7 +272,7 @@ export default function Landing() {
             Profesyonel psikolojik destek almak için hemen ücretsiz hesap oluşturun
           </p>
           <Button size="lg" variant="secondary" className="text-base px-8" asChild data-testid="button-cta-start">
-            <a href="/api/login">
+            <a href="/role-select">
               Ücretsiz Başla
               <ArrowRight className="w-5 h-5 ml-2" />
             </a>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLocation } from "wouter";
+import { useState, useEffect } from "react";
+import { useLocation, useSearch } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Mail, Lock, User, Phone, MapPin, Briefcase, Calendar, Brain } from "lucide-react";
+import { Loader2, Mail, Lock, User, Phone, MapPin, Briefcase, Calendar, Brain, GraduationCap, Award, Languages, Stethoscope } from "lucide-react";
 import { Link } from "wouter";
 
 const cities = [
@@ -19,10 +19,26 @@ const cities = [
   "Muğla", "Samsun", "Trabzon", "Diğer"
 ];
 
+const specialties = [
+  "Bireysel Terapi", "Çift Terapisi", "Aile Terapisi", "Çocuk ve Ergen", 
+  "Depresyon", "Anksiyete", "Travma ve TSSB", "OKB", "Yeme Bozuklukları",
+  "Bağımlılık", "Kariyer Danışmanlığı", "Stres Yönetimi", "Öfke Kontrolü"
+];
+
+const therapyApproaches = [
+  "Bilişsel Davranışçı Terapi (BDT)", "Psikodinamik Terapi", "EMDR", 
+  "Şema Terapi", "Kabul ve Kararlılık Terapisi (ACT)", "Gestalt Terapi",
+  "Çözüm Odaklı Terapi", "Varoluşçu Terapi", "Mindfulness Tabanlı Terapi"
+];
+
 export default function RegisterPage() {
   const [, navigate] = useLocation();
+  const search = useSearch();
   const { toast } = useToast();
   const [step, setStep] = useState(1);
+  
+  const urlParams = new URLSearchParams(search);
+  const roleFromUrl = urlParams.get("role") as "patient" | "psychologist" | null;
   
   const [formData, setFormData] = useState({
     email: "",
@@ -31,14 +47,31 @@ export default function RegisterPage() {
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    role: "patient",
+    role: roleFromUrl || "patient",
     phone: "",
     birthDate: "",
     gender: "",
     city: "",
     profession: "",
     bio: "",
+    title: "",
+    licenseNumber: "",
+    yearsOfExperience: "",
+    education: "",
+    specialties: [] as string[],
+    therapyApproaches: [] as string[],
+    languages: ["Türkçe"] as string[],
+    pricePerSession: "",
   });
+  
+  useEffect(() => {
+    if (!roleFromUrl) {
+      navigate("/role-select");
+    }
+  }, [roleFromUrl, navigate]);
+  
+  const isPsychologist = formData.role === "psychologist";
+  const totalSteps = isPsychologist ? 4 : 3;
 
   const updateField = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -55,7 +88,11 @@ export default function RegisterPage() {
         title: "Kayıt başarılı",
         description: "Hesabınız oluşturuldu!",
       });
-      navigate("/dashboard");
+      if (isPsychologist) {
+        navigate("/psychologist/dashboard");
+      } else {
+        navigate("/patient/dashboard");
+      }
     },
     onError: (error: any) => {
       toast({
@@ -65,6 +102,17 @@ export default function RegisterPage() {
       });
     },
   });
+  
+  const toggleArrayField = (field: "specialties" | "therapyApproaches", value: string) => {
+    setFormData(prev => {
+      const arr = prev[field];
+      if (arr.includes(value)) {
+        return { ...prev, [field]: arr.filter(v => v !== value) };
+      } else {
+        return { ...prev, [field]: [...arr, value] };
+      }
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +155,12 @@ export default function RegisterPage() {
         return;
       }
     }
+    if (step === 3 && isPsychologist) {
+      if (!formData.title || !formData.licenseNumber || !formData.yearsOfExperience || !formData.education) {
+        toast({ title: "Hata", description: "Lütfen profesyonel bilgilerinizi doldurun", variant: "destructive" });
+        return;
+      }
+    }
     setStep(s => s + 1);
   };
 
@@ -119,15 +173,17 @@ export default function RegisterPage() {
               <Brain className="h-8 w-8 text-primary" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold">Hesap Oluşturun</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            {isPsychologist ? "Psikolog Kaydı" : "Hasta Kaydı"}
+          </CardTitle>
           <CardDescription>
-            Adım {step} / 3
+            Adım {step} / {totalSteps}
           </CardDescription>
           <div className="flex justify-center gap-2 pt-2">
-            {[1, 2, 3].map((s) => (
+            {Array.from({ length: totalSteps }, (_, i) => i + 1).map((s) => (
               <div
                 key={s}
-                className={`h-2 w-16 rounded-full ${s <= step ? "bg-primary" : "bg-muted"}`}
+                className={`h-2 w-12 rounded-full ${s <= step ? "bg-primary" : "bg-muted"}`}
               />
             ))}
           </div>
@@ -284,31 +340,8 @@ export default function RegisterPage() {
               </>
             )}
 
-            {step === 3 && (
+            {step === 3 && !isPsychologist && (
               <>
-                <div className="space-y-2">
-                  <Label>Hesap Türü *</Label>
-                  <RadioGroup
-                    value={formData.role}
-                    onValueChange={(value) => updateField("role", value)}
-                    className="grid grid-cols-2 gap-4"
-                  >
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover-elevate">
-                      <RadioGroupItem value="patient" id="patient" data-testid="radio-patient" />
-                      <Label htmlFor="patient" className="cursor-pointer">
-                        <div className="font-medium">Hasta</div>
-                        <div className="text-xs text-muted-foreground">Destek almak istiyorum</div>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover-elevate">
-                      <RadioGroupItem value="psychologist" id="psychologist" data-testid="radio-psychologist" />
-                      <Label htmlFor="psychologist" className="cursor-pointer">
-                        <div className="font-medium">Psikolog</div>
-                        <div className="text-xs text-muted-foreground">Hizmet vermek istiyorum</div>
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
                 <div className="space-y-2">
                   <Label htmlFor="city">Şehir</Label>
                   <Select value={formData.city} onValueChange={(value) => updateField("city", value)}>
@@ -351,6 +384,162 @@ export default function RegisterPage() {
                 </div>
               </>
             )}
+
+            {step === 3 && isPsychologist && (
+              <>
+                <div className="space-y-2">
+                  <Label htmlFor="title">Unvan *</Label>
+                  <Select value={formData.title} onValueChange={(value) => updateField("title", value)}>
+                    <SelectTrigger data-testid="select-title">
+                      <Stethoscope className="h-4 w-4 mr-2 text-muted-foreground" />
+                      <SelectValue placeholder="Unvan seçin" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Psikolog">Psikolog</SelectItem>
+                      <SelectItem value="Klinik Psikolog">Klinik Psikolog</SelectItem>
+                      <SelectItem value="Uzman Psikolog">Uzman Psikolog</SelectItem>
+                      <SelectItem value="Dr.">Dr.</SelectItem>
+                      <SelectItem value="Doç. Dr.">Doç. Dr.</SelectItem>
+                      <SelectItem value="Prof. Dr.">Prof. Dr.</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="licenseNumber">Lisans Numarası *</Label>
+                  <div className="relative">
+                    <Award className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      id="licenseNumber"
+                      type="text"
+                      placeholder="Mesleki lisans numaranız"
+                      value={formData.licenseNumber}
+                      onChange={(e) => updateField("licenseNumber", e.target.value)}
+                      className="pl-10"
+                      required
+                      data-testid="input-license"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="yearsOfExperience">Deneyim (Yıl) *</Label>
+                    <Input
+                      id="yearsOfExperience"
+                      type="number"
+                      min="0"
+                      max="50"
+                      placeholder="5"
+                      value={formData.yearsOfExperience}
+                      onChange={(e) => updateField("yearsOfExperience", e.target.value)}
+                      required
+                      data-testid="input-experience"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="city">Şehir</Label>
+                    <Select value={formData.city} onValueChange={(value) => updateField("city", value)}>
+                      <SelectTrigger data-testid="select-city">
+                        <SelectValue placeholder="Şehir" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {cities.map((city) => (
+                          <SelectItem key={city} value={city}>{city}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="education">Eğitim Bilgileri *</Label>
+                  <div className="relative">
+                    <GraduationCap className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <Textarea
+                      id="education"
+                      placeholder="Üniversite, bölüm ve mezuniyet yılı..."
+                      value={formData.education}
+                      onChange={(e) => updateField("education", e.target.value)}
+                      className="pl-10"
+                      rows={2}
+                      data-testid="textarea-education"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+
+            {step === 4 && isPsychologist && (
+              <>
+                <div className="space-y-2">
+                  <Label>Uzmanlık Alanları *</Label>
+                  <div className="grid grid-cols-2 gap-2 max-h-32 overflow-y-auto p-2 border rounded-md">
+                    {specialties.map((specialty) => (
+                      <label
+                        key={specialty}
+                        className={`flex items-center gap-2 p-2 rounded cursor-pointer text-sm ${
+                          formData.specialties.includes(specialty) ? "bg-primary/10 text-primary" : "hover:bg-muted"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.specialties.includes(specialty)}
+                          onChange={() => toggleArrayField("specialties", specialty)}
+                          className="rounded"
+                          data-testid={`checkbox-specialty-${specialty}`}
+                        />
+                        {specialty}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label>Terapi Yaklaşımları</Label>
+                  <div className="grid grid-cols-1 gap-2 max-h-32 overflow-y-auto p-2 border rounded-md">
+                    {therapyApproaches.map((approach) => (
+                      <label
+                        key={approach}
+                        className={`flex items-center gap-2 p-2 rounded cursor-pointer text-sm ${
+                          formData.therapyApproaches.includes(approach) ? "bg-primary/10 text-primary" : "hover:bg-muted"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.therapyApproaches.includes(approach)}
+                          onChange={() => toggleArrayField("therapyApproaches", approach)}
+                          className="rounded"
+                          data-testid={`checkbox-approach-${approach}`}
+                        />
+                        {approach}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="pricePerSession">Seans Ücreti (TL) *</Label>
+                  <Input
+                    id="pricePerSession"
+                    type="number"
+                    min="100"
+                    placeholder="500"
+                    value={formData.pricePerSession}
+                    onChange={(e) => updateField("pricePerSession", e.target.value)}
+                    required
+                    data-testid="input-price"
+                  />
+                  <p className="text-xs text-muted-foreground">Platform %15 komisyon alır, KDV dahil.</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="bio">Hakkımda</Label>
+                  <Textarea
+                    id="bio"
+                    placeholder="Kendinizi ve yaklaşımınızı tanıtın..."
+                    value={formData.bio}
+                    onChange={(e) => updateField("bio", e.target.value)}
+                    rows={3}
+                    data-testid="textarea-bio"
+                  />
+                </div>
+              </>
+            )}
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <div className="flex gap-2 w-full">
@@ -365,7 +554,7 @@ export default function RegisterPage() {
                   Geri
                 </Button>
               )}
-              {step < 3 ? (
+              {step < totalSteps ? (
                 <Button 
                   type="button" 
                   onClick={nextStep}
