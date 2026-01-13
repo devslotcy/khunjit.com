@@ -29,7 +29,15 @@ MindWell, hasta, psikolog ve admin olmak üzere üç farklı kullanıcı rolüyl
 
 ### Auth Sayfaları
 - `/login` - Email/şifre giriş sayfası
-- `/register` - 3 adımlı kayıt formu
+- `/role-select` - Rol seçim sayfası (Hasta/Psikolog)
+- `/register?role=patient` - Hasta kayıt formu (3 adım)
+- `/register?role=psychologist` - Psikolog kayıt formu (4 adım)
+
+### Rol Bazlı Kayıt Akışı
+1. Kullanıcı `/role-select` sayfasından rol seçer
+2. Seçilen role göre kayıt formuna yönlendirilir
+3. **Hasta**: 3 adımlı form (hesap, kişisel, iletişim bilgileri)
+4. **Psikolog**: 4 adımlı form (hesap, kişisel, profesyonel, uzmanlık alanları)
 
 ## Kullanıcı Rolleri
 
@@ -49,10 +57,12 @@ MindWell, hasta, psikolog ve admin olmak üzere üç farklı kullanıcı rolüyl
 - Kazançları takip et
 
 ### Admin
-- Kullanıcı yönetimi
-- Psikolog doğrulama
+- Kullanıcı yönetimi (tüm kullanıcıları görüntüle, askıya al)
+- Psikolog doğrulama (bekleyen başvuruları onayla/reddet)
+- Finansal yönetim (gelir-gider özeti, platform komisyonu takibi)
 - Şikayet mesajları incele
-- Platform ayarları
+- İade talepleri yönetimi
+- Platform ayarları (KDV, komisyon oranları)
 - Denetim günlükleri
 
 ## Veritabanı Tabloları
@@ -139,7 +149,18 @@ npm run dev
 ```
 
 ### Admin Hesabı Oluşturma
-Admin hesabı oluşturmak için `/register` sayfasından kayıt olun, ardından veritabanında rolü güncelleyin:
+İki yöntemle admin hesabı oluşturabilirsiniz:
+
+**Yöntem 1 - API ile (Önerilen):**
+```bash
+curl -X POST http://localhost:5000/api/seed-admin
+```
+Bu, aşağıdaki bilgilerle varsayılan admin hesabı oluşturur:
+- **Email**: admin@mindwell.com
+- **Şifre**: admin123
+- **Not**: Giriş yaptıktan sonra şifrenizi değiştirin!
+
+**Yöntem 2 - Manuel SQL:**
 ```sql
 UPDATE user_profiles SET role = 'admin' WHERE user_id = 'KULLANICI_ID';
 ```
@@ -169,4 +190,9 @@ npm run db:migrate   # Migration uygula
 Kayıt sayfasından (`/register`) aşağıdaki rollerde hesap oluşturabilirsiniz:
 - **Hasta (patient)**: Psikolog arama ve randevu alma
 - **Psikolog (psychologist)**: Randevu yönetimi ve seanslar
-- **Admin**: Veritabanından role güncellemesi gerekir
+- **Admin**: `/api/seed-admin` endpoint'i ile oluşturulur veya veritabanından role güncellemesi gerekir
+
+### Varsayılan Admin Hesabı
+`POST /api/seed-admin` endpoint'i çağrıldığında oluşturulur:
+- **Email**: admin@mindwell.com
+- **Şifre**: admin123

@@ -66,6 +66,7 @@ export const psychologistProfiles = pgTable("psychologist_profiles", {
   userId: varchar("user_id").notNull().unique(),
   fullName: varchar("full_name").notNull(),
   title: varchar("title"),
+  licenseNumber: varchar("license_number"),
   bio: text("bio"),
   specialties: text("specialties").array(),
   languages: text("languages").array(),

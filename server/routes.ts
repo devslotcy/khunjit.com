@@ -119,15 +119,20 @@ export async function registerRoutes(
       });
 
       if (selectedRole === "psychologist") {
+        if (!title || !licenseNumber || !yearsOfExperience || !pricePerSession) {
+          return res.status(400).json({ message: "Psikolog kaydı için unvan, lisans no, deneyim ve ücret bilgileri gereklidir" });
+        }
+        
         await storage.createPsychologistProfile({
           userId,
           fullName: `${firstName} ${lastName}`,
-          title: title || null,
+          title,
+          licenseNumber,
           bio: bio || null,
           specialties: specialties || [],
           languages: languages || ["Türkçe"],
-          pricePerSession: pricePerSession || "500.00",
-          yearsOfExperience: yearsOfExperience ? parseInt(yearsOfExperience) : null,
+          pricePerSession: pricePerSession,
+          yearsOfExperience: parseInt(yearsOfExperience),
           education: education || null,
           certifications: therapyApproaches || [],
           status: "pending",
@@ -195,6 +200,7 @@ export async function registerRoutes(
   });
 
   // Seed admin user (only works if no admin exists)
+  // This endpoint should only be called during initial setup
   app.post("/api/seed-admin", async (req: Request, res: Response) => {
     try {
       // Check if any admin already exists
@@ -204,7 +210,10 @@ export async function registerRoutes(
         .where(eq(userProfiles.role, "admin"));
       
       if (existingAdmins.length > 0) {
-        return res.status(400).json({ message: "Admin kullanıcı zaten mevcut" });
+        return res.status(400).json({ 
+          message: "Admin kullanıcı zaten mevcut. Güvenlik nedeniyle yeni admin oluşturulamaz.",
+          hint: "Yeni admin eklemek için mevcut bir admin ile giriş yapın."
+        });
       }
 
       const adminEmail = "admin@mindwell.com";
@@ -213,14 +222,37 @@ export async function registerRoutes(
       // Check if email already exists
       const [existingEmail] = await db.select().from(users).where(eq(users.email, adminEmail));
       if (existingEmail) {
-        // Update existing user to admin
-        await db.update(userProfiles)
-          .set({ role: "admin" })
-          .where(eq(userProfiles.userId, existingEmail.id));
+        // Check if this user already has a profile
+        const existingProfile = await storage.getUserProfile(existingEmail.id);
+        if (existingProfile) {
+          await db.update(userProfiles)
+            .set({ role: "admin" })
+            .where(eq(userProfiles.userId, existingEmail.id));
+        } else {
+          await storage.createUserProfile({
+            userId: existingEmail.id,
+            role: "admin",
+            phone: null,
+            birthDate: null,
+            gender: null,
+            city: "İstanbul",
+            profession: "Platform Admin",
+            bio: "MindWell Platform Yöneticisi",
+          });
+        }
+        
+        await storage.createAuditLog({
+          actorUserId: existingEmail.id,
+          entityType: "user",
+          entityId: existingEmail.id,
+          action: "admin_promoted",
+          afterData: { email: adminEmail },
+        });
+        
         return res.json({ 
           message: "Mevcut kullanıcı admin yapıldı",
           email: adminEmail,
-          password: "Mevcut şifrenizi kullanın"
+          info: "Mevcut şifrenizi kullanarak giriş yapabilirsiniz"
         });
       }
 
@@ -255,11 +287,13 @@ export async function registerRoutes(
         afterData: { email: adminEmail },
       });
 
+      // Don't return password in production - log it to console for initial setup only
+      console.log(`[SETUP] Admin user created. Email: ${adminEmail}, Initial password: ${adminPassword}`);
+
       res.json({ 
         message: "Admin kullanıcı oluşturuldu",
         email: adminEmail,
-        password: adminPassword,
-        warning: "Lütfen giriş yaptıktan sonra şifrenizi değiştirin!"
+        info: "Varsayılan şifre sunucu loglarında görüntülenebilir. İlk girişte şifrenizi değiştirin."
       });
     } catch (error) {
       console.error("Seed admin error:", error);
