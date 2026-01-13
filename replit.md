@@ -115,15 +115,48 @@ MindWell, hasta, psikolog ve admin olmak üzere üç farklı kullanıcı rolüyl
     └── models/             # Auth models
 ```
 
-## Çalıştırma
+## Kurulum (Yerel Bilgisayar)
+
+### Gereksinimler
+- Node.js 18+
+- PostgreSQL 14+
+- npm veya yarn
+
+### Kurulum Adımları
 ```bash
+# 1. Bağımlılıkları yükle
+npm install
+
+# 2. Environment değişkenlerini ayarla (.env dosyası oluştur)
+DATABASE_URL=postgresql://kullanici:sifre@localhost:5432/mindwell
+SESSION_SECRET=guclu-bir-secret-key-32-karakter
+
+# 3. Veritabanını oluştur ve tabloları sync et
+npm run db:push
+
+# 4. Uygulamayı başlat
 npm run dev
 ```
 
-## Veritabanı
+### Admin Hesabı Oluşturma
+Admin hesabı oluşturmak için `/register` sayfasından kayıt olun, ardından veritabanında rolü güncelleyin:
+```sql
+UPDATE user_profiles SET role = 'admin' WHERE user_id = 'KULLANICI_ID';
+```
+
+## Çalıştırma
 ```bash
-npm run db:push    # Schema sync
-npm run db:studio  # Drizzle Studio
+npm run dev          # Development server (port 5000)
+npm run build        # Production build
+npm start            # Production server
+```
+
+## Veritabanı Komutları
+```bash
+npm run db:push      # Schema sync
+npm run db:studio    # Drizzle Studio (DB yönetimi)
+npm run db:generate  # Migration oluştur
+npm run db:migrate   # Migration uygula
 ```
 
 ## Tasarım
@@ -131,3 +164,9 @@ npm run db:studio  # Drizzle Studio
 - Inter + Manrope fontları
 - Material Design healthcare adaptasyonları
 - Koyu/Açık tema desteği
+
+## Test Kullanıcıları
+Kayıt sayfasından (`/register`) aşağıdaki rollerde hesap oluşturabilirsiniz:
+- **Hasta (patient)**: Psikolog arama ve randevu alma
+- **Psikolog (psychologist)**: Randevu yönetimi ve seanslar
+- **Admin**: Veritabanından role güncellemesi gerekir
