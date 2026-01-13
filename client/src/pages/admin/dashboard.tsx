@@ -13,7 +13,11 @@ import {
   ArrowRight,
   TrendingUp,
   AlertCircle,
-  Video
+  Video,
+  Wallet,
+  Receipt,
+  CreditCard,
+  PiggyBank
 } from "lucide-react";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
@@ -26,6 +30,13 @@ export default function AdminDashboard() {
     todaySessions: number;
     monthlyRevenue: number;
     reportedMessages: number;
+    financials?: {
+      totalGross: number;
+      totalVat: number;
+      totalPlatformFee: number;
+      totalProviderPayout: number;
+      refundedAmount: number;
+    };
   }>({
     queryKey: ["/api/admin/stats"],
   });
@@ -146,6 +157,86 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         )}
+
+        <Card className="border-card-border">
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <PiggyBank className="w-5 h-5 text-primary" />
+                Finansal Özet
+              </CardTitle>
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/dashboard/payments">
+                  Detaylar
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-5 gap-4">
+              <div className="p-4 rounded-lg bg-muted/50">
+                <div className="flex items-center gap-2 mb-2">
+                  <Receipt className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">Brüt Gelir</span>
+                </div>
+                {statsLoading ? (
+                  <Skeleton className="h-6 w-20" />
+                ) : (
+                  <p className="text-xl font-bold">{formatCurrency(stats?.financials?.totalGross || 0)}</p>
+                )}
+              </div>
+              
+              <div className="p-4 rounded-lg bg-muted/50">
+                <div className="flex items-center gap-2 mb-2">
+                  <CreditCard className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">KDV (%20)</span>
+                </div>
+                {statsLoading ? (
+                  <Skeleton className="h-6 w-20" />
+                ) : (
+                  <p className="text-xl font-bold text-amber-600">{formatCurrency(stats?.financials?.totalVat || 0)}</p>
+                )}
+              </div>
+              
+              <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+                <div className="flex items-center gap-2 mb-2">
+                  <Wallet className="w-4 h-4 text-primary" />
+                  <span className="text-sm text-muted-foreground">Platform Komisyonu (%15)</span>
+                </div>
+                {statsLoading ? (
+                  <Skeleton className="h-6 w-20" />
+                ) : (
+                  <p className="text-xl font-bold text-primary">{formatCurrency(stats?.financials?.totalPlatformFee || 0)}</p>
+                )}
+              </div>
+              
+              <div className="p-4 rounded-lg bg-muted/50">
+                <div className="flex items-center gap-2 mb-2">
+                  <DollarSign className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">Psikolog Ödemeleri</span>
+                </div>
+                {statsLoading ? (
+                  <Skeleton className="h-6 w-20" />
+                ) : (
+                  <p className="text-xl font-bold">{formatCurrency(stats?.financials?.totalProviderPayout || 0)}</p>
+                )}
+              </div>
+              
+              <div className="p-4 rounded-lg bg-destructive/5 border border-destructive/20">
+                <div className="flex items-center gap-2 mb-2">
+                  <AlertCircle className="w-4 h-4 text-destructive" />
+                  <span className="text-sm text-muted-foreground">İadeler</span>
+                </div>
+                {statsLoading ? (
+                  <Skeleton className="h-6 w-20" />
+                ) : (
+                  <p className="text-xl font-bold text-destructive">{formatCurrency(stats?.financials?.refundedAmount || 0)}</p>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-4">

@@ -1488,13 +1488,49 @@ export async function registerRoutes(
       const [psychologistCount] = await db.select({ count: count() }).from(psychologistProfiles).where(eq(psychologistProfiles.verified, true));
       const pendingPsychologists = await storage.getPendingPsychologists();
       
+      const allPayments = await db.select().from(payments).where(eq(payments.status, "completed"));
+      
+      let totalGross = 0;
+      let totalVat = 0;
+      let totalPlatformFee = 0;
+      let totalProviderPayout = 0;
+      let refundedAmount = 0;
+      
+      for (const payment of allPayments) {
+        totalGross += parseFloat(payment.grossAmount || "0");
+        totalVat += parseFloat(payment.vatAmount || "0");
+        totalPlatformFee += parseFloat(payment.platformFee || "0");
+        totalProviderPayout += parseFloat(payment.providerPayout || "0");
+      }
+      
+      const refundedPayments = await db.select().from(payments).where(eq(payments.status, "refunded"));
+      for (const refund of refundedPayments) {
+        refundedAmount += parseFloat(refund.grossAmount || "0");
+      }
+      
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayAppointments = await db.select({ count: count() })
+        .from(appointments)
+        .where(and(
+          gte(appointments.startTime, today),
+          eq(appointments.status, "confirmed")
+        ));
+      
       res.json({
         totalUsers: userCount?.count || 0,
         totalPsychologists: psychologistCount?.count || 0,
         pendingVerifications: pendingPsychologists.length,
-        todaySessions: 0,
-        monthlyRevenue: 0,
+        todaySessions: todayAppointments[0]?.count || 0,
+        monthlyRevenue: totalPlatformFee,
         reportedMessages: 0,
+        financials: {
+          totalGross,
+          totalVat,
+          totalPlatformFee,
+          totalProviderPayout,
+          refundedAmount,
+        },
       });
     } catch (error) {
       console.error("Error fetching admin stats:", error);
