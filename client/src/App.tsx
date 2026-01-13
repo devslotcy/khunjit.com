@@ -161,6 +161,31 @@ function PublicPsychologistDiscovery() {
   return <PsychologistDiscovery isPublic />;
 }
 
+function RoleRedirect({ targetRole }: { targetRole: "admin" | "patient" | "psychologist" }) {
+  const { user, isLoading } = useAuth();
+  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+    queryKey: ["/api/profile"],
+    enabled: !!user,
+  });
+
+  if (isLoading || profileLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!user) {
+    window.location.href = "/login";
+    return null;
+  }
+
+  if (profile?.role !== targetRole) {
+    window.location.href = "/dashboard";
+    return null;
+  }
+
+  window.location.href = "/dashboard";
+  return null;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -174,6 +199,9 @@ function App() {
             <Route path="/register">
               <RegisterPage />
             </Route>
+            <Route path="/role-select">
+              <RoleSelect />
+            </Route>
             <Route path="/find-psychologist">
               <PublicPsychologistDiscovery />
             </Route>
@@ -182,6 +210,24 @@ function App() {
             </Route>
             <Route path="/legal">
               <LegalPage />
+            </Route>
+            <Route path="/admin/:rest*">
+              <RoleRedirect targetRole="admin" />
+            </Route>
+            <Route path="/admin">
+              <RoleRedirect targetRole="admin" />
+            </Route>
+            <Route path="/patient/:rest*">
+              <RoleRedirect targetRole="patient" />
+            </Route>
+            <Route path="/patient">
+              <RoleRedirect targetRole="patient" />
+            </Route>
+            <Route path="/psychologist/:rest*">
+              <RoleRedirect targetRole="psychologist" />
+            </Route>
+            <Route path="/psychologist">
+              <RoleRedirect targetRole="psychologist" />
             </Route>
             <Route path="/dashboard/:rest*">
               <AuthenticatedRouter />

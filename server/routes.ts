@@ -194,6 +194,79 @@ export async function registerRoutes(
     }
   });
 
+  // Seed admin user (only works if no admin exists)
+  app.post("/api/seed-admin", async (req: Request, res: Response) => {
+    try {
+      // Check if any admin already exists
+      const existingAdmins = await db
+        .select()
+        .from(userProfiles)
+        .where(eq(userProfiles.role, "admin"));
+      
+      if (existingAdmins.length > 0) {
+        return res.status(400).json({ message: "Admin kullanıcı zaten mevcut" });
+      }
+
+      const adminEmail = "admin@mindwell.com";
+      const adminPassword = "admin123";
+      
+      // Check if email already exists
+      const [existingEmail] = await db.select().from(users).where(eq(users.email, adminEmail));
+      if (existingEmail) {
+        // Update existing user to admin
+        await db.update(userProfiles)
+          .set({ role: "admin" })
+          .where(eq(userProfiles.userId, existingEmail.id));
+        return res.json({ 
+          message: "Mevcut kullanıcı admin yapıldı",
+          email: adminEmail,
+          password: "Mevcut şifrenizi kullanın"
+        });
+      }
+
+      const passwordHash = await bcrypt.hash(adminPassword, 10);
+      const userId = randomUUID();
+
+      await db.insert(users).values({
+        id: userId,
+        email: adminEmail,
+        username: "admin",
+        passwordHash,
+        firstName: "Admin",
+        lastName: "User",
+      });
+
+      await storage.createUserProfile({
+        userId,
+        role: "admin",
+        phone: null,
+        birthDate: null,
+        gender: null,
+        city: "İstanbul",
+        profession: "Platform Admin",
+        bio: "MindWell Platform Yöneticisi",
+      });
+
+      await storage.createAuditLog({
+        actorUserId: userId,
+        entityType: "user",
+        entityId: userId,
+        action: "admin_seeded",
+        afterData: { email: adminEmail },
+      });
+
+      res.json({ 
+        message: "Admin kullanıcı oluşturuldu",
+        email: adminEmail,
+        password: adminPassword,
+        warning: "Lütfen giriş yaptıktan sonra şifrenizi değiştirin!"
+      });
+    } catch (error) {
+      console.error("Seed admin error:", error);
+      res.status(500).json({ message: "Admin oluşturma sırasında bir hata oluştu" });
+    }
+  });
+
   // Get current user (supports both Replit Auth and Email/Password)
   app.get("/api/auth/me", async (req: Request, res: Response) => {
     try {
