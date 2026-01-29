@@ -15,6 +15,8 @@ import { localTimeToUTC, addMinutesToUTC, DEFAULT_TIMEZONE } from "./datetime";
 import { emailService } from "./email/service.js";
 import {
   sendWelcomeEmail,
+  sendAppointmentConfirmedToPatient,
+  sendAppointmentConfirmedToPsychologist,
   sendAppointmentCancelledEmail,
   sendVerificationApprovedEmail,
   sendVerificationRejectedEmail
@@ -5063,10 +5065,10 @@ export async function registerRoutes(
           // Send email to patient
           if (patientResult?.email) {
             const patientLanguage = (patientResult.languageCode || 'en') as any;
-            await emailService.sendBookingConfirmed(
+            await sendAppointmentConfirmedToPatient(
               payment.patientId,
-              payment.appointmentId,
               patientResult.email,
+              payment.appointmentId,
               {
                 firstName: patientResult.firstName || "User",
                 psychologistName: psychProfile.fullName,
@@ -5074,8 +5076,7 @@ export async function registerRoutes(
                 appointmentTime,
                 joinLink,
               },
-              patientLanguage,
-              'patient' // specify patient template
+              patientLanguage
             );
             console.log(`[Email] Sent booking confirmation to patient ${patientResult.email} (${patientLanguage})`);
           }
@@ -5083,19 +5084,17 @@ export async function registerRoutes(
           // Send email to psychologist
           if (psychologistResult?.email) {
             const psychLanguage = (psychologistResult.languageCode || 'en') as any;
-            await emailService.sendBookingConfirmed(
+            await sendAppointmentConfirmedToPsychologist(
               psychProfile.userId,
-              payment.appointmentId,
               psychologistResult.email,
+              payment.appointmentId,
               {
                 firstName: psychologistResult.firstName || psychProfile.fullName,
                 patientName: patientResult?.firstName || "Client",
                 appointmentDate,
                 appointmentTime,
-                joinLink,
               },
-              psychLanguage,
-              'psychologist' // specify psychologist template
+              psychLanguage
             );
             console.log(`[Email] Sent booking confirmation to psychologist ${psychologistResult.email} (${psychLanguage})`);
           }
