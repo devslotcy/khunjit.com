@@ -20,3 +20,9 @@ dev.log
 dev.pid
 server.log
 server.pid
+.env.production
+db/main.sqlite
+db/mendly.db
+mendly_backup.sql
+*.sqlite
+uploads/profiles/
