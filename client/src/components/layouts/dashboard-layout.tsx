@@ -1,8 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { NotificationBell } from "@/components/notification-bell";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslation } from "react-i18next";
 import {
   Sidebar,
   SidebarContent,
@@ -24,12 +26,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { 
-  Brain, 
-  Home, 
-  Search, 
-  Calendar, 
-  MessageCircle, 
+import {
+  Brain,
+  Home,
+  Search,
+  Calendar,
+  MessageCircle,
   CreditCard,
   Settings,
   LogOut,
@@ -49,37 +51,37 @@ interface DashboardLayoutProps {
   role: "patient" | "psychologist" | "admin";
 }
 
-const patientMenuItems = [
-  { title: "Ana Sayfa", url: "/dashboard", icon: Home },
-  { title: "Psikolog Bul", url: "/dashboard/psychologists", icon: Search },
-  { title: "Randevularım", url: "/dashboard/appointments", icon: Calendar },
-  { title: "Mesajlar", url: "/dashboard/messages", icon: MessageCircle },
-  { title: "Ödeme Geçmişi", url: "/dashboard/payment-history", icon: CreditCard },
-];
-
-const psychologistMenuItems = [
-  { title: "Ana Sayfa", url: "/dashboard", icon: Home },
-  { title: "Randevular", url: "/dashboard/appointments", icon: Calendar },
-  { title: "Müsaitlik", url: "/dashboard/availability", icon: Clock },
-  { title: "Mesajlar", url: "/dashboard/messages", icon: MessageCircle },
-  { title: "Seans Notları", url: "/dashboard/notes", icon: FileText },
-  { title: "Kazançlar", url: "/dashboard/earnings", icon: DollarSign },
-];
-
-const adminMenuItems = [
-  { title: "Genel Bakış", url: "/dashboard", icon: BarChart3 },
-  { title: "Kullanıcılar", url: "/dashboard/users", icon: Users },
-  { title: "Psikolog Doğrulama", url: "/dashboard/verify", icon: CheckCircle },
-  { title: "Randevular", url: "/dashboard/appointments", icon: Calendar },
-  { title: "Ödemeler", url: "/dashboard/payments", icon: CreditCard },
-  { title: "Şikayet Mesajları", url: "/dashboard/reports", icon: AlertCircle },
-  { title: "Denetim Günlüğü", url: "/dashboard/audit", icon: Shield },
-  { title: "Ayarlar", url: "/dashboard/settings", icon: Settings },
-];
-
 export function DashboardLayout({ children, role }: DashboardLayoutProps) {
   const { user, logout } = useAuth();
   const [location] = useLocation();
+  const { t } = useTranslation();
+
+  const patientMenuItems = [
+    { title: t('navigation.patient.home'), url: "/dashboard", icon: Home },
+    { title: t('navigation.patient.findPsychologist'), url: "/dashboard/psychologists", icon: Search },
+    { title: t('navigation.patient.appointments'), url: "/dashboard/appointments", icon: Calendar },
+    { title: t('navigation.patient.messages'), url: "/dashboard/messages", icon: MessageCircle },
+    { title: t('navigation.patient.paymentHistory'), url: "/dashboard/payment-history", icon: CreditCard },
+  ];
+
+  const psychologistMenuItems = [
+    { title: t('navigation.psychologist.home'), url: "/dashboard", icon: Home },
+    { title: t('navigation.psychologist.appointments'), url: "/dashboard/appointments", icon: Calendar },
+    { title: t('navigation.psychologist.availability'), url: "/dashboard/availability", icon: Clock },
+    { title: t('navigation.psychologist.messages'), url: "/dashboard/messages", icon: MessageCircle },
+    { title: t('navigation.psychologist.sessionNotes'), url: "/dashboard/notes", icon: FileText },
+    { title: t('navigation.psychologist.earnings'), url: "/dashboard/earnings", icon: DollarSign },
+  ];
+
+  const adminMenuItems = [
+    { title: t('navigation.admin.overview'), url: "/admin", icon: BarChart3 },
+    { title: t('navigation.admin.users'), url: "/admin/users", icon: Users },
+    { title: t('navigation.admin.verification'), url: "/admin/verify", icon: CheckCircle },
+    { title: t('navigation.admin.appointments'), url: "/admin/appointments", icon: Calendar },
+    { title: t('navigation.admin.payments'), url: "/admin/payments", icon: CreditCard },
+    { title: t('navigation.admin.auditLog'), url: "/admin/audit", icon: Shield },
+    { title: t('navigation.admin.settings'), url: "/admin/settings", icon: Settings },
+  ];
 
   const menuItems = role === "admin" 
     ? adminMenuItems 
@@ -95,11 +97,11 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
   const getRoleLabel = () => {
     switch (role) {
       case "admin":
-        return "Yönetici";
+        return t('navigation.roles.admin');
       case "psychologist":
-        return "Psikolog";
+        return t('navigation.roles.psychologist');
       default:
-        return "Hasta";
+        return t('navigation.roles.patient');
     }
   };
 
@@ -108,12 +110,12 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
       <div className="flex min-h-screen w-full">
         <Sidebar>
           <SidebarHeader className="border-b border-sidebar-border p-4">
-            <Link href="/dashboard" className="flex items-center gap-3">
+            <Link href={role === "admin" ? "/admin" : "/dashboard"} className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-sidebar-primary flex items-center justify-center">
                 <Brain className="w-6 h-6 text-sidebar-primary-foreground" />
               </div>
               <div>
-                <span className="font-serif text-lg font-semibold">MindWell</span>
+                <span className="font-serif text-lg font-semibold">KhunJit</span>
                 <p className="text-xs text-muted-foreground">{getRoleLabel()} Paneli</p>
               </div>
             </Link>
@@ -121,7 +123,7 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
 
           <SidebarContent>
             <SidebarGroup>
-              <SidebarGroupLabel>Menü</SidebarGroupLabel>
+              <SidebarGroupLabel>{t('navigation.menuLabel')}</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {menuItems.map((item) => (
@@ -162,26 +164,32 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
+                {role !== "admin" && (
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard/profile" className="flex items-center gap-2" data-testid="menu-profile">
+                      <User className="w-4 h-4" />
+                      {t(`navigation.${role}.profile`)}
+                    </Link>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild>
-                  <Link href="/dashboard/profile" className="flex items-center gap-2" data-testid="menu-profile">
-                    <User className="w-4 h-4" />
-                    Profil
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard/settings" className="flex items-center gap-2" data-testid="menu-settings">
+                  <Link
+                    href={role === "admin" ? "/admin/settings" : "/dashboard/settings"}
+                    className="flex items-center gap-2"
+                    data-testid="menu-settings"
+                  >
                     <Settings className="w-4 h-4" />
-                    Ayarlar
+                    {t(`navigation.${role}.settings`)}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem 
-                  onClick={() => logout()} 
+                <DropdownMenuItem
+                  onClick={() => logout()}
                   className="text-destructive focus:text-destructive"
                   data-testid="menu-logout"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
-                  Çıkış Yap
+                  {t(`navigation.${role}.logout`)}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -192,11 +200,14 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
           <header className="h-16 border-b border-border bg-background flex items-center justify-between px-4 gap-4">
             <SidebarTrigger data-testid="button-sidebar-toggle" />
             <div className="flex items-center gap-3">
+              <NotificationBell />
               <ThemeToggle />
             </div>
           </header>
-          <main className="flex-1 overflow-auto p-6">
-            {children}
+          <main className="flex-1 overflow-auto p-2 md:p-6">
+            <div className="overflow-hidden">
+              {children}
+            </div>
           </main>
         </div>
       </div>

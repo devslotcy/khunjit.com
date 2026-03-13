@@ -1,0 +1,840 @@
+{
+  "common": {
+    "save": "保存",
+    "saving": "保存中",
+    "cancel": "キャンセル",
+    "back": "戻る",
+    "next": "次へ",
+    "submit": "送信",
+    "continue": "続ける",
+    "close": "閉じる",
+    "loading": "読み込み中…",
+    "search": "検索",
+    "filter": "絞り込み",
+    "viewAll": "すべて見る",
+    "noResults": "該当する結果がありません",
+    "error": "エラー",
+    "success": "成功",
+    "yes": "はい",
+    "no": "いいえ",
+    "or": "または",
+    "and": "と",
+    "selected": "選択済み",
+    "selectedCount": "{{count}}件選択",
+    "copied": "コピーしました！",
+    "copyFailed": "コピーに失敗しました",
+    "minuteShort": "分"
+  },
+  "auth": {
+    "login": {
+      "title": "ログイン",
+      "description": "ログインして相談やメッセージを管理しましょう。",
+      "emailLabel": "メールアドレス",
+      "emailPlaceholder": "email@example.com",
+      "passwordLabel": "パスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "loginButton": "ログイン",
+      "noAccount": "アカウントをお持ちでない方",
+      "registerLink": "新規登録",
+      "successTitle": "ようこそ！",
+      "successDescription": "ログインしました。",
+      "errorTitle": "ログインできませんでした",
+      "errorDescription": "メールアドレスまたはパスワードが間違っています。もう一度お試しください。"
+    },
+    "register": {
+      "titlePatient": "相談者として登録",
+      "titlePsychologist": "カウンセラーとして登録",
+      "stepIndicator": "ステップ {current} / {total}",
+      "step1": {
+        "languageLabelPsychologist": "対応可能な言語",
+        "languageLabelPatient": "希望する相談言語",
+        "languageHelperPsychologist": "対応できるすべての言語を選択してください",
+        "languageHelperPatient": "相談したい言語をすべて選択してください",
+        "languagesSelectedCount": "{{count}}言語選択済み",
+        "languageSelected": "言語選択済み",
+        "errorNoLanguage": "少なくとも1つの言語を選択してください",
+        "errorNoTherapyLanguage": "相談言語を少なくとも1つ選択してください",
+        "emailLabel": "メールアドレス",
+        "usernameLabel": "ユーザー名",
+        "usernamePlaceholder": "ユーザー名（4文字以上）",
+        "passwordLabel": "パスワード",
+        "passwordPlaceholder": "安全なパスワードを作成",
+        "passwordConfirmLabel": "パスワード（確認）",
+        "passwordConfirmPlaceholder": "もう一度入力",
+        "errorAllFields": "すべての項目を入力してください",
+        "errorInvalidEmail": "有効なメールアドレスを入力してください",
+        "errorEmailFormat": "メールアドレスの形式が正しくありません",
+        "validEmail": "有効なメールアドレスです",
+        "errorUsernameLength": "ユーザー名は4文字以上必要です",
+        "usernameRequirement1": "英数字とアンダースコアのみ使用可能",
+        "usernameRequirement2": "特殊文字は_のみ",
+        "errorPasswordFormat": "パスワードが条件を満たしていません",
+        "passwordRequirement1": "8文字以上",
+        "passwordRequirement2": "大文字を1文字以上",
+        "passwordRequirement3": "小文字を1文字以上",
+        "passwordRequirement4": "数字または記号を1文字以上",
+        "passwordMatch": "パスワードが一致しました",
+        "passwordMismatch": "パスワードが一致しません",
+        "emailPlaceholder": ""
+      },
+      "title": "職業称号",
+      "selectTitle": "称号を選択",
+      "titleSelected": "称号が選択されました",
+      "step2": {
+        "firstNameLabel": "名前",
+        "firstNamePlaceholder": "名前",
+        "firstNameHelper": "カウンセリングでどのように呼ばれたいか",
+        "lastNameLabel": "姓",
+        "lastNamePlaceholder": "姓",
+        "lastNameHelper": "フルネームの姓",
+        "phoneLabel": "電話番号",
+        "phonePlaceholder": "+81 90 1234 5678",
+        "phoneHelper": "予約確認や緊急連絡用",
+        "birthDateLabel": "生年月日",
+        "birthDateErrorTitle": "無効な日付",
+        "birthDateErrorDescription": "正しい日付を入力してください",
+        "birthDateHelper": "形式：YYYY.MM.DD",
+        "birthDateErrorAge": "16歳以上である必要があります",
+        "genderLabel": "性別",
+        "genderMale": "男性",
+        "genderFemale": "女性",
+        "cityLabel": "居住地（都道府県・市区町村）",
+        "cityPlaceholder": "例：東京都渋谷区",
+        "professionLabel": "職業",
+        "professionPlaceholder": "現在の職業（任意）",
+        "bioLabel": "自己紹介",
+        "bioPlaceholder": "自己紹介を入力（最大500文字）",
+        "errorNameRequired": "名前と姓は必須です"
+      },
+      "step3Psychologist": {
+        "titleLabel": "肩書・資格",
+        "titlePlaceholder": "例：臨床心理士、公認心理師、博士",
+        "titleSelected": "選択済み",
+        "licenseLabel": "資格番号・登録番号",
+        "licensePlaceholder": "臨床心理士登録番号など",
+        "licenseHelper": "公的資格の登録番号",
+        "licenseError": "有効な番号を入力してください",
+        "experienceLabel": "実務経験（年）",
+        "experiencePlaceholder": "例：7",
+        "educationLabel": "学歴・研修歴",
+        "educationPlaceholder": "例：東京大学大学院修了",
+        "specialtiesLabel": "専門分野",
+        "approachesLabel": "主なアプローチ",
+        "priceLabel": "カウンセリング料金（50分）",
+        "pricePlaceholder": "例：8,000円",
+        "priceHelper": "税込",
+        "aboutLabel": "自己紹介（相談者に表示）",
+        "aboutPlaceholder": "相談者に向けてあなたの強みやスタイルを教えてください",
+        "errorProfessionalInfo": "すべての専門情報を入力してください"
+      },
+      "registerButton": "アカウント作成",
+      "successTitle": "登録が完了しました！",
+      "successDescription": "メールを確認してアカウントを有効化してください。",
+      "errorTitle": "登録エラー",
+      "errorDescription": "エラーが発生しました。もう一度お試しください。",
+      "hasAccount": "すでにアカウントをお持ちですか？",
+      "loginLink": "ログイン"
+    },
+    "roleSelect": {
+      "title": "どちらですか？",
+      "description": "ご利用の役割を選択してください。",
+      "patientTitle": "相談者",
+      "patientDescription": "心の悩みを相談したい",
+      "psychologistTitle": "カウンセラー",
+      "psychologistDescription": "オンライン相談を提供したい",
+      "continueButton": "次へ",
+      "hasAccount": "すでに登録済みですか？",
+      "loginLink": "ログインする"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "機能",
+      "howItWorks": "ご利用の流れ",
+      "psychologists": "カウンセラー一覧",
+      "goToDashboard": "ダッシュボードへ",
+      "login": "ログイン",
+      "register": "新規登録",
+      "openMenu": "メニューを開く"
+    },
+    "hero": {
+      "badge": "オンラインカウンセリング",
+      "title1": "専門家による",
+      "titleHighlight": "安心のオンライン心理相談",
+      "title2": "– いつでもどこでも",
+      "description": "自分に合ったカウンセラーを数分で見つけられます。",
+      "ctaStart": "無料で始める",
+      "ctaExplore": "カウンセラーを探す",
+      "feature1": "資格保有者のみ",
+      "feature2": "安全なビデオ通話",
+      "feature3": "柔軟な予約"
+    },
+    "features": {
+      "title": "オンラインカウンセリングのメリット",
+      "description": "自宅から気軽に専門家のサポートを受けられます。",
+      "videoCall": {
+        "title": "ビデオ相談",
+        "description": "暗号化された安全なビデオ通話"
+      },
+      "privacy": {
+        "title": "高いプライバシー",
+        "description": "個人情報は厳重に保護されます"
+      },
+      "easyBooking": {
+        "title": "簡単予約",
+        "description": "希望の日時をすぐに予約可能"
+      },
+      "messaging": {
+        "title": "安全なメッセージ",
+        "description": "相談の合間にやり取り可能"
+      },
+      "flexible": {
+        "title": "柔軟な時間帯",
+        "description": "夜間・土日も対応"
+      },
+      "experts": {
+        "title": "信頼できる専門家",
+        "description": "臨床心理士・公認心理師のみ"
+      }
+    },
+    "howItWorks": {
+      "title": "ご利用の流れ",
+      "description": "3ステップで簡単に始められます",
+      "step1": {
+        "title": "自分に合うカウンセラーを探す",
+        "description": "専門分野・言語・料金などで絞り込み"
+      },
+      "step2": {
+        "title": "予約・お支払い",
+        "description": "安全な決済で即時確定"
+      },
+      "step3": {
+        "title": "相談開始",
+        "description": "ビデオ通話で自宅から参加"
+      }
+    },
+    "cta": {
+      "title": "今日から一歩を踏み出そう",
+      "description": "心のケアを始めるのに遅すぎることはありません。",
+      "button": "無料登録する"
+    },
+    "footer": {
+      "privacy": "プライバシーポリシー",
+      "terms": "利用規約",
+      "kvkk": "個人情報保護方針",
+      "copyright": "© {year} すべての権利を保有"
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "{{firstName}}さん、こんにちは",
+      "subtitle": "次回の相談とメッセージの確認",
+      "stats": {
+        "upcomingSessions": "今後の相談",
+        "totalSessions": "総相談回数",
+        "unreadMessages": "未読メッセージ"
+      },
+      "upcomingAppointments": {
+        "title": "今後の予約",
+        "viewAll": "すべて見る",
+        "emptyTitle": "予約がありません",
+        "emptyDescription": "今すぐカウンセラーを探して予約しましょう"
+      },
+      "quickActions": {
+        "title": "クイックアクセス",
+        "findPsychologist": {
+          "title": "カウンセラーを探す",
+          "description": "専門家を検索"
+        },
+        "messages": {
+          "title": "メッセージ",
+          "description": "カウンセラーとやり取り"
+        },
+        "appointments": {
+          "title": "予約管理",
+          "description": "すべての予約を確認"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "{{firstName}}さん、こんにちは",
+      "pendingApproval": {
+        "title": "プロフィール審査中",
+        "description": "資格確認を行っています。通常1〜3営業日で完了します。"
+      },
+      "stats": {
+        "todaySessions": "本日の相談",
+        "weeklyEarnings": "今週の報酬",
+        "totalClients": "総相談者数",
+        "pendingAppointments": "保留中の予約依頼"
+      },
+      "upcomingSessions": {
+        "title": "今後の相談",
+        "viewAll": "すべて見る",
+        "emptyTitle": "今後の予定なし",
+        "emptyDescription": "空き時間を増やすと予約が入りやすくなります"
+      },
+      "quickActions": {
+        "title": "クイックアクセス",
+        "availability": {
+          "title": "スケジュール",
+          "description": "空き時間を更新"
+        },
+        "earnings": {
+          "title": "報酬",
+          "description": "入金履歴・統計"
+        },
+        "profile": {
+          "title": "プロフィール",
+          "description": "編集する"
+        }
+      }
+    },
+    "admin": {
+      "title": "管理者ダッシュボード",
+      "description": "全体状況と管理",
+      "stats": {
+        "totalUsers": "総ユーザー数",
+        "todaySessions": "本日の相談",
+        "monthlyRevenue": "月間売上",
+        "pendingVerification": "審査待ち"
+      },
+      "pendingAlert": {
+        "text": "{{count}}件の審査待ちがあります",
+        "button": "今すぐ確認"
+      },
+      "financialSummary": {
+        "title": "財務概要",
+        "grossRevenue": "総売上",
+        "vat": "消費税",
+        "platformCommission": "プラットフォーム手数料",
+        "psychologistPayments": "カウンセラーへの支払い"
+      },
+      "recentActivities": {
+        "title": "最近の活動",
+        "empty": "活動履歴なし"
+      },
+      "quickActions": {
+        "title": "クイックアクセス",
+        "verification": {
+          "title": "資格審査",
+          "description": "新規申請を確認"
+        },
+        "users": {
+          "title": "ユーザー管理",
+          "description": "全アカウント管理"
+        },
+        "appointments": {
+          "title": "予約一覧",
+          "description": "すべての予約を確認"
+        },
+        "payments": {
+          "title": "決済管理",
+          "description": "取引履歴を確認"
+        },
+        "bankTransfers": {
+          "title": "振込管理",
+          "description": "支払い処理"
+        }
+      },
+      "verificationSuccess": {
+        "title": "審査完了",
+        "description": "アカウントが承認されました"
+      }
+    }
+  },
+  "appointments": {
+    "title": "予約一覧",
+    "description": "今後の相談と過去の相談を管理",
+    "tabs": {
+      "upcoming": "今後",
+      "past": "過去"
+    },
+    "empty": {
+      "upcomingTitle": "今後の予約なし",
+      "upcomingDescription": "今すぐ新しい相談を予約しましょう",
+      "pastTitle": "過去の相談なし",
+      "pastDescription": "完了した相談がここに表示されます"
+    },
+    "cancelDialog": {
+      "title": "予約をキャンセルしますか？",
+      "description": "この操作は取り消せません。本当にキャンセルしますか？",
+      "cancelButton": "戻る",
+      "confirmButton": "キャンセルする",
+      "confirmButtonLoading": "キャンセル中…"
+    },
+    "cancelSuccess": {
+      "title": "キャンセル完了",
+      "description": "予約がキャンセルされました。"
+    },
+    "status": {
+      "reserved": "予約済み",
+      "pending_payment": "支払い待ち",
+      "payment_review": "支払い確認中",
+      "confirmed": "確定",
+      "ready": "準備完了",
+      "in_session": "相談中",
+      "completed": "完了",
+      "cancelled": "キャンセル",
+      "expired": "期限切れ",
+      "refunded": "返金済み",
+      "no_show": "無断キャンセル",
+      "rejected": "拒否"
+    },
+    "joinSession": "相談に参加",
+    "joinDisabled": "開始まであと{minutes}分",
+    "patientFallback": "相談者が不在です",
+    "relative": {
+      "past": "終了",
+      "now": "まもなく",
+      "inMinutes": "{{count}}分後",
+      "inHours": "{{count}}時間後",
+      "inDays": "{{count}}日後",
+      "tomorrow": "明日"
+    },
+    "videoCall": {
+      "sessionNotStarted": "セッションはまだ開始されていません",
+      "sessionEnded": "セッションは終了しました",
+      "canJoin": "セッションに参加できます",
+      "invalidAppointment": "予約情報が見つかりません",
+      "invalidDate": "無効な予約日",
+      "notConfirmed": "予約はまだ確認されていません",
+      "paymentPending": "支払い待ち",
+      "paymentReview": "支払い審査中",
+      "pendingApproval": "承認待ち",
+      "cancelled": "予約はキャンセルされました",
+      "expired": "予約は期限切れです",
+      "completed": "セッション完了",
+      "noShow": "不参加",
+      "rejected": "予約が拒否されました",
+      "refunded": "返金済み",
+      "notEligible": "セッションの資格がありません",
+      "clickToJoin": "クリックしてセッションに参加",
+      "startsInDays": "セッション開始まであと{{count}}日",
+      "startsInHours": "セッション開始まであと{{count}}時間",
+      "startsInMinutes": "セッション開始まであと{{count}}分",
+      "activeBeforeStart": "開始{{minutes}}分前から参加可能",
+      "cannotJoinEnded": "参加できません。セッション時間が過ぎました",
+      "cannotJoin": "セッションに参加できません",
+      "now": "今",
+      "inDays": "{{count}}日後",
+      "inHours": "{{count}}時間後",
+      "inMinutes": "{{count}}分後"
+    }
+  },
+  "weekdays": {
+    "sunday": "日曜日",
+    "monday": "月曜日",
+    "tuesday": "火曜日",
+    "wednesday": "水曜日",
+    "thursday": "木曜日",
+    "friday": "金曜日",
+    "saturday": "土曜日"
+  },
+  "messages": {
+    "title": "メッセージ",
+    "searchPlaceholder": "メッセージや相手を検索…",
+    "empty": "まだ会話がありません",
+    "noResults": "該当する会話がありません",
+    "selectConversation": {
+      "title": "会話を選択してください",
+      "description": "一覧から会話を選んでチャットを開始"
+    },
+    "noMessages": "この会話にまだメッセージがありません",
+    "yesterday": "昨日",
+    "today": "今日",
+    "yesterdayLabel": "昨日",
+    "inputPlaceholder": "メッセージを入力…",
+    "reportAction": "この会話を報告"
+  },
+  "payment": {
+    "backButton": "戻る",
+    "title": "お支払い",
+    "description": "相談料を安全にお支払いください",
+    "orderSummary": {
+      "title": "お支払い内容",
+      "description": "以下の相談",
+      "psychologist": "カウンセラー",
+      "dateTime": "日時",
+      "duration": "時間",
+      "durationValue": "{minutes}分",
+      "total": "合計"
+    },
+    "paymentInfo": {
+      "title": "お支払い情報",
+      "description": "銀行アプリでQRコードを読み取ってください",
+      "qrGenerating": "QRコード生成中…",
+      "qrTimer": "このコードは{seconds}秒後に期限切れになります",
+      "waitingConfirmation": "支払い確認中…",
+      "completeButton": "支払いを完了しました",
+      "testHelper": "テストモード：テスト情報を使用",
+      "referenceCode": "参照コード",
+      "referenceCodeLabel": "振込依頼人名",
+      "amount": "金額"
+    },
+    "instructions": {
+      "title": "銀行振込でのお支払い方法",
+      "step1": "銀行アプリを開く",
+      "step2": "QRコードを読み取るか情報をコピー",
+      "step3": "振込を実行",
+      "step4": "支払いを確定",
+      "step5": "相談が自動的に有効になります"
+    },
+    "success": {
+      "title": "お支払い完了！",
+      "confirmed": "支払いが確認されました",
+      "redirecting": "ダッシュボードへ移動します…",
+      "toastTitle": "支払い完了",
+      "toastDescription": "相談が予約されました！"
+    },
+    "error": {
+      "notFound": "お支払い情報が見つかりません",
+      "notFoundDescription": "このページは存在しないか期限切れです",
+      "backLink": "予約一覧に戻る",
+      "noPaymentInfo": "支払い情報がありません",
+      "paymentFailed": "支払いに失敗しました"
+    },
+    "clipboard": {
+      "copied": "コピーしました！",
+      "copiedDescription": "クリップボードにコピーされました",
+      "copyFailed": "コピーに失敗しました",
+      "copyFailedDescription": "手動でコピーしてください"
+    }
+  },
+  "availability": {
+    "title": "スケジュール設定",
+    "description": "相談可能な時間帯を設定してください",
+    "days": {
+      "monday": "月曜日",
+      "tuesday": "火曜日",
+      "wednesday": "水曜日",
+      "thursday": "木曜日",
+      "friday": "金曜日",
+      "saturday": "土曜日",
+      "sunday": "日曜日"
+    },
+    "saveSuccess": {
+      "title": "スケジュール保存完了",
+      "description": "新しい時間帯が有効になりました"
+    },
+    "saveError": "スケジュールの保存に失敗しました"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "description": "個人情報と専門情報を管理",
+    "personalInfo": {
+      "title": "個人情報",
+      "description": "あなたとサポートチームのみ閲覧可能",
+      "firstName": "名前",
+      "lastName": "姓",
+      "email": "メールアドレス",
+      "phone": "電話番号",
+      "phonePlaceholder": "+81 ...",
+      "birthDate": "生年月日",
+      "city": "居住地",
+      "about": "自己紹介",
+      "aboutPlaceholder": "相談者向けの簡単な紹介文",
+      "saveButton": "変更を保存"
+    },
+    "professionalInfo": {
+      "title": "専門情報",
+      "description": "相談者に表示されます",
+      "photo": "プロフィール写真",
+      "uploadButton": "写真をアップロード",
+      "uploadHelper": "JPG, PNG • 最大5MB",
+      "specialties": "専門分野",
+      "specialtiesCount": "{{count}}選択",
+      "approaches": "主なアプローチ",
+      "approachesCount": "{{count}}選択",
+      "saveButton": "専門情報を保存"
+    },
+    "languageManagement": {
+      "title": "対応言語の管理",
+      "description": "相談で対応できる言語を更新",
+      "label": "相談言語",
+      "selectedCount": "{{count}}言語選択済み",
+      "saveButton": "言語を保存",
+      "errorMinLanguage": "少なくとも1言語必要です",
+      "saveError": "保存に失敗しました",
+      "saveSuccess": "言語情報を更新しました"
+    },
+    "saveSuccess": {
+      "title": "プロフィール更新完了",
+      "description": "変更が保存されました"
+    },
+    "saveError": "プロフィールの保存に失敗しました",
+    "professionalSaveError": "専門情報の保存に失敗しました",
+    "uploadError": {
+      "sizeTooLarge": "ファイルが大きすぎます（最大5MB）",
+      "invalidType": "JPGまたはPNGのみ対応",
+      "uploadFailed": "アップロードに失敗しました"
+    },
+    "experience": "経験",
+    "sessionDuration": "セッション時間",
+    "languages": "言語",
+    "about": "について",
+    "education": "学歴",
+    "certifications": "資格"
+  },
+  "navigation": {
+    "patient": {
+      "home": "ホーム",
+      "findPsychologist": "カウンセラーを探す",
+      "appointments": "予約",
+      "messages": "メッセージ",
+      "paymentHistory": "支払い履歴",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "logout": "ログアウト"
+    },
+    "psychologist": {
+      "home": "ダッシュボード",
+      "appointments": "予約",
+      "availability": "スケジュール",
+      "messages": "メッセージ",
+      "sessionNotes": "相談メモ",
+      "earnings": "報酬",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "logout": "ログアウト"
+    },
+    "admin": {
+      "overview": "概要",
+      "users": "ユーザー管理",
+      "verification": "審査",
+      "appointments": "予約管理",
+      "payments": "支払い管理",
+      "auditLog": "監査ログ",
+      "settings": "設定",
+      "profile": "プロフィール",
+      "logout": "ログアウト"
+    },
+    "roles": {
+      "admin": "管理者",
+      "psychologist": "カウンセラー",
+      "patient": "相談者"
+    },
+    "sidebarTitle": "メニュー",
+    "menuLabel": "メニュー"
+  },
+  "cities": {
+    "adana": "アダナ",
+    "ankara": "アンカラ",
+    "antalya": "アンタルヤ",
+    "bursa": "ブルサ",
+    "denizli": "デニズリ",
+    "diyarbakir": "ディヤルバクル",
+    "eskisehir": "エスキシェヒル",
+    "gaziantep": "ガジアンテプ",
+    "istanbul": "イスタンブール",
+    "izmir": "イズミル",
+    "kayseri": "カイセリ",
+    "kocaeli": "コジャエリ",
+    "konya": "コンヤ",
+    "mersin": "メルシン",
+    "mugla": "ムーラ",
+    "samsun": "サムスン",
+    "trabzon": "トラブゾン",
+    "other": "その他"
+  },
+  "specialties": {
+    "individual": "個人カウンセリング",
+    "couples": "カップルカウンセリング",
+    "family": "家族カウンセリング",
+    "childAdolescent": "子ども・思春期カウンセリング",
+    "depression": "うつ・抑うつ",
+    "anxiety": "不安障害",
+    "trauma": "トラウマ・PTSD",
+    "ocd": "強迫性障害（OCD）",
+    "eatingDisorders": "摂食障害",
+    "addiction": "依存症",
+    "careerCounseling": "キャリア相談",
+    "stressManagement": "ストレス対処",
+    "angerManagement": "怒りのコントロール"
+  },
+  "therapyApproaches": {
+    "cbt": "認知行動療法（CBT）",
+    "psychodynamic": "精神力動療法",
+    "emdr": "EMDR（眼球運動による脱感作と再処理）",
+    "schema": "スキーマ療法",
+    "act": "アクセプタンス＆コミットメント・セラピー（ACT）",
+    "gestalt": "ゲシュタルト療法",
+    "solutionFocused": "解決志向短期療法",
+    "existential": "実存療法",
+    "mindfulness": "マインドフルネス療法"
+  },
+  "card": {
+    "sessionFee": "セッション料金",
+    "fee": "料金",
+    "bookAppointment": "予約する",
+    "priceNotSpecified": "未指定",
+    "experience": {
+      "yearsLong": "経験{{count}}年",
+      "yearsShort": "{{count}}年"
+    },
+    "selectedAppointment": "選択した予約",
+    "reservationWarning": "10分以内にお支払いがない場合、予約はキャンセルされます"
+  },
+  "duration": {
+    "minutesShort": "分",
+    "minutesLong": "{{count}}分"
+  },
+  "titles": {
+    "psychologist": "心理カウンセラー",
+    "clinicalPsychologist": "臨床心理士",
+    "expertPsychologist": "専門心理カウンセラー",
+    "expertClinicalPsychologist": "専門臨床心理士",
+    "psychologicalCounselor": "心理相談員",
+    "psychotherapist": "心理療法士",
+    "dr": "博士",
+    "assocProf": "准教授",
+    "prof": "教授"
+  },
+  "legal": {
+    "kvkk": {
+      "title": "個人情報保護方針"
+    },
+    "privacy": {
+      "title": "プライバシーポリシー"
+    },
+    "terms": {
+      "title": "利用規約"
+    },
+    "refund": {
+      "title": "返金ポリシー"
+    }
+  },
+  "psychologists": {
+    "title": "セラピストを探す",
+    "subtitle": "適切な専門家を見つけて予約する",
+    "searchPlaceholder": "名前または専門分野で検索...",
+    "specialtyPlaceholder": "専門分野",
+    "priceRangePlaceholder": "価格帯",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "フィルターをクリア",
+    "filters": {
+      "search": "検索: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "セラピストが見つかりません",
+      "description": "検索条件を変更してください",
+      "buttonText": "フィルターをクリア"
+    },
+    "loginButton": "サインイン"
+  },
+  "paymentHistory": {
+    "title": "支払い履歴",
+    "subtitle": "すべての予約と支払い取引を表示",
+    "table": {
+      "psychologist": "セラピスト",
+      "appointmentDate": "予約日",
+      "amount": "金額",
+      "vat": "VAT",
+      "total": "合計",
+      "status": "ステータス",
+      "netAmount": "正味金額",
+      "totalAmount": "合計金額"
+    },
+    "reservedUntil": "{time}まで予約済み",
+    "paymentPending": "支払い待ち",
+    "paymentReview": "支払い確認中",
+    "empty": "支払い履歴がありません",
+    "statuses": {
+      "reserved": "予約済み",
+      "payment_pending": "支払い待ち",
+      "payment_review": "支払い確認中",
+      "completed": "完了",
+      "pending": "保留中",
+      "failed": "失敗",
+      "refunded": "返金済み",
+      "refund_pending": "返金待ち",
+      "refund_approved": "返金承認済み",
+      "refund_processed": "返金済み",
+      "refund_rejected": "返金拒否"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "アカウント設定と環境設定を管理",
+    "language": "表示言語",
+    "languageDesc": "アプリケーションのインターフェース言語を選択",
+    "selectLanguage": "言語を選択",
+    "languageChanged": "言語が変更されました",
+    "languageChangedDesc": "インターフェース言語が正常に変更されました",
+    "confirmLanguageChange": "変更を保存しますか？",
+    "confirmLanguageChangeDesc": "サイトの言語が選択した言語に翻訳されます。この操作を確認しますか？",
+    "notifications": "通知",
+    "notificationsDesc": "通知設定を管理",
+    "emailNotifications": "メール通知",
+    "emailNotificationsDesc": "重要な更新情報をメールで受け取る",
+    "appointmentReminders": "予約リマインダー",
+    "appointmentRemindersDesc": "今後の予約について通知を受け取る",
+    "messageNotifications": "メッセージ通知",
+    "messageNotificationsDesc": "新しいメッセージの通知を受け取る",
+    "newAppointmentRequests": "新しい予約リクエスト",
+    "newAppointmentRequestsDesc": "新しい予約リクエストについて通知を受け取る",
+    "privacy": "プライバシー",
+    "privacyDesc": "プライバシー設定を管理",
+    "showProfile": "プロフィールを表示",
+    "showProfileDesc": "相談者にプロフィールを公開する",
+    "showOnlineStatus": "オンライン状態を表示",
+    "showOnlineStatusDesc": "他のユーザーにオンライン状態を表示する",
+    "showLastSeen": "最終ログイン時刻を表示",
+    "showLastSeenDesc": "最終ログイン時刻を共有する",
+    "security": "セキュリティ",
+    "securityDesc": "アカウントセキュリティ設定",
+    "twoFactor": "二要素認証",
+    "twoFactorDesc": "アカウントにセキュリティレイヤーを追加する",
+    "changePassword": "パスワード変更",
+    "changePasswordDesc": "現在のパスワードを入力し、新しいパスワードを選択してください",
+    "currentPassword": "現在のパスワード",
+    "enterCurrentPassword": "現在のパスワードを入力",
+    "newPassword": "新しいパスワード",
+    "enterNewPassword": "新しいパスワードを入力",
+    "confirmNewPassword": "新しいパスワードの確認",
+    "enterNewPasswordAgain": "新しいパスワードを再入力",
+    "passwordMinLength": "パスワードは6文字以上必要です",
+    "passwordMinLengthHint": "6文字以上",
+    "passwordsDoNotMatch": "パスワードが一致しません",
+    "newPasswordMustBeDifferent": "新しいパスワードは現在のパスワードと異なる必要があります",
+    "allPasswordFieldsRequired": "すべてのフィールドが必須です",
+    "passwordChanged": "パスワードが変更されました",
+    "passwordChangedDesc": "パスワードが正常に更新されました",
+    "passwordChangeError": "パスワードの変更に失敗しました",
+    "saveChanges": "変更を保存",
+    "savedTitle": "設定を保存しました",
+    "savedDesc": "設定が正常に更新されました",
+    "notificationsSaved": "通知設定を保存しました",
+    "saveError": "設定の保存に失敗しました"
+  },
+  "twoFactor": {
+    "title": "二要素認証",
+    "description": "Google Authenticatorでアカウントを保護",
+    "enable": "有効化",
+    "disable": "無効化",
+    "setupTitle": "二要素認証の設定",
+    "scanQR": "Google AuthenticatorまたはAuthyアプリでQRコードをスキャン",
+    "cantScanQR": "QRコードをスキャンできませんか？手動で入力：",
+    "verificationCode": "確認コード",
+    "enter6DigitFromApp": "アプリに表示された6桁のコードを入力",
+    "verifyAndEnable": "確認して有効化",
+    "disableTitle": "二要素認証を無効化",
+    "disableDescription": "この操作にはパスワードと確認コードを入力してください",
+    "password": "パスワード",
+    "setupError": "2FAの設定に失敗しました",
+    "enableSuccess": "二要素認証が正常に有効化されました",
+    "invalidCode": "無効な確認コード",
+    "disableSuccess": "二要素認証が正常に無効化されました",
+    "disableError": "2FAの無効化に失敗しました",
+    "enter6Digit": "有効な6桁のコードを入力してください",
+    "enterPasswordAnd6Digit": "パスワードと6桁のコードを入力してください",
+    "secretCopied": "シークレットをクリップボードにコピーしました"
+  }
+}

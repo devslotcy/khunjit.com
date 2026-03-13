@@ -5,22 +5,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { 
-  Users, 
-  Calendar, 
-  DollarSign, 
+import {
+  Users,
+  Calendar,
+  DollarSign,
   CheckCircle2,
   ArrowRight,
-  TrendingUp,
   AlertCircle,
   Video,
   Wallet,
   Receipt,
   CreditCard,
-  PiggyBank
+  PiggyBank,
+  Building2
 } from "lucide-react";
 import { format } from "date-fns";
-import { tr } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 
 export default function AdminDashboard() {
   const { data: stats, isLoading: statsLoading } = useQuery<{
@@ -50,9 +50,9 @@ export default function AdminDashboard() {
   });
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("tr-TR", {
+    return new Intl.NumberFormat("th-TH", {
       style: "currency",
-      currency: "TRY",
+      currency: "THB",
     }).format(amount);
   };
 
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
         <div>
           <h1 className="font-serif text-3xl font-bold mb-2">Yönetici Paneli</h1>
           <p className="text-muted-foreground">
-            Platform genel bakış - {format(new Date(), "d MMMM yyyy", { locale: tr })}
+            Platform genel bakış - {format(new Date(), "d MMMM yyyy", { locale: enUS })}
           </p>
         </div>
 
@@ -160,78 +160,46 @@ export default function AdminDashboard() {
 
         <Card className="border-card-border">
           <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <PiggyBank className="w-5 h-5 text-primary" />
-                Finansal Özet
-              </CardTitle>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/dashboard/payments">
-                  Detaylar
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </Button>
-            </div>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <PiggyBank className="w-5 h-5 text-primary" />
+              Finansal Özet
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-5 gap-4">
-              <div className="p-4 rounded-lg bg-muted/50">
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="p-4 rounded-lg bg-green-50 border border-green-200">
                 <div className="flex items-center gap-2 mb-2">
-                  <Receipt className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Brüt Gelir</span>
+                  <Receipt className="w-4 h-4 text-green-600" />
+                  <span className="text-sm text-muted-foreground">Toplam Gelir</span>
                 </div>
                 {statsLoading ? (
                   <Skeleton className="h-6 w-20" />
                 ) : (
-                  <p className="text-xl font-bold">{formatCurrency(stats?.financials?.totalGross || 0)}</p>
+                  <p className="text-xl font-bold text-green-700">{formatCurrency(stats?.financials?.totalGross || 0)}</p>
                 )}
               </div>
-              
-              <div className="p-4 rounded-lg bg-muted/50">
+
+              <div className="p-4 rounded-lg bg-purple-50 border border-purple-200">
                 <div className="flex items-center gap-2 mb-2">
-                  <CreditCard className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">KDV (%20)</span>
+                  <Wallet className="w-4 h-4 text-purple-600" />
+                  <span className="text-sm text-muted-foreground">Platform Payı (%30)</span>
                 </div>
                 {statsLoading ? (
                   <Skeleton className="h-6 w-20" />
                 ) : (
-                  <p className="text-xl font-bold text-amber-600">{formatCurrency(stats?.financials?.totalVat || 0)}</p>
+                  <p className="text-xl font-bold text-purple-700">{formatCurrency(stats?.financials?.totalPlatformFee || 0)}</p>
                 )}
               </div>
-              
-              <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+
+              <div className="p-4 rounded-lg bg-orange-50 border border-orange-200">
                 <div className="flex items-center gap-2 mb-2">
-                  <Wallet className="w-4 h-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">Platform Komisyonu (%15)</span>
+                  <DollarSign className="w-4 h-4 text-orange-600" />
+                  <span className="text-sm text-muted-foreground">Psikolog Payı (%70)</span>
                 </div>
                 {statsLoading ? (
                   <Skeleton className="h-6 w-20" />
                 ) : (
-                  <p className="text-xl font-bold text-primary">{formatCurrency(stats?.financials?.totalPlatformFee || 0)}</p>
-                )}
-              </div>
-              
-              <div className="p-4 rounded-lg bg-muted/50">
-                <div className="flex items-center gap-2 mb-2">
-                  <DollarSign className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Psikolog Ödemeleri</span>
-                </div>
-                {statsLoading ? (
-                  <Skeleton className="h-6 w-20" />
-                ) : (
-                  <p className="text-xl font-bold">{formatCurrency(stats?.financials?.totalProviderPayout || 0)}</p>
-                )}
-              </div>
-              
-              <div className="p-4 rounded-lg bg-destructive/5 border border-destructive/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <AlertCircle className="w-4 h-4 text-destructive" />
-                  <span className="text-sm text-muted-foreground">İadeler</span>
-                </div>
-                {statsLoading ? (
-                  <Skeleton className="h-6 w-20" />
-                ) : (
-                  <p className="text-xl font-bold text-destructive">{formatCurrency(stats?.financials?.refundedAmount || 0)}</p>
+                  <p className="text-xl font-bold text-orange-700">{formatCurrency(stats?.financials?.totalProviderPayout || 0)}</p>
                 )}
               </div>
             </div>
@@ -240,18 +208,10 @@ export default function AdminDashboard() {
 
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="font-serif text-xl font-semibold">Son Aktiviteler</h2>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/dashboard/audit">
-                  Tümünü Gör
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </Button>
-            </div>
+            <h2 className="font-serif text-xl font-semibold">Son Aktiviteler</h2>
 
-            <Card className="border-card-border">
-              <CardContent className="p-0">
+            <Card className="border-card-border h-[456px] flex flex-col">
+              <CardContent className="p-0 flex-1 overflow-y-auto">
                 {activityLoading ? (
                   <div className="p-4 space-y-4">
                     {[1, 2, 3, 4].map((i) => (
@@ -288,10 +248,10 @@ export default function AdminDashboard() {
 
           <div className="space-y-4">
             <h2 className="font-serif text-xl font-semibold">Hızlı İşlemler</h2>
-            
+
             <Card className="border-card-border hover-elevate">
               <CardContent className="p-4">
-                <Link href="/dashboard/verify" className="flex items-center gap-4">
+                <Link href="/admin/verify" className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                     <CheckCircle2 className="w-6 h-6 text-primary" />
                   </div>
@@ -310,7 +270,7 @@ export default function AdminDashboard() {
 
             <Card className="border-card-border hover-elevate">
               <CardContent className="p-4">
-                <Link href="/dashboard/users" className="flex items-center gap-4">
+                <Link href="/admin/users" className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-lg bg-chart-2/10 flex items-center justify-center">
                     <Users className="w-6 h-6 text-chart-2" />
                   </div>
@@ -327,33 +287,48 @@ export default function AdminDashboard() {
 
             <Card className="border-card-border hover-elevate">
               <CardContent className="p-4">
-                <Link href="/dashboard/reports" className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-destructive/10 flex items-center justify-center">
-                    <AlertCircle className="w-6 h-6 text-destructive" />
+                <Link href="/admin/appointments" className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-chart-3/10 flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-chart-3" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium">Şikayet Mesajları</p>
+                    <p className="font-medium">Randevular</p>
                     <p className="text-sm text-muted-foreground">
-                      Raporlanan içerikleri incele
+                      Tüm randevuları görüntüle
                     </p>
                   </div>
-                  {(stats?.reportedMessages || 0) > 0 && (
-                    <Badge variant="destructive">{stats?.reportedMessages}</Badge>
-                  )}
+                  <ArrowRight className="w-5 h-5 text-muted-foreground" />
                 </Link>
               </CardContent>
             </Card>
 
             <Card className="border-card-border hover-elevate">
               <CardContent className="p-4">
-                <Link href="/dashboard/settings" className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-chart-4/10 flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-chart-4" />
+                <Link href="/admin/payments" className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-chart-1/10 flex items-center justify-center">
+                    <CreditCard className="w-6 h-6 text-chart-1" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium">Platform Ayarları</p>
+                    <p className="font-medium">Ödemeler</p>
                     <p className="text-sm text-muted-foreground">
-                      KDV, komisyon ayarları
+                      Ödeme raporlarını incele
+                    </p>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-card-border hover-elevate">
+              <CardContent className="p-4">
+                <Link href="/admin/bank-transfers" className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-chart-4/10 flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-chart-4" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-medium">Havale Ödemeleri</p>
+                    <p className="text-sm text-muted-foreground">
+                      Havale onaylarını yönet
                     </p>
                   </div>
                   <ArrowRight className="w-5 h-5 text-muted-foreground" />

@@ -1,0 +1,854 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Valider",
+    "continue": "Continuer",
+    "close": "Fermer",
+    "loading": "Chargement...",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "viewAll": "Voir tout",
+    "noResults": "Aucun résultat trouvé",
+    "error": "Erreur",
+    "success": "Succès",
+    "yes": "Oui",
+    "no": "Non",
+    "or": "ou",
+    "and": "et",
+    "selected": "sélectionné",
+    "selectedCount": "{{count}} sélectionné(s)",
+    "copied": "Copié !",
+    "copyFailed": "Échec de la copie",
+    "minuteShort": "min"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "description": "Connectez-vous pour gérer vos séances et messages.",
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "votre@email.fr",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "loginButton": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "registerLink": "S'inscrire",
+      "successTitle": "Bienvenue !",
+      "successDescription": "Vous êtes maintenant connecté.",
+      "errorTitle": "Échec de connexion",
+      "errorDescription": "Email ou mot de passe incorrect. Veuillez réessayer."
+    },
+    "register": {
+      "titlePatient": "S'inscrire en tant que patient",
+      "titlePsychologist": "S'inscrire en tant que psychologue",
+      "stepIndicator": "Étape {current} sur {total}",
+      "step1": {
+        "languageLabelPsychologist": "Dans quelles langues proposez-vous des séances ?",
+        "languageLabelPatient": "Dans quelle(s) langue(s) souhaitez-vous être accompagné ?",
+        "languageHelperPsychologist": "Sélectionnez toutes les langues dans lesquelles vous pouvez réaliser des consultations.",
+        "languageHelperPatient": "Sélectionnez toutes les langues dans lesquelles vous êtes à l'aise.",
+        "languagesSelectedCount": "{{count}} langue(s) sélectionnée(s)",
+        "languageSelected": "langue sélectionnée",
+        "errorNoLanguage": "Veuillez sélectionner au moins une langue",
+        "errorNoTherapyLanguage": "Veuillez sélectionner au moins une langue de thérapie",
+        "emailLabel": "Adresse e-mail",
+        "usernameLabel": "Nom d'utilisateur",
+        "usernamePlaceholder": "Nom d'utilisateur (min. 4 caractères)",
+        "passwordLabel": "Mot de passe",
+        "passwordPlaceholder": "Créez un mot de passe sécurisé",
+        "passwordConfirmLabel": "Confirmer le mot de passe",
+        "passwordConfirmPlaceholder": "Ressaisissez le mot de passe",
+        "errorAllFields": "Veuillez remplir tous les champs",
+        "errorInvalidEmail": "Adresse e-mail invalide",
+        "errorEmailFormat": "Veuillez entrer une adresse e-mail valide",
+        "validEmail": "Adresse e-mail valide",
+        "errorUsernameLength": "Le nom d'utilisateur doit contenir au moins 4 caractères",
+        "usernameRequirement1": "Lettres, chiffres et tiret bas uniquement",
+        "usernameRequirement2": "Pas de caractères spéciaux sauf _",
+        "errorPasswordFormat": "Le mot de passe ne respecte pas les exigences",
+        "passwordRequirement1": "Au moins 8 caractères",
+        "passwordRequirement2": "Au moins 1 majuscule",
+        "passwordRequirement3": "Au moins 1 minuscule",
+        "passwordRequirement4": "Au moins 1 chiffre ou caractère spécial",
+        "passwordMatch": "Les mots de passe correspondent",
+        "passwordMismatch": "Les mots de passe ne correspondent pas",
+        "emailPlaceholder": ""
+      },
+      "title": "Titre professionnel",
+      "selectTitle": "Sélectionner le titre",
+      "titleSelected": "Titre sélectionné",
+      "step2": {
+        "firstNameLabel": "Prénom",
+        "firstNamePlaceholder": "Prénom",
+        "firstNameHelper": "Comment souhaitez-vous être appelé(e) pendant la thérapie",
+        "lastNameLabel": "Nom",
+        "lastNamePlaceholder": "Nom",
+        "lastNameHelper": "Votre nom de famille complet",
+        "phoneLabel": "Numéro de téléphone",
+        "phonePlaceholder": "+33 6 12 34 56 78",
+        "phoneHelper": "Pour les rappels de rendez-vous et urgences",
+        "birthDateLabel": "Date de naissance",
+        "birthDateErrorTitle": "Date invalide",
+        "birthDateErrorDescription": "Veuillez entrer une date valide",
+        "birthDateHelper": "Format : JJ.MM.AAAA",
+        "birthDateErrorAge": "Vous devez avoir au moins 16 ans",
+        "genderLabel": "Genre",
+        "genderMale": "Homme",
+        "genderFemale": "Femme",
+        "cityLabel": "Ville",
+        "cityPlaceholder": "ex. : Paris",
+        "professionLabel": "Profession",
+        "professionPlaceholder": "Votre profession actuelle (facultatif)",
+        "bioLabel": "À propos de moi",
+        "bioPlaceholder": "Présentez-vous brièvement (max. 500 caractères)",
+        "errorNameRequired": "Le prénom et le nom sont obligatoires"
+      },
+      "step3Psychologist": {
+        "titleLabel": "Titre / Diplôme",
+        "titlePlaceholder": "ex. : Psychologue clinicien, Master, Doctorat",
+        "titleSelected": "Sélectionné",
+        "licenseLabel": "Numéro ADELI / SIRET",
+        "licensePlaceholder": "Votre numéro ADELI ou équivalent",
+        "licenseHelper": "Numéro officiel d'exercice",
+        "licenseError": "Veuillez entrer un numéro valide",
+        "experienceLabel": "Années d'expérience",
+        "experiencePlaceholder": "ex. : 8",
+        "educationLabel": "Formation / Diplômes",
+        "educationPlaceholder": "ex. : Master de Psychologie clinique - Université Paris Cité",
+        "specialtiesLabel": "Spécialités",
+        "approachesLabel": "Approches thérapeutiques",
+        "priceLabel": "Tarif de la séance (50 min)",
+        "pricePlaceholder": "ex. : 80 €",
+        "priceHelper": "TTC",
+        "aboutLabel": "À propos de moi (visible par les patients)",
+        "aboutPlaceholder": "Décrivez votre approche, votre parcours et vos domaines de prédilection",
+        "errorProfessionalInfo": "Veuillez compléter toutes les informations professionnelles"
+      },
+      "registerButton": "Créer mon compte",
+      "successTitle": "Inscription réussie !",
+      "successDescription": "Veuillez vérifier votre boîte mail pour valider votre compte.",
+      "errorTitle": "Erreur d'inscription",
+      "errorDescription": "Une erreur est survenue. Veuillez réessayer.",
+      "hasAccount": "Déjà inscrit ?",
+      "loginLink": "Se connecter"
+    },
+    "roleSelect": {
+      "title": "Qui êtes-vous ?",
+      "description": "Choisissez votre profil pour continuer.",
+      "patientTitle": "Patient",
+      "patientDescription": "Je recherche un accompagnement thérapeutique",
+      "psychologistTitle": "Psychologue / Thérapeute",
+      "psychologistDescription": "Je propose des consultations",
+      "continueButton": "Continuer",
+      "hasAccount": "Déjà inscrit ?",
+      "loginLink": "Se connecter"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Fonctionnalités",
+      "howItWorks": "Comment ça marche",
+      "psychologists": "Psychologues",
+      "goToDashboard": "Accéder au tableau de bord",
+      "login": "Connexion",
+      "register": "Inscription",
+      "openMenu": "Ouvrir le menu"
+    },
+    "hero": {
+      "badge": "Thérapie en ligne",
+      "title1": "Psychothérapie",
+      "titleHighlight": "professionnelle",
+      "title2": "en ligne – sécurisée et confidentielle",
+      "description": "Trouvez le psychologue qui vous correspond en quelques minutes, où que vous soyez.",
+      "ctaStart": "Commencer gratuitement",
+      "ctaExplore": "Découvrir les psychologues",
+      "feature1": "Professionnels vérifiés",
+      "feature2": "Visioconférence sécurisée",
+      "feature3": "RDV flexibles"
+    },
+    "features": {
+      "title": "Pourquoi choisir la thérapie en ligne ?",
+      "description": "Une prise en charge moderne, depuis chez vous.",
+      "videoCall": {
+        "title": "Séances en visio",
+        "description": "Appels vidéo sécurisés avec chiffrement de bout en bout"
+      },
+      "privacy": {
+        "title": "Confidentialité maximale",
+        "description": "Vos données sont protégées conformément au RGPD"
+      },
+      "easyBooking": {
+        "title": "Prise de RDV simple",
+        "description": "Réservez quand cela vous convient"
+      },
+      "messaging": {
+        "title": "Messagerie sécurisée",
+        "description": "Restez en contact entre les séances"
+      },
+      "flexible": {
+        "title": "Horaires flexibles",
+        "description": "Soirées et week-ends possibles"
+      },
+      "experts": {
+        "title": "Experts qualifiés",
+        "description": "Uniquement des psychologues diplômés et vérifiés"
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "description": "Commencez en 3 étapes simples",
+      "step1": {
+        "title": "Trouver le bon psychologue",
+        "description": "Filtrez par spécialité, langue, tarif et disponibilité"
+      },
+      "step2": {
+        "title": "Réserver et payer",
+        "description": "Paiement sécurisé – rendez-vous confirmé immédiatement"
+      },
+      "step3": {
+        "title": "Démarrer la séance",
+        "description": "Rejoignez la visio directement depuis chez vous"
+      }
+    },
+    "cta": {
+      "title": "Prêt à faire le premier pas ?",
+      "description": "Commencez dès aujourd'hui votre parcours vers un meilleur bien-être.",
+      "button": "S'inscrire gratuitement"
+    },
+    "footer": {
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions générales",
+      "kvkk": "RGPD",
+      "copyright": "© {year} Tous droits réservés."
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "Bonjour {{firstName}}",
+      "subtitle": "Voici un aperçu de vos prochaines séances et messages",
+      "stats": {
+        "upcomingSessions": "Séances à venir",
+        "totalSessions": "Séances totales",
+        "unreadMessages": "Messages non lus"
+      },
+      "upcomingAppointments": {
+        "title": "Prochains rendez-vous",
+        "viewAll": "Voir tout",
+        "emptyTitle": "Aucun rendez-vous à venir",
+        "emptyDescription": "Trouvez un psychologue et réservez votre première séance"
+      },
+      "quickActions": {
+        "title": "Accès rapide",
+        "findPsychologist": {
+          "title": "Trouver un psychologue",
+          "description": "Rechercher un spécialiste"
+        },
+        "messages": {
+          "title": "Messages",
+          "description": "Discuter avec votre thérapeute"
+        },
+        "appointments": {
+          "title": "Rendez-vous",
+          "description": "Gérer tous vos RDV"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "Bonjour {{firstName}}",
+      "pendingApproval": {
+        "title": "Votre profil est en cours de validation",
+        "description": "Notre équipe vérifie actuellement vos diplômes. Cela prend généralement 1 à 3 jours ouvrés."
+      },
+      "stats": {
+        "todaySessions": "Séances aujourd'hui",
+        "weeklyEarnings": "Revenus de la semaine",
+        "totalClients": "Nombre total de patients",
+        "pendingAppointments": "Demandes en attente"
+      },
+      "upcomingSessions": {
+        "title": "Séances à venir",
+        "viewAll": "Voir tout",
+        "emptyTitle": "Aucune séance à venir",
+        "emptyDescription": "Votre planning n'a pas encore été réservé"
+      },
+      "quickActions": {
+        "title": "Accès rapide",
+        "availability": {
+          "title": "Disponibilités",
+          "description": "Mettre à jour votre agenda"
+        },
+        "earnings": {
+          "title": "Revenus",
+          "description": "Voir les paiements et statistiques"
+        },
+        "profile": {
+          "title": "Profil",
+          "description": "Modifier votre profil"
+        }
+      }
+    },
+    "admin": {
+      "title": "Tableau de bord Admin",
+      "description": "Vue d'ensemble et gestion",
+      "stats": {
+        "totalUsers": "Utilisateurs totaux",
+        "todaySessions": "Séances aujourd'hui",
+        "monthlyRevenue": "Chiffre d'affaires mensuel",
+        "pendingVerification": "Validations en attente"
+      },
+      "pendingAlert": {
+        "text": "Il y a {count} validations en attente",
+        "button": "Vérifier maintenant"
+      },
+      "financialSummary": {
+        "title": "Résumé financier",
+        "grossRevenue": "CA brut",
+        "vat": "TVA",
+        "platformCommission": "Commission plateforme",
+        "psychologistPayments": "Paiements aux psychologues"
+      },
+      "recentActivities": {
+        "title": "Activité récente",
+        "empty": "Aucune activité récente"
+      },
+      "quickActions": {
+        "title": "Accès rapide",
+        "verification": {
+          "title": "Validations",
+          "description": "Vérifier les nouvelles demandes"
+        },
+        "users": {
+          "title": "Utilisateurs",
+          "description": "Gérer tous les comptes"
+        },
+        "appointments": {
+          "title": "Rendez-vous",
+          "description": "Voir toutes les réservations"
+        },
+        "payments": {
+          "title": "Paiements",
+          "description": "Suivre les transactions"
+        },
+        "bankTransfers": {
+          "title": "Virements",
+          "description": "Gérer les paiements sortants"
+        }
+      },
+      "verificationSuccess": {
+        "title": "Validation réussie",
+        "description": "Le compte a été approuvé"
+      }
+    }
+  },
+  "appointments": {
+    "title": "Rendez-vous",
+    "description": "Gérez vos séances à venir et passées",
+    "tabs": {
+      "upcoming": "À venir",
+      "past": "Passées"
+    },
+    "empty": {
+      "upcomingTitle": "Aucun rendez-vous à venir",
+      "upcomingDescription": "Réservez votre prochaine séance maintenant",
+      "pastTitle": "Aucune séance passée",
+      "pastDescription": "Vos séances terminées apparaîtront ici"
+    },
+    "cancelDialog": {
+      "title": "Annuler le rendez-vous ?",
+      "description": "Êtes-vous sûr de vouloir annuler ? Cette action est irréversible.",
+      "cancelButton": "Retour",
+      "confirmButton": "Annuler le RDV",
+      "confirmButtonLoading": "Annulation..."
+    },
+    "cancelSuccess": {
+      "title": "Rendez-vous annulé",
+      "description": "Le rendez-vous a été annulé avec succès."
+    },
+    "status": {
+      "reserved": "Réservé",
+      "pending_payment": "Paiement en attente",
+      "payment_review": "Paiement en vérification",
+      "confirmed": "Confirmé",
+      "ready": "Prêt",
+      "in_session": "En cours",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "expired": "Expiré",
+      "refunded": "Remboursé",
+      "no_show": "Non présenté",
+      "rejected": "Refusé"
+    },
+    "joinSession": "Rejoindre la séance",
+    "joinDisabled": "La séance commence dans {minutes} minutes",
+    "patientFallback": "Patient non disponible",
+    "relative": {
+      "past": "passé",
+      "now": "maintenant",
+      "inMinutes": "dans {{count}} min",
+      "inHours": "dans {{count}}h",
+      "inDays": "dans {{count}} jours",
+      "inDays_one": "dans {{count}} jour",
+      "inDays_other": "dans {{count}} jours",
+      "tomorrow": "demain"
+    },
+    "videoCall": {
+      "sessionNotStarted": "La séance n'a pas encore commencé",
+      "sessionEnded": "La séance est terminée",
+      "canJoin": "Vous pouvez rejoindre la séance",
+      "invalidAppointment": "Informations sur le rendez-vous introuvables",
+      "invalidDate": "Date de rendez-vous invalide",
+      "notConfirmed": "Rendez-vous pas encore confirmé",
+      "paymentPending": "Paiement en attente",
+      "paymentReview": "Paiement en cours d'examen",
+      "pendingApproval": "En attente d'approbation",
+      "cancelled": "Rendez-vous annulé",
+      "expired": "Rendez-vous expiré",
+      "completed": "Séance terminée",
+      "noShow": "Absence",
+      "rejected": "Rendez-vous rejeté",
+      "refunded": "Remboursé",
+      "notEligible": "Non éligible pour la séance",
+      "clickToJoin": "Cliquez pour rejoindre la séance",
+      "startsInDays_one": "La séance commence dans {{count}} jour",
+      "startsInDays_other": "La séance commence dans {{count}} jours",
+      "startsInHours_one": "La séance commence dans {{count}} heure",
+      "startsInHours_other": "La séance commence dans {{count}} heures",
+      "startsInMinutes_one": "La séance commence dans {{count}} minute",
+      "startsInMinutes_other": "La séance commence dans {{count}} minutes",
+      "activeBeforeStart": "Disponible {{minutes}} min avant le début de la séance",
+      "cannotJoinEnded": "Impossible de rejoindre, l'heure de la séance est passée",
+      "cannotJoin": "Impossible de rejoindre la séance",
+      "now": "Maintenant",
+      "inDays_one": "dans {{count}} jour",
+      "inDays_other": "dans {{count}} jours",
+      "inHours_one": "dans {{count}} heure",
+      "inHours_other": "dans {{count}} heures",
+      "inMinutes_one": "dans {{count}} minute",
+      "inMinutes_other": "dans {{count}} minutes"
+    }
+  },
+  "weekdays": {
+    "sunday": "Dimanche",
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi"
+  },
+  "messages": {
+    "title": "Messages",
+    "searchPlaceholder": "Rechercher dans les messages ou contacts...",
+    "empty": "Aucune conversation",
+    "noResults": "Aucune conversation correspondante",
+    "selectConversation": {
+      "title": "Sélectionnez une conversation",
+      "description": "Cliquez sur une conversation pour commencer à discuter"
+    },
+    "noMessages": "Aucun message dans cette conversation",
+    "yesterday": "Hier",
+    "today": "Aujourd'hui",
+    "yesterdayLabel": "Hier",
+    "inputPlaceholder": "Écrire un message...",
+    "reportAction": "Signaler la conversation"
+  },
+  "payment": {
+    "backButton": "Retour",
+    "title": "Paiement",
+    "description": "Paiement sécurisé pour votre séance",
+    "orderSummary": {
+      "title": "Récapitulatif",
+      "description": "Votre séance avec",
+      "psychologist": "Psychologue",
+      "dateTime": "Date et heure",
+      "duration": "Durée",
+      "durationValue": "{minutes} minutes",
+      "total": "Total"
+    },
+    "paymentInfo": {
+      "title": "Informations de paiement",
+      "description": "Scannez le QR code avec votre application bancaire",
+      "qrGenerating": "Génération du QR code...",
+      "qrTimer": "Ce code expire dans {seconds} secondes",
+      "waitingConfirmation": "En attente de confirmation du paiement...",
+      "completeButton": "J'ai effectué le paiement",
+      "testHelper": "Mode test : utilisez les identifiants de test",
+      "referenceCode": "Référence",
+      "referenceCodeLabel": "Motif du virement",
+      "amount": "Montant"
+    },
+    "instructions": {
+      "title": "Comment payer par virement",
+      "step1": "Ouvrez votre application bancaire",
+      "step2": "Scannez le QR code ou copiez les informations",
+      "step3": "Effectuez le virement",
+      "step4": "Validez le paiement",
+      "step5": "La séance sera automatiquement débloquée"
+    },
+    "success": {
+      "title": "Paiement effectué !",
+      "confirmed": "Votre paiement a été confirmé",
+      "redirecting": "Redirection vers votre espace...",
+      "toastTitle": "Paiement confirmé",
+      "toastDescription": "Votre séance est maintenant réservée !"
+    },
+    "error": {
+      "notFound": "Paiement introuvable",
+      "notFoundDescription": "Cette page de paiement n'existe pas ou a expiré",
+      "backLink": "Retour aux rendez-vous",
+      "noPaymentInfo": "Aucune information de paiement disponible",
+      "paymentFailed": "Échec du paiement"
+    },
+    "clipboard": {
+      "copied": "Copié !",
+      "copiedDescription": "Copié dans le presse-papiers",
+      "copyFailed": "Échec de la copie",
+      "copyFailedDescription": "Veuillez copier manuellement"
+    }
+  },
+  "availability": {
+    "title": "Disponibilités",
+    "description": "Indiquez vos créneaux disponibles pour les consultations",
+    "days": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
+    },
+    "saveSuccess": {
+      "title": "Disponibilités enregistrées",
+      "description": "Vos nouveaux créneaux sont maintenant actifs"
+    },
+    "saveError": "Erreur lors de l'enregistrement des disponibilités"
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Gérez vos informations personnelles et professionnelles",
+    "personalInfo": {
+      "title": "Informations personnelles",
+      "description": "Visibles uniquement par vous et l'équipe support",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+33 ...",
+      "birthDate": "Date de naissance",
+      "city": "Ville",
+      "about": "À propos de moi",
+      "aboutPlaceholder": "Courte présentation (visible par les patients)",
+      "saveButton": "Enregistrer les modifications"
+    },
+    "professionalInfo": {
+      "title": "Informations professionnelles",
+      "description": "Visibles par les patients potentiels",
+      "photo": "Photo de profil",
+      "uploadButton": "Télécharger une photo",
+      "uploadHelper": "JPG, PNG • max 5 Mo",
+      "specialties": "Spécialités",
+      "specialtiesCount": "{{count}} sélectionné(s)",
+      "approaches": "Approches",
+      "approachesCount": "{{count}} sélectionné(s)",
+      "saveButton": "Enregistrer les informations professionnelles"
+    },
+    "languageManagement": {
+      "title": "Gestion des langues",
+      "description": "Modifiez les langues dans lesquelles vous proposez des séances",
+      "label": "Langues de consultation",
+      "selectedCount": "{{count}} langue(s) sélectionnée(s)",
+      "saveButton": "Enregistrer les langues",
+      "errorMinLanguage": "Au moins une langue est requise",
+      "saveError": "Erreur lors de l'enregistrement",
+      "saveSuccess": "Langues mises à jour avec succès"
+    },
+    "saveSuccess": {
+      "title": "Profil mis à jour",
+      "description": "Vos modifications ont été enregistrées"
+    },
+    "saveError": "Erreur lors de l'enregistrement du profil",
+    "professionalSaveError": "Erreur lors de l'enregistrement des informations professionnelles",
+    "uploadError": {
+      "sizeTooLarge": "Fichier trop volumineux (max 5 Mo)",
+      "invalidType": "Seuls les formats JPG et PNG sont acceptés",
+      "uploadFailed": "Échec du téléchargement"
+    },
+    "experience": "Expérience",
+    "sessionDuration": "Durée de la séance",
+    "languages": "Langues",
+    "about": "À propos",
+    "education": "Formation",
+    "certifications": "Certifications"
+  },
+  "navigation": {
+    "patient": {
+      "home": "Accueil",
+      "findPsychologist": "Trouver un psychologue",
+      "appointments": "Rendez-vous",
+      "messages": "Messages",
+      "paymentHistory": "Historique des paiements",
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "logout": "Se déconnecter"
+    },
+    "psychologist": {
+      "home": "Tableau de bord",
+      "appointments": "Rendez-vous",
+      "availability": "Disponibilités",
+      "messages": "Messages",
+      "sessionNotes": "Notes de séance",
+      "earnings": "Revenus",
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "logout": "Se déconnecter"
+    },
+    "admin": {
+      "overview": "Vue d'ensemble",
+      "users": "Utilisateurs",
+      "verification": "Validations",
+      "appointments": "Rendez-vous",
+      "payments": "Paiements",
+      "auditLog": "Journal d'activité",
+      "settings": "Paramètres",
+      "profile": "Profil",
+      "logout": "Se déconnecter"
+    },
+    "roles": {
+      "admin": "Administrateur",
+      "psychologist": "Psychologue",
+      "patient": "Patient"
+    },
+    "sidebarTitle": "Menu",
+    "menuLabel": "Menu"
+  },
+  "cities": {
+    "adana": "Adana",
+    "ankara": "Ankara",
+    "antalya": "Antalya",
+    "bursa": "Bursa",
+    "denizli": "Denizli",
+    "diyarbakir": "Diyarbakır",
+    "eskisehir": "Eskişehir",
+    "gaziantep": "Gaziantep",
+    "istanbul": "Istanbul",
+    "izmir": "İzmir",
+    "kayseri": "Kayseri",
+    "kocaeli": "Kocaeli",
+    "konya": "Konya",
+    "mersin": "Mersin",
+    "mugla": "Muğla",
+    "samsun": "Samsun",
+    "trabzon": "Trabzon",
+    "other": "Autre"
+  },
+  "specialties": {
+    "individual": "Thérapie individuelle",
+    "couples": "Thérapie de couple",
+    "family": "Thérapie familiale",
+    "childAdolescent": "Thérapie enfants & adolescents",
+    "depression": "Dépression",
+    "anxiety": "Troubles anxieux",
+    "trauma": "Traumatismes & TSPT",
+    "ocd": "TOC (Trouble Obsessionnel Compulsif)",
+    "eatingDisorders": "Troubles des conduites alimentaires",
+    "addiction": "Addictions & dépendances",
+    "careerCounseling": "Bilan de compétences / Orientation pro",
+    "stressManagement": "Gestion du stress",
+    "angerManagement": "Gestion de la colère"
+  },
+  "therapyApproaches": {
+    "cbt": "Thérapie cognitivo-comportementale (TCC)",
+    "psychodynamic": "Psychanalyse / Approche psychodynamique",
+    "emdr": "EMDR (Désensibilisation et retraitement par les mouvements oculaires)",
+    "schema": "Thérapie des schémas",
+    "act": "Thérapie d'acceptation et d'engagement (ACT)",
+    "gestalt": "Gestalt-thérapie",
+    "solutionFocused": "Thérapie brève orientée solutions",
+    "existential": "Thérapie existentielle",
+    "mindfulness": "Thérapies basées sur la pleine conscience"
+  },
+  "card": {
+    "sessionFee": "Frais de séance",
+    "fee": "Frais",
+    "bookAppointment": "Prendre rendez-vous",
+    "priceNotSpecified": "Non spécifié",
+    "experience": {
+      "yearsLong_one": "{{count}} an d'expérience",
+      "yearsLong_other": "{{count}} ans d'expérience",
+      "yearsLong": "{{count}} ans d'expérience",
+      "yearsShort_one": "{{count}} an",
+      "yearsShort_other": "{{count}} ans",
+      "yearsShort": "{{count}} ans"
+    },
+    "selectedAppointment": "Rendez-vous sélectionné",
+    "reservationWarning": "Les rendez-vous sont annulés s'ils ne sont pas payés dans les 10 minutes"
+  },
+  "duration": {
+    "minutesShort": "min",
+    "minutesLong_one": "{{count}} minute",
+    "minutesLong_other": "{{count}} minutes",
+    "minutesLong": "{{count}} minutes"
+  },
+  "titles": {
+    "psychologist": "Psychologue",
+    "clinicalPsychologist": "Psychologue clinicien(ne)",
+    "expertPsychologist": "Psychologue spécialisé(e)",
+    "expertClinicalPsychologist": "Psychologue clinicien(ne) spécialisé(e)",
+    "psychologicalCounselor": "Conseiller(ère) psychologique",
+    "psychotherapist": "Psychothérapeute",
+    "dr": "Dr",
+    "assocProf": "Pr. associé",
+    "prof": "Pr."
+  },
+  "legal": {
+    "kvkk": {
+      "title": "RGPD (Règlement Général sur la Protection des Données)"
+    },
+    "privacy": {
+      "title": "Politique de confidentialité"
+    },
+    "terms": {
+      "title": "Conditions générales d'utilisation"
+    },
+    "refund": {
+      "title": "Politique de remboursement"
+    }
+  },
+  "psychologists": {
+    "title": "Trouver un Thérapeute",
+    "subtitle": "Trouvez le bon spécialiste et prenez rendez-vous",
+    "searchPlaceholder": "Rechercher par nom ou spécialité...",
+    "specialtyPlaceholder": "Spécialité",
+    "priceRangePlaceholder": "Fourchette de Prix",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "Effacer les Filtres",
+    "filters": {
+      "search": "Recherche: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "Aucun thérapeute trouvé",
+      "description": "Essayez de modifier vos critères de recherche",
+      "buttonText": "Effacer les Filtres"
+    },
+    "loginButton": "Se Connecter"
+  },
+  "paymentHistory": {
+    "title": "Historique des Paiements",
+    "subtitle": "Voir toutes vos réservations et transactions de paiement",
+    "table": {
+      "psychologist": "Thérapeute",
+      "appointmentDate": "Date du Rendez-vous",
+      "amount": "Montant",
+      "vat": "TVA",
+      "total": "Total",
+      "status": "Statut",
+      "netAmount": "Montant Net",
+      "totalAmount": "Montant Total"
+    },
+    "reservedUntil": "Réservé jusqu'à {time}",
+    "paymentPending": "Paiement en attente",
+    "paymentReview": "Paiement en cours d'examen",
+    "empty": "Vous n'avez pas encore d'historique de paiement",
+    "statuses": {
+      "reserved": "Réservé",
+      "payment_pending": "Paiement en Attente",
+      "payment_review": "Paiement en Cours d'Examen",
+      "completed": "Terminé",
+      "pending": "En Attente",
+      "failed": "Échoué",
+      "refunded": "Remboursé",
+      "refund_pending": "Remboursement en Attente",
+      "refund_approved": "Remboursement Approuvé",
+      "refund_processed": "Remboursé",
+      "refund_rejected": "Remboursement Refusé"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Gérez les paramètres de votre compte et vos préférences",
+    "language": "Langue d'affichage",
+    "languageDesc": "Sélectionnez la langue de l'interface de l'application",
+    "selectLanguage": "Sélectionner la langue",
+    "languageChanged": "Langue modifiée",
+    "languageChangedDesc": "La langue de l'interface a été modifiée avec succès",
+    "confirmLanguageChange": "Voulez-vous enregistrer les modifications ?",
+    "confirmLanguageChangeDesc": "La langue du site sera traduite dans la langue que vous avez sélectionnée. Confirmez-vous cette action ?",
+    "notifications": "Notifications",
+    "notificationsDesc": "Gérez vos préférences de notification",
+    "emailNotifications": "Notifications par e-mail",
+    "emailNotificationsDesc": "Recevoir des e-mails pour les mises à jour importantes",
+    "appointmentReminders": "Rappels de rendez-vous",
+    "appointmentRemindersDesc": "Recevoir des notifications concernant les rendez-vous à venir",
+    "messageNotifications": "Notifications de messages",
+    "messageNotificationsDesc": "Recevoir des notifications pour les nouveaux messages",
+    "newAppointmentRequests": "Nouvelles demandes de rendez-vous",
+    "newAppointmentRequestsDesc": "Recevoir des notifications concernant les nouvelles demandes de rendez-vous",
+    "privacy": "Confidentialité",
+    "privacyDesc": "Contrôlez vos paramètres de confidentialité",
+    "showProfile": "Afficher le profil",
+    "showProfileDesc": "Rendre votre profil visible pour les patients",
+    "showOnlineStatus": "Afficher le statut en ligne",
+    "showOnlineStatusDesc": "Afficher votre statut en ligne aux autres utilisateurs",
+    "showLastSeen": "Afficher dernière vue",
+    "showLastSeenDesc": "Partager votre dernière heure de connexion",
+    "security": "Sécurité",
+    "securityDesc": "Paramètres de sécurité du compte",
+    "twoFactor": "Authentification à deux facteurs",
+    "twoFactorDesc": "Ajouter une couche de sécurité supplémentaire à votre compte",
+    "changePassword": "Changer le mot de passe",
+    "changePasswordDesc": "Entrez votre mot de passe actuel et choisissez-en un nouveau pour votre sécurité",
+    "currentPassword": "Mot de passe actuel",
+    "enterCurrentPassword": "Entrez votre mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "enterNewPassword": "Entrez votre nouveau mot de passe",
+    "confirmNewPassword": "Confirmer le nouveau mot de passe",
+    "enterNewPasswordAgain": "Entrez à nouveau votre nouveau mot de passe",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+    "passwordMinLengthHint": "Au moins 6 caractères",
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
+    "newPasswordMustBeDifferent": "Le nouveau mot de passe doit être différent du mot de passe actuel",
+    "allPasswordFieldsRequired": "Tous les champs sont requis",
+    "passwordChanged": "Mot de passe modifié",
+    "passwordChangedDesc": "Votre mot de passe a été mis à jour avec succès",
+    "passwordChangeError": "Échec du changement de mot de passe",
+    "saveChanges": "Enregistrer les modifications",
+    "savedTitle": "Paramètres enregistrés",
+    "savedDesc": "Vos préférences ont été mises à jour avec succès",
+    "notificationsSaved": "Préférences de notification enregistrées",
+    "saveError": "Échec de l'enregistrement des paramètres"
+  },
+  "twoFactor": {
+    "title": "Authentification à Deux Facteurs",
+    "description": "Protégez votre compte avec Google Authenticator",
+    "enable": "Activer",
+    "disable": "Désactiver",
+    "setupTitle": "Configuration de l'Authentification à Deux Facteurs",
+    "scanQR": "Scannez le code QR avec Google Authenticator ou Authy",
+    "cantScanQR": "Impossible de scanner le code QR ? Saisissez manuellement :",
+    "verificationCode": "Code de Vérification",
+    "enter6DigitFromApp": "Entrez le code à 6 chiffres affiché dans votre application",
+    "verifyAndEnable": "Vérifier et Activer",
+    "disableTitle": "Désactiver l'Authentification à Deux Facteurs",
+    "disableDescription": "Entrez votre mot de passe et le code de vérification pour cette action",
+    "password": "Mot de passe",
+    "setupError": "Échec de la configuration 2FA",
+    "enableSuccess": "Authentification à deux facteurs activée avec succès",
+    "invalidCode": "Code de vérification invalide",
+    "disableSuccess": "Authentification à deux facteurs désactivée avec succès",
+    "disableError": "Échec de la désactivation 2FA",
+    "enter6Digit": "Veuillez entrer un code à 6 chiffres valide",
+    "enterPasswordAnd6Digit": "Veuillez entrer votre mot de passe et le code à 6 chiffres",
+    "secretCopied": "Secret copié dans le presse-papiers"
+  }
+}

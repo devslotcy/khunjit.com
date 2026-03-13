@@ -1,0 +1,936 @@
+{
+  "common": {
+    "save": "Kaydet",
+    "saving": "Kaydediliyor...",
+    "cancel": "İptal",
+    "back": "Geri",
+    "next": "İleri",
+    "submit": "Gönder",
+    "continue": "Devam Et",
+    "close": "Kapat",
+    "loading": "Yükleniyor...",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "viewAll": "Tümünü Gör",
+    "noResults": "Sonuç bulunamadı",
+    "error": "Hata",
+    "success": "Başarılı",
+    "yes": "Evet",
+    "no": "Hayır",
+    "or": "veya",
+    "and": "ve",
+    "selected": "Seçildi",
+    "selectedCount": "{{count}} seçildi",
+    "copied": "Kopyalandı",
+    "copyFailed": "Kopyalama başarısız",
+    "minuteShort": "dakika"
+  },
+
+  "auth": {
+    "login": {
+      "title": "KhunJit'e Hoş Geldiniz",
+      "description": "Hesabınıza giriş yapın",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ornek@email.com",
+      "passwordLabel": "Şifre",
+      "passwordPlaceholder": "••••••••",
+      "loginButton": "Giriş Yap",
+      "noAccount": "Hesabınız yok mu?",
+      "registerLink": "Kayıt Olun",
+      "successTitle": "Giriş başarılı",
+      "successDescription": "Hoş geldiniz!",
+      "errorTitle": "Giriş başarısız",
+      "errorDescription": "Email veya şifre hatalı"
+    },
+
+    "register": {
+      "titlePatient": "Danışan Kaydı",
+      "titlePsychologist": "Psikolog Kaydı",
+      "stepIndicator": "Adım {{step}} / {{totalSteps}}",
+
+      "step1": {
+        "languageLabelPsychologist": "Terapi Dili *",
+        "languageLabelPatient": "Terapi Dili *",
+        "languageHelperPsychologist": "Terapilerinizde kullanacağınız dili seçin. Bu dili konuşan danışanlar sizi görebilir.",
+        "languageHelperPatient": "Terapinizin hangi dilde yapılacağını seçin. Sadece bu dili destekleyen psikologları görebilirsiniz.",
+        "languagesSelectedCount": "{{count}} dil seçildi",
+        "languageSelected": "Dil seçildi",
+        "errorNoLanguage": "Lütfen en az bir dil seçiniz",
+        "errorNoTherapyLanguage": "Lütfen terapi dilinizi seçiniz",
+        "emailLabel": "Email *",
+        "emailPlaceholder": "ornek@email.com",
+        "usernameLabel": "Kullanıcı Adı *",
+        "usernamePlaceholder": "enaz5harf",
+        "passwordLabel": "Şifre *",
+        "passwordPlaceholder": "En az 8 karakter",
+        "passwordConfirmLabel": "Şifre Tekrar *",
+        "passwordConfirmPlaceholder": "Şifrenizi tekrar girin",
+        "errorAllFields": "Lütfen tüm alanları doldurun",
+        "errorInvalidEmail": "Geçerli bir email adresi girin",
+        "errorEmailFormat": "Lütfen geçerli bir e-posta adresi giriniz",
+        "validEmail": "Geçerli email adresi",
+        "errorUsernameLength": "Kullanıcı adı en az 5 harf olmalı ve rakam içermemelidir",
+        "usernameRequirement1": "En az 5 harf",
+        "usernameRequirement2": "Sadece harf içermeli",
+        "errorPasswordFormat": "Şifre en az 8 karakter, 1 büyük harf, 1 küçük harf ve 1 rakam içermelidir",
+        "passwordRequirement1": "En az 8 karakter",
+        "passwordRequirement2": "En az 1 büyük harf",
+        "passwordRequirement3": "En az 1 küçük harf",
+        "passwordRequirement4": "En az 1 rakam",
+        "passwordMatch": "Şifreler eşleşiyor",
+        "passwordMismatch": "Şifreler eşleşmiyor"
+      },
+
+      "step2": {
+        "firstNameLabel": "Ad *",
+        "firstNamePlaceholder": "Adınız",
+        "firstNameHelper": "İlk harf büyük olacak",
+        "lastNameLabel": "Soyad *",
+        "lastNamePlaceholder": "Soyadınız",
+        "lastNameHelper": "Tamamı büyük olacak",
+        "phoneLabel": "Telefon",
+        "phonePlaceholder": "05551234567",
+        "phoneHelper": "En fazla 18 karakter",
+        "birthDateLabel": "Doğum Tarihi",
+        "birthDateErrorTitle": "Geçersiz Tarih",
+        "birthDateErrorDescription": "Lütfen geçerli bir doğum tarihi girin (18 yaşından büyük olmalısınız)",
+        "birthDateHelper": "En az 18 yaşında olmalısınız (En geç: {{date}})",
+        "birthDateErrorAge": "18 yaşından büyük olmalısınız",
+        "genderLabel": "Cinsiyet",
+        "genderMale": "Erkek",
+        "genderFemale": "Kadın",
+        "cityLabel": "Şehir",
+        "cityPlaceholder": "Şehir seçin",
+        "professionLabel": "Meslek",
+        "professionPlaceholder": "Mesleğiniz",
+        "bioLabel": "Hakkında",
+        "bioPlaceholder": "Kendinizi kısaca tanıtın...",
+        "errorNameRequired": "Ad ve soyad gereklidir"
+      },
+
+      "step3Psychologist": {
+        "titleLabel": "Unvan *",
+        "titlePlaceholder": "Unvan seçin",
+        "titleSelected": "Unvan seçildi: {{title}}",
+        "licenseLabel": "Lisans Numarası *",
+        "licensePlaceholder": "Mesleki lisans numaranız (6-10 haneli)",
+        "licenseHelper": "6-10 haneli sayı olmalı (Şu an: {{count}} hane)",
+        "licenseError": "Lisans numarası 6-10 hane olmalıdır",
+        "experienceLabel": "Deneyim (Yıl) *",
+        "experiencePlaceholder": "5",
+        "educationLabel": "Eğitim Bilgileri *",
+        "educationPlaceholder": "Üniversite, bölüm ve mezuniyet yılı...",
+        "specialtiesLabel": "Uzmanlık Alanları *",
+        "approachesLabel": "Terapi Yaklaşımları",
+        "priceLabel": "Seans Ücreti (TL) *",
+        "pricePlaceholder": "500",
+        "priceHelper": "Platform %15 komisyon alır, KDV dahil.",
+        "aboutLabel": "Hakkımda",
+        "aboutPlaceholder": "Kendinizi ve yaklaşımınızı tanıtın...",
+        "errorProfessionalInfo": "Lütfen profesyonel bilgilerinizi doldurun"
+      },
+
+      "registerButton": "Kayıt Ol",
+      "successTitle": "Kayıt başarılı",
+      "successDescription": "Hesabınız oluşturuldu!",
+      "errorTitle": "Kayıt başarısız",
+      "errorDescription": "Bir hata oluştu",
+      "hasAccount": "Zaten hesabınız var mı?",
+      "loginLink": "Giriş Yapın"
+    },
+
+    "roleSelect": {
+      "title": "Hoş Geldiniz!",
+      "description": "Platformu nasıl kullanmak istediğinizi seçin",
+      "patientTitle": "Danışan / Danışan",
+      "patientDescription": "Psikolog bulun, randevu alın ve online görüşmeler yapın",
+      "psychologistTitle": "Psikolog",
+      "psychologistDescription": "Danışanlarınızla online seanslar yapın ve kazanç elde edin",
+      "continueButton": "Devam Et",
+      "hasAccount": "Zaten hesabınız var mı?",
+      "loginLink": "Giriş Yapın"
+    }
+  },
+
+  "landing": {
+    "nav": {
+      "features": "Özellikler",
+      "howItWorks": "Nasıl Çalışır",
+      "psychologists": "Psikologlar",
+      "goToDashboard": "Dashboard'a Git",
+      "login": "Giriş Yap",
+      "register": "Kayıt Ol",
+      "openMenu": "Menüyü aç"
+    },
+
+    "hero": {
+      "badge": "Güvenli ve Gizli",
+      "title1": "Online Psikolojik",
+      "titleHighlight": "Destek",
+      "title2": "Evinizin Konforunda",
+      "description": "Uzman psikologlarımızla görüntülü görüşme yaparak, duygusal ve mental sağlığınız için profesyonel destek alın. Her zaman, her yerde yanınızdayız.",
+      "ctaStart": "Hemen Başla",
+      "ctaExplore": "Psikologları Keşfet",
+      "feature1": "Ücretsiz kayıt",
+      "feature2": "7/24 destek",
+      "feature3": "Uzman psikologlar"
+    },
+
+    "features": {
+      "title": "Neden KhunJit?",
+      "description": "Modern ve güvenli platformumuz ile psikolojik destek almak hiç bu kadar kolay olmamıştı",
+      "videoCall": {
+        "title": "Görüntülü Görüşme",
+        "description": "Yüksek kaliteli video bağlantısı ile psikologunuzla yüz yüze görüşün"
+      },
+      "privacy": {
+        "title": "Tam Gizlilik",
+        "description": "Tüm görüşmeleriniz şifrelenir ve tamamen gizli tutulur"
+      },
+      "easyBooking": {
+        "title": "Kolay Randevu",
+        "description": "Size uygun zamanda, birkaç tıkla randevu alın"
+      },
+      "messaging": {
+        "title": "Mesajlaşma",
+        "description": "Seanslar arasında psikologunuzla güvenli mesajlaşın"
+      },
+      "flexible": {
+        "title": "Esnek Zamanlama",
+        "description": "Sabahtan geceye, size uygun saat dilimlerinde destek alın"
+      },
+      "experts": {
+        "title": "Uzman Kadro",
+        "description": "Doğrulanmış ve deneyimli psikologlarla çalışın"
+      }
+    },
+
+    "howItWorks": {
+      "title": "Nasıl Çalışır?",
+      "description": "Üç basit adımda profesyonel psikolojik desteğe ulaşın",
+      "step1": {
+        "title": "Psikolog Seçin",
+        "description": "Uzmanlık alanlarına göre filtreleyerek size uygun psikoloğu bulun"
+      },
+      "step2": {
+        "title": "Randevu Alın",
+        "description": "Müsait saatlerden size uygun olanı seçin ve ödeme yapın"
+      },
+      "step3": {
+        "title": "Görüşmeye Başlayın",
+        "description": "Randevu saatinde güvenli video bağlantısı ile görüşmenizi yapın"
+      }
+    },
+
+    "cta": {
+      "title": "Sağlığınız İçin İlk Adımı Atın",
+      "description": "Profesyonel psikolojik destek almak için hemen ücretsiz hesap oluşturun",
+      "button": "Ücretsiz Başla"
+    },
+
+    "footer": {
+      "privacy": "Gizlilik Politikası",
+      "terms": "Kullanım Koşulları",
+      "kvkk": "KVKK",
+      "copyright": "© 2026 KhunJit. Tüm hakları saklıdır."
+    }
+  },
+
+  "dashboard": {
+    "patient": {
+      "welcome": "Hoş geldiniz, {{firstName}}",
+      "subtitle": "Mental sağlığınız için yanınızdayız",
+      "stats": {
+        "upcomingSessions": "Yaklaşan Seanslar",
+        "totalSessions": "Toplam Seans",
+        "unreadMessages": "Okunmamış Mesaj"
+      },
+      "upcomingAppointments": {
+        "title": "Yaklaşan Randevular",
+        "viewAll": "Tümünü Gör",
+        "emptyTitle": "Henüz randevunuz yok",
+        "emptyDescription": "Bir psikolog bularak ilk randevunuzu alın"
+      },
+      "quickActions": {
+        "title": "Hızlı İşlemler",
+        "findPsychologist": {
+          "title": "Psikolog Bul",
+          "description": "Size uygun uzmanı keşfedin"
+        },
+        "messages": {
+          "title": "Mesajlar",
+          "description": "Psikologunuzla iletişime geçin"
+        },
+        "appointments": {
+          "title": "Randevularım",
+          "description": "Tüm randevularınızı görüntüleyin"
+        }
+      }
+    },
+
+    "psychologist": {
+      "welcome": "Hoş geldiniz, {{firstName}}",
+      "pendingApproval": {
+        "title": "Hesabınız Admin Onayı Bekliyor",
+        "description": "Profiliniz inceleme aşamasındadır. Admin onayından sonra danışan \"Psikolog Bul\" sayfasında görünür olacak ve randevu alabileceksiniz. Bu işlem genellikle 24-48 saat içinde tamamlanır."
+      },
+      "stats": {
+        "todaySessions": "Bugünkü Seanslar",
+        "weeklyEarnings": "Haftalık Kazanç",
+        "totalClients": "Toplam Danışan",
+        "pendingAppointments": "Bekleyen Randevu"
+      },
+      "upcomingSessions": {
+        "title": "Yaklaşan Seanslar",
+        "viewAll": "Tümünü Gör",
+        "emptyTitle": "Yaklaşan seansınız yok",
+        "emptyDescription": "Müsaitlik ayarlarınızı güncelleyerek randevu alabilirsiniz"
+      },
+      "quickActions": {
+        "title": "Hızlı İşlemler",
+        "availability": {
+          "title": "Müsaitlik Ayarları",
+          "description": "Çalışma saatlerinizi düzenleyin"
+        },
+        "earnings": {
+          "title": "Kazançlar",
+          "description": "Gelir raporlarınızı görüntüleyin"
+        },
+        "profile": {
+          "title": "Profil",
+          "description": "Profil bilgilerinizi güncelleyin"
+        }
+      }
+    },
+
+    "admin": {
+      "title": "Yönetici Paneli",
+      "description": "Platform genel bakış - {{date}}",
+      "stats": {
+        "totalUsers": "Toplam Kullanıcı",
+        "todaySessions": "Bugünkü Seanslar",
+        "monthlyRevenue": "Aylık Gelir",
+        "pendingVerification": "Doğrulama Bekleyen"
+      },
+      "pendingAlert": {
+        "text": "{{count}} psikolog doğrulama bekliyor",
+        "button": "İncele"
+      },
+      "financialSummary": {
+        "title": "Finansal Özet",
+        "grossRevenue": "Brüt Gelir",
+        "vat": "KDV (20%)",
+        "platformCommission": "Platform Komisyonu (15%)",
+        "psychologistPayments": "Psikolog Ödemeleri"
+      },
+      "recentActivities": {
+        "title": "Son Aktiviteler",
+        "empty": "Henüz aktivite yok"
+      },
+      "quickActions": {
+        "title": "Hızlı İşlemler",
+        "verification": {
+          "title": "Psikolog Doğrulama",
+          "description": "Bekleyen başvuruları incele"
+        },
+        "users": {
+          "title": "Kullanıcı Yönetimi",
+          "description": "Tüm kullanıcıları yönet"
+        },
+        "appointments": {
+          "title": "Randevular",
+          "description": "Tüm randevuları görüntüle"
+        },
+        "payments": {
+          "title": "Ödemeler",
+          "description": "Ödeme raporlarını incele"
+        },
+        "bankTransfers": {
+          "title": "Havale Ödemeleri",
+          "description": "Havale onaylarını yönet"
+        }
+      },
+      "verificationSuccess": {
+        "title": "Onaylandı",
+        "description": "Psikolog başarıyla doğrulandı ve danışan listesinde görünür olacak"
+      }
+    }
+  },
+
+  "appointments": {
+    "title": "Randevularım",
+    "description": "Tüm randevularınızı buradan yönetin",
+    "tabs": {
+      "upcoming": "Yaklaşan",
+      "past": "Geçmiş",
+      "paymentReview": "Ödeme"
+    },
+    "paymentReviewAlert": {
+      "title": "Ödeme Onayı Bekleniyor",
+      "description": "Bu randevular için danışanlar havale/EFT bildirimi yaptı. Admin kontrolünden sonra randevular onaylanacak ve seans başlatılabilecek."
+    },
+    "empty": {
+      "upcomingTitle": "Yaklaşan randevunuz yok",
+      "upcomingDescription": "Bir psikolog bularak yeni randevu alabilirsiniz",
+      "pastTitle": "Geçmiş randevunuz yok",
+      "pastDescription": "Tamamlanan seanslarınız burada görünecek"
+    },
+    "cancelDialog": {
+      "title": "Randevuyu İptal Et",
+      "description": "Bu randevuyu iptal etmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+      "cancelButton": "Hayır, Devam Et",
+      "confirmButton": "Evet, İptal Et",
+      "confirmButtonLoading": "İptal Ediliyor..."
+    },
+    "cancelSuccess": {
+      "title": "Randevu İptal Edildi",
+      "description": "Randevunuz başarıyla iptal edilmiştir."
+    },
+    "status": {
+      "reserved": "Rezerve",
+      "pending_payment": "Ödeme Bekleniyor",
+      "payment_review": "Ödeme İncelemede",
+      "confirmed": "Onaylandı",
+      "ready": "Hazır",
+      "in_session": "Seansta",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal Edildi",
+      "expired": "Süresi Doldu",
+      "refunded": "İade Edildi",
+      "no_show": "Katılmadı",
+      "rejected": "Reddedildi"
+    },
+    "joinSession": "Seansa Katıl",
+    "joinDisabled": "Video kodu başlatmadan {{time}} dakika kalıyor",
+    "patientFallback": "Danışan",
+    "relative": {
+      "past": "geçti",
+      "now": "şimdi",
+      "inMinutes": "{{count}} dakika sonra",
+      "inHours": "{{count}} saat sonra",
+      "inDays": "{{count}} gün sonra",
+      "tomorrow": "yarın"
+    },
+    "videoCall": {
+      "sessionNotStarted": "Seans henüz başlamadı",
+      "sessionEnded": "Seans süresi geçti",
+      "canJoin": "Görüşmeye katılabilirsiniz",
+      "invalidAppointment": "Randevu bilgisi bulunamadı",
+      "invalidDate": "Randevu tarihi geçersiz",
+      "notConfirmed": "Randevu henüz onaylanmadı",
+      "paymentPending": "Ödeme bekleniyor",
+      "paymentReview": "Ödeme inceleniyor",
+      "pendingApproval": "Onay bekleniyor",
+      "cancelled": "Randevu iptal edildi",
+      "expired": "Randevu süresi doldu",
+      "completed": "Seans tamamlandı",
+      "noShow": "Katılım sağlanmadı",
+      "rejected": "Randevu reddedildi",
+      "refunded": "İade edildi",
+      "notEligible": "Seans için uygun değil",
+      "clickToJoin": "Görüşmeye katılmak için tıklayın",
+      "startsInDays": "Seans {{count}} gün sonra başlayacak",
+      "startsInHours": "Seans {{count}} saat sonra başlayacak",
+      "startsInMinutes": "Seans {{count}} dakika sonra başlayacak",
+      "activeBeforeStart": "Seans başlamadan {{minutes}} dk önce aktif olur",
+      "cannotJoinEnded": "Seans süresi geçtiği için katılamazsınız",
+      "cannotJoin": "Görüşmeye katılamazsınız",
+      "now": "Şimdi",
+      "inDays": "{{count}} gün sonra",
+      "inHours": "{{count}} saat sonra",
+      "inMinutes": "{{count}} dakika sonra"
+    }
+  },
+  "weekdays": {
+    "sunday": "Pazar",
+    "monday": "Pazartesi",
+    "tuesday": "Salı",
+    "wednesday": "Çarşamba",
+    "thursday": "Perşembe",
+    "friday": "Cuma",
+    "saturday": "Cumartesi"
+  },
+
+  "messages": {
+    "title": "Mesajlar",
+    "searchPlaceholder": "Psikolog ara...",
+    "empty": "Henüz mesajınız yok",
+    "noResults": "Sonuç bulunamadı",
+    "selectConversation": {
+      "title": "Bir konuşma seçin",
+      "description": "Mesajlaşmaya başlamak için sol taraftan bir psikolog seçin"
+    },
+    "noMessages": "Henüz mesaj yok. İlk mesajı gönderin!",
+    "yesterday": "Dün {{time}}",
+    "today": "Bugün",
+    "yesterdayLabel": "Dün",
+    "inputPlaceholder": "Mesajınızı yazın...",
+    "reportAction": "Şikayet Et"
+  },
+
+  "payment": {
+    "backButton": "Geri",
+    "title": "Ödeme Sayfası",
+    "description": "QR kodu tarayarak ödemenizi tamamlayın",
+    "orderSummary": {
+      "title": "Sipariş Özeti",
+      "description": "Randevu detayları",
+      "psychologist": "Psikolog",
+      "dateTime": "Tarih & Saat",
+      "duration": "Seans Süresi",
+      "durationValue": "{{minutes}} dakika",
+      "total": "Toplam Tutar"
+    },
+    "paymentInfo": {
+      "title": "Ödeme Bilgileri",
+      "description": "QR kod ile ödeme yapın",
+      "qrGenerating": "QR kod oluşturuluyor...",
+      "qrTimer": "QR kod süresi",
+      "waitingConfirmation": "Ödeme onayı bekleniyor...",
+      "completeButton": "Ödemeyi Tamamla",
+      "testHelper": "Test için QR kod beklemeden ödemeyi tamamlayabilirsiniz",
+      "referenceCode": "Referans Kodu",
+      "referenceCodeLabel": "Referans kodu",
+      "amount": "Tutar"
+    },
+    "instructions": {
+      "title": "Ödeme Nasıl Yapılır?",
+      "step1": "Banka uygulamanızı açın (KBank, SCB, Bangkok Bank, vb.)",
+      "step2": "\"QR Tara\" veya \"PromptPay\" seçeneğini seçin",
+      "step3": "Yukarıdaki QR kodu tarayın",
+      "step4": "Uygulamada ödemeyi onaylayın",
+      "step5": "Randevunuz otomatik olarak onaylanacaktır"
+    },
+    "success": {
+      "title": "✅ Ödeme Başarılı!",
+      "confirmed": "Randevunuz onaylandı",
+      "redirecting": "Ana sayfaya yönlendiriliyorsunuz",
+      "toastTitle": "✅ Ödeme Tamamlandı!",
+      "toastDescription": "Randevunuz onaylandı. Ana sayfaya yönlendiriliyorsunuz..."
+    },
+    "error": {
+      "notFound": "Randevu Bulunamadı",
+      "notFoundDescription": "Bu randevu mevcut değil veya süresi dolmuş olabilir.",
+      "backLink": "Randevularıma Dön",
+      "noPaymentInfo": "Ödeme bilgisi bulunamadı",
+      "paymentFailed": "Ödeme tamamlanamadı"
+    },
+    "clipboard": {
+      "copied": "Kopyalandı",
+      "copiedDescription": "{{text}} panoya kopyalandı",
+      "copyFailed": "Kopyalama başarısız",
+      "copyFailedDescription": "Lütfen manuel olarak kopyalayın"
+    }
+  },
+
+  "availability": {
+    "title": "Müsaitlik Ayarları",
+    "description": "Haftalık çalışma saatlerinizi belirleyin",
+    "days": {
+      "monday": "Pazartesi",
+      "tuesday": "Salı",
+      "wednesday": "Çarşamba",
+      "thursday": "Perşembe",
+      "friday": "Cuma",
+      "saturday": "Cumartesi",
+      "sunday": "Pazar"
+    },
+    "saveSuccess": {
+      "title": "Başarılı",
+      "description": "Müsaitlik ayarlarınız kaydedildi"
+    },
+    "saveError": "Ayarlar kaydedilirken bir hata oluştu"
+  },
+
+  "profile": {
+    "title": "Profil Ayarları",
+    "description": "Kişisel bilgilerinizi güncelleyin",
+    "personalInfo": {
+      "title": "Kişisel Bilgiler",
+      "description": "Hesap bilgilerinizi burada güncelleyebilirsiniz",
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "Email",
+      "phone": "Telefon",
+      "phonePlaceholder": "0555 123 4567",
+      "birthDate": "Doğum Tarihi",
+      "city": "Şehir",
+      "about": "Hakkımda",
+      "aboutPlaceholder": "Kendinizi kısaca tanıtın...",
+      "saveButton": "Kaydet"
+    },
+    "professionalInfo": {
+      "title": "Profesyonel Bilgiler",
+      "description": "Uzmanlık alanlarınızı ve terapi yaklaşımlarınızı güncelleyin",
+      "photo": "Profil Fotoğrafı",
+      "uploadButton": "Fotoğraf Yükle",
+      "uploadHelper": "Maksimum 5MB, JPG, PNG veya WEBP formatında",
+      "specialties": "Uzmanlık Alanları",
+      "specialtiesCount": "Seçili: {{count}} alan",
+      "approaches": "Terapi Yaklaşımları",
+      "approachesCount": "Seçili: {{count}} yaklaşım",
+      "saveButton": "Profesyonel Bilgileri Kaydet"
+    },
+    "experience": "Deneyim",
+    "sessionDuration": "Seans Süresi",
+    "languages": "Diller",
+    "about": "Hakkında",
+    "education": "Eğitim",
+    "certifications": "Sertifikalar",
+    "languageManagement": {
+      "title": "Dil Yönetimi",
+      "description": "Destek verdiğiniz dilleri seçin. Sadece seçtiğiniz dilleri konuşan danışanlar sizi görebilir.",
+      "label": "Desteklediğiniz Diller *",
+      "selectedCount": "Seçili: {{count}} dil",
+      "saveButton": "Dil Seçimlerini Kaydet",
+      "errorMinLanguage": "En az bir dil seçmelisiniz",
+      "saveError": "Diller güncellenirken bir hata oluştu",
+      "saveSuccess": "Dil seçimleriniz güncellendi"
+    },
+    "stripeConnect": {
+      "title": "Ödeme Hesabı",
+      "description": "Kazançlarınızı almak için Stripe hesabınızı bağlayın",
+      "notConnected": {
+        "status": "Bağlı Değil",
+        "description": "Kazançlarınızı almak için Stripe ödeme hesabınızı bağlayın. Bilgilerinizi güvenli bir şekilde Stripe'a gireceksiniz.",
+        "button": "Stripe ile Bağla"
+      },
+      "incomplete": {
+        "status": "İşlem Gerekli",
+        "description": "Stripe hesabınız için daha fazla bilgiye ihtiyaç var. Ödemeleri etkinleştirmek için gerekli adımları tamamlayın.",
+        "button": "Kurulumu Tamamla"
+      },
+      "active": {
+        "status": "Aktif",
+        "description": "Stripe hesabınız aktif. Kazançlarınız bu hesaba ödenecek.",
+        "button": "Stripe'da Yönet"
+      },
+      "errors": {
+        "notConfigured": "Stripe Connect yapılandırılmamış. Lütfen destek ile iletişime geçin.",
+        "connectionFailed": "Stripe'a bağlanırken hata oluştu. Lütfen tekrar deneyin.",
+        "statusFailed": "Hesap durumu alınamadı. Lütfen tekrar deneyin."
+      }
+    },
+    "saveSuccess": {
+      "title": "Başarılı",
+      "description": "Profiliniz güncellendi"
+    },
+    "saveError": "Profil güncellenirken bir hata oluştu",
+    "professionalSaveError": "Profesyonel bilgiler güncellenirken bir hata oluştu",
+    "uploadError": {
+      "sizeTooLarge": "Dosya boyutu 5MB'dan küçük olmalıdır",
+      "invalidType": "Sadece resim dosyaları yükleyebilirsiniz",
+      "uploadFailed": "Resim yüklenirken bir hata oluştu"
+    }
+  },
+
+  "navigation": {
+    "patient": {
+      "home": "Ana Sayfa",
+      "findPsychologist": "Psikolog Bul",
+      "appointments": "Randevularım",
+      "messages": "Mesajlar",
+      "paymentHistory": "Ödeme Geçmişi",
+      "profile": "Profil",
+      "settings": "Ayarlar",
+      "logout": "Çıkış Yap"
+    },
+    "psychologist": {
+      "home": "Ana Sayfa",
+      "appointments": "Randevular",
+      "availability": "Müsaitlik",
+      "messages": "Mesajlar",
+      "sessionNotes": "Seans Notları",
+      "earnings": "Kazançlar",
+      "profile": "Profil",
+      "settings": "Ayarlar",
+      "logout": "Çıkış Yap"
+    },
+    "admin": {
+      "overview": "Genel Bakış",
+      "users": "Kullanıcılar",
+      "verification": "Psikolog Doğrulama",
+      "appointments": "Randevular",
+      "payments": "Ödemeler",
+      "auditLog": "Denetim Günlüğü",
+      "settings": "Ayarlar",
+      "profile": "Profil",
+      "logout": "Çıkış Yap"
+    },
+    "roles": {
+      "admin": "Yönetici",
+      "psychologist": "Psikolog",
+      "patient": "Danışan"
+    },
+    "sidebarTitle": "Yönetici Paneli",
+    "menuLabel": "Menü"
+  },
+
+  "cities": {
+    "adana": "Adana",
+    "ankara": "Ankara",
+    "antalya": "Antalya",
+    "bursa": "Bursa",
+    "denizli": "Denizli",
+    "diyarbakir": "Diyarbakır",
+    "eskisehir": "Eskişehir",
+    "gaziantep": "Gaziantep",
+    "istanbul": "İstanbul",
+    "izmir": "İzmir",
+    "kayseri": "Kayseri",
+    "kocaeli": "Kocaeli",
+    "konya": "Konya",
+    "mersin": "Mersin",
+    "mugla": "Muğla",
+    "samsun": "Samsun",
+    "trabzon": "Trabzon",
+    "other": "Diğer"
+  },
+
+  "specialties": {
+    "individual": "Bireysel Terapi",
+    "couples": "Çift Terapisi",
+    "family": "Aile Terapisi",
+    "childAdolescent": "Çocuk ve Ergen",
+    "depression": "Depresyon",
+    "anxiety": "Anksiyete",
+    "trauma": "Travma ve TSSB",
+    "ocd": "OKB",
+    "eatingDisorders": "Yeme Bozuklukları",
+    "addiction": "Bağımlılık",
+    "careerCounseling": "Kariyer Danışmanlığı",
+    "stressManagement": "Stres Yönetimi",
+    "angerManagement": "Öfke Kontrolü"
+  },
+
+  "therapyApproaches": {
+    "cbt": "Bilişsel Davranışçı Terapi (BDT)",
+    "psychodynamic": "Psikodinamik Terapi",
+    "emdr": "EMDR",
+    "schema": "Şema Terapi",
+    "act": "Kabul ve Kararlılık Terapisi (ACT)",
+    "gestalt": "Gestalt Terapi",
+    "solutionFocused": "Çözüm Odaklı Terapi",
+    "existential": "Varoluşçu Terapi",
+    "mindfulness": "Mindfulness Tabanlı Terapi"
+  },
+  "card": {
+    "sessionFee": "Seans ücreti",
+    "fee": "Ücret",
+    "bookAppointment": "Randevu Al",
+    "priceNotSpecified": "Belirtilmemiş",
+    "selectedAppointment": "Seçili Randevu",
+    "reservationWarning": "Randevu 10 dakika içinde ödeme yapılmazsa iptal edilir",
+    "experience": {
+      "yearsLong": "{{count}} yıl deneyim",
+      "yearsShort": "{{count}} yıl"
+    }
+  },
+  "duration": {
+    "minutesShort": "dk",
+    "minutesLong": "{{count}} dakika"
+  },
+  "titles": {
+    "psychologist": "Psikolog",
+    "clinicalPsychologist": "Klinik Psikolog",
+    "expertPsychologist": "Uzman Psikolog",
+    "expertClinicalPsychologist": "Uzman Klinik Psikolog",
+    "psychologicalCounselor": "Psikolojik Danışman",
+    "psychotherapist": "Psikoterapist",
+    "dr": "Dr.",
+    "assocProf": "Doç. Dr.",
+    "prof": "Prof. Dr."
+  },
+
+  "legal": {
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni"
+    },
+    "privacy": {
+      "title": "Gizlilik Politikası"
+    },
+    "terms": {
+      "title": "Kullanım Şartları"
+    },
+    "refund": {
+      "title": "İptal ve İade Politikası"
+    }
+  },
+  "sessionNotes": {
+    "title": "Seans Notları",
+    "description": "Seanslarınız için notlar oluşturun ve düzenleyin",
+    "addNote": "Not Ekle",
+    "editNote": "Düzenle",
+    "createNote": "Oluştur",
+    "saveNote": "Kaydet",
+    "notePlaceholder": "Seans notlarınızı yazın...",
+    "private": "Gizli",
+    "sharedWithClient": "Danışan ile paylaşılır",
+    "noNotes": "Henüz not yok",
+    "noCompletedSessions": "Henüz tamamlanmış seansınız bulunmuyor",
+    "noteExists": "Not Var",
+    "noNote": "Not Yok",
+    "sessionWith": "ile seans",
+    "status": "Durum",
+    "noteContent": "Seans Notu",
+    "saveSuccess": "Not başarıyla kaydedildi",
+    "updateSuccess": "Not başarıyla güncellendi",
+    "saveError": "Not kaydedilemedi",
+    "emptyNote": "Not içeriği boş olamaz"
+  },
+  "earnings": {
+    "title": "Kazançlar",
+    "description": "Tamamlanan seanslarınızdan elde ettiğiniz kazançları görüntüleyin",
+    "totalEarnings": "Toplam Kazanç",
+    "thisMonth": "Bu Ay",
+    "pending": "Bekleyen",
+    "totalSessions": "Toplam Seans",
+    "earningsDetails": "Kazanç Detayları",
+    "completed": "Tamamlandı",
+    "noEarnings": "Henüz kazanç kaydınız yok",
+    "noEarningsDescription": "Seanslarınız tamamlandığında kazançlarınız burada görünecektir",
+    "sessionDetails": "Seans Detayları",
+    "earned": "Kazanıldı",
+    "pendingPayout": "Ödeme Bekliyor",
+    "paid": "Ödendi",
+    "grossAmount": "Brüt",
+    "vat": "KDV",
+    "platformFee": "Komisyon",
+    "netEarnings": "Net Kazanç",
+    "paidOn": "Ödeme Tarihi"
+  },
+  "psychologists": {
+    "title": "Psikolog Bul",
+    "subtitle": "Size en uygun uzmanı bulun ve randevu alın",
+    "searchPlaceholder": "İsim veya uzmanlık alanı ara...",
+    "specialtyPlaceholder": "Uzmanlık Alanı",
+    "priceRangePlaceholder": "Fiyat Aralığı",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "Filtreleri Temizle",
+    "filters": {
+      "search": "Arama: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "Psikolog bulunamadı",
+      "description": "Arama kriterlerinizi değiştirerek tekrar deneyin",
+      "buttonText": "Filtreleri Temizle"
+    },
+    "loginButton": "Giriş Yap"
+  },
+  "paymentHistory": {
+    "title": "Ödeme Geçmişi",
+    "subtitle": "Tüm rezervasyon ve ödeme işlemlerinizi görüntüleyin",
+    "table": {
+      "psychologist": "Psikolog",
+      "appointmentDate": "Randevu Tarihi",
+      "amount": "Tutar",
+      "vat": "KDV",
+      "total": "Toplam",
+      "status": "Durum",
+      "netAmount": "KDV Hariç",
+      "totalAmount": "Toplam Tutar"
+    },
+    "reservedUntil": "Rezerve {time}'e kadar",
+    "paymentPending": "Ödeme bekleniyor",
+    "paymentReview": "Ödeme inceleniyor",
+    "empty": "Henüz ödeme geçmişiniz bulunmuyor",
+    "statuses": {
+      "reserved": "Rezerve Edildi",
+      "payment_pending": "Ödeme Bekleniyor",
+      "payment_review": "Ödeme İncelemede",
+      "completed": "Tamamlandı",
+      "pending": "Bekliyor",
+      "failed": "Başarısız",
+      "refunded": "İade Edildi",
+      "refund_pending": "İade Bekliyor",
+      "refund_approved": "İade Onaylandı",
+      "refund_processed": "İade Edildi",
+      "refund_rejected": "İade Reddedildi"
+    }
+  },
+
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Hesap ayarlarınızı ve tercihlerinizi yönetin",
+    "language": "Arayüz Dili",
+    "languageDesc": "Uygulamanın görüntüleneceği dili seçin",
+    "selectLanguage": "Dil Seçin",
+    "languageChanged": "Dil değiştirildi",
+    "languageChangedDesc": "Arayüz dili başarıyla değiştirildi",
+    "confirmLanguageChange": "Değişiklikleri kaydetmek istiyor musunuz?",
+    "confirmLanguageChangeDesc": "Site dili seçtiğiniz dile çevrilecektir. Bu işlemi onaylıyor musunuz?",
+    "notifications": "Bildirimler",
+    "notificationsDesc": "Bildirim tercihlerinizi yönetin",
+    "emailNotifications": "E-posta Bildirimleri",
+    "emailNotificationsDesc": "Önemli güncellemeler için e-posta alın",
+    "appointmentReminders": "Randevu Hatırlatmaları",
+    "appointmentRemindersDesc": "Yaklaşan randevular için bildirim alın",
+    "messageNotifications": "Mesaj Bildirimleri",
+    "messageNotificationsDesc": "Yeni mesajlar için bildirim alın",
+    "newAppointmentRequests": "Yeni Randevu İstekleri",
+    "newAppointmentRequestsDesc": "Yeni randevu talepleri için bildirim alın",
+    "privacy": "Gizlilik",
+    "privacyDesc": "Gizlilik ayarlarınızı kontrol edin",
+    "showProfile": "Profili Göster",
+    "showProfileDesc": "Profilinizin danışanlar tarafından görünür olmasını sağlayın",
+    "showOnlineStatus": "Çevrimiçi Durumu Göster",
+    "showOnlineStatusDesc": "Çevrimiçi durumunuzu diğer kullanıcılara gösterin",
+    "showLastSeen": "Son Görülme Zamanını Göster",
+    "showLastSeenDesc": "Son görülme zamanınızı paylaşın",
+    "security": "Güvenlik",
+    "securityDesc": "Hesap güvenliği ayarları",
+    "twoFactor": "İki Faktörlü Kimlik Doğrulama",
+    "twoFactorDesc": "Hesabınıza ekstra güvenlik katmanı ekleyin",
+    "changePassword": "Şifre Değiştir",
+    "changePasswordDesc": "Güvenliğiniz için mevcut şifrenizi girin ve yeni bir şifre belirleyin",
+    "currentPassword": "Mevcut Şifre",
+    "enterCurrentPassword": "Mevcut şifrenizi girin",
+    "newPassword": "Yeni Şifre",
+    "enterNewPassword": "Yeni şifrenizi girin",
+    "confirmNewPassword": "Yeni Şifre Tekrar",
+    "enterNewPasswordAgain": "Yeni şifrenizi tekrar girin",
+    "passwordMinLength": "Şifre en az 6 karakter olmalıdır",
+    "passwordMinLengthHint": "En az 6 karakter",
+    "passwordsDoNotMatch": "Şifreler eşleşmiyor",
+    "newPasswordMustBeDifferent": "Yeni şifre mevcut şifreden farklı olmalıdır",
+    "allPasswordFieldsRequired": "Tüm alanları doldurun",
+    "passwordChanged": "Şifre değiştirildi",
+    "passwordChangedDesc": "Şifreniz başarıyla güncellendi",
+    "passwordChangeError": "Şifre değiştirilemedi",
+    "saveChanges": "Değişiklikleri Kaydet",
+    "savedTitle": "Ayarlar kaydedildi",
+    "savedDesc": "Tercihleriniz başarıyla güncellendi",
+    "notificationsSaved": "Bildirim tercihleri kaydedildi",
+    "saveError": "Ayarlar kaydedilemedi"
+  },
+  "twoFactor": {
+    "title": "İki Faktörlü Kimlik Doğrulama",
+    "description": "Hesabınızı Google Authenticator ile koruyun",
+    "enable": "Aktifleştir",
+    "disable": "Devre Dışı Bırak",
+    "setupTitle": "İki Faktörlü Kimlik Doğrulama Kurulumu",
+    "scanQR": "Google Authenticator veya Authy uygulamasıyla QR kodu tarayın",
+    "cantScanQR": "QR kodu tarayamıyor musunuz? Manuel olarak girin:",
+    "verificationCode": "Doğrulama Kodu",
+    "enter6DigitFromApp": "Uygulamanızda görünen 6 haneli kodu girin",
+    "verifyAndEnable": "Doğrula ve Aktifleştir",
+    "disableTitle": "İki Faktörlü Kimlik Doğrulamayı Devre Dışı Bırak",
+    "disableDescription": "Bu işlem için şifrenizi ve doğrulama kodunu girin",
+    "password": "Şifre",
+    "setupError": "2FA kurulumu başarısız oldu",
+    "enableSuccess": "İki faktörlü kimlik doğrulama başarıyla etkinleştirildi",
+    "invalidCode": "Geçersiz doğrulama kodu",
+    "disableSuccess": "İki faktörlü kimlik doğrulama başarıyla devre dışı bırakıldı",
+    "disableError": "2FA devre dışı bırakılamadı",
+    "enter6Digit": "Lütfen geçerli bir 6 haneli kod girin",
+    "enterPasswordAnd6Digit": "Lütfen şifrenizi ve 6 haneli kodu girin",
+    "secretCopied": "Gizli anahtar panoya kopyalandı"
+  }
+}

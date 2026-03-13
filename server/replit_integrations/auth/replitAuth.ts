@@ -7,6 +7,7 @@ import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
 import { authStorage } from "./storage";
+import { verifyToken, extractBearerToken } from "../../jwt";
 
 const getOidcConfig = memoize(
   async () => {
@@ -34,7 +35,7 @@ export function getSession() {
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       maxAge: sessionTtl,
     },
   });
@@ -65,6 +66,12 @@ export async function setupAuth(app: Express) {
   app.use(getSession());
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // Skip Replit Auth setup if REPL_ID is not set (local development)
+  if (!process.env.REPL_ID) {
+    console.log("⚠️  Replit Auth disabled (REPL_ID not set). Using email/password auth only.");
+    return;
+  }
 
   const config = await getOidcConfig();
 
@@ -134,7 +141,25 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
   const sessionUserId = (req.session as any).userId;
 
-  // Check for session-based authentication (email/password login)
+  // 1. Check for Bearer token authentication (mobile clients)
+  const bearerToken = extractBearerToken(req.headers.authorization);
+  if (bearerToken) {
+    const payload = verifyToken(bearerToken);
+    if (payload) {
+      // Populate req.user with JWT-based user info
+      (req as any).user = {
+        claims: {
+          sub: payload.userId,
+        },
+      };
+      (req.session as any).userId = payload.userId;
+      return next();
+    }
+    // Invalid/expired token
+    return res.status(401).json({ message: "Geçersiz veya süresi dolmuş token" });
+  }
+
+  // 2. Check for session-based authentication (email/password login - web)
   if (sessionUserId) {
     // Populate req.user with session-based user info
     if (!req.user) {
@@ -149,7 +174,7 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
     return next();
   }
 
-  // Replit Auth flow
+  // 3. Replit Auth flow (legacy)
   if (!req.isAuthenticated() || !user?.expires_at) {
     return res.status(401).json({ message: "Unauthorized" });
   }

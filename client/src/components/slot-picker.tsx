@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { format, addDays, startOfWeek, isSameDay, isAfter, isBefore } from "date-fns";
-import { tr } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 
 export interface TimeSlot {
   startTime: Date;
@@ -76,7 +76,7 @@ export function SlotPicker({
               <ChevronLeft className="w-4 h-4" />
             </Button>
             <span className="text-sm font-medium min-w-[140px] text-center">
-              {format(weekStart, "d MMM", { locale: tr })} - {format(addDays(weekStart, 6), "d MMM yyyy", { locale: tr })}
+              {format(weekStart, "d MMM", { locale: enUS })} - {format(addDays(weekStart, 6), "d MMM yyyy", { locale: enUS })}
             </span>
             <Button 
               variant="outline" 
@@ -107,7 +107,7 @@ export function SlotPicker({
                   <div key={dayIndex} className="space-y-2">
                     <div className={`text-center p-2 rounded-lg ${isToday ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
                       <p className="text-xs font-medium">
-                        {format(day, "EEE", { locale: tr })}
+                        {format(day, "EEE", { locale: enUS })}
                       </p>
                       <p className="text-lg font-semibold">
                         {format(day, "d")}
@@ -154,7 +154,7 @@ export function SlotPicker({
           <div className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/20">
             <p className="text-sm font-medium">Seçilen Randevu:</p>
             <p className="text-lg font-semibold text-primary">
-              {format(selectedSlot.startTime, "d MMMM yyyy, EEEE - HH:mm", { locale: tr })}
+              {format(selectedSlot.startTime, "d MMMM yyyy, EEEE - HH:mm", { locale: enUS })}
             </p>
           </div>
         )}

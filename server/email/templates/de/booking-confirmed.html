@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buchung Bestätigt - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">KhunJit</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px;">Buchungsbestätigung</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #333333; font-size: 24px; font-weight: 600;">
+                Ihr Termin ist bestätigt, {{firstName}}! ✅
+              </h2>
+
+              <p style="margin: 0 0 20px; color: #666666; font-size: 16px; line-height: 1.6;">
+                Wir freuen uns, Ihre bevorstehende Therapiesitzung zu bestätigen. Hier sind Ihre Termindetails:
+              </p>
+
+              <!-- Appointment Details Card -->
+              <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); border-radius: 12px; padding: 25px; margin: 25px 0; border-left: 4px solid #667eea;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Psychologe</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 18px; font-weight: 600;">{{psychologistName}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Datum</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 18px; font-weight: 600;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Uhrzeit</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 18px; font-weight: 600;">{{appointmentTime}}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div style="background-color: #e3f2fd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h4 style="margin: 0 0 10px; color: #1565c0; font-size: 16px;">📋 Was Sie erwartet</h4>
+                <ul style="margin: 0; padding: 0 0 0 20px; color: #666666; font-size: 14px; line-height: 1.8;">
+                  <li>Sie erhalten 24 Stunden vor Ihrer Sitzung eine Erinnerung</li>
+                  <li>Teilnahme von jedem Gerät mit Internetverbindung möglich</li>
+                  <li>Suchen Sie sich einen ruhigen, privaten Ort für Ihre Sitzung</li>
+                  <li>Ihr Psychologe ist zur vereinbarten Zeit bereit</li>
+                </ul>
+              </div>
+
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="{{dashboardLink}}" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 600;">
+                  Im Dashboard Ansehen
+                </a>
+              </div>
+
+              <p style="margin: 20px 0 0; color: #999999; font-size: 14px; text-align: center;">
+                Müssen Sie umplanen? Sie können Ihren Termin bis zu 24 Stunden im Voraus stornieren oder ändern.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #999999; font-size: 14px;">
+                Fragen? Kontaktieren Sie uns: <a href="mailto:support@khunjit.com" style="color: #667eea; text-decoration: none;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #cccccc; font-size: 12px;">
+                © 2026 KhunJit. Alle Rechte vorbehalten.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

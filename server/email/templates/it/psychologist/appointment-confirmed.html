@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuovo Appuntamento - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">📅 Nuovo Appuntamento Confermato</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.95); font-size: 15px;">Un nuovo cliente ha prenotato una sessione con te</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #111827; font-size: 22px; font-weight: 600;">
+                Ciao Dr. {{firstName}},
+              </h2>
+
+              <p style="margin: 0 0 25px; color: #4b5563; font-size: 16px; line-height: 1.7;">
+                Buone notizie! Un nuovo cliente, <strong style="color: #111827;">{{patientName}}</strong>, ha confermato un appuntamento con te. Ecco i dettagli della sessione:
+              </p>
+
+              <!-- Appointment Details Card -->
+              <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 12px; padding: 28px; margin: 28px 0; border-left: 5px solid #8b5cf6;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">👤 Cliente</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{patientName}}</p>
+                      <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">Nuovo cliente - Prima sessione</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">📅 Data</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🕐 Ora</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentTime}} (50 minuti)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">💻 Tipo di Sessione</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">Videochiamata Online</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Psychologist Reminders -->
+              <div style="background-color: #eff6ff; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px; font-weight: 600;">📋 Preparazione alla sessione</h4>
+                <ul style="margin: 0; padding: 0 0 0 22px; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  <li>Rivedi le informazioni del cliente nella tua dashboard</li>
+                  <li>Prepara il tuo modello di note di sessione</li>
+                  <li>Testa la tua configurazione video/audio prima della sessione</li>
+                  <li>Entra nella sala sessione 5 minuti in anticipo</li>
+                  <li>Prepara i tuoi materiali per la sessione</li>
+                </ul>
+              </div>
+
+              <!-- Reminders Info -->
+              <div style="background-color: #fef3c7; border-radius: 10px; padding: 18px; margin: 25px 0; border-left: 4px solid #f59e0b;">
+                <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
+                  <strong>⏰ Promemoria:</strong> Riceverai promemoria via email 24 ore e 1 ora prima di questa sessione. Puoi gestire le tue preferenze di notifica nelle impostazioni.
+                </p>
+              </div>
+
+              <div style="text-align: center; margin: 35px 0;">
+                <a href="{{dashboardLink}}/appointments" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); margin-right: 10px;">
+                  Visualizza Appuntamento
+                </a>
+                <a href="{{dashboardLink}}/session-notes" style="display: inline-block; padding: 16px 40px; background: #ffffff; color: #8b5cf6; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; border: 2px solid #8b5cf6;">
+                  Note di Sessione
+                </a>
+              </div>
+
+              <!-- Quick Actions -->
+              <div style="background-color: #f9fafb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <h4 style="margin: 0 0 12px; color: #374151; font-size: 15px; font-weight: 600;">Azioni Rapide:</h4>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 6px 0;">
+                      <a href="{{dashboardLink}}/messages" style="color: #8b5cf6; text-decoration: none; font-size: 14px;">💬 Invia messaggio al cliente</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 0;">
+                      <a href="{{dashboardLink}}/availability" style="color: #8b5cf6; text-decoration: none; font-size: 14px;">📆 Gestisci disponibilità</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 0;">
+                      <a href="{{dashboardLink}}/settings" style="color: #8b5cf6; text-decoration: none; font-size: 14px;">⚙️ Impostazioni notifiche</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <p style="margin: 30px 0 0; color: #6b7280; font-size: 15px; line-height: 1.7; text-align: center;">
+                Grazie per far parte della nostra piattaforma e per aiutare le persone nel loro percorso di salute mentale.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
+                Hai bisogno di aiuto? <a href="mailto:support@khunjit.com" style="color: #8b5cf6; text-decoration: none; font-weight: 600;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                © 2026 KhunJit - Piattaforma Professionale di Salute Mentale
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -12,7 +12,7 @@ const legalDocuments: Record<string, { title: string; icon: typeof FileText; con
 # Kişisel Verilerin Korunması Hakkında Aydınlatma Metni
 
 ## 1. Veri Sorumlusu
-MindWell Online Psikolojik Destek Platformu ("MindWell" veya "Şirket") olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında veri sorumlusu sıfatıyla hareket etmekteyiz.
+KhunJit Online Psikolojik Destek Platformu ("KhunJit" veya "Şirket") olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında veri sorumlusu sıfatıyla hareket etmekteyiz.
 
 ## 2. Toplanan Kişisel Veriler
 Platform üzerinden aşağıdaki kişisel verileriniz toplanabilmektedir:
@@ -41,7 +41,7 @@ KVKK'nın 11. maddesi kapsamında:
 haklarına sahipsiniz.
 
 ## 6. İletişim
-Talepleriniz için: destek@mindwell.com
+Talepleriniz için: destek@khunjit.com
     `
   },
   gizlilik: {
@@ -51,7 +51,7 @@ Talepleriniz için: destek@mindwell.com
 # Gizlilik Politikası
 
 ## 1. Giriş
-MindWell olarak gizliliğinize önem veriyoruz. Bu politika, platformumuzu kullanırken kişisel bilgilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.
+KhunJit olarak gizliliğinize önem veriyoruz. Bu politika, platformumuzu kullanırken kişisel bilgilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.
 
 ## 2. Bilgi Toplama
 Aşağıdaki bilgiler toplanabilir:
@@ -93,10 +93,10 @@ Bu politika zaman zaman güncellenebilir. Önemli değişiklikler e-posta ile bi
 # Kullanım Şartları
 
 ## 1. Kabul
-MindWell platformunu kullanarak bu şartları kabul etmiş sayılırsınız.
+KhunJit platformunu kullanarak bu şartları kabul etmiş sayılırsınız.
 
 ## 2. Hizmet Tanımı
-MindWell, hastalar ve lisanslı psikologlar arasında online terapi seansları için bir platform sağlar. Platform, tıbbi tavsiye yerine geçmez.
+KhunJit, hastalar ve lisanslı psikologlar arasında online terapi seansları için bir platform sağlar. Platform, tıbbi tavsiye yerine geçmez.
 
 ## 3. Hesap Oluşturma
 - 18 yaşından büyük olmalısınız
@@ -121,10 +121,10 @@ Kullanıcılar:
 - Hizmetleri kötüye kullanmamalıdır
 
 ## 7. Fikri Mülkiyet
-Platform içeriği MindWell'e aittir. İzinsiz kullanım yasaktır.
+Platform içeriği KhunJit'e aittir. İzinsiz kullanım yasaktır.
 
 ## 8. Sorumluluk Sınırlaması
-MindWell, platform kullanımından doğabilecek dolaylı zararlardan sorumlu değildir.
+KhunJit, platform kullanımından doğabilecek dolaylı zararlardan sorumlu değildir.
 
 ## 9. Uyuşmazlıklar
 Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir. Uyuşmazlıklar İstanbul mahkemelerinde çözülür.
@@ -138,7 +138,7 @@ Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir. Uyuşmazlıklar İstanbul 
 
 ## 1. Randevu İptali
 
-### Hasta Tarafından İptal
+### Danışan Tarafından İptal
 - **24 saat öncesine kadar**: %100 iade
 - **12-24 saat öncesi**: %50 iade
 - **12 saat içi**: İade yapılmaz
@@ -150,17 +150,17 @@ Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir. Uyuşmazlıklar İstanbul 
 
 ## 2. No-Show (Katılmama)
 
-### Hasta No-Show
-- Hasta seansa katılmazsa ücret iade edilmez
+### Danışan No-Show
+- Danışan seansa katılmazsa ücret iade edilmez
 - Tekrarlayan no-show durumlarında hesap kısıtlanabilir
 
 ### Psikolog No-Show
 - Psikolog seansa katılmazsa %100 iade yapılır
-- Hasta tazminat olarak bir ücretsiz seans hakkı kazanır
+- Danışan tazminat olarak bir ücretsiz seans hakkı kazanır
 
 ## 3. Teknik Sorunlar
 - Platform kaynaklı teknik sorunlarda seans yeniden planlanır veya iade yapılır
-- Kullanıcı kaynaklı bağlantı sorunlarından MindWell sorumlu değildir
+- Kullanıcı kaynaklı bağlantı sorunlarından KhunJit sorumlu değildir
 
 ## 4. İade Süreci
 - İade talepleri 7 iş günü içinde işlenir
@@ -176,7 +176,7 @@ Aşağıdaki durumlarda iade yapılmaz:
 ## 6. İletişim
 İade ve iptal işlemleri için:
 - Platform üzerinden destek talebi oluşturun
-- E-posta: destek@mindwell.com
+- E-posta: destek@khunjit.com
     `
   }
 };
@@ -198,7 +198,7 @@ export default function LegalPage() {
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <span className="text-xl font-serif font-bold text-primary">MindWell</span>
+              <span className="text-xl font-serif font-bold text-primary">KhunJit</span>
             </div>
             <ThemeToggle />
           </div>
@@ -252,7 +252,7 @@ export default function LegalPage() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
             </Link>
-            <span className="text-xl font-serif font-bold text-primary">MindWell</span>
+            <span className="text-xl font-serif font-bold text-primary">KhunJit</span>
           </div>
           <ThemeToggle />
         </div>

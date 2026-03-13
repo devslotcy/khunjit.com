@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { format } from "date-fns";
-import { tr } from "date-fns/locale";
-import { Receipt, RefreshCcw, AlertCircle, CheckCircle2 } from "lucide-react";
+import { enUS } from "date-fns/locale";
+import { Receipt, RefreshCcw, AlertCircle, CheckCircle2, Clock } from "lucide-react";
 
 interface PaymentHistoryItem {
   id: string;
@@ -19,7 +21,7 @@ interface PaymentHistoryItem {
   platformFee: string;
   platformFeeRate: string;
   status: string;
-  paidAt: string;
+  paidAt: string | null;
   refund: {
     id: string;
     status: string;
@@ -30,30 +32,47 @@ interface PaymentHistoryItem {
     processedAt: string;
   } | null;
   currency: string;
+  appointmentStatus?: string;
+  bankTransferStatus?: string;
+  reservedUntil?: string;
 }
 
 export default function PatientPaymentHistory() {
-  const { data: payments, isLoading } = useQuery<PaymentHistoryItem[]>({
+  const { t } = useTranslation();
+  const { data: payments, isLoading, error } = useQuery<PaymentHistoryItem[]>({
     queryKey: ["/api/payments/patient/history"],
   });
 
-  const getStatusBadge = (status: string, refund: PaymentHistoryItem["refund"]) => {
+  console.log("💳 Payment History - isLoading:", isLoading);
+  console.log("💳 Payment History - data:", payments);
+  console.log("💳 Payment History - error:", error);
+
+  const getStatusBadge = (status: string, refund: PaymentHistoryItem["refund"], appointmentStatus?: string) => {
     if (refund) {
-      const refundStatusMap: Record<string, { variant: "default" | "secondary" | "destructive" | "outline"; label: string }> = {
-        pending: { variant: "secondary", label: "İade Bekliyor" },
-        approved: { variant: "default", label: "İade Onaylandı" },
-        processed: { variant: "default", label: "İade Edildi" },
-        rejected: { variant: "destructive", label: "İade Reddedildi" },
+      const refundStatusMap: Record<string, { variant: "default" | "secondary" | "destructive" | "outline"; label: string; icon?: any }> = {
+        pending: { variant: "secondary", label: t('paymentHistory.statuses.refund_pending'), icon: AlertCircle },
+        approved: { variant: "default", label: t('paymentHistory.statuses.refund_approved'), icon: CheckCircle2 },
+        processed: { variant: "default", label: t('paymentHistory.statuses.refund_processed'), icon: CheckCircle2 },
+        rejected: { variant: "destructive", label: t('paymentHistory.statuses.refund_rejected'), icon: AlertCircle },
       };
       return refundStatusMap[refund.status] || { variant: "outline", label: refund.status };
     }
-    
-    const statusMap: Record<string, { variant: "default" | "secondary" | "destructive" | "outline"; label: string }> = {
-      completed: { variant: "default", label: "Tamamlandı" },
-      pending: { variant: "secondary", label: "Bekliyor" },
-      failed: { variant: "destructive", label: "Başarısız" },
-      refunded: { variant: "outline", label: "İade Edildi" },
+
+    const statusMap: Record<string, { variant: "default" | "secondary" | "destructive" | "outline"; label: string; icon?: any }> = {
+      reserved: { variant: "outline", label: t('paymentHistory.statuses.reserved'), icon: AlertCircle },
+      payment_pending: { variant: "secondary", label: t('paymentHistory.statuses.payment_pending'), icon: AlertCircle },
+      payment_review: { variant: "secondary", label: t('paymentHistory.statuses.payment_review'), icon: AlertCircle },
+      completed: { variant: "default", label: t('paymentHistory.statuses.completed'), icon: CheckCircle2 },
+      pending: { variant: "secondary", label: t('paymentHistory.statuses.pending'), icon: AlertCircle },
+      failed: { variant: "destructive", label: t('paymentHistory.statuses.failed'), icon: AlertCircle },
+      refunded: { variant: "outline", label: t('paymentHistory.statuses.refunded'), icon: RefreshCcw },
     };
+
+    // For appointment-based statuses
+    if (appointmentStatus && ["reserved", "payment_pending", "payment_review"].includes(appointmentStatus)) {
+      return statusMap[appointmentStatus] || { variant: "outline", label: status };
+    }
+
     return statusMap[status] || { variant: "outline", label: status };
   };
 
@@ -61,97 +80,107 @@ export default function PatientPaymentHistory() {
     <DashboardLayout role="patient">
       <div className="space-y-6">
         <div>
-          <h1 className="font-serif text-2xl font-bold">Ödeme Geçmişi</h1>
-          <p className="text-muted-foreground">Tüm ödeme işlemlerinizi görüntüleyin</p>
+          <h1 className="font-serif text-2xl font-bold">{t('paymentHistory.title')}</h1>
+          <p className="text-muted-foreground">{t('paymentHistory.subtitle')}</p>
         </div>
 
-        {isLoading ? (
-          <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-40 w-full" />
-            ))}
-          </div>
-        ) : payments?.length === 0 ? (
-          <Card>
-            <CardContent className="py-12 text-center">
-              <Receipt className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-              <p className="text-muted-foreground">Henüz ödeme geçmişiniz bulunmuyor</p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="space-y-4">
-            {payments?.map((payment) => {
-              const statusInfo = getStatusBadge(payment.status, payment.refund);
-              
-              return (
-                <Card key={payment.id} data-testid={`card-payment-${payment.id}`}>
-                  <CardHeader className="pb-2">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <CardTitle className="text-lg">{payment.psychologistName}</CardTitle>
-                        <p className="text-sm text-muted-foreground">
-                          {payment.sessionDate && format(new Date(payment.sessionDate), "d MMMM yyyy, HH:mm", { locale: tr })}
-                        </p>
-                      </div>
-                      <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                      <div>
-                        <p className="text-muted-foreground">Brüt Tutar</p>
-                        <p className="font-semibold">{Number(payment.grossAmount).toFixed(2)} {payment.currency}</p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">KDV (%{payment.vatRate})</p>
-                        <p className="font-semibold">{Number(payment.vatAmount).toFixed(2)} {payment.currency}</p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">Platform Komisyonu (%{payment.platformFeeRate})</p>
-                        <p className="font-semibold">{Number(payment.platformFee).toFixed(2)} {payment.currency}</p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">KDV Hariç</p>
-                        <p className="font-semibold">{Number(payment.netOfVat).toFixed(2)} {payment.currency}</p>
-                      </div>
-                    </div>
+        <Card>
+          <CardContent className="p-0">
+            {isLoading ? (
+              <div className="p-8 space-y-4">
+                {[1, 2, 3].map((i) => (
+                  <Skeleton key={i} className="h-12 w-full" />
+                ))}
+              </div>
+            ) : payments?.length === 0 ? (
+              <div className="py-12 text-center">
+                <Receipt className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                <p className="text-muted-foreground">{t('paymentHistory.empty')}</p>
+              </div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{t('paymentHistory.table.psychologist')}</TableHead>
+                    <TableHead>{t('paymentHistory.table.appointmentDate')}</TableHead>
+                    <TableHead>{t('paymentHistory.table.amount')}</TableHead>
+                    <TableHead>{t('paymentHistory.table.vat')}</TableHead>
+                    <TableHead>{t('paymentHistory.table.total')}</TableHead>
+                    <TableHead>{t('paymentHistory.table.status')}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {payments?.map((payment) => {
+                    const statusInfo = getStatusBadge(payment.status, payment.refund, payment.appointmentStatus);
+                    const isReserved = payment.appointmentStatus === "reserved";
+                    const isPaymentPending = ["payment_pending", "payment_review"].includes(payment.appointmentStatus || "");
 
-                    {payment.refund && (
-                      <div className="mt-4 p-3 rounded-lg bg-muted/50">
-                        <div className="flex items-center gap-2 mb-2">
-                          <RefreshCcw className="w-4 h-4" />
-                          <span className="font-medium">İade Bilgileri</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-sm">
+                    return (
+                      <TableRow key={payment.id} data-testid={`row-payment-${payment.id}`}>
+                        <TableCell>
                           <div>
-                            <span className="text-muted-foreground">İade Tutarı: </span>
-                            <span className="font-medium">{Number(payment.refund.amount).toFixed(2)} {payment.currency}</span>
+                            <p className="font-medium">{payment.psychologistName}</p>
+                            {isReserved && payment.reservedUntil && (
+                              <div className="flex items-center gap-1 mt-1">
+                                <Clock className="w-3 h-3 text-amber-600" />
+                                <p className="text-xs text-amber-600">
+                                  {t('paymentHistory.reservedUntil', { time: format(new Date(payment.reservedUntil), "HH:mm", { locale: enUS }) })}
+                                </p>
+                              </div>
+                            )}
+                            {isPaymentPending && (
+                              <div className="flex items-center gap-1 mt-1">
+                                <AlertCircle className="w-3 h-3 text-blue-600" />
+                                <p className="text-xs text-blue-600">
+                                  {payment.appointmentStatus === "payment_review"
+                                    ? t('paymentHistory.paymentReview')
+                                    : t('paymentHistory.paymentPending')}
+                                </p>
+                              </div>
+                            )}
                           </div>
-                          <div>
-                            <span className="text-muted-foreground">Oran: </span>
-                            <span className="font-medium">%{payment.refund.percentage}</span>
-                          </div>
-                          {payment.refund.reason && (
-                            <div className="col-span-2">
-                              <span className="text-muted-foreground">Sebep: </span>
-                              <span>{payment.refund.reason}</span>
+                        </TableCell>
+                        <TableCell>
+                          {payment.sessionDate && (
+                            <div>
+                              <p>{format(new Date(payment.sessionDate), "d MMMM yyyy", { locale: enUS })}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {format(new Date(payment.sessionDate), "HH:mm", { locale: enUS })}
+                              </p>
                             </div>
                           )}
-                        </div>
-                      </div>
-                    )}
-
-                    {payment.paidAt && (
-                      <p className="mt-4 text-xs text-muted-foreground">
-                        Ödeme tarihi: {format(new Date(payment.paidAt), "d MMMM yyyy, HH:mm", { locale: tr })}
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        )}
+                        </TableCell>
+                        <TableCell>
+                          <p>{Number(payment.netOfVat).toFixed(2)} {payment.currency}</p>
+                          <p className="text-xs text-muted-foreground">{t('paymentHistory.table.netAmount')}</p>
+                        </TableCell>
+                        <TableCell>
+                          <p>{Number(payment.vatAmount).toFixed(2)} {payment.currency}</p>
+                          <p className="text-xs text-muted-foreground">%{payment.vatRate}</p>
+                        </TableCell>
+                        <TableCell>
+                          <p className="font-semibold">{Number(payment.grossAmount).toFixed(2)} {payment.currency}</p>
+                          <p className="text-xs text-muted-foreground">{t('paymentHistory.table.totalAmount')}</p>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            {statusInfo.icon && <statusInfo.icon className="w-4 h-4" />}
+                            <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
+                          </div>
+                          {payment.paidAt && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {format(new Date(payment.paidAt), "d MMM HH:mm", { locale: enUS })}
+                            </p>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </DashboardLayout>
   );

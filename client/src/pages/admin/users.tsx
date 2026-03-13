@@ -25,7 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Search, MoreVertical, Ban, CheckCircle2, Trash2, Users } from "lucide-react";
 import { format } from "date-fns";
-import { tr } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import type { User as AuthUser } from "@shared/models/auth";
 import type { UserProfile } from "@shared/schema";
 
@@ -59,7 +59,7 @@ export default function AdminUsers() {
       case "psychologist":
         return <Badge variant="secondary">Psikolog</Badge>;
       default:
-        return <Badge variant="outline">Hasta</Badge>;
+        return <Badge variant="outline">Danışan</Badge>;
     }
   };
 
@@ -154,7 +154,7 @@ export default function AdminUsers() {
                       <TableCell>{getRoleBadge(user.profile?.role)}</TableCell>
                       <TableCell>{getStatusBadge(user.profile?.status)}</TableCell>
                       <TableCell className="text-muted-foreground">
-                        {user.createdAt ? format(new Date(user.createdAt), "d MMM yyyy", { locale: tr }) : "-"}
+                        {user.createdAt ? format(new Date(user.createdAt), "d MMM yyyy", { locale: enUS }) : "-"}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>

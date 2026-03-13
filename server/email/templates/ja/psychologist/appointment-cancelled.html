@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>予約キャンセル - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">❌ 予約がキャンセルされました</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.95); font-size: 15px;">セッションがキャンセルされました</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #111827; font-size: 22px; font-weight: 600;">
+                {{firstName}}様、
+              </h2>
+
+              <p style="margin: 0 0 25px; color: #4b5563; font-size: 16px; line-height: 1.7;">
+                <strong style="color: #111827;">{{psychologistName}}</strong>とのご予約がキャンセルされましたことをお知らせいたします。
+              </p>
+
+              <!-- Cancelled Appointment Details -->
+              <div style="background-color: #fef2f2; border-radius: 12px; padding: 28px; margin: 28px 0; border-left: 5px solid #ef4444;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">👨‍⚕️ 心理士</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{psychologistName}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">📅 元の日付</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🕐 元の時間</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentTime}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🔴 ステータス</span>
+                      <p style="margin: 6px 0 0; color: #ef4444; font-size: 19px; font-weight: 700;">キャンセル済み</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Refund Info -->
+              <div style="background-color: #ecfdf5; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #10b981;">
+                <h4 style="margin: 0 0 12px; color: #065f46; font-size: 16px; font-weight: 600;">💳 返金について</h4>
+                <p style="margin: 0; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  この予約に対してお支払いいただいた場合、5〜7営業日以内に全額返金されます。返金は元のお支払い方法に入金されます。
+                </p>
+              </div>
+
+              <!-- Next Steps -->
+              <div style="background-color: #eff6ff; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px; font-weight: 600;">📋 次にできること</h4>
+                <ul style="margin: 0; padding: 0 0 0 22px; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  <li>同じ心理士または別の心理士で新しい予約を取る</li>
+                  <li>心理士の最新の空き状況を確認する</li>
+                  <li>プラットフォームで他の資格のある心理士を探す</li>
+                  <li>キャンセルについて質問がある場合はサポートに連絡する</li>
+                </ul>
+              </div>
+
+              <div style="text-align: center; margin: 35px 0;">
+                <a href="{{dashboardLink}}/psychologists" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); margin-right: 10px;">
+                  新しい予約をする
+                </a>
+                <a href="{{dashboardLink}}/appointments" style="display: inline-block; padding: 16px 40px; background: #ffffff; color: #3b82f6; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; border: 2px solid #3b82f6;">
+                  予約を表示
+                </a>
+              </div>
+
+              <!-- Support Info -->
+              <div style="background-color: #f9fafb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <p style="margin: 0; color: #6b7280; font-size: 14px; line-height: 1.6; text-align: center;">
+                  <strong style="color: #374151;">キャンセルについてご質問はありますか？</strong><br>
+                  サポートチームがお手伝いします。予約やその他のご質問について24時間365日対応しています。
+                </p>
+              </div>
+
+              <p style="margin: 30px 0 0; color: #6b7280; font-size: 15px; line-height: 1.7; text-align: center;">
+                ご不便をおかけして申し訳ございません。メンタルヘルスをサポートするために私たちがここにいます。
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
+                ご質問はございますか？サポートいたします：<a href="mailto:support@khunjit.com" style="color: #3b82f6; text-decoration: none; font-weight: 600;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                © 2026 KhunJit - あなたのメンタルヘルスプラットフォーム
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

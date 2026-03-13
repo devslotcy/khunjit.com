@@ -153,7 +153,7 @@ npm run dev
 
 **Yöntem 1 - API ile (Önerilen):**
 ```bash
-curl -X POST http://localhost:5000/api/seed-admin
+curl -X POST http://localhost:5005/api/seed-admin
 ```
 Bu, aşağıdaki bilgilerle varsayılan admin hesabı oluşturur:
 - **Email**: admin@mindwell.com
@@ -167,7 +167,7 @@ UPDATE user_profiles SET role = 'admin' WHERE user_id = 'KULLANICI_ID';
 
 ## Çalıştırma
 ```bash
-npm run dev          # Development server (port 5000)
+npm run dev          # Development server (port 5005)
 npm run build        # Production build
 npm start            # Production server
 ```

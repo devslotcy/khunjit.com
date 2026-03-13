@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xác Nhận Lịch Hẹn - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">✅ Đã Xác Nhận Lịch Hẹn!</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.95); font-size: 15px;">Buổi trị liệu của bạn đã sẵn sàng</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #111827; font-size: 22px; font-weight: 600;">
+                Xin chào {{firstName}}, bạn đã sẵn sàng! 🎉
+              </h2>
+
+              <p style="margin: 0 0 25px; color: #4b5563; font-size: 16px; line-height: 1.7;">
+                Lịch hẹn của bạn với <strong style="color: #111827;">{{psychologistName}}</strong> đã được xác nhận. Chúng tôi rất mong được hỗ trợ bạn trong hành trình sức khỏe tâm thần của mình.
+              </p>
+
+              <!-- Appointment Details Card -->
+              <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 12px; padding: 28px; margin: 28px 0; border-left: 5px solid #10b981;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">👨‍⚕️ Nhà Tâm Lý Của Bạn</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{psychologistName}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">📅 Ngày</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🕐 Giờ</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentTime}}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Patient Tips -->
+              <div style="background-color: #eff6ff; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px; font-weight: 600;">💡 Mẹo cho buổi của bạn</h4>
+                <ul style="margin: 0; padding: 0 0 0 22px; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  <li>Tìm một nơi yên tĩnh và riêng tư nơi bạn cảm thấy thoải mái</li>
+                  <li>Kiểm tra camera và microphone của bạn trước</li>
+                  <li>Chuẩn bị một ly nước</li>
+                  <li>Chuẩn bị các chủ đề hoặc câu hỏi bạn muốn thảo luận</li>
+                  <li>Tham gia sớm 5 phút để đảm bảo mọi thứ diễn ra suôn sẻ</li>
+                </ul>
+              </div>
+
+              <!-- Reminders Info -->
+              <div style="background-color: #fef3c7; border-radius: 10px; padding: 18px; margin: 25px 0; border-left: 4px solid #f59e0b;">
+                <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
+                  <strong>⏰ Nhắc nhở:</strong> Chúng tôi sẽ gửi email nhắc nhở cho bạn 24 giờ và 1 giờ trước buổi của bạn. Bạn cũng sẽ nhận được thông báo trong ứng dụng.
+                </p>
+              </div>
+
+              <div style="text-align: center; margin: 35px 0;">
+                <a href="{{dashboardLink}}" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                  Xem Lịch Hẹn
+                </a>
+              </div>
+
+              <!-- Cancellation Policy -->
+              <div style="background-color: #f9fafb; border-radius: 8px; padding: 18px; margin: 25px 0;">
+                <p style="margin: 0; color: #6b7280; font-size: 14px; line-height: 1.6; text-align: center;">
+                  <strong style="color: #374151;">Cần đổi lịch?</strong><br>
+                  Bạn có thể hủy hoặc thay đổi lịch hẹn của mình đến 24 giờ trước từ bảng điều khiển của bạn.
+                </p>
+              </div>
+
+              <p style="margin: 30px 0 0; color: #6b7280; font-size: 15px; line-height: 1.7; text-align: center;">
+                Nếu bạn có câu hỏi hoặc thắc mắc trước buổi, đừng ngần ngại liên hệ với chúng tôi.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
+                Có câu hỏi? Chúng tôi ở đây để giúp đỡ: <a href="mailto:support@khunjit.com" style="color: #10b981; text-decoration: none; font-weight: 600;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                © 2026 KhunJit - Nền Tảng Sức Khỏe Tâm Thần Của Bạn
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

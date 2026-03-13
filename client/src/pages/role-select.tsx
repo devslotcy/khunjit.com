@@ -25,7 +25,7 @@ export default function RoleSelect() {
           <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
             <Brain className="w-6 h-6 text-primary-foreground" />
           </div>
-          <span className="font-serif text-xl font-semibold">MindWell</span>
+          <span className="font-serif text-xl font-semibold">KhunJit</span>
         </div>
         <ThemeToggle />
       </header>
@@ -58,7 +58,7 @@ export default function RoleSelect() {
                   }`} />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-semibold mb-2">Hasta / Danışan</h3>
+                  <h3 className="font-serif text-xl font-semibold mb-2">Danışan / Danışan</h3>
                   <p className="text-sm text-muted-foreground">
                     Psikolog bulun, randevu alın ve online görüşmeler yapın
                   </p>

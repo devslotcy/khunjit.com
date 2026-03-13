@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance Terminée - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">KhunJit</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px;">Séance Terminée</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #333333; font-size: 24px; font-weight: 600;">
+                Votre séance est terminée, {{firstName}} ! ✨
+              </h2>
+
+              <p style="margin: 0 0 20px; color: #666666; font-size: 16px; line-height: 1.6;">
+                Votre séance d'aujourd'hui s'est terminée avec succès. Nous vous félicitons d'avoir pris du temps pour vous.
+              </p>
+
+              <!-- Session Summary Card -->
+              <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%); border-radius: 12px; padding: 25px; margin: 25px 0; border-left: 4px solid #11998e;">
+                <h3 style="margin: 0 0 15px; color: #333333; font-size: 18px;">Résumé de la Séance</h3>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Psychologue</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 16px; font-weight: 600;">{{psychologistName}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Date</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 16px; font-weight: 600;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Heure</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 16px; font-weight: 600;">{{appointmentTime}}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div style="background-color: #e8f5e9; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h4 style="margin: 0 0 10px; color: #2e7d32; font-size: 16px;">💡 Recommandations</h4>
+                <ul style="margin: 0; padding: 0 0 0 20px; color: #666666; font-size: 14px; line-height: 1.8;">
+                  <li>Prenez le temps d'assimiler ce qui a été discuté</li>
+                  <li>Soyez bienveillant envers vous-même et accordez-vous du temps</li>
+                  <li>N'oubliez pas de planifier votre prochaine séance</li>
+                </ul>
+              </div>
+
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="{{dashboardLink}}" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 600;">
+                  Prendre un Nouveau Rendez-vous
+                </a>
+              </div>
+
+              <p style="margin: 20px 0; color: #666666; font-size: 16px; line-height: 1.6; text-align: center;">
+                Nous sommes heureux d'avoir pu vous aider. À bientôt pour votre prochaine séance !
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #999999; font-size: 14px;">
+                Questions ? Contactez-nous : <a href="mailto:support@khunjit.com" style="color: #667eea; text-decoration: none;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #cccccc; font-size: 12px;">
+                © 2026 KhunJit. Tous droits réservés.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

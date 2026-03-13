@@ -1,0 +1,840 @@
+{
+  "common": {
+    "save": "저장",
+    "saving": "저장 중",
+    "cancel": "취소",
+    "back": "뒤로",
+    "next": "다음",
+    "submit": "제출",
+    "continue": "계속",
+    "close": "닫기",
+    "loading": "로딩 중...",
+    "search": "검색",
+    "filter": "필터",
+    "viewAll": "모두 보기",
+    "noResults": "결과 없음",
+    "error": "오류",
+    "success": "성공",
+    "yes": "예",
+    "no": "아니오",
+    "or": "또는",
+    "and": "그리고",
+    "selected": "선택됨",
+    "selectedCount": "{{count}}개 선택",
+    "copied": "복사됨!",
+    "copyFailed": "복사 실패",
+    "minuteShort": "분"
+  },
+  "auth": {
+    "login": {
+      "title": "로그인",
+      "description": "세션과 메시지를 관리하려면 로그인하세요.",
+      "emailLabel": "이메일",
+      "emailPlaceholder": "your@email.com",
+      "passwordLabel": "비밀번호",
+      "passwordPlaceholder": "비밀번호 입력",
+      "loginButton": "로그인",
+      "noAccount": "계정이 없으신가요?",
+      "registerLink": "회원가입",
+      "successTitle": "환영합니다!",
+      "successDescription": "로그인 성공.",
+      "errorTitle": "로그인 실패",
+      "errorDescription": "이메일 또는 비밀번호가 잘못되었습니다. 다시 시도하세요."
+    },
+    "register": {
+      "titlePatient": "클라이언트로 가입",
+      "titlePsychologist": "심리상담사로 가입",
+      "stepIndicator": "{total} 단계 중 {current}",
+      "step1": {
+        "languageLabelPsychologist": "어떤 언어를 사용하나요?",
+        "languageLabelPatient": "어떤 언어로 상담을 받으시겠어요?",
+        "languageHelperPsychologist": "세션을 제공할 수 있는 모든 언어를 선택하세요.",
+        "languageHelperPatient": "편안한 모든 언어를 선택하세요.",
+        "languagesSelectedCount": "{{count}}개 언어 선택",
+        "languageSelected": "언어 선택",
+        "errorNoLanguage": "최소 하나의 언어를 선택하세요",
+        "errorNoTherapyLanguage": "최소 하나의 상담 언어를 선택하세요",
+        "emailLabel": "이메일 주소",
+        "usernameLabel": "사용자 이름",
+        "usernamePlaceholder": "사용자 이름 (최소 4자)",
+        "passwordLabel": "비밀번호",
+        "passwordPlaceholder": "안전한 비밀번호 생성",
+        "passwordConfirmLabel": "비밀번호 확인",
+        "passwordConfirmPlaceholder": "비밀번호 재입력",
+        "errorAllFields": "모든 필드를 입력하세요",
+        "errorInvalidEmail": "유효하지 않은 이메일",
+        "errorEmailFormat": "유효한 이메일 주소를 입력하세요",
+        "validEmail": "이메일 확인됨",
+        "errorUsernameLength": "사용자 이름은 최소 4자 이상이어야 합니다",
+        "usernameRequirement1": "문자, 숫자, 밑줄만 허용",
+        "usernameRequirement2": "_ 이외 특수문자 불가",
+        "errorPasswordFormat": "비밀번호가 요구사항을 충족하지 않습니다",
+        "passwordRequirement1": "최소 8자",
+        "passwordRequirement2": "최소 1개의 대문자",
+        "passwordRequirement3": "최소 1개의 소문자",
+        "passwordRequirement4": "최소 1개의 숫자 또는 특수문자",
+        "passwordMatch": "비밀번호 일치",
+        "passwordMismatch": "비밀번호 불일치",
+        "emailPlaceholder": ""
+      },
+      "title": "직함",
+      "selectTitle": "직함 선택",
+      "titleSelected": "직함 선택됨",
+      "step2": {
+        "firstNameLabel": "이름",
+        "firstNamePlaceholder": "이름",
+        "firstNameHelper": "상담 시 어떻게 불리기를 원하나요",
+        "lastNameLabel": "성",
+        "lastNamePlaceholder": "성",
+        "lastNameHelper": "전체 성",
+        "phoneLabel": "전화번호",
+        "phonePlaceholder": "+82 10 1234 5678",
+        "phoneHelper": "예약 알림 및 긴급 연락용",
+        "birthDateLabel": "생년월일",
+        "birthDateErrorTitle": "유효하지 않은 날짜",
+        "birthDateErrorDescription": "유효한 날짜를 입력하세요",
+        "birthDateHelper": "형식: YYYY.MM.DD",
+        "birthDateErrorAge": "최소 16세 이상이어야 합니다",
+        "genderLabel": "성별",
+        "genderMale": "남성",
+        "genderFemale": "여성",
+        "cityLabel": "도시",
+        "cityPlaceholder": "예: 서울",
+        "professionLabel": "직업",
+        "professionPlaceholder": "현재 직업 (선택)",
+        "bioLabel": "자기소개",
+        "bioPlaceholder": "자신에 대해 알려주세요 (최대 500자)",
+        "errorNameRequired": "이름과 성은 필수입니다"
+      },
+      "step3Psychologist": {
+        "titleLabel": "직함 / 학위",
+        "titlePlaceholder": "예: 상담심리사, 석사, 박사",
+        "titleSelected": "선택됨",
+        "licenseLabel": "자격증 / 등록 번호",
+        "licensePlaceholder": "공식 등록 번호",
+        "licenseHelper": "협회/기관 공식 번호",
+        "licenseError": "유효한 번호를 입력하세요",
+        "experienceLabel": "경력 (년)",
+        "experiencePlaceholder": "예: 7",
+        "educationLabel": "교육 / 훈련",
+        "educationPlaceholder": "예: 심리학 석사, 서울대학교",
+        "specialtiesLabel": "전문 분야",
+        "approachesLabel": "치료 접근법",
+        "priceLabel": "세션 가격 (50분)",
+        "pricePlaceholder": "예: 120,000원",
+        "priceHelper": "세금 포함",
+        "aboutLabel": "자기소개 (클라이언트에게 보임)",
+        "aboutPlaceholder": "접근법, 경험, 초점 영역 설명",
+        "errorProfessionalInfo": "모든 전문 정보를 완성하세요"
+      },
+      "registerButton": "계정 만들기",
+      "successTitle": "등록 성공!",
+      "successDescription": "이메일을 확인해 계정을 인증하세요.",
+      "errorTitle": "등록 오류",
+      "errorDescription": "문제가 발생했습니다. 다시 시도하세요.",
+      "hasAccount": "이미 계정이 있으신가요?",
+      "loginLink": "로그인"
+    },
+    "roleSelect": {
+      "title": "당신은 누구신가요?",
+      "description": "계속하려면 역할을 선택하세요.",
+      "patientTitle": "클라이언트",
+      "patientDescription": "심리 지원을 찾고 있어요",
+      "psychologistTitle": "심리상담사",
+      "psychologistDescription": "상담을 제공해요",
+      "continueButton": "계속",
+      "hasAccount": "이미 등록하셨나요?",
+      "loginLink": "지금 로그인"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "기능",
+      "howItWorks": "작동 방식",
+      "psychologists": "상담사",
+      "goToDashboard": "대시보드로 이동",
+      "login": "로그인",
+      "register": "회원가입",
+      "openMenu": "메뉴 열기"
+    },
+    "hero": {
+      "badge": "온라인 상담",
+      "title1": "전문적인",
+      "titleHighlight": "온라인 심리치료",
+      "title2": "– 안전 & 비밀보장",
+      "description": "몇 분 만에 적합한 상담사를 찾으세요 – 어디서든.",
+      "ctaStart": "무료 시작",
+      "ctaExplore": "상담사 탐색",
+      "feature1": "인증된 전문가",
+      "feature2": "안전한 비디오 통화",
+      "feature3": "유연한 일정"
+    },
+    "features": {
+      "title": "왜 온라인 상담인가?",
+      "description": "집에서 편안하게 현대적인 심리치료를 받으세요.",
+      "videoCall": {
+        "title": "비디오 세션",
+        "description": "엔드-투-엔드 암호화된 안전한 비디오 통화"
+      },
+      "privacy": {
+        "title": "최대 프라이버시",
+        "description": "데이터는 법에 따라 보호됨"
+      },
+      "easyBooking": {
+        "title": "쉬운 예약",
+        "description": "언제든지 예약하세요"
+      },
+      "messaging": {
+        "title": "안전한 메시지",
+        "description": "세션 간 연락 유지"
+      },
+      "flexible": {
+        "title": "유연한 시간",
+        "description": "저녁 및 주말 가능"
+      },
+      "experts": {
+        "title": "인증된 전문가",
+        "description": "라이선스 보유 상담사만"
+      }
+    },
+    "howItWorks": {
+      "title": "작동 방식",
+      "description": "3단계로 간단히 시작",
+      "step1": {
+        "title": "적합한 상담사 찾기",
+        "description": "전문성, 언어, 가격, 가용성으로 필터링"
+      },
+      "step2": {
+        "title": "예약 & 결제",
+        "description": "안전한 결제 – 즉시 확인"
+      },
+      "step3": {
+        "title": "세션 시작",
+        "description": "집에서 비디오 통화로 참여"
+      }
+    },
+    "cta": {
+      "title": "첫걸음을 내딛을 준비되셨나요?",
+      "description": "오늘부터 더 나은 웰빙을 향한 여정을 시작하세요.",
+      "button": "무료 가입"
+    },
+    "footer": {
+      "privacy": "개인정보 보호정책",
+      "terms": "이용약관",
+      "kvkk": "개인정보 보호법 (KVKK)",
+      "copyright": "© {year} 모든 권리 보유."
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "환영합니다, {{firstName}}님",
+      "subtitle": "다가오는 세션과 메시지 개요",
+      "stats": {
+        "upcomingSessions": "다가오는 세션",
+        "totalSessions": "총 세션",
+        "unreadMessages": "읽지 않은 메시지"
+      },
+      "upcomingAppointments": {
+        "title": "다가오는 약속",
+        "viewAll": "모두 보기",
+        "emptyTitle": "다가오는 약속 없음",
+        "emptyDescription": "지금 상담사를 찾아 첫 세션을 예약하세요"
+      },
+      "quickActions": {
+        "title": "빠른 액션",
+        "findPsychologist": {
+          "title": "상담사 찾기",
+          "description": "적합한 전문가 검색"
+        },
+        "messages": {
+          "title": "메시지",
+          "description": "상담사와 채팅"
+        },
+        "appointments": {
+          "title": "약속",
+          "description": "모든 예약 관리"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "TEMP_REPLACE",
+      "pendingApproval": {
+        "title": "프로필 검토 중",
+        "description": "팀이 자격을 확인 중입니다. 보통 1–3 영업일 소요됩니다."
+      },
+      "stats": {
+        "todaySessions": "오늘 세션",
+        "weeklyEarnings": "이번 주 수익",
+        "totalClients": "총 클라이언트",
+        "pendingAppointments": "대기 중 예약"
+      },
+      "upcomingSessions": {
+        "title": "다가오는 세션",
+        "viewAll": "모두 보기",
+        "emptyTitle": "다가오는 세션 없음",
+        "emptyDescription": "가용성이 아직 예약되지 않았습니다"
+      },
+      "quickActions": {
+        "title": "빠른 액션",
+        "availability": {
+          "title": "가용성",
+          "description": "캘린더 업데이트"
+        },
+        "earnings": {
+          "title": "수익",
+          "description": "지불 및 통계 보기"
+        },
+        "profile": {
+          "title": "프로필",
+          "description": "프로필 편집"
+        }
+      }
+    },
+    "admin": {
+      "title": "관리자 대시보드",
+      "description": "개요 & 관리",
+      "stats": {
+        "totalUsers": "총 사용자",
+        "todaySessions": "오늘 세션",
+        "monthlyRevenue": "월 수익",
+        "pendingVerification": "대기 중 검토"
+      },
+      "pendingAlert": {
+        "text": "{{count}}개 대기 중 검토 있음",
+        "button": "지금 검토"
+      },
+      "financialSummary": {
+        "title": "재무 요약",
+        "grossRevenue": "총 수익",
+        "vat": "부가세",
+        "platformCommission": "플랫폼 수수료",
+        "psychologistPayments": "상담사 지불"
+      },
+      "recentActivities": {
+        "title": "최근 활동",
+        "empty": "활동 없음"
+      },
+      "quickActions": {
+        "title": "빠른 액션",
+        "verification": {
+          "title": "검토",
+          "description": "새 신청 검토"
+        },
+        "users": {
+          "title": "사용자",
+          "description": "모든 계정 관리"
+        },
+        "appointments": {
+          "title": "약속",
+          "description": "모든 예약 보기"
+        },
+        "payments": {
+          "title": "지불",
+          "description": "거래 모니터링"
+        },
+        "bankTransfers": {
+          "title": "이체",
+          "description": "지불 관리"
+        }
+      },
+      "verificationSuccess": {
+        "title": "검토 성공",
+        "description": "계정이 승인됨"
+      }
+    }
+  },
+  "appointments": {
+    "title": "약속",
+    "description": "다가오는 및 지난 세션 관리",
+    "tabs": {
+      "upcoming": "다가오는",
+      "past": "지난"
+    },
+    "empty": {
+      "upcomingTitle": "다가오는 약속 없음",
+      "upcomingDescription": "지금 다음 세션 예약",
+      "pastTitle": "지난 세션 없음",
+      "pastDescription": "완료된 세션이 여기 표시됨"
+    },
+    "cancelDialog": {
+      "title": "약속 취소?",
+      "description": "정말 취소하시겠어요? 이 작업은 되돌릴 수 없습니다.",
+      "cancelButton": "뒤로",
+      "confirmButton": "취소",
+      "confirmButtonLoading": "취소 중..."
+    },
+    "cancelSuccess": {
+      "title": "약속 취소됨",
+      "description": "약속이 성공적으로 취소되었습니다."
+    },
+    "status": {
+      "reserved": "예약됨",
+      "pending_payment": "지불 대기",
+      "payment_review": "지불 검토",
+      "confirmed": "확인됨",
+      "ready": "준비됨",
+      "in_session": "진행 중",
+      "completed": "완료",
+      "cancelled": "취소됨",
+      "expired": "만료됨",
+      "refunded": "환불됨",
+      "no_show": "노쇼",
+      "rejected": "거부됨"
+    },
+    "joinSession": "세션 참여",
+    "joinDisabled": "{minutes}분 후 시작",
+    "patientFallback": "클라이언트 이용 불가",
+    "relative": {
+      "past": "종료됨",
+      "now": "곧",
+      "inMinutes": "{{count}}분 후",
+      "inHours": "{{count}}시간 후",
+      "inDays": "{{count}}일 후",
+      "tomorrow": "내일"
+    },
+    "videoCall": {
+      "sessionNotStarted": "세션이 아직 시작되지 않았습니다",
+      "sessionEnded": "세션이 종료되었습니다",
+      "canJoin": "세션에 참여할 수 있습니다",
+      "invalidAppointment": "예약 정보를 찾을 수 없습니다",
+      "invalidDate": "유효하지 않은 예약 날짜",
+      "notConfirmed": "예약이 아직 확인되지 않았습니다",
+      "paymentPending": "결제 대기 중",
+      "paymentReview": "결제 검토 중",
+      "pendingApproval": "승인 대기 중",
+      "cancelled": "예약이 취소되었습니다",
+      "expired": "예약이 만료되었습니다",
+      "completed": "세션 완료",
+      "noShow": "불참",
+      "rejected": "예약이 거부되었습니다",
+      "refunded": "환불됨",
+      "notEligible": "세션 자격 없음",
+      "clickToJoin": "클릭하여 세션에 참여",
+      "startsInDays": "세션 시작까지 {{count}}일",
+      "startsInHours": "세션 시작까지 {{count}}시간",
+      "startsInMinutes": "세션 시작까지 {{count}}분",
+      "activeBeforeStart": "시작 {{minutes}}분 전부터 참여 가능",
+      "cannotJoinEnded": "참여할 수 없습니다. 세션 시간이 지났습니다",
+      "cannotJoin": "세션에 참여할 수 없습니다",
+      "now": "지금",
+      "inDays": "{{count}}일 후",
+      "inHours": "{{count}}시간 후",
+      "inMinutes": "{{count}}분 후"
+    }
+  },
+  "weekdays": {
+    "sunday": "일요일",
+    "monday": "월요일",
+    "tuesday": "화요일",
+    "wednesday": "수요일",
+    "thursday": "목요일",
+    "friday": "금요일",
+    "saturday": "토요일"
+  },
+  "messages": {
+    "title": "메시지",
+    "searchPlaceholder": "메시지 또는 사람 검색...",
+    "empty": "대화 없음",
+    "noResults": "일치하는 대화 없음",
+    "selectConversation": {
+      "title": "대화 선택",
+      "description": "목록에서 대화를 클릭해 채팅 시작"
+    },
+    "noMessages": "이 대화에 메시지 없음",
+    "yesterday": "어제",
+    "today": "오늘",
+    "yesterdayLabel": "어제",
+    "inputPlaceholder": "메시지 입력...",
+    "reportAction": "대화 신고"
+  },
+  "payment": {
+    "backButton": "뒤로",
+    "title": "지불",
+    "description": "세션에 대한 안전한 지불",
+    "orderSummary": {
+      "title": "주문 요약",
+      "description": "세션과 함께",
+      "psychologist": "상담사",
+      "dateTime": "날짜 & 시간",
+      "duration": "기간",
+      "durationValue": "{minutes}분",
+      "total": "총액"
+    },
+    "paymentInfo": {
+      "title": "지불 세부사항",
+      "description": "뱅킹 앱으로 QR 코드 스캔",
+      "qrGenerating": "QR 코드 생성 중...",
+      "qrTimer": "이 코드 {seconds}초 후 만료",
+      "waitingConfirmation": "지불 확인 대기 중...",
+      "completeButton": "지불 완료",
+      "testHelper": "테스트 모드: 테스트 자격증명 사용",
+      "referenceCode": "참조 코드",
+      "referenceCodeLabel": "참조 코드",
+      "amount": "금액"
+    },
+    "instructions": {
+      "title": "은행 이체로 지불하는 방법",
+      "step1": "뱅킹 앱 열기",
+      "step2": "QR 스캔 또는 세부사항 복사",
+      "step3": "이체 수행",
+      "step4": "지불 확인",
+      "step5": "세션 자동 활성화"
+    },
+    "success": {
+      "title": "지불 성공!",
+      "confirmed": "지불 확인됨",
+      "redirecting": "대시보드로 리디렉션 중...",
+      "toastTitle": "지불 확인",
+      "toastDescription": "세션이 예약됨!"
+    },
+    "error": {
+      "notFound": "지불 찾을 수 없음",
+      "notFoundDescription": "이 지불 페이지 존재하지 않거나 만료됨",
+      "backLink": "약속으로 돌아가기",
+      "noPaymentInfo": "지불 정보 없음",
+      "paymentFailed": "지불 실패"
+    },
+    "clipboard": {
+      "copied": "복사됨!",
+      "copiedDescription": "클립보드에 복사됨",
+      "copyFailed": "복사 실패",
+      "copyFailedDescription": "수동 복사"
+    }
+  },
+  "availability": {
+    "title": "가용성",
+    "description": "세션 가용 시간 설정",
+    "days": {
+      "monday": "월요일",
+      "tuesday": "화요일",
+      "wednesday": "수요일",
+      "thursday": "목요일",
+      "friday": "금요일",
+      "saturday": "토요일",
+      "sunday": "일요일"
+    },
+    "saveSuccess": {
+      "title": "가용성 저장됨",
+      "description": "새 일정 활성"
+    },
+    "saveError": "가용성 저장 오류"
+  },
+  "profile": {
+    "title": "프로필",
+    "description": "개인 및 전문 정보 관리",
+    "personalInfo": {
+      "title": "개인 정보",
+      "description": "당신과 지원 팀만 볼 수 있음",
+      "firstName": "이름",
+      "lastName": "성",
+      "email": "이메일",
+      "phone": "전화",
+      "phonePlaceholder": "+82 ...",
+      "birthDate": "생년월일",
+      "city": "도시",
+      "about": "자기소개",
+      "aboutPlaceholder": "짧은 설명 (클라이언트에게 보임)",
+      "saveButton": "변경 저장"
+    },
+    "professionalInfo": {
+      "title": "전문 정보",
+      "description": "잠재 클라이언트에게 보임",
+      "photo": "프로필 사진",
+      "uploadButton": "사진 업로드",
+      "uploadHelper": "JPG, PNG • 최대 5MB",
+      "specialties": "전문 분야",
+      "specialtiesCount": "{{count}} 선택",
+      "approaches": "접근법",
+      "approachesCount": "{{count}} 선택",
+      "saveButton": "전문 정보 저장"
+    },
+    "languageManagement": {
+      "title": "언어 관리",
+      "description": "상담 제공 언어 업데이트",
+      "label": "상담 언어",
+      "selectedCount": "{{count}} 언어 선택",
+      "saveButton": "언어 저장",
+      "errorMinLanguage": "최소 하나의 언어 필요",
+      "saveError": "저장 오류",
+      "saveSuccess": "언어 업데이트 성공"
+    },
+    "saveSuccess": {
+      "title": "프로필 업데이트",
+      "description": "변경 저장됨"
+    },
+    "saveError": "프로필 저장 오류",
+    "professionalSaveError": "전문 정보 저장 오류",
+    "uploadError": {
+      "sizeTooLarge": "파일 너무 큼 (최대 5MB)",
+      "invalidType": "JPG 또는 PNG만 허용",
+      "uploadFailed": "업로드 실패"
+    },
+    "experience": "경력",
+    "sessionDuration": "상담 시간",
+    "languages": "언어",
+    "about": "소개",
+    "education": "학력",
+    "certifications": "자격증"
+  },
+  "navigation": {
+    "patient": {
+      "home": "홈",
+      "findPsychologist": "상담사 찾기",
+      "appointments": "약속",
+      "messages": "메시지",
+      "paymentHistory": "지불 이력",
+      "profile": "프로필",
+      "settings": "설정",
+      "logout": "로그아웃"
+    },
+    "psychologist": {
+      "home": "대시보드",
+      "appointments": "약속",
+      "availability": "가용성",
+      "messages": "메시지",
+      "sessionNotes": "세션 노트",
+      "earnings": "수익",
+      "profile": "프로필",
+      "settings": "설정",
+      "logout": "로그아웃"
+    },
+    "admin": {
+      "overview": "개요",
+      "users": "사용자",
+      "verification": "검토",
+      "appointments": "약속",
+      "payments": "지불",
+      "auditLog": "감사 로그",
+      "settings": "설정",
+      "profile": "프로필",
+      "logout": "로그아웃"
+    },
+    "roles": {
+      "admin": "관리자",
+      "psychologist": "상담사",
+      "patient": "클라이언트"
+    },
+    "sidebarTitle": "메뉴",
+    "menuLabel": "메뉴"
+  },
+  "cities": {
+    "adana": "아다나",
+    "ankara": "앙카라",
+    "antalya": "안탈리아",
+    "bursa": "부르사",
+    "denizli": "데니즐리",
+    "diyarbakir": "디야르바키르",
+    "eskisehir": "에스키셰히르",
+    "gaziantep": "가지안텝",
+    "istanbul": "이스탄불",
+    "izmir": "이즈미르",
+    "kayseri": "카이세리",
+    "kocaeli": "코자엘리",
+    "konya": "코냐",
+    "mersin": "메르신",
+    "mugla": "무글라",
+    "samsun": "삼순",
+    "trabzon": "트라브존",
+    "other": "기타"
+  },
+  "specialties": {
+    "individual": "개인 상담",
+    "couples": "커플 상담",
+    "family": "가족 상담",
+    "childAdolescent": "아동 & 청소년 상담",
+    "depression": "우울증",
+    "anxiety": "불안 장애",
+    "trauma": "트라우마 & PTSD",
+    "ocd": "OCD (강박장애)",
+    "eatingDisorders": "섭식 장애",
+    "addiction": "중독 & 물질 사용",
+    "careerCounseling": "커리어 상담",
+    "stressManagement": "스트레스 관리",
+    "angerManagement": "분노 관리"
+  },
+  "therapyApproaches": {
+    "cbt": "인지 행동 치료 (CBT)",
+    "psychodynamic": "정신 역동 치료",
+    "emdr": "EMDR (안구 운동 탈감작 및 재처리)",
+    "schema": "스키마 치료",
+    "act": "수용 및 헌신 치료 (ACT)",
+    "gestalt": "게슈탈트 치료",
+    "solutionFocused": "해결 중심 단기 치료",
+    "existential": "실존 치료",
+    "mindfulness": "마인드풀니스 기반 치료"
+  },
+  "card": {
+    "sessionFee": "상담 비용",
+    "fee": "비용",
+    "bookAppointment": "예약하기",
+    "priceNotSpecified": "미지정",
+    "experience": {
+      "yearsLong": "{{count}}년 경력",
+      "yearsShort": "{{count}}년"
+    },
+    "selectedAppointment": "선택한 예약",
+    "reservationWarning": "10분 이내에 결제하지 않으면 예약이 취소됩니다"
+  },
+  "duration": {
+    "minutesShort": "분",
+    "minutesLong": "{{count}}분"
+  },
+  "titles": {
+    "psychologist": "심리상담사",
+    "clinicalPsychologist": "임상심리사",
+    "expertPsychologist": "전문 심리상담사",
+    "expertClinicalPsychologist": "전문 임상심리사",
+    "psychologicalCounselor": "심리상담원",
+    "psychotherapist": "심리치료사",
+    "dr": "박사",
+    "assocProf": "부교수",
+    "prof": "교수"
+  },
+  "legal": {
+    "kvkk": {
+      "title": "개인정보 보호법 (KVKK)"
+    },
+    "privacy": {
+      "title": "개인정보 보호정책"
+    },
+    "terms": {
+      "title": "이용약관"
+    },
+    "refund": {
+      "title": "환불 정책"
+    }
+  },
+  "psychologists": {
+    "title": "치료사 찾기",
+    "subtitle": "적합한 전문가를 찾아 예약하세요",
+    "searchPlaceholder": "이름 또는 전문 분야로 검색...",
+    "specialtyPlaceholder": "전문 분야",
+    "priceRangePlaceholder": "가격 범위",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "필터 지우기",
+    "filters": {
+      "search": "검색: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "치료사를 찾을 수 없습니다",
+      "description": "검색 조건을 변경해 보세요",
+      "buttonText": "필터 지우기"
+    },
+    "loginButton": "로그인"
+  },
+  "paymentHistory": {
+    "title": "결제 내역",
+    "subtitle": "모든 예약 및 결제 거래 보기",
+    "table": {
+      "psychologist": "치료사",
+      "appointmentDate": "예약 날짜",
+      "amount": "금액",
+      "vat": "부가세",
+      "total": "합계",
+      "status": "상태",
+      "netAmount": "순액",
+      "totalAmount": "총액"
+    },
+    "reservedUntil": "{time}까지 예약됨",
+    "paymentPending": "결제 대기 중",
+    "paymentReview": "결제 검토 중",
+    "empty": "결제 내역이 없습니다",
+    "statuses": {
+      "reserved": "예약됨",
+      "payment_pending": "결제 대기 중",
+      "payment_review": "결제 검토 중",
+      "completed": "완료",
+      "pending": "대기 중",
+      "failed": "실패",
+      "refunded": "환불됨",
+      "refund_pending": "환불 대기 중",
+      "refund_approved": "환불 승인됨",
+      "refund_processed": "환불됨",
+      "refund_rejected": "환불 거부됨"
+    }
+  },
+  "settings": {
+    "title": "설정",
+    "subtitle": "계정 설정 및 기본 설정 관리",
+    "language": "표시 언어",
+    "languageDesc": "애플리케이션 인터페이스 언어 선택",
+    "selectLanguage": "언어 선택",
+    "languageChanged": "언어가 변경되었습니다",
+    "languageChangedDesc": "인터페이스 언어가 성공적으로 변경되었습니다",
+    "confirmLanguageChange": "변경 사항을 저장하시겠습니까?",
+    "confirmLanguageChangeDesc": "사이트 언어가 선택한 언어로 번역됩니다. 이 작업을 확인하시겠습니까?",
+    "notifications": "알림",
+    "notificationsDesc": "알림 기본 설정 관리",
+    "emailNotifications": "이메일 알림",
+    "emailNotificationsDesc": "중요한 업데이트에 대한 이메일 수신",
+    "appointmentReminders": "약속 알림",
+    "appointmentRemindersDesc": "다가오는 약속에 대한 알림 받기",
+    "messageNotifications": "메시지 알림",
+    "messageNotificationsDesc": "새 메시지에 대한 알림 받기",
+    "newAppointmentRequests": "새 약속 요청",
+    "newAppointmentRequestsDesc": "새로운 약속 요청에 대한 알림 받기",
+    "privacy": "개인정보 보호",
+    "privacyDesc": "개인정보 보호 설정 제어",
+    "showProfile": "프로필 표시",
+    "showProfileDesc": "환자에게 프로필을 표시합니다",
+    "showOnlineStatus": "온라인 상태 표시",
+    "showOnlineStatusDesc": "다른 사용자에게 온라인 상태를 표시합니다",
+    "showLastSeen": "마지막 접속 시간 표시",
+    "showLastSeenDesc": "마지막 접속 시간을 공유합니다",
+    "security": "보안",
+    "securityDesc": "계정 보안 설정",
+    "twoFactor": "이중 인증",
+    "twoFactorDesc": "계정에 추가 보안 계층을 추가합니다",
+    "changePassword": "비밀번호 변경",
+    "changePasswordDesc": "현재 비밀번호를 입력하고 보안을 위해 새 비밀번호를 선택하세요",
+    "currentPassword": "현재 비밀번호",
+    "enterCurrentPassword": "현재 비밀번호를 입력하세요",
+    "newPassword": "새 비밀번호",
+    "enterNewPassword": "새 비밀번호를 입력하세요",
+    "confirmNewPassword": "새 비밀번호 확인",
+    "enterNewPasswordAgain": "새 비밀번호를 다시 입력하세요",
+    "passwordMinLength": "비밀번호는 최소 6자 이상이어야 합니다",
+    "passwordMinLengthHint": "최소 6자",
+    "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다",
+    "newPasswordMustBeDifferent": "새 비밀번호는 현재 비밀번호와 달라야 합니다",
+    "allPasswordFieldsRequired": "모든 필드는 필수입니다",
+    "passwordChanged": "비밀번호가 변경되었습니다",
+    "passwordChangedDesc": "비밀번호가 성공적으로 업데이트되었습니다",
+    "passwordChangeError": "비밀번호 변경에 실패했습니다",
+    "saveChanges": "변경 사항 저장",
+    "savedTitle": "설정이 저장되었습니다",
+    "savedDesc": "기본 설정이 성공적으로 업데이트되었습니다",
+    "notificationsSaved": "알림 기본 설정이 저장되었습니다",
+    "saveError": "설정 저장에 실패했습니다"
+  },
+  "twoFactor": {
+    "title": "이중 인증",
+    "description": "Google Authenticator로 계정 보호",
+    "enable": "활성화",
+    "disable": "비활성화",
+    "setupTitle": "이중 인증 설정",
+    "scanQR": "Google Authenticator 또는 Authy 앱으로 QR 코드 스캔",
+    "cantScanQR": "QR 코드를 스캔할 수 없나요? 수동 입력:",
+    "verificationCode": "인증 코드",
+    "enter6DigitFromApp": "앱에 표시된 6자리 코드 입력",
+    "verifyAndEnable": "확인 및 활성화",
+    "disableTitle": "이중 인증 비활성화",
+    "disableDescription": "이 작업을 위해 비밀번호와 인증 코드를 입력하세요",
+    "password": "비밀번호",
+    "setupError": "2FA 설정 실패",
+    "enableSuccess": "이중 인증이 성공적으로 활성화되었습니다",
+    "invalidCode": "유효하지 않은 인증 코드",
+    "disableSuccess": "이중 인증이 성공적으로 비활성화되었습니다",
+    "disableError": "2FA 비활성화 실패",
+    "enter6Digit": "유효한 6자리 코드를 입력하세요",
+    "enterPasswordAnd6Digit": "비밀번호와 6자리 코드를 입력하세요",
+    "secretCopied": "시크릿이 클립보드에 복사되었습니다"
+  }
+}

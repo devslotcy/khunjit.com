@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Mail, Lock, Brain } from "lucide-react";
+import { Loader2, Mail, Lock, Brain, Shield } from "lucide-react";
 import { Link } from "wouter";
 
 export default function LoginPage() {
@@ -15,19 +15,51 @@ export default function LoginPage() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show2FA, setShow2FA] = useState(false);
+  const [twoFactorCode, setTwoFactorCode] = useState("");
+  const [pendingLoginData, setPendingLoginData] = useState<any>(null);
 
   const loginMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
-      return apiRequest("POST", "/api/auth/login", data);
+      const response = await apiRequest("POST", "/api/auth/login", data);
+      return response.json();
     },
-    onSuccess: async () => {
+    onSuccess: async (data: any) => {
+      console.log("🔐 Login response:", data);
+
+      // Check if 2FA is enabled
+      if (data?.requires2FA) {
+        console.log("✅ 2FA required, showing verification screen");
+        setPendingLoginData(data);
+        setShow2FA(true);
+        toast({
+          title: "2FA Gerekli",
+          description: "Lütfen doğrulama kodunuzu girin",
+        });
+        return;
+      }
+
+      console.log("ℹ️ No 2FA required, proceeding with normal login");
+
       await queryClient.invalidateQueries({ queryKey: ["/api/auth/me"] });
       await queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
+      await queryClient.invalidateQueries({ queryKey: ["/api/profile"] });
+
+      const role = data?.profile?.role || "patient";
+
       toast({
         title: "Giriş başarılı",
         description: "Hoş geldiniz!",
       });
-      navigate("/dashboard");
+
+      // Role-based redirection
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "psychologist") {
+        navigate("/psychologist");
+      } else {
+        navigate("/patient");
+      }
     },
     onError: (error: any) => {
       toast({
@@ -38,9 +70,52 @@ export default function LoginPage() {
     },
   });
 
+  const verify2FAMutation = useMutation({
+    mutationFn: async (data: { email: string; token: string }) => {
+      const response = await apiRequest("POST", "/api/2fa/verify", data);
+      return response.json();
+    },
+    onSuccess: async () => {
+      // After successful 2FA verification, complete the login
+      await queryClient.invalidateQueries({ queryKey: ["/api/auth/me"] });
+      await queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
+      await queryClient.invalidateQueries({ queryKey: ["/api/profile"] });
+
+      const role = pendingLoginData?.profile?.role || "patient";
+
+      toast({
+        title: "Giriş başarılı",
+        description: "Hoş geldiniz!",
+      });
+
+      // Role-based redirection
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "psychologist") {
+        navigate("/psychologist");
+      } else {
+        navigate("/patient");
+      }
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Doğrulama başarısız",
+        description: error.message || "Geçersiz doğrulama kodu",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     loginMutation.mutate({ email, password });
+  };
+
+  const handle2FASubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (twoFactorCode.length === 6) {
+      verify2FAMutation.mutate({ email, token: twoFactorCode });
+    }
   };
 
   return (
@@ -49,15 +124,69 @@ export default function LoginPage() {
         <CardHeader className="text-center space-y-2">
           <div className="flex justify-center mb-4">
             <div className="p-3 rounded-full bg-primary/10">
-              <Brain className="h-8 w-8 text-primary" />
+              {show2FA ? (
+                <Shield className="h-8 w-8 text-primary" />
+              ) : (
+                <Brain className="h-8 w-8 text-primary" />
+              )}
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold">MindWell'e Hoş Geldiniz</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            {show2FA ? "İki Faktörlü Doğrulama" : "KhunJit'e Hoş Geldiniz"}
+          </CardTitle>
           <CardDescription>
-            Hesabınıza giriş yapın
+            {show2FA
+              ? "Google Authenticator'dan 6 haneli kodu girin"
+              : "Hesabınıza giriş yapın"
+            }
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleSubmit}>
+
+        {show2FA ? (
+          <form onSubmit={handle2FASubmit}>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="2fa-code">Doğrulama Kodu</Label>
+                <Input
+                  id="2fa-code"
+                  type="text"
+                  placeholder="123456"
+                  maxLength={6}
+                  value={twoFactorCode}
+                  onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, ""))}
+                  className="text-center text-lg tracking-widest"
+                  required
+                  autoFocus
+                />
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-2">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={verify2FAMutation.isPending || twoFactorCode.length !== 6}
+              >
+                {verify2FAMutation.isPending && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Doğrula
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                className="w-full"
+                onClick={() => {
+                  setShow2FA(false);
+                  setTwoFactorCode("");
+                  setPendingLoginData(null);
+                }}
+              >
+                Geri Dön
+              </Button>
+            </CardFooter>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -109,7 +238,8 @@ export default function LoginPage() {
               </Link>
             </p>
           </CardFooter>
-        </form>
+          </form>
+        )}
       </Card>
     </div>
   );

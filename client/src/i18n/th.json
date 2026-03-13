@@ -1,0 +1,888 @@
+{
+  "common": {
+    "save": "บันทึก",
+    "saving": "กำลังบันทึก",
+    "cancel": "ยกเลิก",
+    "back": "กลับ",
+    "next": "ถัดไป",
+    "submit": "ส่ง",
+    "continue": "ดำเนินการต่อ",
+    "close": "ปิด",
+    "loading": "กำลังโหลด...",
+    "search": "ค้นหา",
+    "filter": "กรอง",
+    "viewAll": "ดูทั้งหมด",
+    "noResults": "ไม่พบผลลัพธ์",
+    "error": "ข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "yes": "ใช่",
+    "no": "ไม่ใช่",
+    "or": "หรือ",
+    "and": "และ",
+    "selected": "เลือกแล้ว",
+    "selectedCount": "เลือก {count} รายการ",
+    "copied": "คัดลอกแล้ว!",
+    "copyFailed": "คัดลอกล้มเหลว",
+    "minuteShort": "นาที"
+  },
+  "auth": {
+    "login": {
+      "title": "เข้าสู่ระบบ",
+      "description": "เข้าสู่ระบบเพื่อจัดการเซสชันและข้อความของคุณ",
+      "emailLabel": "อีเมล",
+      "emailPlaceholder": "your@email.com",
+      "passwordLabel": "รหัสผ่าน",
+      "passwordPlaceholder": "ป้อนรหัสผ่าน",
+      "loginButton": "เข้าสู่ระบบ",
+      "noAccount": "ยังไม่มีบัญชี?",
+      "registerLink": "ลงทะเบียน",
+      "successTitle": "ยินดีต้อนรับกลับ!",
+      "successDescription": "เข้าสู่ระบบสำเร็จ",
+      "errorTitle": "เข้าสู่ระบบล้มเหลว",
+      "errorDescription": "อีเมลหรือรหัสผ่านผิด โปรดลองอีกครั้ง"
+    },
+    "register": {
+      "titlePatient": "ลงทะเบียนเป็นลูกค้า",
+      "titlePsychologist": "ลงทะเบียนเป็นนักจิตวิทยา",
+      "stepIndicator": "ขั้นตอน {current} จาก {total}",
+      "step1": {
+        "languageLabelPsychologist": "ภาษาใดที่คุณใช้สำหรับการบำบัด?",
+        "languageLabelPatient": "ภาษาใดที่คุณต้องการสำหรับการบำบัด?",
+        "languageHelperPsychologist": "เลือกภาษาทั้งหมดที่คุณสามารถให้เซสชันได้",
+        "languageHelperPatient": "เลือกภาษาทั้งหมดที่คุณรู้สึกสบายใจ",
+        "languagesSelectedCount": "{{count}} ภาษาที่เลือก",
+        "languageSelected": "ภาษาที่เลือก",
+        "errorNoLanguage": "โปรดเลือกอย่างน้อยหนึ่งภาษา",
+        "errorNoTherapyLanguage": "โปรดเลือกอย่างน้อยหนึ่งภาษาสำหรับการบำบัด",
+        "emailLabel": "ที่อยู่อีเมล",
+        "usernameLabel": "ชื่อผู้ใช้",
+        "usernamePlaceholder": "ชื่อผู้ใช้ (อย่างน้อย 4 ตัวอักษร)",
+        "passwordLabel": "รหัสผ่าน",
+        "passwordPlaceholder": "สร้างรหัสผ่านที่ปลอดภัย",
+        "passwordConfirmLabel": "ยืนยันรหัสผ่าน",
+        "passwordConfirmPlaceholder": "ป้อนรหัสผ่านอีกครั้ง",
+        "errorAllFields": "โปรดกรอกทุกช่อง",
+        "errorInvalidEmail": "อีเมลไม่ถูกต้อง",
+        "errorEmailFormat": "โปรดป้อนอีเมลที่ถูกต้อง",
+        "validEmail": "อีเมลถูกต้อง",
+        "errorUsernameLength": "ชื่อผู้ใช้ต้องมีอย่างน้อย 4 ตัวอักษร",
+        "usernameRequirement1": "อนุญาตเฉพาะตัวอักษร ตัวเลข และขีดล่าง",
+        "usernameRequirement2": "ไม่มีอักขระพิเศษยกเว้น _",
+        "errorPasswordFormat": "รหัสผ่านไม่ตรงตามข้อกำหนด",
+        "passwordRequirement1": "อย่างน้อย 8 ตัวอักษร",
+        "passwordRequirement2": "อย่างน้อย 1 ตัวอักษรใหญ่",
+        "passwordRequirement3": "อย่างน้อย 1 ตัวอักษรเล็ก",
+        "passwordRequirement4": "อย่างน้อย 1 ตัวเลขหรืออักขระพิเศษ",
+        "passwordMatch": "รหัสผ่านตรงกัน",
+        "passwordMismatch": "รหัสผ่านไม่ตรงกัน",
+        "emailPlaceholder": ""
+      },
+      "title": "คำนำหน้าวิชาชีพ",
+      "selectTitle": "เลือกคำนำหน้า",
+      "titleSelected": "เลือกคำนำหน้าแล้ว",
+      "step2": {
+        "firstNameLabel": "ชื่อจริง",
+        "firstNamePlaceholder": "ชื่อจริง",
+        "firstNameHelper": "คุณต้องการให้เรียกชื่ออะไรในระหว่างการบำบัด",
+        "lastNameLabel": "นามสกุล",
+        "lastNamePlaceholder": "นามสกุล",
+        "lastNameHelper": "นามสกุลเต็มของคุณ",
+        "phoneLabel": "หมายเลขโทรศัพท์",
+        "phonePlaceholder": "+66 81 234 5678",
+        "phoneHelper": "สำหรับแจ้งเตือนนัดหมายและกรณีฉุกเฉิน",
+        "birthDateLabel": "วันเกิด",
+        "birthDateErrorTitle": "วันที่ไม่ถูกต้อง",
+        "birthDateErrorDescription": "โปรดป้อนวันที่ที่ถูกต้อง",
+        "birthDateHelper": "รูปแบบ: วว.ดด.ปปปป",
+        "birthDateErrorAge": "คุณต้องมีอายุอย่างน้อย 16 ปี",
+        "genderLabel": "เพศ",
+        "genderMale": "ชาย",
+        "genderFemale": "หญิง",
+        "cityLabel": "เมือง",
+        "cityPlaceholder": "เช่น กรุงเทพฯ",
+        "professionLabel": "อาชีพ",
+        "professionPlaceholder": "อาชีพปัจจุบัน (ไม่บังคับ)",
+        "bioLabel": "เกี่ยวกับฉัน",
+        "bioPlaceholder": "เล่าเกี่ยวกับตัวคุณสักหน่อย (สูงสุด 500 ตัวอักษร)",
+        "errorNameRequired": "ชื่อและนามสกุลจำเป็นต้องกรอก"
+      },
+      "step3Psychologist": {
+        "titleLabel": "ตำแหน่ง / ระดับการศึกษา",
+        "titlePlaceholder": "เช่น M.Sc., Ph.D., นักจิตวิทยาผู้เชี่ยวชาญ",
+        "titleSelected": "เลือกแล้ว",
+        "licenseLabel": "ใบอนุญาต / หมายเลขทะเบียน",
+        "licensePlaceholder": "หมายเลขใบอนุญาตอย่างเป็นทางการ",
+        "licenseHelper": "หมายเลขจากสมาคมหรือหน่วยงาน",
+        "licenseError": "โปรดป้อนหมายเลขใบอนุญาตที่ถูกต้อง",
+        "experienceLabel": "ประสบการณ์ (ปี)",
+        "experiencePlaceholder": "เช่น 7",
+        "educationLabel": "การศึกษา / การฝึกอบรม",
+        "educationPlaceholder": "เช่น จิตวิทยา มหาวิทยาลัยธรรมศาสตร์",
+        "specialtiesLabel": "ความเชี่ยวชาญ",
+        "approachesLabel": "วิธีการบำบัด",
+        "priceLabel": "ราคาเซสชัน (50 นาที)",
+        "pricePlaceholder": "เช่น 1,200 บาท",
+        "priceHelper": "รวมภาษี",
+        "aboutLabel": "เกี่ยวกับฉัน (แสดงให้ลูกค้าเห็น)",
+        "aboutPlaceholder": "อธิบายวิธีการ ประสบการณ์ และจุดเน้นของคุณ",
+        "errorProfessionalInfo": "โปรดกรอกข้อมูลวิชาชีพให้ครบถ้วน"
+      },
+      "registerButton": "สร้างบัญชี",
+      "successTitle": "ลงทะเบียนสำเร็จ!",
+      "successDescription": "โปรดตรวจสอบอีเมลเพื่อยืนยันบัญชี",
+      "errorTitle": "ข้อผิดพลาดในการลงทะเบียน",
+      "errorDescription": "มีบางอย่างผิดพลาด โปรดลองอีกครั้ง",
+      "hasAccount": "มีบัญชีอยู่แล้ว?",
+      "loginLink": "เข้าสู่ระบบ"
+    },
+    "roleSelect": {
+      "title": "คุณคือใคร?",
+      "description": "เลือกบทบาทของคุณเพื่อดำเนินการต่อ",
+      "patientTitle": "ลูกค้า",
+      "patientDescription": "ฉันกำลังมองหาการสนับสนุนด้านจิตใจ",
+      "psychologistTitle": "นักจิตวิทยา / นักบำบัด",
+      "psychologistDescription": "ฉันให้บริการบำบัด",
+      "continueButton": "ดำเนินการต่อ",
+      "hasAccount": "ลงทะเบียนแล้ว?",
+      "loginLink": "เข้าสู่ระบบเดี๋ยวนี้"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "คุณสมบัติ",
+      "howItWorks": "วิธีการทำงาน",
+      "psychologists": "นักจิตวิทยา",
+      "goToDashboard": "ไปที่แดชบอร์ด",
+      "login": "เข้าสู่ระบบ",
+      "register": "ลงทะเบียน",
+      "openMenu": "เปิดเมนู"
+    },
+    "hero": {
+      "badge": "บำบัดออนไลน์",
+      "title1": "การบำบัดจิตใจ",
+      "titleHighlight": "มืออาชีพ",
+      "title2": "ออนไลน์ – ปลอดภัย & เป็นส่วนตัว",
+      "description": "หานักจิตวิทยาที่เหมาะสมในไม่กี่นาที – จากที่ไหนก็ได้",
+      "ctaStart": "เริ่มต้นฟรี",
+      "ctaExplore": "สำรวจนักจิตวิทยา",
+      "feature1": "ผู้เชี่ยวชาญที่ผ่านการตรวจสอบ",
+      "feature2": "วิดีโอคอลที่ปลอดภัย",
+      "feature3": "เวลาที่ยืดหยุ่น"
+    },
+    "features": {
+      "title": "ทำไมต้องบำบัดออนไลน์?",
+      "description": "การบำบัดจิตใจสมัยใหม่ – สะดวกสบายจากบ้าน",
+      "videoCall": {
+        "title": "เซสชันวิดีโอ",
+        "description": "วิดีโอคอลที่ปลอดภัยด้วยการเข้ารหัสแบบสิ้นเชิง"
+      },
+      "privacy": {
+        "title": "ความเป็นส่วนตัวสูงสุด",
+        "description": "ข้อมูลของคุณได้รับการปกป้องตามกฎหมาย"
+      },
+      "easyBooking": {
+        "title": "จองง่าย",
+        "description": "จองเวลาที่เหมาะสมกับคุณ"
+      },
+      "messaging": {
+        "title": "ข้อความที่ปลอดภัย",
+        "description": "ติดต่อกันระหว่างเซสชัน"
+      },
+      "flexible": {
+        "title": "เวลาที่ยืดหยุ่น",
+        "description": "มีเวลาช่วงค่ำและวันหยุด"
+      },
+      "experts": {
+        "title": "ผู้เชี่ยวชาญที่มีคุณสมบัติ",
+        "description": "นักจิตวิทยาที่มีใบอนุญาตเท่านั้น"
+      }
+    },
+    "howItWorks": {
+      "title": "วิธีการทำงาน",
+      "description": "เริ่มต้นใน 3 ขั้นตอนง่ายๆ",
+      "step1": {
+        "title": "หานักจิตวิทยาที่เหมาะสม",
+        "description": "กรองตามความเชี่ยวชาญ ภาษา ราคา และเวลาว่าง"
+      },
+      "step2": {
+        "title": "จองและชำระเงิน",
+        "description": "ชำระเงินปลอดภัย – ยืนยันนัดหมายทันที"
+      },
+      "step3": {
+        "title": "เริ่มเซสชัน",
+        "description": "ผ่านวิดีโอคอล – จากบ้านของคุณ"
+      }
+    },
+    "cta": {
+      "title": "พร้อมสำหรับก้าวแรกหรือยัง?",
+      "description": "เริ่มต้นการเดินทางสู่สุขภาพจิตที่ดีขึ้นวันนี้",
+      "button": "ลงทะเบียนฟรี"
+    },
+    "footer": {
+      "privacy": "นโยบายความเป็นส่วนตัว",
+      "terms": "ข้อกำหนดการบริการ",
+      "kvkk": "KVKK (การคุ้มครองข้อมูลส่วนบุคคล)",
+      "copyright": "© {year} สงวนลิขสิทธิ์ทั้งหมด"
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "ยินดีต้อนรับกลับ, {{firstName}}",
+      "subtitle": "นี่คือภาพรวมของนัดหมายที่กำลังจะมาถึงและข้อความของคุณ",
+      "stats": {
+        "upcomingSessions": "เซสชันที่กำลังจะมาถึง",
+        "totalSessions": "เซสชันทั้งหมด",
+        "unreadMessages": "ข้อความที่ยังไม่ได้อ่าน"
+      },
+      "upcomingAppointments": {
+        "title": "นัดหมายที่กำลังจะมาถึง",
+        "viewAll": "ดูทั้งหมด",
+        "emptyTitle": "ไม่มีนัดหมายที่กำลังจะมาถึง",
+        "emptyDescription": "หานักจิตวิทยาและจองเซสชันแรกของคุณตอนนี้"
+      },
+      "quickActions": {
+        "title": "การดำเนินการด่วน",
+        "findPsychologist": {
+          "title": "หานักจิตวิทยา",
+          "description": "ค้นหาผู้เชี่ยวชาญที่เหมาะสม"
+        },
+        "messages": {
+          "title": "ข้อความ",
+          "description": "แชทกับนักจิตวิทยาของคุณ"
+        },
+        "appointments": {
+          "title": "นัดหมาย",
+          "description": "จัดการนัดหมายทั้งหมด"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "สวัสดี, {{firstName}}",
+      "pendingApproval": {
+        "title": "โปรไฟล์ของคุณกำลังถูกตรวจสอบ",
+        "description": "ทีมของเรากำลังตรวจสอบข้อมูลประจำตัวของคุณ ซึ่งปกติใช้เวลา 1-3 วันทำการ"
+      },
+      "stats": {
+        "todaySessions": "เซสชันวันนี้",
+        "weeklyEarnings": "รายได้รายสัปดาห์",
+        "totalClients": "ลูกค้าทั้งหมด",
+        "pendingAppointments": "คำร้องที่นัดหมายรออยู่"
+      },
+      "upcomingSessions": {
+        "title": "เซสชันที่กำลังจะมาถึง",
+        "viewAll": "ดูทั้งหมด",
+        "emptyTitle": "ไม่มีเซสชันที่กำลังจะมาถึง",
+        "emptyDescription": "เวลาว่างของคุณยังไม่ได้ถูกจอง"
+      },
+      "quickActions": {
+        "title": "การดำเนินการด่วน",
+        "availability": {
+          "title": "เวลาว่าง",
+          "description": "อัปเดตปฏิทิน"
+        },
+        "earnings": {
+          "title": "รายได้",
+          "description": "ดูการจ่ายเงินและสถิติ"
+        },
+        "profile": {
+          "title": "โปรไฟล์",
+          "description": "แก้ไขโปรไฟล์"
+        }
+      }
+    },
+    "admin": {
+      "title": "แดชบอร์ดแอดมิน",
+      "description": "ภาพรวมและการจัดการ",
+      "stats": {
+        "totalUsers": "ผู้ใช้ทั้งหมด",
+        "todaySessions": "เซสชันวันนี้",
+        "monthlyRevenue": "รายได้รายเดือน",
+        "pendingVerification": "การตรวจสอบที่รออยู่"
+      },
+      "pendingAlert": {
+        "text": "มีการตรวจสอบที่รออยู่ {count} รายการ",
+        "button": "ตรวจสอบตอนนี้"
+      },
+      "financialSummary": {
+        "title": "ภาพรวมทางการเงิน",
+        "grossRevenue": "รายได้รวม",
+        "vat": "ภาษีมูลค่าเพิ่ม",
+        "platformCommission": "ค่าธรรมเนียมแพลตฟอร์ม",
+        "psychologistPayments": "การจ่ายเงินให้นักจิตวิทยา"
+      },
+      "recentActivities": {
+        "title": "กิจกรรมล่าสุด",
+        "empty": "ไม่มีกิจกรรมล่าสุด"
+      },
+      "quickActions": {
+        "title": "การดำเนินการด่วน",
+        "verification": {
+          "title": "การตรวจสอบ",
+          "description": "ตรวจสอบคำร้องใหม่"
+        },
+        "users": {
+          "title": "ผู้ใช้",
+          "description": "จัดการบัญชีทั้งหมด"
+        },
+        "appointments": {
+          "title": "นัดหมาย",
+          "description": "ดูการจองทั้งหมด"
+        },
+        "payments": {
+          "title": "การชำระเงิน",
+          "description": "ตรวจสอบธุรกรรม"
+        },
+        "bankTransfers": {
+          "title": "การโอนเงิน",
+          "description": "จัดการการจ่ายเงิน"
+        }
+      },
+      "verificationSuccess": {
+        "title": "การตรวจสอบสำเร็จ",
+        "description": "บัญชีได้รับการอนุมัติแล้ว"
+      }
+    }
+  },
+  "appointments": {
+    "title": "นัดหมาย",
+    "description": "จัดการเซสชันที่กำลังจะมาถึงและที่ผ่านมา",
+    "tabs": {
+      "upcoming": "กำลังจะมาถึง",
+      "past": "ผ่านมาแล้ว",
+      "paymentReview": "ตรวจสอบการชำระเงิน"
+    },
+    "paymentReviewAlert": {
+      "title": "รอการยืนยันการชำระเงิน",
+      "description": "ลูกค้าได้ส่งการแจ้งชำระเงินสำหรับนัดหมายเหล่านี้ เซสชันจะได้รับการยืนยันหลังจากการตรวจสอบของแอดมิน"
+    },
+    "empty": {
+      "upcomingTitle": "ไม่มีนัดหมายที่กำลังจะมาถึง",
+      "upcomingDescription": "จองเซสชันถัดไปของคุณตอนนี้",
+      "pastTitle": "ยังไม่มีเซสชันที่ผ่านมา",
+      "pastDescription": "เซสชันที่เสร็จสิ้นจะปรากฏที่นี่"
+    },
+    "cancelDialog": {
+      "title": "ยกเลิกนัดหมาย?",
+      "description": "คุณแน่ใจหรือไม่ที่จะยกเลิก? การกระทำนี้ไม่สามารถยกเลิกได้",
+      "cancelButton": "กลับ",
+      "confirmButton": "ยกเลิกนัดหมาย",
+      "confirmButtonLoading": "กำลังยกเลิก..."
+    },
+    "cancelSuccess": {
+      "title": "ยกเลิกนัดหมายสำเร็จ",
+      "description": "นัดหมายถูกยกเลิกเรียบร้อยแล้ว"
+    },
+    "status": {
+      "reserved": "จองแล้ว",
+      "pending_payment": "รอชำระเงิน",
+      "payment_review": "ตรวจสอบการชำระเงิน",
+      "confirmed": "ยืนยันแล้ว",
+      "ready": "พร้อม",
+      "in_session": "กำลังดำเนินการ",
+      "completed": "เสร็จสิ้น",
+      "cancelled": "ยกเลิกแล้ว",
+      "expired": "หมดอายุ",
+      "refunded": "คืนเงินแล้ว",
+      "no_show": "ไม่ปรากฏตัว",
+      "rejected": "ปฏิเสธ"
+    },
+    "joinSession": "เข้าร่วมเซสชัน",
+    "joinDisabled": "เซสชันเริ่มใน {minutes} นาที",
+    "patientFallback": "ลูกค้าไม่พร้อมใช้งาน",
+    "relative": {
+      "past": "ผ่านไปแล้ว",
+      "now": "ตอนนี้",
+      "inMinutes": "อีก {{count}} นาที",
+      "inHours": "อีก {{count}} ชั่วโมง",
+      "inDays": "อีก {{count}} วัน",
+      "tomorrow": "พรุ่งนี้"
+    },
+    "videoCall": {
+      "sessionNotStarted": "เซสชันยังไม่เริ่ม",
+      "sessionEnded": "เซสชันสิ้นสุดแล้ว",
+      "canJoin": "คุณสามารถเข้าร่วมเซสชันได้",
+      "invalidAppointment": "ไม่พบข้อมูลการนัดหมาย",
+      "invalidDate": "วันที่นัดหมายไม่ถูกต้อง",
+      "notConfirmed": "การนัดหมายยังไม่ได้รับการยืนยัน",
+      "paymentPending": "รอการชำระเงิน",
+      "paymentReview": "กำลังตรวจสอบการชำระเงิน",
+      "pendingApproval": "รอการอนุมัติ",
+      "cancelled": "ยกเลิกการนัดหมายแล้ว",
+      "expired": "การนัดหมายหมดอายุ",
+      "completed": "เซสชันเสร็จสมบูรณ์",
+      "noShow": "ไม่ได้เข้าร่วม",
+      "rejected": "ปฏิเสธการนัดหมาย",
+      "refunded": "คืนเงินแล้ว",
+      "notEligible": "ไม่มีสิทธิ์เข้าเซสชัน",
+      "clickToJoin": "คลิกเพื่อเข้าร่วมเซสชัน",
+      "startsInDays": "เซสชันเริ่มในอีก {{count}} วัน",
+      "startsInHours": "เซสชันเริ่มในอีก {{count}} ชั่วโมง",
+      "startsInMinutes": "เซสชันเริ่มในอีก {{count}} นาที",
+      "activeBeforeStart": "เปิดใช้งานก่อนเซสชันเริ่ม {{minutes}} นาที",
+      "cannotJoinEnded": "ไม่สามารถเข้าร่วมได้ เวลาเซสชันผ่านไปแล้ว",
+      "cannotJoin": "ไม่สามารถเข้าร่วมเซสชันได้",
+      "now": "ตอนนี้",
+      "inDays": "อีก {{count}} วัน",
+      "inHours": "อีก {{count}} ชั่วโมง",
+      "inMinutes": "อีก {{count}} นาที"
+    }
+  },
+  "weekdays": {
+    "sunday": "อาทิตย์",
+    "monday": "จันทร์",
+    "tuesday": "อังคาร",
+    "wednesday": "พุธ",
+    "thursday": "พฤหัสบดี",
+    "friday": "ศุกร์",
+    "saturday": "เสาร์"
+  },
+  "messages": {
+    "title": "ข้อความ",
+    "searchPlaceholder": "ค้นหาข้อความหรือบุคคล...",
+    "empty": "ยังไม่มีบทสนทนา",
+    "noResults": "ไม่พบบทสนทนาที่ตรงกัน",
+    "selectConversation": {
+      "title": "เลือกบทสนทนา",
+      "description": "คลิกบทสนทนาในรายการเพื่อเริ่มแชท"
+    },
+    "noMessages": "ยังไม่มีข้อความในบทสนทนานี้",
+    "yesterday": "เมื่อวาน",
+    "today": "วันนี้",
+    "yesterdayLabel": "เมื่อวาน",
+    "inputPlaceholder": "พิมพ์ข้อความ...",
+    "reportAction": "รายงานบทสนทนา"
+  },
+  "payment": {
+    "backButton": "กลับ",
+    "title": "การชำระเงิน",
+    "description": "การชำระเงินที่ปลอดภัยสำหรับเซสชันของคุณ",
+    "orderSummary": {
+      "title": "สรุปคำสั่ง",
+      "description": "เซสชันของคุณกับ",
+      "psychologist": "นักจิตวิทยา",
+      "dateTime": "วันที่และเวลา",
+      "duration": "ระยะเวลา",
+      "durationValue": "{minutes} นาที",
+      "total": "รวม"
+    },
+    "paymentInfo": {
+      "title": "รายละเอียดการชำระเงิน",
+      "description": "สแกน QR Code ด้วยแอปธนาคารของคุณ",
+      "qrGenerating": "กำลังสร้าง QR Code...",
+      "qrTimer": "โค้ดนี้จะหมดอายุใน {seconds} วินาที",
+      "waitingConfirmation": "รอการยืนยันการชำระเงิน...",
+      "completeButton": "ฉันชำระเงินเสร็จแล้ว",
+      "testHelper": "โหมดทดสอบ: ใช้ข้อมูลทดสอบ",
+      "referenceCode": "รหัสอ้างอิง",
+      "referenceCodeLabel": "รหัสอ้างอิง",
+      "amount": "จำนวนเงิน"
+    },
+    "instructions": {
+      "title": "วิธีชำระเงินผ่านการโอนธนาคาร",
+      "step1": "เปิดแอปธนาคารของคุณ",
+      "step2": "สแกน QR หรือคัดลอกรายละเอียด",
+      "step3": "ทำการโอนเงิน",
+      "step4": "ยืนยันการชำระเงิน",
+      "step5": "เซสชันจะถูกเปิดใช้งานโดยอัตโนมัติ"
+    },
+    "success": {
+      "title": "ชำระเงินสำเร็จ!",
+      "confirmed": "การชำระเงินของคุณได้รับการยืนยัน",
+      "redirecting": "กำลังนำทางไปยังแดชบอร์ด...",
+      "toastTitle": "ชำระเงินยืนยันแล้ว",
+      "toastDescription": "เซสชันของคุณถูกจองแล้ว!"
+    },
+    "error": {
+      "notFound": "ไม่พบการชำระเงิน",
+      "notFoundDescription": "หน้าชำระเงินนี้ไม่มีอยู่หรือหมดอายุแล้ว",
+      "backLink": "กลับไปที่นัดหมาย",
+      "noPaymentInfo": "ไม่มีข้อมูลการชำระเงิน",
+      "paymentFailed": "ชำระเงินล้มเหลว"
+    },
+    "clipboard": {
+      "copied": "คัดลอกแล้ว!",
+      "copiedDescription": "คัดลอกไปยังคลิปบอร์ด",
+      "copyFailed": "คัดลอกล้มเหลว",
+      "copyFailedDescription": "โปรดคัดลอกด้วยตนเอง"
+    }
+  },
+  "availability": {
+    "title": "เวลาว่าง",
+    "description": "กำหนดเวลาที่คุณว่างสำหรับเซสชัน",
+    "days": {
+      "monday": "จันทร์",
+      "tuesday": "อังคาร",
+      "wednesday": "พุธ",
+      "thursday": "พฤหัสบดี",
+      "friday": "ศุกร์",
+      "saturday": "เสาร์",
+      "sunday": "อาทิตย์"
+    },
+    "saveSuccess": {
+      "title": "บันทึกเวลาว่างสำเร็จ",
+      "description": "เวลาว่างใหม่ของคุณใช้งานได้แล้ว"
+    },
+    "saveError": "ข้อผิดพลาดในการบันทึกเวลาว่าง"
+  },
+  "profile": {
+    "title": "โปรไฟล์",
+    "description": "จัดการข้อมูลส่วนตัวและข้อมูลวิชาชีพของคุณ",
+    "personalInfo": {
+      "title": "ข้อมูลส่วนตัว",
+      "description": "มองเห็นได้เฉพาะคุณและทีมสนับสนุน",
+      "firstName": "ชื่อจริง",
+      "lastName": "นามสกุล",
+      "email": "อีเมล",
+      "phone": "โทรศัพท์",
+      "phonePlaceholder": "+66 ...",
+      "birthDate": "วันเกิด",
+      "city": "เมือง",
+      "about": "เกี่ยวกับฉัน",
+      "aboutPlaceholder": "คำอธิบายสั้นๆ (แสดงให้ลูกค้าเห็น)",
+      "saveButton": "บันทึกการเปลี่ยนแปลง"
+    },
+    "professionalInfo": {
+      "title": "ข้อมูลวิชาชีพ",
+      "description": "แสดงให้ลูกค้าที่มีศักยภาพเห็น",
+      "photo": "รูปโปรไฟล์",
+      "uploadButton": "อัปโหลดรูปภาพ",
+      "uploadHelper": "JPG, PNG • สูงสุด 5 MB",
+      "specialties": "ความเชี่ยวชาญ",
+      "specialtiesCount": "{{count}} ที่เลือก",
+      "approaches": "วิธีการ",
+      "approachesCount": "{{count}} ที่เลือก",
+      "saveButton": "บันทึกข้อมูลวิชาชีพ"
+    },
+    "languageManagement": {
+      "title": "จัดการภาษา",
+      "description": "อัปเดตภาษาที่คุณให้บริการบำบัด",
+      "label": "ภาษาบำบัด",
+      "selectedCount": "{{count}} ภาษาที่เลือก",
+      "saveButton": "บันทึกภาษา",
+      "errorMinLanguage": "ต้องการอย่างน้อยหนึ่งภาษา",
+      "saveError": "ข้อผิดพลาดในการบันทึก",
+      "saveSuccess": "อัปเดตภาษาสำเร็จ"
+    },
+    "saveSuccess": {
+      "title": "อัปเดตโปรไฟล์",
+      "description": "บันทึกการเปลี่ยนแปลงของคุณแล้ว"
+    },
+    "saveError": "ข้อผิดพลาดในการบันทึกโปรไฟล์",
+    "professionalSaveError": "ข้อผิดพลาดในการบันทึกข้อมูลวิชาชีพ",
+    "uploadError": {
+      "sizeTooLarge": "ไฟล์ใหญ่เกินไป (สูงสุด 5 MB)",
+      "invalidType": "อนุญาตเฉพาะ JPG หรือ PNG",
+      "uploadFailed": "อัปโหลดล้มเหลว"
+    },
+    "experience": "ประสบการณ์",
+    "sessionDuration": "ระยะเวลาเซสชัน",
+    "languages": "ภาษา",
+    "about": "เกี่ยวกับ",
+    "education": "การศึกษา",
+    "certifications": "ใบรับรอง"
+  },
+  "navigation": {
+    "patient": {
+      "home": "หน้าหลัก",
+      "findPsychologist": "หานักจิตวิทยา",
+      "appointments": "นัดหมาย",
+      "messages": "ข้อความ",
+      "paymentHistory": "ประวัติการชำระเงิน",
+      "profile": "โปรไฟล์",
+      "settings": "การตั้งค่า",
+      "logout": "ออกจากระบบ"
+    },
+    "psychologist": {
+      "home": "แดชบอร์ด",
+      "appointments": "นัดหมาย",
+      "availability": "เวลาว่าง",
+      "messages": "ข้อความ",
+      "sessionNotes": "บันทึกเซสชัน",
+      "earnings": "รายได้",
+      "profile": "โปรไฟล์",
+      "settings": "การตั้งค่า",
+      "logout": "ออกจากระบบ"
+    },
+    "admin": {
+      "overview": "ภาพรวม",
+      "users": "ผู้ใช้",
+      "verification": "การตรวจสอบ",
+      "appointments": "นัดหมาย",
+      "payments": "การชำระเงิน",
+      "auditLog": "บันทึกตรวจสอบ",
+      "settings": "การตั้งค่า",
+      "profile": "โปรไฟล์",
+      "logout": "ออกจากระบบ"
+    },
+    "roles": {
+      "admin": "ผู้ดูแลระบบ",
+      "psychologist": "นักจิตวิทยา",
+      "patient": "ลูกค้า"
+    },
+    "sidebarTitle": "เมนู",
+    "menuLabel": "เมนู"
+  },
+  "cities": {
+    "adana": "อดานา",
+    "ankara": "อังการา",
+    "antalya": "อันตัลยา",
+    "bursa": "บูร์ซา",
+    "denizli": "เดนิซลี",
+    "diyarbakir": "ดีอาร์บาคีร์",
+    "eskisehir": "เอสกิเชฮีร์",
+    "gaziantep": "กาซีอันเตป",
+    "istanbul": "อิสตันบูล",
+    "izmir": "อิซมีร์",
+    "kayseri": "ไกเซรี",
+    "kocaeli": "โกจาเอลี",
+    "konya": "กอนยา",
+    "mersin": "เมอร์ซิน",
+    "mugla": "มูกลา",
+    "samsun": "ซัมซุน",
+    "trabzon": "ตราโบซอน",
+    "other": "อื่นๆ"
+  },
+  "specialties": {
+    "individual": "การบำบัดรายบุคคล",
+    "couples": "การบำบัดคู่รัก",
+    "family": "การบำบัดครอบครัว",
+    "childAdolescent": "การบำบัดเด็กและวัยรุ่น",
+    "depression": "ภาวะซึมเศร้า",
+    "anxiety": "โรควิตกกังวล",
+    "trauma": "บาดแผลและ PTSD",
+    "ocd": "OCD (โรคย้ำคิดย้ำทำ)",
+    "eatingDisorders": "โรคการกินผิดปกติ",
+    "addiction": "การเสพติดและการใช้สาร",
+    "careerCounseling": "การให้คำปรึกษาด้านอาชีพ",
+    "stressManagement": "การจัดการความเครียด",
+    "angerManagement": "การจัดการความโกรธ"
+  },
+  "therapyApproaches": {
+    "cbt": "การบำบัดพฤติกรรมทางความคิด (CBT)",
+    "psychodynamic": "การบำบัดจิตวิเคราะห์",
+    "emdr": "EMDR (การ desensitization และ reprocessing ด้วยการเคลื่อนไหวดวงตา)",
+    "schema": "การบำบัด schema",
+    "act": "การบำบัดการยอมรับและมุ่งมั่น (ACT)",
+    "gestalt": "การบำบัดเกสตัลต์",
+    "solutionFocused": "การบำบัดมุ่งเน้นทางออก",
+    "existential": "การบำบัดแนวมีอยู่จริง",
+    "mindfulness": "การบำบัดแบบ mindfulness"
+  },
+  "card": {
+    "sessionFee": "ค่าบริการ",
+    "fee": "ค่าใช้จ่าย",
+    "bookAppointment": "จองนัดหมาย",
+    "priceNotSpecified": "ไม่ระบุ",
+    "experience": {
+      "yearsLong": "ประสบการณ์ {{count}} ปี",
+      "yearsShort": "{{count}} ปี"
+    },
+    "selectedAppointment": "นัดหมายที่เลือก",
+    "reservationWarning": "การจองจะถูกยกเลิกหากไม่ชำระภายใน 10 นาที"
+  },
+  "duration": {
+    "minutesShort": "นาที",
+    "minutesLong": "{{count}} นาที"
+  },
+  "titles": {
+    "psychologist": "นักจิตวิทยา",
+    "clinicalPsychologist": "นักจิตวิทยาคลินิก",
+    "expertPsychologist": "นักจิตวิทยาผู้เชี่ยวชาญ",
+    "expertClinicalPsychologist": "นักจิตวิทยาคลินิกผู้เชี่ยวชาญ",
+    "psychologicalCounselor": "ที่ปรึกษาด้านจิตวิทยา",
+    "psychotherapist": "นักจิตบำบัด",
+    "dr": "ดร.",
+    "assocProf": "ผศ. ดร.",
+    "prof": "ศ. ดร."
+  },
+  "legal": {
+    "kvkk": {
+      "title": "KVKK (กฎหมายคุ้มครองข้อมูลส่วนบุคคล)"
+    },
+    "privacy": {
+      "title": "นโยบายความเป็นส่วนตัว"
+    },
+    "terms": {
+      "title": "ข้อกำหนดการบริการ"
+    },
+    "refund": {
+      "title": "นโยบายการคืนเงิน"
+    }
+  },
+  "sessionNotes": {
+    "title": "บันทึกเซสชัน",
+    "description": "สร้างและจัดการบันทึกสำหรับเซสชันของคุณ",
+    "addNote": "เพิ่มบันทึก",
+    "editNote": "แก้ไขบันทึก",
+    "createNote": "สร้างบันทึก",
+    "saveNote": "บันทึก",
+    "notePlaceholder": "เขียนบันทึกเซสชันของคุณ...",
+    "private": "ส่วนตัว",
+    "sharedWithClient": "แชร์กับลูกค้า",
+    "noNotes": "ยังไม่มีบันทึก",
+    "noCompletedSessions": "ยังไม่มีเซสชันที่เสร็จสิ้น",
+    "noteExists": "มีบันทึก",
+    "noNote": "ไม่มีบันทึก",
+    "sessionWith": "เซสชันกับ",
+    "status": "สถานะ",
+    "noteContent": "บันทึกเซสชัน",
+    "saveSuccess": "บันทึกสำเร็จ",
+    "updateSuccess": "อัปเดตบันทึกสำเร็จ",
+    "saveError": "เกิดข้อผิดพลาดในการบันทึก",
+    "emptyNote": "เนื้อหาบันทึกไม่สามารถเป็นว่างได้"
+  },
+  "earnings": {
+    "title": "รายได้",
+    "description": "ดูรายได้จากเซสชันที่เสร็จสิ้นของคุณ",
+    "totalEarnings": "รายได้รวม",
+    "thisMonth": "เดือนนี้",
+    "pending": "รอดำเนินการ",
+    "totalSessions": "เซสชันทั้งหมด",
+    "earningsDetails": "รายละเอียดรายได้",
+    "completed": "เสร็จสิ้น",
+    "noEarnings": "ยังไม่มีรายได้",
+    "noEarningsDescription": "รายได้จะปรากฏที่นี่หลังจากเซสชันเสร็จสิ้น",
+    "sessionDetails": "รายละเอียดเซสชัน",
+    "earned": "ได้รับ",
+    "pendingPayout": "รอการจ่ายเงิน",
+    "paid": "จ่ายแล้ว",
+    "grossAmount": "รวม",
+    "vat": "ภาษี",
+    "platformFee": "ค่าธรรมเนียม",
+    "netEarnings": "รายได้สุทธิ",
+    "paidOn": "จ่ายเมื่อ"
+  },
+  "psychologists": {
+    "title": "ค้นหานักจิตวิทยา",
+    "subtitle": "ค้นหาผู้เชี่ยวชาญที่เหมาะสมและนัดหมาย",
+    "searchPlaceholder": "ค้นหาตามชื่อหรือความเชี่ยวชาญ...",
+    "specialtyPlaceholder": "ความเชี่ยวชาญ",
+    "priceRangePlaceholder": "ช่วงราคา",
+    "priceRanges": {
+      "low": "0 - 500 บาท",
+      "medium": "500 - 1000 บาท",
+      "high": "1000 - 2000 บาท",
+      "veryHigh": "2000 บาท +"
+    },
+    "clearFilters": "ล้างตัวกรอง",
+    "filters": {
+      "search": "ค้นหา: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} บาท"
+    },
+    "empty": {
+      "title": "ไม่พบนักจิตวิทยา",
+      "description": "ลองเปลี่ยนเกณฑ์การค้นหา",
+      "buttonText": "ล้างตัวกรอง"
+    },
+    "loginButton": "เข้าสู่ระบบ"
+  },
+  "paymentHistory": {
+    "title": "ประวัติการชำระเงิน",
+    "subtitle": "ดูการจองและธุรกรรมการชำระเงินทั้งหมด",
+    "table": {
+      "psychologist": "นักจิตวิทยา",
+      "appointmentDate": "วันที่นัดหมาย",
+      "amount": "จำนวนเงิน",
+      "vat": "ภาษีมูลค่าเพิ่ม",
+      "total": "ยอดรวม",
+      "status": "สถานะ",
+      "netAmount": "ไม่รวมภาษี",
+      "totalAmount": "ยอดรวมทั้งหมด"
+    },
+    "reservedUntil": "จองจนถึง {time}",
+    "paymentPending": "รอการชำระเงิน",
+    "paymentReview": "กำลังตรวจสอบการชำระเงิน",
+    "empty": "คุณยังไม่มีประวัติการชำระเงิน",
+    "statuses": {
+      "reserved": "จองแล้ว",
+      "payment_pending": "รอการชำระเงิน",
+      "payment_review": "กำลังตรวจสอบการชำระเงิน",
+      "completed": "เสร็จสมบูรณ์",
+      "pending": "รอดำเนินการ",
+      "failed": "ล้มเหลว",
+      "refunded": "คืนเงินแล้ว",
+      "refund_pending": "รอการคืนเงิน",
+      "refund_approved": "อนุมัติการคืนเงิน",
+      "refund_processed": "คืนเงินแล้ว",
+      "refund_rejected": "ปฏิเสธการคืนเงิน"
+    }
+  },
+  "settings": {
+    "title": "การตั้งค่า",
+    "subtitle": "จัดการการตั้งค่าบัญชีและความชอบของคุณ",
+    "language": "ภาษาที่แสดงผล",
+    "languageDesc": "เลือกภาษาสำหรับอินเทอร์เฟซของแอปพลิเคชัน",
+    "selectLanguage": "เลือกภาษา",
+    "languageChanged": "เปลี่ยนภาษาแล้ว",
+    "languageChangedDesc": "ภาษาของอินเทอร์เฟซได้รับการเปลี่ยนแปลงเรียบร้อยแล้ว",
+    "confirmLanguageChange": "คุณต้องการบันทึกการเปลี่ยนแปลงหรือไม่?",
+    "confirmLanguageChangeDesc": "ภาษาของเว็บไซต์จะถูกแปลเป็นภาษาที่คุณเลือก คุณยืนยันการดำเนินการนี้หรือไม่?",
+    "notifications": "การแจ้งเตือน",
+    "notificationsDesc": "จัดการความชอบการแจ้งเตือนของคุณ",
+    "emailNotifications": "การแจ้งเตือนทางอีเมล",
+    "emailNotificationsDesc": "รับอีเมลสำหรับการอัปเดตที่สำคัญ",
+    "appointmentReminders": "การเตือนนัดหมาย",
+    "appointmentRemindersDesc": "รับการแจ้งเตือนเกี่ยวกับนัดหมายที่กำลังจะมาถึง",
+    "messageNotifications": "การแจ้งเตือนข้อความ",
+    "messageNotificationsDesc": "รับการแจ้งเตือนสำหรับข้อความใหม่",
+    "newAppointmentRequests": "คำขอนัดหมายใหม่",
+    "newAppointmentRequestsDesc": "รับการแจ้งเตือนเกี่ยวกับคำขอนัดหมายใหม่",
+    "privacy": "ความเป็นส่วนตัว",
+    "privacyDesc": "ควบคุมการตั้งค่าความเป็นส่วนตัวของคุณ",
+    "showProfile": "แสดงโปรไฟล์",
+    "showProfileDesc": "ทำให้โปรไฟล์ของคุณมองเห็นได้สำหรับผู้ป่วย",
+    "showOnlineStatus": "แสดงสถานะออนไลน์",
+    "showOnlineStatusDesc": "แสดงสถานะออนไลน์ของคุณให้ผู้ใช้อื่นเห็น",
+    "showLastSeen": "แสดงเวลาที่เห็นล่าสุด",
+    "showLastSeenDesc": "แชร์เวลาที่คุณเข้าใช้ล่าสุด",
+    "security": "ความปลอดภัย",
+    "securityDesc": "การตั้งค่าความปลอดภัยของบัญชี",
+    "twoFactor": "การยืนยันตัวตนแบบสองปัจจัย",
+    "twoFactorDesc": "เพิ่มชั้นความปลอดภัยเพิ่มเติมให้กับบัญชีของคุณ",
+    "changePassword": "เปลี่ยนรหัสผ่าน",
+    "changePasswordDesc": "ป้อนรหัสผ่านปัจจุบันและเลือกรหัสผ่านใหม่เพื่อความปลอดภัยของคุณ",
+    "currentPassword": "รหัสผ่านปัจจุบัน",
+    "enterCurrentPassword": "ป้อนรหัสผ่านปัจจุบันของคุณ",
+    "newPassword": "รหัสผ่านใหม่",
+    "enterNewPassword": "ป้อนรหัสผ่านใหม่ของคุณ",
+    "confirmNewPassword": "ยืนยันรหัสผ่านใหม่",
+    "enterNewPasswordAgain": "ป้อนรหัสผ่านใหม่ของคุณอีกครั้ง",
+    "passwordMinLength": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+    "passwordMinLengthHint": "อย่างน้อย 6 ตัวอักษร",
+    "passwordsDoNotMatch": "รหัสผ่านไม่ตรงกัน",
+    "newPasswordMustBeDifferent": "รหัสผ่านใหม่ต้องแตกต่างจากรหัสผ่านปัจจุบัน",
+    "allPasswordFieldsRequired": "ต้องกรอกข้อมูลในทุกช่อง",
+    "passwordChanged": "เปลี่ยนรหัสผ่านแล้ว",
+    "passwordChangedDesc": "รหัสผ่านของคุณได้รับการอัปเดตเรียบร้อยแล้ว",
+    "passwordChangeError": "ไม่สามารถเปลี่ยนรหัสผ่านได้",
+    "saveChanges": "บันทึกการเปลี่ยนแปลง",
+    "savedTitle": "บันทึกการตั้งค่าแล้ว",
+    "savedDesc": "ความชอบของคุณได้รับการอัปเดตเรียบร้อยแล้ว",
+    "notificationsSaved": "บันทึกความชอบการแจ้งเตือนแล้ว",
+    "saveError": "ไม่สามารถบันทึกการตั้งค่าได้"
+  },
+  "twoFactor": {
+    "title": "การยืนยันตัวตนแบบสองปัจจัย",
+    "description": "ปกป้องบัญชีของคุณด้วย Google Authenticator",
+    "enable": "เปิดใช้งาน",
+    "disable": "ปิดใช้งาน",
+    "setupTitle": "ตั้งค่าการยืนยันตัวตนแบบสองปัจจัย",
+    "scanQR": "สแกน QR Code ด้วยแอป Google Authenticator หรือ Authy",
+    "cantScanQR": "ไม่สามารถสแกน QR Code ได้? ป้อนด้วยตนเอง:",
+    "verificationCode": "รหัสยืนยัน",
+    "enter6DigitFromApp": "ป้อนรหัส 6 หลักที่แสดงในแอปของคุณ",
+    "verifyAndEnable": "ยืนยันและเปิดใช้งาน",
+    "disableTitle": "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย",
+    "disableDescription": "ป้อนรหัสผ่านและรหัสยืนยันสำหรับการดำเนินการนี้",
+    "password": "รหัสผ่าน",
+    "setupError": "ตั้งค่า 2FA ล้มเหลว",
+    "enableSuccess": "เปิดใช้งานการยืนยันตัวตนแบบสองปัจจัยสำเร็จ",
+    "invalidCode": "รหัสยืนยันไม่ถูกต้อง",
+    "disableSuccess": "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัยสำเร็จ",
+    "disableError": "ปิดใช้งาน 2FA ล้มเหลว",
+    "enter6Digit": "โปรดป้อนรหัส 6 หลักที่ถูกต้อง",
+    "enterPasswordAnd6Digit": "โปรดป้อนรหัสผ่านและรหัส 6 หลักของคุณ",
+    "secretCopied": "คัดลอก Secret ไปยัง clipboard แล้ว"
+  }
+}

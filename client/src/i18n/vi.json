@@ -1,0 +1,840 @@
+{
+  "common": {
+    "save": "Lưu",
+    "saving": "Đang lưu",
+    "cancel": "Hủy",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "submit": "Gửi",
+    "continue": "Tiếp tục",
+    "close": "Đóng",
+    "loading": "Đang tải...",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "viewAll": "Xem tất cả",
+    "noResults": "Không tìm thấy kết quả",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "yes": "Có",
+    "no": "Không",
+    "or": "hoặc",
+    "and": "và",
+    "selected": "đã chọn",
+    "selectedCount": "{{count}} đã chọn",
+    "copied": "Đã sao chép!",
+    "copyFailed": "Sao chép thất bại",
+    "minuteShort": "phút"
+  },
+  "auth": {
+    "login": {
+      "title": "Đăng nhập",
+      "description": "Đăng nhập để quản lý phiên và tin nhắn của bạn.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "email@bạn.com",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceholder": "Nhập mật khẩu",
+      "loginButton": "Đăng nhập",
+      "noAccount": "Chưa có tài khoản?",
+      "registerLink": "Đăng ký",
+      "successTitle": "Chào mừng quay lại!",
+      "successDescription": "Đăng nhập thành công.",
+      "errorTitle": "Đăng nhập thất bại",
+      "errorDescription": "Email hoặc mật khẩu sai. Vui lòng thử lại."
+    },
+    "register": {
+      "titlePatient": "Đăng ký làm Khách hàng",
+      "titlePsychologist": "Đăng ký làm Nhà tâm lý học",
+      "stepIndicator": "Bước {current} / {total}",
+      "step1": {
+        "languageLabelPsychologist": "Bạn nói ngôn ngữ nào?",
+        "languageLabelPatient": "Bạn muốn liệu pháp bằng ngôn ngữ nào?",
+        "languageHelperPsychologist": "Chọn tất cả ngôn ngữ bạn có thể cung cấp phiên.",
+        "languageHelperPatient": "Chọn tất cả ngôn ngữ bạn cảm thấy thoải mái.",
+        "languagesSelectedCount": "{{count}} ngôn ngữ đã chọn",
+        "languageSelected": "ngôn ngữ đã chọn",
+        "errorNoLanguage": "Vui lòng chọn ít nhất một ngôn ngữ",
+        "errorNoTherapyLanguage": "Vui lòng chọn ít nhất một ngôn ngữ liệu pháp",
+        "emailLabel": "Địa chỉ email",
+        "usernameLabel": "Tên người dùng",
+        "usernamePlaceholder": "Tên người dùng (tối thiểu 4 ký tự)",
+        "passwordLabel": "Mật khẩu",
+        "passwordPlaceholder": "Tạo mật khẩu an toàn",
+        "passwordConfirmLabel": "Xác nhận mật khẩu",
+        "passwordConfirmPlaceholder": "Nhập lại mật khẩu",
+        "errorAllFields": "Vui lòng điền đầy đủ các trường",
+        "errorInvalidEmail": "Email không hợp lệ",
+        "errorEmailFormat": "Vui lòng nhập địa chỉ email hợp lệ",
+        "validEmail": "Email hợp lệ",
+        "errorUsernameLength": "Tên người dùng phải ít nhất 4 ký tự",
+        "usernameRequirement1": "Chỉ cho phép chữ cái, số và dấu gạch dưới",
+        "usernameRequirement2": "Không có ký tự đặc biệt trừ _",
+        "errorPasswordFormat": "Mật khẩu không đáp ứng yêu cầu",
+        "passwordRequirement1": "Ít nhất 8 ký tự",
+        "passwordRequirement2": "Ít nhất 1 chữ cái viết hoa",
+        "passwordRequirement3": "Ít nhất 1 chữ cái viết thường",
+        "passwordRequirement4": "Ít nhất 1 số hoặc ký tự đặc biệt",
+        "passwordMatch": "Mật khẩu khớp",
+        "passwordMismatch": "Mật khẩu không khớp",
+        "emailPlaceholder": ""
+      },
+      "title": "Chức danh nghề nghiệp",
+      "selectTitle": "Chọn chức danh",
+      "titleSelected": "Đã chọn chức danh",
+      "step2": {
+        "firstNameLabel": "Tên",
+        "firstNamePlaceholder": "Tên",
+        "firstNameHelper": "Bạn muốn được gọi như thế nào trong liệu pháp",
+        "lastNameLabel": "Họ",
+        "lastNamePlaceholder": "Họ",
+        "lastNameHelper": "Họ đầy đủ của bạn",
+        "phoneLabel": "Số điện thoại",
+        "phonePlaceholder": "+84 123 456 789",
+        "phoneHelper": "Để nhắc nhở lịch hẹn và trường hợp khẩn cấp",
+        "birthDateLabel": "Ngày sinh",
+        "birthDateErrorTitle": "Ngày không hợp lệ",
+        "birthDateErrorDescription": "Vui lòng nhập ngày hợp lệ",
+        "birthDateHelper": "Định dạng: DD.MM.YYYY",
+        "birthDateErrorAge": "Bạn phải ít nhất 16 tuổi",
+        "genderLabel": "Giới tính",
+        "genderMale": "Nam",
+        "genderFemale": "Nữ",
+        "cityLabel": "Thành phố",
+        "cityPlaceholder": "ví dụ: Hà Nội",
+        "professionLabel": "Nghề nghiệp",
+        "professionPlaceholder": "Nghề nghiệp hiện tại (tùy chọn)",
+        "bioLabel": "Về tôi",
+        "bioPlaceholder": "Kể chút về bản thân (tối đa 500 ký tự)",
+        "errorNameRequired": "Tên và họ là bắt buộc"
+      },
+      "step3Psychologist": {
+        "titleLabel": "Chức danh / Bằng cấp",
+        "titlePlaceholder": "ví dụ: ThS., TS., Chuyên gia",
+        "titleSelected": "Đã chọn",
+        "licenseLabel": "Giấy phép / Số đăng ký",
+        "licensePlaceholder": "Số giấy phép chính thức của bạn",
+        "licenseHelper": "Số từ hiệp hội/chamber",
+        "licenseError": "Vui lòng nhập số giấy phép hợp lệ",
+        "experienceLabel": "Số năm kinh nghiệm",
+        "experiencePlaceholder": "ví dụ: 7",
+        "educationLabel": "Học vấn / Đào tạo",
+        "educationPlaceholder": "ví dụ: Tâm lý học, Đại học Quốc gia Hà Nội",
+        "specialtiesLabel": "Chuyên môn",
+        "approachesLabel": "Phương pháp trị liệu",
+        "priceLabel": "Giá phiên (50 phút)",
+        "pricePlaceholder": "ví dụ: 1.200.000 ₫",
+        "priceHelper": "Bao gồm thuế",
+        "aboutLabel": "Về tôi (hiển thị cho khách hàng)",
+        "aboutPlaceholder": "Mô tả cách tiếp cận, kinh nghiệm và lĩnh vực tập trung của bạn",
+        "errorProfessionalInfo": "Vui lòng hoàn tất thông tin chuyên môn"
+      },
+      "registerButton": "Tạo tài khoản",
+      "successTitle": "Đăng ký thành công!",
+      "successDescription": "Vui lòng kiểm tra email để xác minh tài khoản.",
+      "errorTitle": "Lỗi đăng ký",
+      "errorDescription": "Có lỗi xảy ra. Vui lòng thử lại.",
+      "hasAccount": "Đã có tài khoản?",
+      "loginLink": "Đăng nhập"
+    },
+    "roleSelect": {
+      "title": "Bạn là ai?",
+      "description": "Chọn vai trò của bạn để tiếp tục.",
+      "patientTitle": "Khách hàng",
+      "patientDescription": "Tôi đang tìm kiếm hỗ trợ trị liệu",
+      "psychologistTitle": "Nhà tâm lý học",
+      "psychologistDescription": "Tôi cung cấp trị liệu",
+      "continueButton": "Tiếp tục",
+      "hasAccount": "Đã đăng ký?",
+      "loginLink": "Đăng nhập ngay"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Tính năng",
+      "howItWorks": "Cách hoạt động",
+      "psychologists": "Nhà tâm lý học",
+      "goToDashboard": "Đi đến Bảng điều khiển",
+      "login": "Đăng nhập",
+      "register": "Đăng ký",
+      "openMenu": "Mở Menu"
+    },
+    "hero": {
+      "badge": "Trị liệu trực tuyến",
+      "title1": "Trị liệu tâm lý",
+      "titleHighlight": "Chuyên nghiệp",
+      "title2": "– An toàn & Riêng tư",
+      "description": "Tìm nhà tâm lý học phù hợp trong vài phút – từ bất cứ đâu.",
+      "ctaStart": "Bắt đầu miễn phí",
+      "ctaExplore": "Khám phá Nhà tâm lý học",
+      "feature1": "Chuyên gia đã xác minh",
+      "feature2": "Cuộc gọi video an toàn",
+      "feature3": "Lịch trình linh hoạt"
+    },
+    "features": {
+      "title": "Tại sao chọn Trị liệu Trực tuyến?",
+      "description": "Trị liệu tâm lý hiện đại – thoải mái từ nhà.",
+      "videoCall": {
+        "title": "Phiên Video",
+        "description": "Cuộc gọi video an toàn với mã hóa end-to-end"
+      },
+      "privacy": {
+        "title": "Riêng tư Tối đa",
+        "description": "Dữ liệu của bạn được bảo vệ theo luật pháp"
+      },
+      "easyBooking": {
+        "title": "Đặt lịch Dễ dàng",
+        "description": "Đặt lịch bất cứ khi nào phù hợp với bạn"
+      },
+      "messaging": {
+        "title": "Nhắn tin An toàn",
+        "description": "Giữ liên lạc giữa các phiên"
+      },
+      "flexible": {
+        "title": "Thời gian Linh hoạt",
+        "description": "Có sẵn buổi tối và cuối tuần"
+      },
+      "experts": {
+        "title": "Chuyên gia Có trình độ",
+        "description": "Chỉ các nhà tâm lý học có giấy phép và đã xác minh"
+      }
+    },
+    "howItWorks": {
+      "title": "Cách Hoạt động",
+      "description": "Bắt đầu chỉ trong 3 bước đơn giản",
+      "step1": {
+        "title": "Tìm Nhà tâm lý học Phù hợp",
+        "description": "Lọc theo chuyên môn, ngôn ngữ, giá cả & thời gian rảnh"
+      },
+      "step2": {
+        "title": "Đặt lịch & Thanh toán",
+        "description": "Thanh toán an toàn – lịch hẹn xác nhận ngay lập tức"
+      },
+      "step3": {
+        "title": "Bắt đầu Phiên của Bạn",
+        "description": "Tham gia qua video call – ngay từ nhà"
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng cho Bước Đầu tiên?",
+      "description": "Bắt đầu hành trình hướng tới sức khỏe tốt hơn hôm nay.",
+      "button": "Đăng ký Miễn phí"
+    },
+    "footer": {
+      "privacy": "Chính sách Bảo mật",
+      "terms": "Điều khoản Dịch vụ",
+      "kvkk": "KVKK (Bảo vệ Dữ liệu Cá nhân)",
+      "copyright": "© {year} Bản quyền tất cả."
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "Chào mừng quay lại, {{firstName}}",
+      "subtitle": "Đây là tổng quan về lịch hẹn sắp tới và tin nhắn của bạn",
+      "stats": {
+        "upcomingSessions": "Phiên Sắp tới",
+        "totalSessions": "Tổng Phiên",
+        "unreadMessages": "Tin nhắn Chưa đọc"
+      },
+      "upcomingAppointments": {
+        "title": "Lịch hẹn Sắp tới",
+        "viewAll": "Xem Tất cả",
+        "emptyTitle": "Không có lịch hẹn sắp tới",
+        "emptyDescription": "Tìm nhà tâm lý học và đặt lịch phiên đầu tiên ngay bây giờ"
+      },
+      "quickActions": {
+        "title": "Hành động Nhanh",
+        "findPsychologist": {
+          "title": "Tìm Nhà tâm lý học",
+          "description": "Tìm chuyên gia phù hợp"
+        },
+        "messages": {
+          "title": "Tin nhắn",
+          "description": "Chat với nhà tâm lý học của bạn"
+        },
+        "appointments": {
+          "title": "Lịch hẹn",
+          "description": "Quản lý tất cả đặt lịch"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "TEMP_REPLACE",
+      "pendingApproval": {
+        "title": "Hồ sơ của bạn đang được xem xét",
+        "description": "Đội ngũ của chúng tôi đang xác minh thông tin của bạn. Thường mất 1-3 ngày làm việc."
+      },
+      "stats": {
+        "todaySessions": "Phiên Hôm nay",
+        "weeklyEarnings": "Thu nhập Tuần",
+        "totalClients": "Tổng Khách hàng",
+        "pendingAppointments": "Yêu cầu Đang chờ"
+      },
+      "upcomingSessions": {
+        "title": "Phiên Sắp tới",
+        "viewAll": "Xem Tất cả",
+        "emptyTitle": "Không có phiên sắp tới",
+        "emptyDescription": "Thời gian rảnh của bạn chưa được đặt lịch"
+      },
+      "quickActions": {
+        "title": "Hành động Nhanh",
+        "availability": {
+          "title": "Thời gian Rảnh",
+          "description": "Cập nhật lịch"
+        },
+        "earnings": {
+          "title": "Thu nhập",
+          "description": "Xem thanh toán & thống kê"
+        },
+        "profile": {
+          "title": "Hồ sơ",
+          "description": "Chỉnh sửa hồ sơ"
+        }
+      }
+    },
+    "admin": {
+      "title": "Bảng Điều khiển Quản trị",
+      "description": "Tổng quan & Quản lý",
+      "stats": {
+        "totalUsers": "Tổng Người dùng",
+        "todaySessions": "Phiên Hôm nay",
+        "monthlyRevenue": "Doanh thu Tháng",
+        "pendingVerification": "Xác minh Đang chờ"
+      },
+      "pendingAlert": {
+        "text": "Có {count} xác minh đang chờ",
+        "button": "Xem ngay"
+      },
+      "financialSummary": {
+        "title": "Tóm tắt Tài chính",
+        "grossRevenue": "Doanh thu Gộp",
+        "vat": "VAT",
+        "platformCommission": "Phí Nền tảng",
+        "psychologistPayments": "Thanh toán cho Nhà tâm lý học"
+      },
+      "recentActivities": {
+        "title": "Hoạt động Gần đây",
+        "empty": "Không có hoạt động gần đây"
+      },
+      "quickActions": {
+        "title": "Hành động Nhanh",
+        "verification": {
+          "title": "Xác minh",
+          "description": "Xem xét ứng dụng mới"
+        },
+        "users": {
+          "title": "Người dùng",
+          "description": "Quản lý tất cả tài khoản"
+        },
+        "appointments": {
+          "title": "Lịch hẹn",
+          "description": "Xem tất cả đặt lịch"
+        },
+        "payments": {
+          "title": "Thanh toán",
+          "description": "Giám sát giao dịch"
+        },
+        "bankTransfers": {
+          "title": "Chuyển khoản",
+          "description": "Quản lý thanh toán"
+        }
+      },
+      "verificationSuccess": {
+        "title": "Xác minh Thành công",
+        "description": "Tài khoản đã được phê duyệt"
+      }
+    }
+  },
+  "appointments": {
+    "title": "Lịch hẹn",
+    "description": "Quản lý phiên sắp tới và đã qua",
+    "tabs": {
+      "upcoming": "Sắp tới",
+      "past": "Đã qua"
+    },
+    "empty": {
+      "upcomingTitle": "Không có lịch hẹn sắp tới",
+      "upcomingDescription": "Đặt lịch phiên tiếp theo ngay",
+      "pastTitle": "Chưa có phiên đã qua",
+      "pastDescription": "Phiên hoàn thành sẽ xuất hiện ở đây"
+    },
+    "cancelDialog": {
+      "title": "Hủy lịch hẹn?",
+      "description": "Bạn chắc chắn muốn hủy? Hành động này không thể hoàn tác.",
+      "cancelButton": "Quay lại",
+      "confirmButton": "Hủy lịch hẹn",
+      "confirmButtonLoading": "Đang hủy..."
+    },
+    "cancelSuccess": {
+      "title": "Đã hủy lịch hẹn",
+      "description": "Lịch hẹn đã được hủy thành công."
+    },
+    "status": {
+      "reserved": "Đã đặt",
+      "pending_payment": "Đang chờ thanh toán",
+      "payment_review": "Đang xem xét thanh toán",
+      "confirmed": "Đã xác nhận",
+      "ready": "Sẵn sàng",
+      "in_session": "Đang diễn ra",
+      "completed": "Hoàn thành",
+      "cancelled": "Đã hủy",
+      "expired": "Hết hạn",
+      "refunded": "Đã hoàn tiền",
+      "no_show": "Không đến",
+      "rejected": "Bị từ chối"
+    },
+    "joinSession": "Tham gia phiên",
+    "joinDisabled": "Phiên bắt đầu trong {minutes} phút",
+    "patientFallback": "Khách hàng không khả dụng",
+    "relative": {
+      "past": "đã qua",
+      "now": "bây giờ",
+      "inMinutes": "trong {{count}} phút",
+      "inHours": "trong {{count}} giờ",
+      "inDays": "trong {{count}} ngày",
+      "tomorrow": "ngày mai"
+    },
+    "videoCall": {
+      "sessionNotStarted": "Buổi tư vấn chưa bắt đầu",
+      "sessionEnded": "Buổi tư vấn đã kết thúc",
+      "canJoin": "Bạn có thể tham gia buổi tư vấn",
+      "invalidAppointment": "Không tìm thấy thông tin cuộc hẹn",
+      "invalidDate": "Ngày hẹn không hợp lệ",
+      "notConfirmed": "Cuộc hẹn chưa được xác nhận",
+      "paymentPending": "Đang chờ thanh toán",
+      "paymentReview": "Đang xem xét thanh toán",
+      "pendingApproval": "Đang chờ phê duyệt",
+      "cancelled": "Cuộc hẹn đã bị hủy",
+      "expired": "Cuộc hẹn đã hết hạn",
+      "completed": "Buổi tư vấn đã hoàn thành",
+      "noShow": "Không tham dự",
+      "rejected": "Cuộc hẹn bị từ chối",
+      "refunded": "Đã hoàn tiền",
+      "notEligible": "Không đủ điều kiện tham gia",
+      "clickToJoin": "Nhấp để tham gia buổi tư vấn",
+      "startsInDays": "Buổi tư vấn bắt đầu sau {{count}} ngày",
+      "startsInHours": "Buổi tư vấn bắt đầu sau {{count}} giờ",
+      "startsInMinutes": "Buổi tư vấn bắt đầu sau {{count}} phút",
+      "activeBeforeStart": "Có thể tham gia trước {{minutes}} phút",
+      "cannotJoinEnded": "Không thể tham gia, thời gian buổi tư vấn đã qua",
+      "cannotJoin": "Không thể tham gia buổi tư vấn",
+      "now": "Bây giờ",
+      "inDays": "sau {{count}} ngày",
+      "inHours": "sau {{count}} giờ",
+      "inMinutes": "sau {{count}} phút"
+    }
+  },
+  "weekdays": {
+    "sunday": "Chủ Nhật",
+    "monday": "Thứ Hai",
+    "tuesday": "Thứ Ba",
+    "wednesday": "Thứ Tư",
+    "thursday": "Thứ Năm",
+    "friday": "Thứ Sáu",
+    "saturday": "Thứ Bảy"
+  },
+  "messages": {
+    "title": "Tin nhắn",
+    "searchPlaceholder": "Tìm tin nhắn hoặc người...",
+    "empty": "Chưa có cuộc trò chuyện",
+    "noResults": "Không có cuộc trò chuyện phù hợp",
+    "selectConversation": {
+      "title": "Chọn cuộc trò chuyện",
+      "description": "Nhấp vào cuộc trò chuyện để bắt đầu chat"
+    },
+    "noMessages": "Chưa có tin nhắn trong cuộc trò chuyện này",
+    "yesterday": "Hôm qua",
+    "today": "Hôm nay",
+    "yesterdayLabel": "Hôm qua",
+    "inputPlaceholder": "Nhập tin nhắn...",
+    "reportAction": "Báo cáo cuộc trò chuyện"
+  },
+  "payment": {
+    "backButton": "Quay lại",
+    "title": "Thanh toán",
+    "description": "Thanh toán an toàn cho phiên của bạn",
+    "orderSummary": {
+      "title": "Tóm tắt Đơn hàng",
+      "description": "Phiên của bạn với",
+      "psychologist": "Nhà tâm lý học",
+      "dateTime": "Ngày & Giờ",
+      "duration": "Thời lượng",
+      "durationValue": "{minutes} phút",
+      "total": "Tổng cộng"
+    },
+    "paymentInfo": {
+      "title": "Thông tin Thanh toán",
+      "description": "Quét mã QR bằng ứng dụng ngân hàng của bạn",
+      "qrGenerating": "Đang tạo mã QR...",
+      "qrTimer": "Mã này hết hạn trong {seconds} giây",
+      "waitingConfirmation": "Đang chờ xác nhận thanh toán...",
+      "completeButton": "Tôi đã hoàn tất thanh toán",
+      "testHelper": "Chế độ Kiểm tra: Sử dụng thông tin kiểm tra",
+      "referenceCode": "Mã Tham chiếu",
+      "referenceCodeLabel": "Mã Tham chiếu",
+      "amount": "Số tiền"
+    },
+    "instructions": {
+      "title": "Cách Thanh toán qua Chuyển khoản Ngân hàng",
+      "step1": "Mở ứng dụng ngân hàng của bạn",
+      "step2": "Quét mã QR hoặc sao chép chi tiết",
+      "step3": "Thực hiện chuyển khoản",
+      "step4": "Xác nhận thanh toán",
+      "step5": "Phiên sẽ được kích hoạt tự động"
+    },
+    "success": {
+      "title": "Thanh toán Thành công!",
+      "confirmed": "Thanh toán của bạn đã được xác nhận",
+      "redirecting": "Đang chuyển hướng đến bảng điều khiển...",
+      "toastTitle": "Thanh toán Xác nhận",
+      "toastDescription": "Phiên của bạn đã được đặt!"
+    },
+    "error": {
+      "notFound": "Không Tìm thấy Thanh toán",
+      "notFoundDescription": "Trang thanh toán này không tồn tại hoặc đã hết hạn",
+      "backLink": "Quay lại Lịch hẹn",
+      "noPaymentInfo": "Không có thông tin thanh toán",
+      "paymentFailed": "Thanh toán Thất bại"
+    },
+    "clipboard": {
+      "copied": "Đã sao chép!",
+      "copiedDescription": "Đã sao chép vào clipboard",
+      "copyFailed": "Sao chép thất bại",
+      "copyFailedDescription": "Vui lòng sao chép thủ công"
+    }
+  },
+  "availability": {
+    "title": "Thời gian Rảnh",
+    "description": "Đặt thời gian bạn rảnh cho các phiên",
+    "days": {
+      "monday": "Thứ Hai",
+      "tuesday": "Thứ Ba",
+      "wednesday": "Thứ Tư",
+      "thursday": "Thứ Năm",
+      "friday": "Thứ Sáu",
+      "saturday": "Thứ Bảy",
+      "sunday": "Chủ Nhật"
+    },
+    "saveSuccess": {
+      "title": "Đã Lưu Thời gian Rảnh",
+      "description": "Lịch mới của bạn đang hoạt động"
+    },
+    "saveError": "Lỗi lưu thời gian rảnh"
+  },
+  "profile": {
+    "title": "Hồ sơ",
+    "description": "Quản lý thông tin cá nhân và chuyên môn của bạn",
+    "personalInfo": {
+      "title": "Thông tin Cá nhân",
+      "description": "Chỉ hiển thị cho bạn và đội ngũ hỗ trợ",
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "email": "Email",
+      "phone": "Điện thoại",
+      "phonePlaceholder": "+84 ...",
+      "birthDate": "Ngày sinh",
+      "city": "Thành phố",
+      "about": "Về tôi",
+      "aboutPlaceholder": "Mô tả ngắn (hiển thị cho khách hàng)",
+      "saveButton": "Lưu Thay đổi"
+    },
+    "professionalInfo": {
+      "title": "Thông tin Chuyên môn",
+      "description": "Hiển thị cho khách hàng tiềm năng",
+      "photo": "Ảnh Hồ sơ",
+      "uploadButton": "Tải ảnh lên",
+      "uploadHelper": "JPG, PNG • tối đa 5 MB",
+      "specialties": "Chuyên môn",
+      "specialtiesCount": "{{count}} đã chọn",
+      "approaches": "Phương pháp",
+      "approachesCount": "{{count}} đã chọn",
+      "saveButton": "Lưu Thông tin Chuyên môn"
+    },
+    "languageManagement": {
+      "title": "Quản lý Ngôn ngữ",
+      "description": "Cập nhật ngôn ngữ bạn cung cấp liệu pháp",
+      "label": "Ngôn ngữ Liệu pháp",
+      "selectedCount": "{{count}} ngôn ngữ đã chọn",
+      "saveButton": "Lưu Ngôn ngữ",
+      "errorMinLanguage": "Cần ít nhất một ngôn ngữ",
+      "saveError": "Lỗi lưu ngôn ngữ",
+      "saveSuccess": "Cập nhật ngôn ngữ thành công"
+    },
+    "saveSuccess": {
+      "title": "Cập nhật Hồ sơ",
+      "description": "Thay đổi của bạn đã được lưu"
+    },
+    "saveError": "Lỗi lưu hồ sơ",
+    "professionalSaveError": "Lỗi lưu thông tin chuyên môn",
+    "uploadError": {
+      "sizeTooLarge": "Tệp quá lớn (tối đa 5 MB)",
+      "invalidType": "Chỉ cho phép JPG hoặc PNG",
+      "uploadFailed": "Tải lên thất bại"
+    },
+    "experience": "Kinh nghiệm",
+    "sessionDuration": "Thời lượng buổi tư vấn",
+    "languages": "Ngôn ngữ",
+    "about": "Về",
+    "education": "Học vấn",
+    "certifications": "Chứng chỉ"
+  },
+  "navigation": {
+    "patient": {
+      "home": "Trang chủ",
+      "findPsychologist": "Tìm Nhà tâm lý học",
+      "appointments": "Lịch hẹn",
+      "messages": "Tin nhắn",
+      "paymentHistory": "Lịch sử Thanh toán",
+      "profile": "Hồ sơ",
+      "settings": "Cài đặt",
+      "logout": "Đăng xuất"
+    },
+    "psychologist": {
+      "home": "Bảng điều khiển",
+      "appointments": "Lịch hẹn",
+      "availability": "Thời gian Rảnh",
+      "messages": "Tin nhắn",
+      "sessionNotes": "Ghi chú Phiên",
+      "earnings": "Thu nhập",
+      "profile": "Hồ sơ",
+      "settings": "Cài đặt",
+      "logout": "Đăng xuất"
+    },
+    "admin": {
+      "overview": "Tổng quan",
+      "users": "Người dùng",
+      "verification": "Xác minh",
+      "appointments": "Lịch hẹn",
+      "payments": "Thanh toán",
+      "auditLog": "Nhật ký Kiểm toán",
+      "settings": "Cài đặt",
+      "profile": "Hồ sơ",
+      "logout": "Đăng xuất"
+    },
+    "roles": {
+      "admin": "Quản trị viên",
+      "psychologist": "Nhà tâm lý học",
+      "patient": "Khách hàng"
+    },
+    "sidebarTitle": "Menu",
+    "menuLabel": "Menu"
+  },
+  "cities": {
+    "adana": "Adana",
+    "ankara": "Ankara",
+    "antalya": "Antalya",
+    "bursa": "Bursa",
+    "denizli": "Denizli",
+    "diyarbakir": "Diyarbakır",
+    "eskisehir": "Eskişehir",
+    "gaziantep": "Gaziantep",
+    "istanbul": "Istanbul",
+    "izmir": "İzmir",
+    "kayseri": "Kayseri",
+    "kocaeli": "Kocaeli",
+    "konya": "Konya",
+    "mersin": "Mersin",
+    "mugla": "Muğla",
+    "samsun": "Samsun",
+    "trabzon": "Trabzon",
+    "other": "Khác"
+  },
+  "specialties": {
+    "individual": "Trị liệu Cá nhân",
+    "couples": "Trị liệu Cặp đôi",
+    "family": "Trị liệu Gia đình",
+    "childAdolescent": "Trị liệu Trẻ em & Thiếu niên",
+    "depression": "Trầm cảm",
+    "anxiety": "Rối loạn Lo âu",
+    "trauma": "Chấn thương & PTSD",
+    "ocd": "OCD (Rối loạn Ám ảnh Cưỡng chế)",
+    "eatingDisorders": "Rối loạn Ăn uống",
+    "addiction": "Nghiện & Lạm dụng Chất",
+    "careerCounseling": "Tư vấn Nghề nghiệp",
+    "stressManagement": "Quản lý Căng thẳng",
+    "angerManagement": "Quản lý Giận dữ"
+  },
+  "therapyApproaches": {
+    "cbt": "Liệu pháp Nhận thức Hành vi (CBT)",
+    "psychodynamic": "Liệu pháp Tâm động học",
+    "emdr": "EMDR (Khử nhạy cảm và Tái xử lý bằng Chuyển động Mắt)",
+    "schema": "Liệu pháp Schema",
+    "act": "Liệu pháp Chấp nhận và Cam kết (ACT)",
+    "gestalt": "Liệu pháp Gestalt",
+    "solutionFocused": "Liệu pháp Ngắn hạn Tập trung Giải pháp",
+    "existential": "Liệu pháp Tồn tại",
+    "mindfulness": "Liệu pháp Dựa trên Chánh niệm"
+  },
+  "card": {
+    "sessionFee": "Phí buổi tư vấn",
+    "fee": "Phí",
+    "bookAppointment": "Đặt lịch hẹn",
+    "priceNotSpecified": "Chưa xác định",
+    "experience": {
+      "yearsLong": "{{count}} năm kinh nghiệm",
+      "yearsShort": "{{count}} năm"
+    },
+    "selectedAppointment": "Lịch hẹn đã chọn",
+    "reservationWarning": "Cuộc hẹn sẽ bị hủy nếu không thanh toán trong vòng 10 phút"
+  },
+  "duration": {
+    "minutesShort": "phút",
+    "minutesLong": "{{count}} phút"
+  },
+  "titles": {
+    "psychologist": "Nhà tâm lý học",
+    "clinicalPsychologist": "Nhà tâm lý học Lâm sàng",
+    "expertPsychologist": "Nhà tâm lý học Chuyên gia",
+    "expertClinicalPsychologist": "Nhà tâm lý học Lâm sàng Chuyên gia",
+    "psychologicalCounselor": "Tư vấn viên Tâm lý",
+    "psychotherapist": "Nhà trị liệu Tâm lý",
+    "dr": "TS.",
+    "assocProf": "PGS. TS.",
+    "prof": "GS. TS."
+  },
+  "legal": {
+    "kvkk": {
+      "title": "KVKK (Luật Bảo vệ Dữ liệu Cá nhân)"
+    },
+    "privacy": {
+      "title": "Chính sách Bảo mật"
+    },
+    "terms": {
+      "title": "Điều khoản Dịch vụ"
+    },
+    "refund": {
+      "title": "Chính sách Hoàn tiền"
+    }
+  },
+  "psychologists": {
+    "title": "Tìm Nhà Tâm Lý",
+    "subtitle": "Tìm chuyên gia phù hợp và đặt lịch hẹn",
+    "searchPlaceholder": "Tìm theo tên hoặc chuyên môn...",
+    "specialtyPlaceholder": "Chuyên môn",
+    "priceRangePlaceholder": "Khoảng Giá",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "Xóa Bộ Lọc",
+    "filters": {
+      "search": "Tìm kiếm: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "Không tìm thấy nhà tâm lý",
+      "description": "Thử thay đổi tiêu chí tìm kiếm",
+      "buttonText": "Xóa Bộ Lọc"
+    },
+    "loginButton": "Đăng Nhập"
+  },
+  "paymentHistory": {
+    "title": "Lịch Sử Thanh Toán",
+    "subtitle": "Xem tất cả đặt chỗ và giao dịch thanh toán",
+    "table": {
+      "psychologist": "Nhà Tâm Lý",
+      "appointmentDate": "Ngày Hẹn",
+      "amount": "Số Tiền",
+      "vat": "VAT",
+      "total": "Tổng",
+      "status": "Trạng Thái",
+      "netAmount": "Chưa Bao Gồm VAT",
+      "totalAmount": "Tổng Số Tiền"
+    },
+    "reservedUntil": "Đặt chỗ đến {time}",
+    "paymentPending": "Chờ thanh toán",
+    "paymentReview": "Đang xem xét thanh toán",
+    "empty": "Bạn chưa có lịch sử thanh toán",
+    "statuses": {
+      "reserved": "Đã Đặt Chỗ",
+      "payment_pending": "Chờ Thanh Toán",
+      "payment_review": "Đang Xem Xét Thanh Toán",
+      "completed": "Hoàn Thành",
+      "pending": "Đang Chờ",
+      "failed": "Thất Bại",
+      "refunded": "Đã Hoàn Tiền",
+      "refund_pending": "Chờ Hoàn Tiền",
+      "refund_approved": "Đã Phê Duyệt Hoàn Tiền",
+      "refund_processed": "Đã Hoàn Tiền",
+      "refund_rejected": "Từ Chối Hoàn Tiền"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Quản lý cài đặt tài khoản và tùy chọn của bạn",
+    "language": "Ngôn ngữ Hiển thị",
+    "languageDesc": "Chọn ngôn ngữ cho giao diện ứng dụng",
+    "selectLanguage": "Chọn Ngôn ngữ",
+    "languageChanged": "Đã thay đổi ngôn ngữ",
+    "languageChangedDesc": "Ngôn ngữ giao diện đã được thay đổi thành công",
+    "confirmLanguageChange": "Bạn có muốn lưu các thay đổi không?",
+    "confirmLanguageChangeDesc": "Ngôn ngữ trang web sẽ được dịch sang ngôn ngữ bạn đã chọn. Bạn có xác nhận hành động này không?",
+    "notifications": "Thông báo",
+    "notificationsDesc": "Quản lý tùy chọn thông báo của bạn",
+    "emailNotifications": "Thông báo Email",
+    "emailNotificationsDesc": "Nhận email cho các cập nhật quan trọng",
+    "appointmentReminders": "Nhắc nhở Lịch hẹn",
+    "appointmentRemindersDesc": "Nhận thông báo về các lịch hẹn sắp tới",
+    "messageNotifications": "Thông báo Tin nhắn",
+    "messageNotificationsDesc": "Nhận thông báo cho tin nhắn mới",
+    "newAppointmentRequests": "Yêu cầu Lịch hẹn Mới",
+    "newAppointmentRequestsDesc": "Nhận thông báo về các yêu cầu lịch hẹn mới",
+    "privacy": "Quyền riêng tư",
+    "privacyDesc": "Kiểm soát cài đặt quyền riêng tư của bạn",
+    "showProfile": "Hiển thị Hồ sơ",
+    "showProfileDesc": "Hiển thị hồ sơ của bạn cho bệnh nhân",
+    "showOnlineStatus": "Hiển thị Trạng thái Trực tuyến",
+    "showOnlineStatusDesc": "Hiển thị trạng thái trực tuyến của bạn cho người dùng khác",
+    "showLastSeen": "Hiển thị Lần Truy cập Cuối",
+    "showLastSeenDesc": "Chia sẻ thời gian truy cập cuối cùng của bạn",
+    "security": "Bảo mật",
+    "securityDesc": "Cài đặt bảo mật tài khoản",
+    "twoFactor": "Xác thực Hai Yếu tố",
+    "twoFactorDesc": "Thêm lớp bảo mật bổ sung cho tài khoản của bạn",
+    "changePassword": "Đổi Mật khẩu",
+    "changePasswordDesc": "Nhập mật khẩu hiện tại và chọn mật khẩu mới để bảo mật",
+    "currentPassword": "Mật khẩu Hiện tại",
+    "enterCurrentPassword": "Nhập mật khẩu hiện tại của bạn",
+    "newPassword": "Mật khẩu Mới",
+    "enterNewPassword": "Nhập mật khẩu mới của bạn",
+    "confirmNewPassword": "Xác nhận Mật khẩu Mới",
+    "enterNewPasswordAgain": "Nhập lại mật khẩu mới của bạn",
+    "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+    "passwordMinLengthHint": "Ít nhất 6 ký tự",
+    "passwordsDoNotMatch": "Mật khẩu không khớp",
+    "newPasswordMustBeDifferent": "Mật khẩu mới phải khác với mật khẩu hiện tại",
+    "allPasswordFieldsRequired": "Tất cả các trường đều bắt buộc",
+    "passwordChanged": "Đã đổi mật khẩu",
+    "passwordChangedDesc": "Mật khẩu của bạn đã được cập nhật thành công",
+    "passwordChangeError": "Không thể đổi mật khẩu",
+    "saveChanges": "Lưu Thay đổi",
+    "savedTitle": "Đã lưu cài đặt",
+    "savedDesc": "Tùy chọn của bạn đã được cập nhật thành công",
+    "notificationsSaved": "Đã lưu tùy chọn thông báo",
+    "saveError": "Không thể lưu cài đặt"
+  },
+  "twoFactor": {
+    "title": "Xác Thực Hai Yếu Tố",
+    "description": "Bảo vệ tài khoản của bạn với Google Authenticator",
+    "enable": "Bật",
+    "disable": "Tắt",
+    "setupTitle": "Thiết Lập Xác Thực Hai Yếu Tố",
+    "scanQR": "Quét mã QR bằng ứng dụng Google Authenticator hoặc Authy",
+    "cantScanQR": "Không thể quét mã QR? Nhập thủ công:",
+    "verificationCode": "Mã Xác Minh",
+    "enter6DigitFromApp": "Nhập mã 6 chữ số hiển thị trong ứng dụng của bạn",
+    "verifyAndEnable": "Xác Minh và Bật",
+    "disableTitle": "Tắt Xác Thực Hai Yếu Tố",
+    "disableDescription": "Nhập mật khẩu và mã xác minh cho hành động này",
+    "password": "Mật khẩu",
+    "setupError": "Thiết lập 2FA thất bại",
+    "enableSuccess": "Xác thực hai yếu tố đã được bật thành công",
+    "invalidCode": "Mã xác minh không hợp lệ",
+    "disableSuccess": "Xác thực hai yếu tố đã được tắt thành công",
+    "disableError": "Tắt 2FA thất bại",
+    "enter6Digit": "Vui lòng nhập mã 6 chữ số hợp lệ",
+    "enterPasswordAnd6Digit": "Vui lòng nhập mật khẩu và mã 6 chữ số của bạn",
+    "secretCopied": "Đã sao chép secret vào clipboard"
+  }
+}

@@ -6,10 +6,6 @@ async function fetchUser(): Promise<User | null> {
     credentials: "include",
   });
 
-  if (response.status === 401) {
-    return null;
-  }
-
   if (!response.ok) {
     throw new Error(`${response.status}: ${response.statusText}`);
   }
@@ -18,7 +14,23 @@ async function fetchUser(): Promise<User | null> {
 }
 
 async function logout(): Promise<void> {
-  window.location.href = "/api/logout";
+  // Save language preference before logout
+  const savedLanguage = localStorage.getItem('mendly_ui_language') || 'en';
+
+  const response = await fetch("/api/auth/logout", {
+    method: "POST",
+    credentials: "include",
+  });
+
+  if (response.ok) {
+    // Ensure language preference is preserved
+    localStorage.setItem('mendly_ui_language', savedLanguage);
+
+    // Use sessionStorage as backup in case localStorage gets cleared
+    sessionStorage.setItem('mendly_ui_language_backup', savedLanguage);
+
+    window.location.href = "/";
+  }
 }
 
 export function useAuth() {

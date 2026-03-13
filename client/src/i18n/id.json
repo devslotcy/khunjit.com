@@ -1,0 +1,840 @@
+{
+  "common": {
+    "save": "Simpan",
+    "saving": "Menyimpan",
+    "cancel": "Batal",
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "submit": "Kirim",
+    "continue": "Lanjutkan",
+    "close": "Tutup",
+    "loading": "Memuat...",
+    "search": "Cari",
+    "filter": "Filter",
+    "viewAll": "Lihat Semua",
+    "noResults": "Tidak ada hasil ditemukan",
+    "error": "Kesalahan",
+    "success": "Berhasil",
+    "yes": "Ya",
+    "no": "Tidak",
+    "or": "atau",
+    "and": "dan",
+    "selected": "terpilih",
+    "selectedCount": "{{count}} terpilih",
+    "copied": "Disalin!",
+    "copyFailed": "Gagal menyalin",
+    "minuteShort": "mnt"
+  },
+  "auth": {
+    "login": {
+      "title": "Masuk",
+      "description": "Masuk untuk mengelola sesi dan pesan Anda.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "email@anda.com",
+      "passwordLabel": "Kata Sandi",
+      "passwordPlaceholder": "Masukkan kata sandi",
+      "loginButton": "Masuk",
+      "noAccount": "Belum punya akun?",
+      "registerLink": "Daftar",
+      "successTitle": "Selamat datang kembali!",
+      "successDescription": "Anda berhasil masuk.",
+      "errorTitle": "Gagal masuk",
+      "errorDescription": "Email atau kata sandi salah. Coba lagi."
+    },
+    "register": {
+      "titlePatient": "Daftar sebagai Klien",
+      "titlePsychologist": "Daftar sebagai Psikolog/Terapis",
+      "stepIndicator": "Langkah {current} dari {total}",
+      "step1": {
+        "languageLabelPsychologist": "Bahasa apa yang Anda kuasai untuk terapi?",
+        "languageLabelPatient": "Bahasa apa yang Anda inginkan untuk terapi?",
+        "languageHelperPsychologist": "Pilih semua bahasa yang bisa Anda gunakan dalam sesi.",
+        "languageHelperPatient": "Pilih semua bahasa yang nyaman bagi Anda.",
+        "languagesSelectedCount": "{{count}} bahasa dipilih",
+        "languageSelected": "bahasa dipilih",
+        "errorNoLanguage": "Pilih setidaknya satu bahasa",
+        "errorNoTherapyLanguage": "Pilih setidaknya satu bahasa terapi",
+        "emailLabel": "Alamat Email",
+        "usernameLabel": "Nama Pengguna",
+        "usernamePlaceholder": "Nama pengguna (min. 4 karakter)",
+        "passwordLabel": "Kata Sandi",
+        "passwordPlaceholder": "Buat kata sandi yang aman",
+        "passwordConfirmLabel": "Konfirmasi Kata Sandi",
+        "passwordConfirmPlaceholder": "Ketik ulang kata sandi",
+        "errorAllFields": "Isi semua kolom",
+        "errorInvalidEmail": "Email tidak valid",
+        "errorEmailFormat": "Masukkan format email yang benar",
+        "validEmail": "Email tampak benar",
+        "errorUsernameLength": "Nama pengguna minimal 4 karakter",
+        "usernameRequirement1": "Hanya huruf, angka, dan garis bawah",
+        "usernameRequirement2": "Tidak boleh karakter khusus selain _",
+        "errorPasswordFormat": "Kata sandi tidak memenuhi syarat",
+        "passwordRequirement1": "Minimal 8 karakter",
+        "passwordRequirement2": "Minimal 1 huruf besar",
+        "passwordRequirement3": "Minimal 1 huruf kecil",
+        "passwordRequirement4": "Minimal 1 angka atau karakter khusus",
+        "passwordMatch": "Kata sandi cocok",
+        "passwordMismatch": "Kata sandi tidak cocok",
+        "emailPlaceholder": ""
+      },
+      "title": "Gelar Profesional",
+      "selectTitle": "Pilih gelar",
+      "titleSelected": "Gelar dipilih",
+      "step2": {
+        "firstNameLabel": "Nama Depan",
+        "firstNamePlaceholder": "Nama depan",
+        "firstNameHelper": "Bagaimana Anda ingin dipanggil selama terapi",
+        "lastNameLabel": "Nama Belakang",
+        "lastNamePlaceholder": "Nama belakang",
+        "lastNameHelper": "Nama lengkap Anda",
+        "phoneLabel": "Nomor Telepon",
+        "phonePlaceholder": "+62 812 3456 7890",
+        "phoneHelper": "Untuk pengingat janji dan keadaan darurat",
+        "birthDateLabel": "Tanggal Lahir",
+        "birthDateErrorTitle": "Tanggal tidak valid",
+        "birthDateErrorDescription": "Masukkan tanggal yang benar",
+        "birthDateHelper": "Format: TT.BB.TTTT",
+        "birthDateErrorAge": "Usia minimal 16 tahun",
+        "genderLabel": "Jenis Kelamin",
+        "genderMale": "Laki-laki",
+        "genderFemale": "Perempuan",
+        "cityLabel": "Kota",
+        "cityPlaceholder": "contoh: Jakarta",
+        "professionLabel": "Pekerjaan",
+        "professionPlaceholder": "Pekerjaan saat ini (opsional)",
+        "bioLabel": "Tentang Saya",
+        "bioPlaceholder": "Ceritakan sedikit tentang diri Anda (maks. 500 karakter)",
+        "errorNameRequired": "Nama depan dan belakang wajib diisi"
+      },
+      "step3Psychologist": {
+        "titleLabel": "Gelar / Gelar Akademik",
+        "titlePlaceholder": "contoh: S.Psi., M.Psi., Dr.",
+        "titleSelected": "Dipilih",
+        "licenseLabel": "Nomor Registrasi / SIP",
+        "licensePlaceholder": "Nomor STR/SIP Anda",
+        "licenseHelper": "Nomor resmi dari HIMPSI/IDI atau asosiasi terkait",
+        "licenseError": "Masukkan nomor registrasi yang valid",
+        "experienceLabel": "Tahun Pengalaman",
+        "experiencePlaceholder": "contoh: 5",
+        "educationLabel": "Pendidikan / Pelatihan",
+        "educationPlaceholder": "contoh: S1 Psikologi Universitas Indonesia",
+        "specialtiesLabel": "Spesialisasi",
+        "approachesLabel": "Pendekatan Terapi",
+        "priceLabel": "Tarif Sesi (50 menit)",
+        "pricePlaceholder": "contoh: Rp750.000",
+        "priceHelper": "Sudah termasuk pajak",
+        "aboutLabel": "Tentang Saya (terlihat oleh klien)",
+        "aboutPlaceholder": "Jelaskan pendekatan, pengalaman, dan fokus Anda",
+        "errorProfessionalInfo": "Lengkapi semua informasi profesional"
+      },
+      "registerButton": "Buat Akun",
+      "successTitle": "Pendaftaran Berhasil!",
+      "successDescription": "Silakan cek email Anda untuk verifikasi akun.",
+      "errorTitle": "Gagal Mendaftar",
+      "errorDescription": "Terjadi kesalahan. Silakan coba lagi.",
+      "hasAccount": "Sudah punya akun?",
+      "loginLink": "Masuk"
+    },
+    "roleSelect": {
+      "title": "Anda Siapa?",
+      "description": "Pilih peran Anda untuk melanjutkan.",
+      "patientTitle": "Klien/Pasien",
+      "patientDescription": "Saya mencari dukungan terapi",
+      "psychologistTitle": "Psikolog/Terapis",
+      "psychologistDescription": "Saya menyediakan layanan terapi",
+      "continueButton": "Lanjutkan",
+      "hasAccount": "Sudah terdaftar?",
+      "loginLink": "Masuk sekarang"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Fitur",
+      "howItWorks": "Cara Kerja",
+      "psychologists": "Psikolog",
+      "goToDashboard": "Ke Dashboard",
+      "login": "Masuk",
+      "register": "Daftar",
+      "openMenu": "Buka Menu"
+    },
+    "hero": {
+      "badge": "Terapi Online",
+      "title1": "Terapi Psikologi",
+      "titleHighlight": "Profesional",
+      "title2": "– Aman & Rahasia",
+      "description": "Temukan psikolog yang cocok hanya dalam beberapa menit – dari mana saja.",
+      "ctaStart": "Mulai Gratis",
+      "ctaExplore": "Jelajahi Psikolog",
+      "feature1": "Psikolog Terverifikasi",
+      "feature2": "Video Call Aman",
+      "feature3": "Jadwal Fleksibel"
+    },
+    "features": {
+      "title": "Mengapa Terapi Online?",
+      "description": "Pendampingan psikologi modern – nyaman dari rumah.",
+      "videoCall": {
+        "title": "Sesi Video",
+        "description": "Video call aman dengan enkripsi end-to-end"
+      },
+      "privacy": {
+        "title": "Privasi Maksimal",
+        "description": "Data Anda dilindungi sesuai regulasi"
+      },
+      "easyBooking": {
+        "title": "Pemesanan Mudah",
+        "description": "Booking kapan saja sesuai keinginan"
+      },
+      "messaging": {
+        "title": "Pesan Aman",
+        "description": "Tetap terhubung di antara sesi"
+      },
+      "flexible": {
+        "title": "Jam Fleksibel",
+        "description": "Tersedia malam hari & akhir pekan"
+      },
+      "experts": {
+        "title": "Ahli Berkualitas",
+        "description": "Hanya psikolog berlisensi & terverifikasi"
+      }
+    },
+    "howItWorks": {
+      "title": "Cara Kerjanya",
+      "description": "Mulai hanya dalam 3 langkah mudah",
+      "step1": {
+        "title": "Cari Psikolog yang Cocok",
+        "description": "Filter berdasarkan spesialisasi, bahasa, tarif, dan ketersediaan"
+      },
+      "step2": {
+        "title": "Booking & Bayar",
+        "description": "Pembayaran aman – janji langsung terkonfirmasi"
+      },
+      "step3": {
+        "title": "Mulai Sesi",
+        "description": "Gabung via video call – langsung dari rumah"
+      }
+    },
+    "cta": {
+      "title": "Siap Mengambil Langkah Pertama?",
+      "description": "Mulai perjalanan menuju kesejahteraan mental yang lebih baik hari ini.",
+      "button": "Daftar Gratis"
+    },
+    "footer": {
+      "privacy": "Kebijakan Privasi",
+      "terms": "Syarat & Ketentuan",
+      "kvkk": "KVKK (Perlindungan Data Pribadi)",
+      "copyright": "© {year} Semua hak dilindungi."
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "Selamat datang kembali, {{firstName}}",
+      "subtitle": "Ini ringkasan sesi mendatang dan pesan Anda",
+      "stats": {
+        "upcomingSessions": "Sesi Mendatang",
+        "totalSessions": "Total Sesi",
+        "unreadMessages": "Pesan Belum Dibaca"
+      },
+      "upcomingAppointments": {
+        "title": "Janji Mendatang",
+        "viewAll": "Lihat Semua",
+        "emptyTitle": "Belum ada janji mendatang",
+        "emptyDescription": "Cari psikolog dan booking sesi pertama Anda sekarang"
+      },
+      "quickActions": {
+        "title": "Aksi Cepat",
+        "findPsychologist": {
+          "title": "Cari Psikolog",
+          "description": "Temukan spesialis yang tepat"
+        },
+        "messages": {
+          "title": "Pesan",
+          "description": "Chat dengan psikolog Anda"
+        },
+        "appointments": {
+          "title": "Janji Temu",
+          "description": "Kelola semua booking"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "TEMP_REPLACE",
+      "pendingApproval": {
+        "title": "Profil Anda sedang ditinjau",
+        "description": "Tim kami sedang memverifikasi kredensial Anda. Biasanya memakan waktu 1–3 hari kerja."
+      },
+      "stats": {
+        "todaySessions": "Sesi Hari Ini",
+        "weeklyEarnings": "Pendapatan Mingguan",
+        "totalClients": "Total Klien",
+        "pendingAppointments": "Permintaan Tertunda"
+      },
+      "upcomingSessions": {
+        "title": "Sesi Mendatang",
+        "viewAll": "Lihat Semua",
+        "emptyTitle": "Belum ada sesi mendatang",
+        "emptyDescription": "Ketersediaan Anda belum dipesan"
+      },
+      "quickActions": {
+        "title": "Aksi Cepat",
+        "availability": {
+          "title": "Ketersediaan",
+          "description": "Perbarui jadwal"
+        },
+        "earnings": {
+          "title": "Pendapatan",
+          "description": "Lihat pembayaran & statistik"
+        },
+        "profile": {
+          "title": "Profil",
+          "description": "Edit profil"
+        }
+      }
+    },
+    "admin": {
+      "title": "Dashboard Admin",
+      "description": "Ringkasan & Pengelolaan",
+      "stats": {
+        "totalUsers": "Total Pengguna",
+        "todaySessions": "Sesi Hari Ini",
+        "monthlyRevenue": "Pendapatan Bulanan",
+        "pendingVerification": "Verifikasi Tertunda"
+      },
+      "pendingAlert": {
+        "text": "Ada {count} verifikasi tertunda",
+        "button": "Periksa Sekarang"
+      },
+      "financialSummary": {
+        "title": "Ringkasan Keuangan",
+        "grossRevenue": "Pendapatan Bruto",
+        "vat": "PPN",
+        "platformCommission": "Komisi Platform",
+        "psychologistPayments": "Pembayaran ke Psikolog"
+      },
+      "recentActivities": {
+        "title": "Aktivitas Terbaru",
+        "empty": "Belum ada aktivitas"
+      },
+      "quickActions": {
+        "title": "Aksi Cepat",
+        "verification": {
+          "title": "Verifikasi",
+          "description": "Periksa permohonan baru"
+        },
+        "users": {
+          "title": "Pengguna",
+          "description": "Kelola semua akun"
+        },
+        "appointments": {
+          "title": "Janji Temu",
+          "description": "Lihat semua booking"
+        },
+        "payments": {
+          "title": "Pembayaran",
+          "description": "Pantau transaksi"
+        },
+        "bankTransfers": {
+          "title": "Transfer",
+          "description": "Kelola pembayaran keluar"
+        }
+      },
+      "verificationSuccess": {
+        "title": "Verifikasi Berhasil",
+        "description": "Akun telah disetujui"
+      }
+    }
+  },
+  "appointments": {
+    "title": "Janji Temu",
+    "description": "Kelola sesi mendatang dan yang sudah lewat",
+    "tabs": {
+      "upcoming": "Mendatang",
+      "past": "Lewat"
+    },
+    "empty": {
+      "upcomingTitle": "Tidak ada janji mendatang",
+      "upcomingDescription": "Booking sesi berikutnya sekarang",
+      "pastTitle": "Belum ada sesi yang lewat",
+      "pastDescription": "Sesi yang selesai akan muncul di sini"
+    },
+    "cancelDialog": {
+      "title": "Batalkan Janji?",
+      "description": "Yakin ingin membatalkan? Tindakan ini tidak bisa dibatalkan kembali.",
+      "cancelButton": "Kembali",
+      "confirmButton": "Batalkan",
+      "confirmButtonLoading": "Membatalkan..."
+    },
+    "cancelSuccess": {
+      "title": "Janji Dibatalkan",
+      "description": "Janji temu berhasil dibatalkan."
+    },
+    "status": {
+      "reserved": "Direservasi",
+      "pending_payment": "Menunggu Pembayaran",
+      "payment_review": "Pembayaran Direview",
+      "confirmed": "Terkonfirmasi",
+      "ready": "Siap",
+      "in_session": "Sedang Berlangsung",
+      "completed": "Selesai",
+      "cancelled": "Dibatalkan",
+      "expired": "Kedaluwarsa",
+      "refunded": "Direfund",
+      "no_show": "Tidak Hadir",
+      "rejected": "Ditolak"
+    },
+    "joinSession": "Gabung Sesi",
+    "joinDisabled": "Sesi dimulai dalam {minutes} menit",
+    "patientFallback": "Klien tidak tersedia",
+    "relative": {
+      "past": "sudah lewat",
+      "now": "sekarang",
+      "inMinutes": "dalam {{count}} menit",
+      "inHours": "dalam {{count}} jam",
+      "inDays": "dalam {{count}} hari",
+      "tomorrow": "besok"
+    },
+    "videoCall": {
+      "sessionNotStarted": "Sesi belum dimulai",
+      "sessionEnded": "Sesi telah berakhir",
+      "canJoin": "Anda dapat bergabung dengan sesi",
+      "invalidAppointment": "Informasi janji temu tidak ditemukan",
+      "invalidDate": "Tanggal janji temu tidak valid",
+      "notConfirmed": "Janji temu belum dikonfirmasi",
+      "paymentPending": "Menunggu pembayaran",
+      "paymentReview": "Pembayaran sedang ditinjau",
+      "pendingApproval": "Menunggu persetujuan",
+      "cancelled": "Janji temu dibatalkan",
+      "expired": "Janji temu kedaluwarsa",
+      "completed": "Sesi selesai",
+      "noShow": "Tidak hadir",
+      "rejected": "Janji temu ditolak",
+      "refunded": "Sudah dikembalikan",
+      "notEligible": "Tidak memenuhi syarat untuk sesi",
+      "clickToJoin": "Klik untuk bergabung dengan sesi",
+      "startsInDays": "Sesi dimulai dalam {{count}} hari",
+      "startsInHours": "Sesi dimulai dalam {{count}} jam",
+      "startsInMinutes": "Sesi dimulai dalam {{count}} menit",
+      "activeBeforeStart": "Tersedia {{minutes}} menit sebelum sesi dimulai",
+      "cannotJoinEnded": "Tidak bisa bergabung, waktu sesi sudah lewat",
+      "cannotJoin": "Tidak bisa bergabung dengan sesi",
+      "now": "Sekarang",
+      "inDays": "dalam {{count}} hari",
+      "inHours": "dalam {{count}} jam",
+      "inMinutes": "dalam {{count}} menit"
+    }
+  },
+  "weekdays": {
+    "sunday": "Minggu",
+    "monday": "Senin",
+    "tuesday": "Selasa",
+    "wednesday": "Rabu",
+    "thursday": "Kamis",
+    "friday": "Jumat",
+    "saturday": "Sabtu"
+  },
+  "messages": {
+    "title": "Pesan",
+    "searchPlaceholder": "Cari pesan atau orang...",
+    "empty": "Belum ada percakapan",
+    "noResults": "Tidak ada percakapan yang cocok",
+    "selectConversation": {
+      "title": "Pilih percakapan",
+      "description": "Klik salah satu percakapan untuk mulai chatting"
+    },
+    "noMessages": "Belum ada pesan di percakapan ini",
+    "yesterday": "Kemarin",
+    "today": "Hari ini",
+    "yesterdayLabel": "Kemarin",
+    "inputPlaceholder": "Ketik pesan...",
+    "reportAction": "Laporkan Percakapan"
+  },
+  "payment": {
+    "backButton": "Kembali",
+    "title": "Pembayaran",
+    "description": "Pembayaran aman untuk sesi Anda",
+    "orderSummary": {
+      "title": "Ringkasan Pesanan",
+      "description": "Sesi Anda dengan",
+      "psychologist": "Psikolog",
+      "dateTime": "Tanggal & Waktu",
+      "duration": "Durasi",
+      "durationValue": "{minutes} menit",
+      "total": "Total"
+    },
+    "paymentInfo": {
+      "title": "Informasi Pembayaran",
+      "description": "Pindai kode QR dengan aplikasi perbankan Anda",
+      "qrGenerating": "Membuat kode QR...",
+      "qrTimer": "Kode ini kadaluwarsa dalam {seconds} detik",
+      "waitingConfirmation": "Menunggu konfirmasi pembayaran...",
+      "completeButton": "Saya Sudah Membayar",
+      "testHelper": "Mode Tes: Gunakan data tes",
+      "referenceCode": "Kode Referensi",
+      "referenceCodeLabel": "Kode Referensi",
+      "amount": "Jumlah"
+    },
+    "instructions": {
+      "title": "Cara Bayar via Transfer Bank",
+      "step1": "Buka aplikasi perbankan Anda",
+      "step2": "Pindai QR atau salin detailnya",
+      "step3": "Lakukan transfer",
+      "step4": "Konfirmasi pembayaran",
+      "step5": "Sesi akan otomatis diaktifkan"
+    },
+    "success": {
+      "title": "Pembayaran Berhasil!",
+      "confirmed": "Pembayaran Anda telah dikonfirmasi",
+      "redirecting": "Mengalihkan ke dashboard...",
+      "toastTitle": "Pembayaran Terkonfirmasi",
+      "toastDescription": "Sesi Anda sudah terbooking!"
+    },
+    "error": {
+      "notFound": "Pembayaran Tidak Ditemukan",
+      "notFoundDescription": "Halaman pembayaran ini tidak ada atau sudah kadaluwarsa",
+      "backLink": "Kembali ke Janji Temu",
+      "noPaymentInfo": "Tidak ada informasi pembayaran",
+      "paymentFailed": "Pembayaran Gagal"
+    },
+    "clipboard": {
+      "copied": "Disalin!",
+      "copiedDescription": "Disalin ke clipboard",
+      "copyFailed": "Gagal menyalin",
+      "copyFailedDescription": "Salin secara manual"
+    }
+  },
+  "availability": {
+    "title": "Ketersediaan",
+    "description": "Atur kapan Anda tersedia untuk sesi",
+    "days": {
+      "monday": "Senin",
+      "tuesday": "Selasa",
+      "wednesday": "Rabu",
+      "thursday": "Kamis",
+      "friday": "Jumat",
+      "saturday": "Sabtu",
+      "sunday": "Minggu"
+    },
+    "saveSuccess": {
+      "title": "Ketersediaan Disimpan",
+      "description": "Jadwal baru Anda sudah aktif"
+    },
+    "saveError": "Gagal menyimpan ketersediaan"
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Kelola informasi pribadi dan profesional Anda",
+    "personalInfo": {
+      "title": "Informasi Pribadi",
+      "description": "Hanya terlihat oleh Anda dan tim support",
+      "firstName": "Nama Depan",
+      "lastName": "Nama Belakang",
+      "email": "Email",
+      "phone": "Telepon",
+      "phonePlaceholder": "+62 ...",
+      "birthDate": "Tanggal Lahir",
+      "city": "Kota",
+      "about": "Tentang Saya",
+      "aboutPlaceholder": "Deskripsi singkat (terlihat oleh klien)",
+      "saveButton": "Simpan Perubahan"
+    },
+    "professionalInfo": {
+      "title": "Informasi Profesional",
+      "description": "Terlihat oleh klien potensial",
+      "photo": "Foto Profil",
+      "uploadButton": "Unggah Foto",
+      "uploadHelper": "JPG, PNG • maks. 5 MB",
+      "specialties": "Spesialisasi",
+      "specialtiesCount": "{{count}} dipilih",
+      "approaches": "Pendekatan",
+      "approachesCount": "{{count}} dipilih",
+      "saveButton": "Simpan Info Profesional"
+    },
+    "languageManagement": {
+      "title": "Kelola Bahasa",
+      "description": "Perbarui bahasa yang Anda tawarkan untuk terapi",
+      "label": "Bahasa Terapi",
+      "selectedCount": "{{count}} bahasa dipilih",
+      "saveButton": "Simpan Bahasa",
+      "errorMinLanguage": "Minimal satu bahasa diperlukan",
+      "saveError": "Gagal menyimpan bahasa",
+      "saveSuccess": "Bahasa berhasil diperbarui"
+    },
+    "saveSuccess": {
+      "title": "Profil Diperbarui",
+      "description": "Perubahan Anda telah disimpan"
+    },
+    "saveError": "Gagal menyimpan profil",
+    "professionalSaveError": "Gagal menyimpan info profesional",
+    "uploadError": {
+      "sizeTooLarge": "File terlalu besar (maks. 5 MB)",
+      "invalidType": "Hanya JPG atau PNG yang diperbolehkan",
+      "uploadFailed": "Gagal mengunggah"
+    },
+    "experience": "Pengalaman",
+    "sessionDuration": "Durasi sesi",
+    "languages": "Bahasa",
+    "about": "Tentang",
+    "education": "Pendidikan",
+    "certifications": "Sertifikat"
+  },
+  "navigation": {
+    "patient": {
+      "home": "Beranda",
+      "findPsychologist": "Cari Psikolog",
+      "appointments": "Janji Temu",
+      "messages": "Pesan",
+      "paymentHistory": "Riwayat Pembayaran",
+      "profile": "Profil",
+      "settings": "Pengaturan",
+      "logout": "Keluar"
+    },
+    "psychologist": {
+      "home": "Dashboard",
+      "appointments": "Janji Temu",
+      "availability": "Ketersediaan",
+      "messages": "Pesan",
+      "sessionNotes": "Catatan Sesi",
+      "earnings": "Pendapatan",
+      "profile": "Profil",
+      "settings": "Pengaturan",
+      "logout": "Keluar"
+    },
+    "admin": {
+      "overview": "Ringkasan",
+      "users": "Pengguna",
+      "verification": "Verifikasi",
+      "appointments": "Janji Temu",
+      "payments": "Pembayaran",
+      "auditLog": "Log Audit",
+      "settings": "Pengaturan",
+      "profile": "Profil",
+      "logout": "Keluar"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "psychologist": "Psikolog",
+      "patient": "Klien"
+    },
+    "sidebarTitle": "Menu",
+    "menuLabel": "Menu"
+  },
+  "cities": {
+    "adana": "Adana",
+    "ankara": "Ankara",
+    "antalya": "Antalya",
+    "bursa": "Bursa",
+    "denizli": "Denizli",
+    "diyarbakir": "Diyarbakır",
+    "eskisehir": "Eskişehir",
+    "gaziantep": "Gaziantep",
+    "istanbul": "İstanbul",
+    "izmir": "İzmir",
+    "kayseri": "Kayseri",
+    "kocaeli": "Kocaeli",
+    "konya": "Konya",
+    "mersin": "Mersin",
+    "mugla": "Muğla",
+    "samsun": "Samsun",
+    "trabzon": "Trabzon",
+    "other": "Lainnya"
+  },
+  "specialties": {
+    "individual": "Terapi Individu",
+    "couples": "Terapi Pasangan",
+    "family": "Terapi Keluarga",
+    "childAdolescent": "Terapi Anak & Remaja",
+    "depression": "Depresi",
+    "anxiety": "Gangguan Kecemasan",
+    "trauma": "Trauma & PTSD",
+    "ocd": "OCD (Gangguan Obsesif-Kompulsif)",
+    "eatingDisorders": "Gangguan Makan",
+    "addiction": "Kecanduan & Penyalahgunaan Zat",
+    "careerCounseling": "Konseling Karir",
+    "stressManagement": "Manajemen Stres",
+    "angerManagement": "Manajemen Kemarahan"
+  },
+  "therapyApproaches": {
+    "cbt": "Terapi Kognitif-Perilaku (CBT)",
+    "psychodynamic": "Terapi Psikodinamik",
+    "emdr": "EMDR (Eye Movement Desensitization and Reprocessing)",
+    "schema": "Terapi Skema",
+    "act": "Terapi Penerimaan dan Komitmen (ACT)",
+    "gestalt": "Terapi Gestalt",
+    "solutionFocused": "Terapi Singkat Berfokus Solusi",
+    "existential": "Terapi Eksistensial",
+    "mindfulness": "Terapi Berbasis Kesadaran Penuh (Mindfulness)"
+  },
+  "card": {
+    "sessionFee": "Biaya sesi",
+    "fee": "Biaya",
+    "bookAppointment": "Buat Janji",
+    "priceNotSpecified": "Tidak ditentukan",
+    "experience": {
+      "yearsLong": "{{count}} tahun pengalaman",
+      "yearsShort": "{{count}} thn"
+    },
+    "selectedAppointment": "Janji temu yang dipilih",
+    "reservationWarning": "Janji temu akan dibatalkan jika tidak dibayar dalam 10 menit"
+  },
+  "duration": {
+    "minutesShort": "mnt",
+    "minutesLong": "{{count}} menit"
+  },
+  "titles": {
+    "psychologist": "Psikolog",
+    "clinicalPsychologist": "Psikolog Klinis",
+    "expertPsychologist": "Psikolog Spesialis",
+    "expertClinicalPsychologist": "Psikolog Klinis Spesialis",
+    "psychologicalCounselor": "Konselor Psikologi",
+    "psychotherapist": "Psikoterapis",
+    "dr": "Dr.",
+    "assocProf": "Dr. (Lektor Kepala)",
+    "prof": "Prof. Dr."
+  },
+  "legal": {
+    "kvkk": {
+      "title": "KVKK (Perlindungan Data Pribadi)"
+    },
+    "privacy": {
+      "title": "Kebijakan Privasi"
+    },
+    "terms": {
+      "title": "Syarat & Ketentuan"
+    },
+    "refund": {
+      "title": "Kebijakan Pengembalian Dana"
+    }
+  },
+  "psychologists": {
+    "title": "Cari Terapis",
+    "subtitle": "Temukan spesialis yang tepat dan buat janji",
+    "searchPlaceholder": "Cari berdasarkan nama atau spesialisasi...",
+    "specialtyPlaceholder": "Spesialisasi",
+    "priceRangePlaceholder": "Rentang Harga",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "Hapus Filter",
+    "filters": {
+      "search": "Pencarian: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "Tidak ada terapis ditemukan",
+      "description": "Coba ubah kriteria pencarian Anda",
+      "buttonText": "Hapus Filter"
+    },
+    "loginButton": "Masuk"
+  },
+  "paymentHistory": {
+    "title": "Riwayat Pembayaran",
+    "subtitle": "Lihat semua reservasi dan transaksi pembayaran",
+    "table": {
+      "psychologist": "Terapis",
+      "appointmentDate": "Tanggal Janji",
+      "amount": "Jumlah",
+      "vat": "PPN",
+      "total": "Total",
+      "status": "Status",
+      "netAmount": "Jumlah Bersih",
+      "totalAmount": "Total Jumlah"
+    },
+    "reservedUntil": "Dipesan hingga {time}",
+    "paymentPending": "Menunggu pembayaran",
+    "paymentReview": "Pembayaran sedang ditinjau",
+    "empty": "Anda belum memiliki riwayat pembayaran",
+    "statuses": {
+      "reserved": "Dipesan",
+      "payment_pending": "Menunggu Pembayaran",
+      "payment_review": "Pembayaran Sedang Ditinjau",
+      "completed": "Selesai",
+      "pending": "Tertunda",
+      "failed": "Gagal",
+      "refunded": "Dikembalikan",
+      "refund_pending": "Menunggu Pengembalian",
+      "refund_approved": "Pengembalian Disetujui",
+      "refund_processed": "Dikembalikan",
+      "refund_rejected": "Pengembalian Ditolak"
+    }
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Kelola pengaturan akun dan preferensi Anda",
+    "language": "Bahasa Tampilan",
+    "languageDesc": "Pilih bahasa untuk antarmuka aplikasi",
+    "selectLanguage": "Pilih Bahasa",
+    "languageChanged": "Bahasa diubah",
+    "languageChangedDesc": "Bahasa antarmuka telah berhasil diubah",
+    "confirmLanguageChange": "Apakah Anda ingin menyimpan perubahan?",
+    "confirmLanguageChangeDesc": "Bahasa situs akan diterjemahkan ke bahasa yang Anda pilih. Apakah Anda mengonfirmasi tindakan ini?",
+    "notifications": "Notifikasi",
+    "notificationsDesc": "Kelola preferensi notifikasi Anda",
+    "emailNotifications": "Notifikasi Email",
+    "emailNotificationsDesc": "Terima email untuk pembaruan penting",
+    "appointmentReminders": "Pengingat Janji Temu",
+    "appointmentRemindersDesc": "Dapatkan notifikasi tentang janji temu yang akan datang",
+    "messageNotifications": "Notifikasi Pesan",
+    "messageNotificationsDesc": "Terima notifikasi untuk pesan baru",
+    "newAppointmentRequests": "Permintaan Janji Temu Baru",
+    "newAppointmentRequestsDesc": "Dapatkan notifikasi tentang permintaan janji temu baru",
+    "privacy": "Privasi",
+    "privacyDesc": "Kontrol pengaturan privasi Anda",
+    "showProfile": "Tampilkan Profil",
+    "showProfileDesc": "Buat profil Anda terlihat oleh pasien",
+    "showOnlineStatus": "Tampilkan Status Online",
+    "showOnlineStatusDesc": "Tampilkan status online Anda kepada pengguna lain",
+    "showLastSeen": "Tampilkan Terakhir Dilihat",
+    "showLastSeenDesc": "Bagikan waktu terakhir Anda terlihat",
+    "security": "Keamanan",
+    "securityDesc": "Pengaturan keamanan akun",
+    "twoFactor": "Autentikasi Dua Faktor",
+    "twoFactorDesc": "Tambahkan lapisan keamanan ekstra ke akun Anda",
+    "changePassword": "Ubah Kata Sandi",
+    "changePasswordDesc": "Masukkan kata sandi saat ini dan pilih yang baru untuk keamanan Anda",
+    "currentPassword": "Kata Sandi Saat Ini",
+    "enterCurrentPassword": "Masukkan kata sandi saat ini",
+    "newPassword": "Kata Sandi Baru",
+    "enterNewPassword": "Masukkan kata sandi baru",
+    "confirmNewPassword": "Konfirmasi Kata Sandi Baru",
+    "enterNewPasswordAgain": "Masukkan kata sandi baru lagi",
+    "passwordMinLength": "Kata sandi harus minimal 6 karakter",
+    "passwordMinLengthHint": "Minimal 6 karakter",
+    "passwordsDoNotMatch": "Kata sandi tidak cocok",
+    "newPasswordMustBeDifferent": "Kata sandi baru harus berbeda dari kata sandi saat ini",
+    "allPasswordFieldsRequired": "Semua kolom wajib diisi",
+    "passwordChanged": "Kata sandi diubah",
+    "passwordChangedDesc": "Kata sandi Anda telah berhasil diperbarui",
+    "passwordChangeError": "Gagal mengubah kata sandi",
+    "saveChanges": "Simpan Perubahan",
+    "savedTitle": "Pengaturan disimpan",
+    "savedDesc": "Preferensi Anda telah berhasil diperbarui",
+    "notificationsSaved": "Preferensi notifikasi disimpan",
+    "saveError": "Gagal menyimpan pengaturan"
+  },
+  "twoFactor": {
+    "title": "Autentikasi Dua Faktor",
+    "description": "Lindungi akun Anda dengan Google Authenticator",
+    "enable": "Aktifkan",
+    "disable": "Nonaktifkan",
+    "setupTitle": "Pengaturan Autentikasi Dua Faktor",
+    "scanQR": "Pindai kode QR dengan aplikasi Google Authenticator atau Authy",
+    "cantScanQR": "Tidak bisa memindai kode QR? Masukkan secara manual:",
+    "verificationCode": "Kode Verifikasi",
+    "enter6DigitFromApp": "Masukkan kode 6 digit yang ditampilkan di aplikasi Anda",
+    "verifyAndEnable": "Verifikasi dan Aktifkan",
+    "disableTitle": "Nonaktifkan Autentikasi Dua Faktor",
+    "disableDescription": "Masukkan kata sandi dan kode verifikasi Anda untuk tindakan ini",
+    "password": "Kata Sandi",
+    "setupError": "Gagal menyiapkan 2FA",
+    "enableSuccess": "Autentikasi dua faktor berhasil diaktifkan",
+    "invalidCode": "Kode verifikasi tidak valid",
+    "disableSuccess": "Autentikasi dua faktor berhasil dinonaktifkan",
+    "disableError": "Gagal menonaktifkan 2FA",
+    "enter6Digit": "Silakan masukkan kode 6 digit yang valid",
+    "enterPasswordAnd6Digit": "Silakan masukkan kata sandi dan kode 6 digit Anda",
+    "secretCopied": "Secret disalin ke clipboard"
+  }
+}

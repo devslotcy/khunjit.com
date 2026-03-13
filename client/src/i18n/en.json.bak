@@ -1,0 +1,880 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "continue": "Continue",
+    "close": "Close",
+    "loading": "Loading...",
+    "search": "Search",
+    "filter": "Filter",
+    "viewAll": "View All",
+    "noResults": "No results found",
+    "error": "Error",
+    "success": "Success",
+    "yes": "Yes",
+    "no": "No",
+    "or": "or",
+    "and": "and",
+    "selected": "selected",
+    "selectedCount": "{{count}} selected",
+    "copied": "Copied!",
+    "copyFailed": "Copy failed",
+    "minuteShort": "min"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "description": "Log in to manage your sessions and messages.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "your@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "loginButton": "Sign In",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign Up",
+      "successTitle": "Welcome back!",
+      "successDescription": "You have successfully signed in.",
+      "errorTitle": "Login failed",
+      "errorDescription": "Incorrect email or password. Please try again."
+    },
+    "register": {
+      "titlePatient": "Patient Registration",
+      "titlePsychologist": "Psychologist Registration",
+      "stepIndicator": "Step {{step}} / {{totalSteps}}",
+      "registerButton": "Register",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign In",
+      "step1": {
+        "languageLabelPsychologist": "Therapy Language *",
+        "languageLabelPatient": "Therapy Language *",
+        "languageHelperPsychologist": "Choose the language you will use in your therapy sessions. Patients who speak this language will see you.",
+        "languageHelperPatient": "Choose the language for your therapy. You will only see psychologists who support this language.",
+        "languagesSelectedCount": "{{count}} languages selected",
+        "languageSelected": "Language selected",
+        "errorNoLanguage": "Please select at least one language",
+        "errorNoTherapyLanguage": "Please select your therapy language",
+        "emailLabel": "Email *",
+        "emailPlaceholder": "example@email.com",
+        "usernameLabel": "Username *",
+        "usernamePlaceholder": "atleast5chars",
+        "passwordLabel": "Password *",
+        "passwordPlaceholder": "At least 8 characters",
+        "passwordConfirmLabel": "Confirm Password *",
+        "passwordConfirmPlaceholder": "Re-enter your password",
+        "errorAllFields": "Please fill in all fields",
+        "errorInvalidEmail": "Enter a valid email address",
+        "errorEmailFormat": "Please enter a valid email address",
+        "validEmail": "Valid email address",
+        "errorUsernameLength": "Username must be at least 5 letters and contain no numbers",
+        "usernameRequirement1": "At least 5 letters",
+        "usernameRequirement2": "Letters only",
+        "errorPasswordFormat": "Password must contain at least 8 characters, 1 uppercase, 1 lowercase, and 1 number",
+        "passwordRequirement1": "At least 8 characters",
+        "passwordRequirement2": "At least 1 uppercase letter",
+        "passwordRequirement3": "At least 1 lowercase letter",
+        "passwordRequirement4": "At least 1 number",
+        "passwordMatch": "Passwords match",
+        "passwordMismatch": "Passwords do not match"
+      },
+      "title": "Professional Title",
+      "selectTitle": "Select title",
+      "titleSelected": "Title selected"
+    },
+    "roleSelect": {
+      "title": "Who are you?",
+      "description": "Choose your role to continue.",
+      "patientTitle": "Client",
+      "patientDescription": "I'm looking for therapeutic support",
+      "psychologistTitle": "Therapist",
+      "psychologistDescription": "I provide therapy sessions",
+      "continueButton": "Continue",
+      "hasAccount": "Already registered?",
+      "loginLink": "Sign in now"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Features",
+      "howItWorks": "How It Works",
+      "psychologists": "Therapists",
+      "goToDashboard": "Go to Dashboard",
+      "login": "Sign In",
+      "register": "Sign Up",
+      "openMenu": "Open Menu"
+    },
+    "hero": {
+      "badge": "Online Therapy",
+      "title1": "Professional",
+      "titleHighlight": "Online Psychotherapy",
+      "title2": "– Safe & Private",
+      "description": "Find the right therapist in minutes – from anywhere.",
+      "ctaStart": "Get Started Free",
+      "ctaExplore": "Browse Therapists",
+      "feature1": "Verified Professionals",
+      "feature2": "Secure Video Calls",
+      "feature3": "Flexible Scheduling"
+    },
+    "features": {
+      "title": "Why Online Therapy?",
+      "description": "Modern psychotherapy – comfortably from home.",
+      "videoCall": {
+        "title": "Video Sessions",
+        "description": "Secure, end-to-end encrypted video calls"
+      },
+      "privacy": {
+        "title": "Maximum Privacy",
+        "description": "Your data is protected in compliance with laws"
+      },
+      "easyBooking": {
+        "title": "Easy Booking",
+        "description": "Book appointments whenever it suits you"
+      },
+      "messaging": {
+        "title": "Secure Messaging",
+        "description": "Stay in touch between sessions"
+      },
+      "flexible": {
+        "title": "Flexible Hours",
+        "description": "Evening and weekend appointments available"
+      },
+      "experts": {
+        "title": "Qualified Experts",
+        "description": "Only licensed and verified therapists"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "Get started in just 3 simple steps",
+      "step1": {
+        "title": "Find the Right Therapist",
+        "description": "Filter by specialty, language, price & availability"
+      },
+      "step2": {
+        "title": "Book & Pay",
+        "description": "Secure payment – appointment confirmed instantly"
+      },
+      "step3": {
+        "title": "Start Your Session",
+        "description": "Join via video call – right from home"
+      }
+    },
+    "cta": {
+      "title": "Ready for Your First Step?",
+      "description": "Begin your journey toward better wellbeing today.",
+      "button": "Sign Up Free"
+    },
+    "footer": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "kvkk": "KVKK (Personal Data Protection)",
+      "copyright": "© {year} All rights reserved."
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "Welcome back, {{firstName}}",
+      "subtitle": "Here's an overview of your upcoming sessions and messages",
+      "stats": {
+        "upcomingSessions": "Upcoming Sessions",
+        "totalSessions": "Total Sessions",
+        "unreadMessages": "Unread Messages"
+      },
+      "upcomingAppointments": {
+        "title": "Upcoming Appointments",
+        "viewAll": "View All",
+        "emptyTitle": "No upcoming appointments",
+        "emptyDescription": "Find a therapist and book your first session now"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "findPsychologist": {
+          "title": "Find a Therapist",
+          "description": "Search for the right specialist"
+        },
+        "messages": {
+          "title": "Messages",
+          "description": "Chat with your therapist"
+        },
+        "appointments": {
+          "title": "Appointments",
+          "description": "Manage all your bookings"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "Hello {{firstName}}",
+      "pendingApproval": {
+        "title": "Your profile is under review",
+        "description": "Our team is currently verifying your credentials. This usually takes 1–3 business days."
+      },
+      "stats": {
+        "todaySessions": "Today's Sessions",
+        "weeklyEarnings": "Weekly Earnings",
+        "totalClients": "Total Clients",
+        "pendingAppointments": "Pending Requests"
+      },
+      "upcomingSessions": {
+        "title": "Upcoming Sessions",
+        "viewAll": "View All",
+        "emptyTitle": "No upcoming sessions",
+        "emptyDescription": "Your availability hasn't been booked yet"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "availability": {
+          "title": "Availability",
+          "description": "Update your calendar"
+        },
+        "earnings": {
+          "title": "Earnings",
+          "description": "View payouts & statistics"
+        },
+        "profile": {
+          "title": "Profile",
+          "description": "Edit your profile"
+        }
+      }
+    },
+    "admin": {
+      "title": "Admin Dashboard",
+      "description": "Overview & Management",
+      "stats": {
+        "totalUsers": "Total Users",
+        "todaySessions": "Today's Sessions",
+        "monthlyRevenue": "Monthly Revenue",
+        "pendingVerification": "Pending Verifications"
+      },
+      "pendingAlert": {
+        "text": "There are {count} pending verifications",
+        "button": "Review Now"
+      },
+      "financialSummary": {
+        "title": "Financial Summary",
+        "grossRevenue": "Gross Revenue",
+        "vat": "VAT",
+        "platformCommission": "Platform Fee",
+        "psychologistPayments": "Therapist Payouts"
+      },
+      "recentActivities": {
+        "title": "Recent Activity",
+        "empty": "No recent activity"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "verification": {
+          "title": "Verification",
+          "description": "Review new applications"
+        },
+        "users": {
+          "title": "Users",
+          "description": "Manage all accounts"
+        },
+        "appointments": {
+          "title": "Appointments",
+          "description": "View all bookings"
+        },
+        "payments": {
+          "title": "Payments",
+          "description": "Monitor transactions"
+        },
+        "bankTransfers": {
+          "title": "Transfers",
+          "description": "Manage payouts"
+        }
+      },
+      "verificationSuccess": {
+        "title": "Verification Successful",
+        "description": "The account has been approved"
+      }
+    }
+  },
+  "appointments": {
+    "title": "Appointments",
+    "description": "Manage your upcoming and past sessions",
+    "tabs": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "paymentReview": "Payment Review"
+    },
+    "paymentReviewAlert": {
+      "title": "Payment Confirmation Pending",
+      "description": "Clients have submitted payment notifications for these appointments. Sessions will be confirmed after admin verification."
+    },
+    "empty": {
+      "upcomingTitle": "No upcoming appointments",
+      "upcomingDescription": "Book your next session now",
+      "pastTitle": "No past sessions yet",
+      "pastDescription": "Your completed sessions will appear here"
+    },
+    "cancelDialog": {
+      "title": "Cancel Appointment?",
+      "description": "Are you sure you want to cancel this appointment? This action cannot be undone.",
+      "cancelButton": "Back",
+      "confirmButton": "Cancel Appointment",
+      "confirmButtonLoading": "Cancelling..."
+    },
+    "cancelSuccess": {
+      "title": "Appointment Cancelled",
+      "description": "The appointment has been successfully cancelled."
+    },
+    "status": {
+      "reserved": "Reserved",
+      "pending_payment": "Payment Pending",
+      "payment_review": "Payment Review",
+      "confirmed": "Confirmed",
+      "ready": "Ready",
+      "in_session": "In Session",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "expired": "Expired",
+      "refunded": "Refunded",
+      "no_show": "No-Show",
+      "rejected": "Rejected"
+    },
+    "joinSession": "Join Session",
+    "joinDisabled": "Session starts in {minutes} minutes",
+    "patientFallback": "Client not available",
+    "relative": {
+      "past": "passed",
+      "now": "now",
+      "inMinutes": "in {{count}} min",
+      "inMinutes_one": "in {{count}} minute",
+      "inMinutes_other": "in {{count}} minutes",
+      "inHours": "in {{count}}h",
+      "inHours_one": "in {{count}} hour",
+      "inHours_other": "in {{count}} hours",
+      "inDays": "in {{count}} days",
+      "inDays_one": "in {{count}} day",
+      "inDays_other": "in {{count}} days",
+      "tomorrow": "tomorrow"
+    },
+    "videoCall": {
+      "sessionNotStarted": "Session hasn't started yet",
+      "sessionEnded": "Session has ended",
+      "canJoin": "You can join the session",
+      "invalidAppointment": "Appointment information not found",
+      "invalidDate": "Invalid appointment date",
+      "notConfirmed": "Appointment not confirmed yet",
+      "paymentPending": "Payment pending",
+      "paymentReview": "Payment under review",
+      "pendingApproval": "Awaiting approval",
+      "cancelled": "Appointment cancelled",
+      "expired": "Appointment expired",
+      "completed": "Session completed",
+      "noShow": "Did not attend",
+      "rejected": "Appointment rejected",
+      "refunded": "Refunded",
+      "notEligible": "Not eligible for session",
+      "clickToJoin": "Click to join the session",
+      "startsInDays_one": "Session starts in {{count}} day",
+      "startsInDays_other": "Session starts in {{count}} days",
+      "startsInDays": "Session starts in {{count}} days",
+      "startsInHours_one": "Session starts in {{count}} hour",
+      "startsInHours_other": "Session starts in {{count}} hours",
+      "startsInHours": "Session starts in {{count}} hours",
+      "startsInMinutes_one": "Session starts in {{count}} minute",
+      "startsInMinutes_other": "Session starts in {{count}} minutes",
+      "startsInMinutes": "Session starts in {{count}} minutes",
+      "activeBeforeStart": "Available {{minutes}} min before session starts",
+      "cannotJoinEnded": "Cannot join, session time has passed",
+      "cannotJoin": "Cannot join the session",
+      "now": "Now",
+      "inDays_one": "in {{count}} day",
+      "inDays_other": "in {{count}} days",
+      "inDays": "in {{count}} days",
+      "inHours_one": "in {{count}} hour",
+      "inHours_other": "in {{count}} hours",
+      "inHours": "in {{count}} hours",
+      "inMinutes_one": "in {{count}} minute",
+      "inMinutes_other": "in {{count}} minutes",
+      "inMinutes": "in {{count}} minutes"
+    }
+  },
+  "weekdays": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
+  },
+  "messages": {
+    "title": "Messages",
+    "searchPlaceholder": "Search messages or people...",
+    "empty": "No conversations yet",
+    "noResults": "No matching conversations",
+    "selectConversation": {
+      "title": "Select a conversation",
+      "description": "Click on a conversation to start chatting"
+    },
+    "noMessages": "No messages in this conversation yet",
+    "yesterday": "Yesterday",
+    "today": "Today",
+    "yesterdayLabel": "Yesterday",
+    "inputPlaceholder": "Type a message...",
+    "reportAction": "Report Conversation"
+  },
+  "payment": {
+    "backButton": "Back",
+    "title": "Payment",
+    "description": "Secure payment for your session",
+    "orderSummary": {
+      "title": "Order Summary",
+      "description": "Your session with",
+      "psychologist": "Therapist",
+      "dateTime": "Date & Time",
+      "duration": "Duration",
+      "durationValue": "{minutes} minutes",
+      "total": "Total"
+    },
+    "paymentInfo": {
+      "title": "Payment Details",
+      "description": "Scan the QR code with your banking app",
+      "qrGenerating": "Generating QR code...",
+      "qrTimer": "This code expires in {seconds} seconds",
+      "waitingConfirmation": "Waiting for payment confirmation...",
+      "completeButton": "I've Completed Payment",
+      "testHelper": "Test Mode: Use test credentials",
+      "referenceCode": "Reference Code",
+      "referenceCodeLabel": "Payment Reference",
+      "amount": "Amount"
+    },
+    "instructions": {
+      "title": "How to Pay by Bank Transfer",
+      "step1": "Open your banking app",
+      "step2": "Scan the QR code or copy the details",
+      "step3": "Make the transfer",
+      "step4": "Confirm the payment",
+      "step5": "Your session will be automatically activated"
+    },
+    "success": {
+      "title": "Payment Successful!",
+      "confirmed": "Your payment has been confirmed",
+      "redirecting": "Redirecting to dashboard...",
+      "toastTitle": "Payment Confirmed",
+      "toastDescription": "Your session is now booked!"
+    },
+    "error": {
+      "notFound": "Payment Not Found",
+      "notFoundDescription": "This payment page doesn't exist or has expired",
+      "backLink": "Back to Appointments",
+      "noPaymentInfo": "No payment information available",
+      "paymentFailed": "Payment Failed"
+    },
+    "clipboard": {
+      "copied": "Copied!",
+      "copiedDescription": "Copied to clipboard",
+      "copyFailed": "Copy failed",
+      "copyFailedDescription": "Please copy manually"
+    }
+  },
+  "availability": {
+    "title": "Availability",
+    "description": "Set when you're available for sessions",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "saveSuccess": {
+      "title": "Availability Saved",
+      "description": "Your new schedule is now active"
+    },
+    "saveError": "Error saving availability"
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Manage your personal and professional information",
+    "personalInfo": {
+      "title": "Personal Information",
+      "description": "Only visible to you and support team",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "phonePlaceholder": "+90 ...",
+      "birthDate": "Date of Birth",
+      "city": "City",
+      "about": "About Me",
+      "aboutPlaceholder": "Short description (visible to clients)",
+      "saveButton": "Save Changes"
+    },
+    "professionalInfo": {
+      "title": "Professional Information",
+      "description": "Visible to potential clients",
+      "photo": "Profile Photo",
+      "uploadButton": "Upload Photo",
+      "uploadHelper": "JPG, PNG • max 5 MB",
+      "specialties": "Specialties",
+      "specialtiesCount": "{{count}} selected",
+      "approaches": "Approaches",
+      "approachesCount": "{{count}} selected",
+      "saveButton": "Save Professional Info"
+    },
+    "experience": "Experience",
+    "sessionDuration": "Session Duration",
+    "languages": "Languages",
+    "about": "About",
+    "education": "Education",
+    "certifications": "Certifications",
+    "languageManagement": {
+      "title": "Manage Languages",
+      "description": "Update languages you offer therapy in",
+      "label": "Therapy Languages",
+      "selectedCount": "{{count}} languages selected",
+      "saveButton": "Save Languages",
+      "errorMinLanguage": "At least one language is required",
+      "saveError": "Error saving languages",
+      "saveSuccess": "Languages updated successfully"
+    },
+    "stripeConnect": {
+      "title": "Payment Account",
+      "description": "Connect your Stripe account to receive payouts",
+      "notConnected": {
+        "status": "Not Connected",
+        "description": "To receive your earnings, connect your Stripe payout account. You will enter details securely on Stripe.",
+        "button": "Connect with Stripe"
+      },
+      "incomplete": {
+        "status": "Action Required",
+        "description": "Your Stripe account needs more information. Please complete the required steps to enable payouts.",
+        "button": "Complete Setup"
+      },
+      "active": {
+        "status": "Active",
+        "description": "Your Stripe account is active. Earnings will be paid out to this account.",
+        "button": "Manage on Stripe"
+      },
+      "errors": {
+        "notConfigured": "Stripe Connect is not configured. Please contact support.",
+        "connectionFailed": "Failed to connect to Stripe. Please try again.",
+        "statusFailed": "Failed to get account status. Please try again."
+      }
+    },
+    "saveSuccess": {
+      "title": "Profile Updated",
+      "description": "Your changes have been saved"
+    },
+    "saveError": "Error saving profile",
+    "professionalSaveError": "Error saving professional information",
+    "uploadError": {
+      "sizeTooLarge": "File too large (max 5 MB)",
+      "invalidType": "Only JPG or PNG allowed",
+      "uploadFailed": "Upload failed"
+    }
+  },
+  "navigation": {
+    "patient": {
+      "home": "Home",
+      "findPsychologist": "Find Therapist",
+      "appointments": "Appointments",
+      "messages": "Messages",
+      "paymentHistory": "Payment History",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Sign Out"
+    },
+    "psychologist": {
+      "home": "Dashboard",
+      "appointments": "Appointments",
+      "availability": "Availability",
+      "messages": "Messages",
+      "sessionNotes": "Session Notes",
+      "earnings": "Earnings",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Sign Out"
+    },
+    "admin": {
+      "overview": "Overview",
+      "users": "Users",
+      "verification": "Verification",
+      "appointments": "Appointments",
+      "payments": "Payments",
+      "auditLog": "Audit Log",
+      "settings": "Settings",
+      "profile": "Profile",
+      "logout": "Sign Out"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "psychologist": "Therapist",
+      "patient": "Client"
+    },
+    "sidebarTitle": "Menu",
+    "menuLabel": "Menu"
+  },
+  "cities": {
+    "adana": "Adana",
+    "ankara": "Ankara",
+    "antalya": "Antalya",
+    "bursa": "Bursa",
+    "denizli": "Denizli",
+    "diyarbakir": "Diyarbakır",
+    "eskisehir": "Eskişehir",
+    "gaziantep": "Gaziantep",
+    "istanbul": "Istanbul",
+    "izmir": "İzmir",
+    "kayseri": "Kayseri",
+    "kocaeli": "Kocaeli",
+    "konya": "Konya",
+    "mersin": "Mersin",
+    "mugla": "Muğla",
+    "samsun": "Samsun",
+    "trabzon": "Trabzon",
+    "other": "Other"
+  },
+  "specialties": {
+    "individual": "Individual Therapy",
+    "couples": "Couples Therapy",
+    "family": "Family Therapy",
+    "childAdolescent": "Child & Adolescent Therapy",
+    "depression": "Depression",
+    "anxiety": "Anxiety Disorders",
+    "trauma": "Trauma & PTSD",
+    "ocd": "OCD (Obsessive-Compulsive Disorder)",
+    "eatingDisorders": "Eating Disorders",
+    "addiction": "Addiction & Substance Use",
+    "careerCounseling": "Career Counseling",
+    "stressManagement": "Stress Management",
+    "angerManagement": "Anger Management"
+  },
+  "therapyApproaches": {
+    "cbt": "Cognitive Behavioral Therapy (CBT)",
+    "psychodynamic": "Psychodynamic Therapy",
+    "emdr": "EMDR (Eye Movement Desensitization and Reprocessing)",
+    "schema": "Schema Therapy",
+    "act": "Acceptance and Commitment Therapy (ACT)",
+    "gestalt": "Gestalt Therapy",
+    "solutionFocused": "Solution-Focused Brief Therapy",
+    "existential": "Existential Therapy",
+    "mindfulness": "Mindfulness-Based Therapy"
+  },
+  "card": {
+    "sessionFee": "Session fee",
+    "fee": "Fee",
+    "bookAppointment": "Book Appointment",
+    "priceNotSpecified": "Not specified",
+    "selectedAppointment": "Selected appointment",
+    "reservationWarning": "Appointments are cancelled if not paid within 10 minutes",
+    "experience": {
+      "yearsLong_one": "{{count}} year of experience",
+      "yearsLong_other": "{{count}} years of experience",
+      "yearsLong": "{{count}} years of experience",
+      "yearsShort_one": "{{count}} yr",
+      "yearsShort_other": "{{count}} yrs",
+      "yearsShort": "{{count}} yrs"
+    }
+  },
+  "duration": {
+    "minutesShort": "min",
+    "minutesLong_one": "{{count}} minute",
+    "minutesLong_other": "{{count}} minutes",
+    "minutesLong": "{{count}} minutes"
+  },
+  "titles": {
+    "psychologist": "Psychologist",
+    "clinicalPsychologist": "Clinical Psychologist",
+    "expertPsychologist": "Expert Psychologist",
+    "expertClinicalPsychologist": "Expert Clinical Psychologist",
+    "psychologicalCounselor": "Psychological Counselor",
+    "psychotherapist": "Psychotherapist",
+    "dr": "Dr.",
+    "assocProf": "Assoc. Prof. Dr.",
+    "prof": "Prof. Dr."
+  },
+  "legal": {
+    "kvkk": {
+      "title": "KVKK (Personal Data Protection Law)"
+    },
+    "privacy": {
+      "title": "Privacy Policy"
+    },
+    "terms": {
+      "title": "Terms of Service"
+    },
+    "refund": {
+      "title": "Refund Policy"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account preferences and notification settings",
+    "language": "Display Language",
+    "languageDesc": "Choose the language for the interface",
+    "selectLanguage": "Select Language",
+    "languageChanged": "Language Changed",
+    "languageChangedDesc": "The interface language has been updated",
+    "notifications": "Notification Preferences",
+    "notificationsDesc": "Choose which notifications you want to receive",
+    "emailNotifications": "Email notifications",
+    "emailNotificationsDesc": "Receive emails for important updates",
+    "appointmentReminders": "Appointment reminders",
+    "appointmentRemindersDesc": "Send notifications before appointments",
+    "messageNotifications": "Message notifications",
+    "messageNotificationsDesc": "Get notified about new messages",
+    "newAppointmentRequests": "New appointment requests",
+    "newAppointmentRequestsDesc": "Notify when a client requests an appointment",
+    "privacy": "Privacy Settings",
+    "privacyDesc": "Control your profile visibility",
+    "showProfile": "Show my profile",
+    "showProfileDesc": "Appear in psychologist search list",
+    "showOnlineStatus": "Show online status",
+    "showOnlineStatusDesc": "Show other users when you're active",
+    "showLastSeen": "Last seen",
+    "showLastSeenDesc": "Share when you were last active",
+    "security": "Security",
+    "securityDesc": "Manage your account security",
+    "twoFactor": "Two-factor authentication",
+    "twoFactorDesc": "Add an extra security layer to your account",
+    "changePassword": "Change Password",
+    "saveChanges": "Save Changes",
+    "savedTitle": "Settings Saved",
+    "savedDesc": "Your preferences have been successfully updated"
+  },
+  "psychologists": {
+    "title": "Find a Therapist",
+    "subtitle": "Find the right specialist and book an appointment",
+    "searchPlaceholder": "Search by name or specialty...",
+    "specialtyPlaceholder": "Specialty",
+    "priceRangePlaceholder": "Price Range",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "Clear Filters",
+    "filters": {
+      "search": "Search: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "No therapists found",
+      "description": "Try changing your search criteria",
+      "buttonText": "Clear Filters"
+    },
+    "loginButton": "Sign In"
+  },
+  "sessionNotes": {
+    "title": "Session Notes",
+    "description": "Create and manage notes for your sessions",
+    "addNote": "Add Note",
+    "editNote": "Edit Note",
+    "createNote": "Create Note",
+    "saveNote": "Save",
+    "notePlaceholder": "Write your session notes...",
+    "private": "Private",
+    "sharedWithClient": "Shared with client",
+    "noNotes": "No notes yet",
+    "noCompletedSessions": "No completed sessions yet",
+    "noteExists": "Note Exists",
+    "noNote": "No Note",
+    "sessionWith": "Session with",
+    "status": "Status",
+    "noteContent": "Session Note",
+    "saveSuccess": "Note saved successfully",
+    "updateSuccess": "Note updated successfully",
+    "saveError": "Error saving note",
+    "emptyNote": "Note content cannot be empty"
+  },
+  "earnings": {
+    "title": "Earnings",
+    "description": "View earnings from your completed sessions",
+    "totalEarnings": "Total Earnings",
+    "thisMonth": "This Month",
+    "pending": "Pending",
+    "totalSessions": "Total Sessions",
+    "earningsDetails": "Earnings Details",
+    "completed": "Completed",
+    "noEarnings": "No earnings yet",
+    "noEarningsDescription": "Earnings will appear here after sessions are completed",
+    "sessionDetails": "Session Details",
+    "earned": "Earned",
+    "pendingPayout": "Pending Payout",
+    "paid": "Paid",
+    "grossAmount": "Gross",
+    "vat": "VAT",
+    "platformFee": "Fee",
+    "netEarnings": "Net Earnings",
+    "paidOn": "Paid On"
+  },
+  "paymentHistory": {
+    "title": "Payment History",
+    "subtitle": "View all your reservations and payment transactions",
+    "table": {
+      "psychologist": "Therapist",
+      "appointmentDate": "Appointment Date",
+      "amount": "Amount",
+      "vat": "VAT",
+      "total": "Total",
+      "status": "Status",
+      "netAmount": "Net Amount",
+      "totalAmount": "Total Amount"
+    },
+    "reservedUntil": "Reserved until {time}",
+    "paymentPending": "Payment pending",
+    "paymentReview": "Payment under review",
+    "empty": "You have no payment history yet",
+    "statuses": {
+      "reserved": "Reserved",
+      "payment_pending": "Payment Pending",
+      "payment_review": "Payment Under Review",
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed",
+      "refunded": "Refunded",
+      "refund_pending": "Refund Pending",
+      "refund_approved": "Refund Approved",
+      "refund_processed": "Refunded",
+      "refund_rejected": "Refund Rejected"
+    }
+  },
+
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account settings and preferences",
+    "language": "Display Language",
+    "languageDesc": "Select the language for the application interface",
+    "selectLanguage": "Select Language",
+    "languageChanged": "Language changed",
+    "languageChangedDesc": "Interface language has been successfully changed",
+    "confirmLanguageChange": "Do you want to save the changes?",
+    "confirmLanguageChangeDesc": "The site language will be translated to your selected language. Do you confirm this action?",
+    "notifications": "Notifications",
+    "notificationsDesc": "Manage your notification preferences",
+    "emailNotifications": "Email Notifications",
+    "emailNotificationsDesc": "Receive emails for important updates",
+    "appointmentReminders": "Appointment Reminders",
+    "appointmentRemindersDesc": "Get notified about upcoming appointments",
+    "messageNotifications": "Message Notifications",
+    "messageNotificationsDesc": "Receive notifications for new messages",
+    "newAppointmentRequests": "New Appointment Requests",
+    "newAppointmentRequestsDesc": "Get notified about new appointment requests",
+    "privacy": "Privacy",
+    "privacyDesc": "Control your privacy settings",
+    "showProfile": "Show Profile",
+    "showProfileDesc": "Make your profile visible to patients",
+    "showOnlineStatus": "Show Online Status",
+    "showOnlineStatusDesc": "Display your online status to other users",
+    "showLastSeen": "Show Last Seen",
+    "showLastSeenDesc": "Share your last seen time",
+    "security": "Security",
+    "securityDesc": "Account security settings",
+    "twoFactor": "Two-Factor Authentication",
+    "twoFactorDesc": "Add an extra layer of security to your account",
+    "changePassword": "Change Password",
+    "saveChanges": "Save Changes",
+    "savedTitle": "Settings saved",
+    "savedDesc": "Your preferences have been successfully updated"
+  }
+}

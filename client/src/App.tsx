@@ -4,8 +4,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { useQuery } from "@tanstack/react-query";
+import "./lib/i18n"; // Initialize i18n
 
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
@@ -14,15 +16,22 @@ import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import SessionPage from "@/pages/session";
 import ProfilePage from "@/pages/profile";
+import VideoCallPage from "@/pages/video-call";
 
 import PatientDashboard from "@/pages/patient/dashboard";
 import PsychologistDiscovery from "@/pages/patient/psychologists";
 import PsychologistProfilePage from "@/pages/patient/psychologist-profile";
+import PsychologistDetailPage from "@/pages/patient/psychologist-detail";
 import PatientAppointments from "@/pages/patient/appointments";
 import PatientMessages from "@/pages/patient/messages";
 import PaymentPage from "@/pages/patient/payment";
+import BankTransferCheckout from "@/pages/patient/bank-transfer-checkout";
+import PromptPayCheckout from "@/pages/patient/promptpay-checkout";
+import BookingSuccess from "@/pages/patient/booking-success";
 
 import PsychologistDashboardPage from "@/pages/psychologist/dashboard";
+import PsychologistAppointments from "@/pages/psychologist/appointments";
+import PsychologistMessages from "@/pages/psychologist/messages";
 import AvailabilitySettings from "@/pages/psychologist/availability";
 import PsychologistPaymentHistory from "@/pages/psychologist/payment-history";
 import PsychologistSessionNotes from "@/pages/psychologist/session-notes";
@@ -31,7 +40,12 @@ import AdminDashboard from "@/pages/admin/dashboard";
 import AdminUsers from "@/pages/admin/users";
 import AdminVerify from "@/pages/admin/verify";
 import AdminPayments from "@/pages/admin/payments";
+import AdminLoginPage from "@/pages/admin/login";
+import AdminSettingsPage from "@/pages/admin/settings";
+import AdminAppointments from "@/pages/admin/appointments";
+import AuditLogsPage from "@/pages/admin/audit";
 import PatientPaymentHistory from "@/pages/patient/payment-history";
+import SettingsPage from "@/pages/settings";
 import LegalPage from "@/pages/legal";
 import type { UserProfile } from "@shared/schema";
 
@@ -68,41 +82,60 @@ function AuthenticatedRouter() {
 
   const role = profile.role as "patient" | "psychologist" | "admin";
 
+  // Block non-admin users from accessing dashboard routes if they're admin
+  if (role === "admin") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl font-bold">Erişim Engellendi</h1>
+          <p className="text-muted-foreground">Admin kullanıcılar için ayrı bir panel mevcuttur.</p>
+          <Button onClick={() => window.location.href = "/admin"}>
+            Admin Paneline Git
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Switch>
-      <Route path="/dashboard">
-        {role === "admin" ? (
-          <AdminDashboard />
-        ) : role === "psychologist" ? (
-          <PsychologistDashboardPage />
-        ) : (
-          <PatientDashboard />
-        )}
-      </Route>
-
-      <Route path="/dashboard/psychologists">
-        <PsychologistDiscovery />
-      </Route>
-      <Route path="/dashboard/psychologists/:id">
-        <PsychologistProfilePage />
-      </Route>
-      <Route path="/dashboard/appointments">
-        {role === "psychologist" ? (
-          <PsychologistDashboardPage />
-        ) : (
-          <PatientAppointments />
-        )}
-      </Route>
-      <Route path="/dashboard/messages">
-        <PatientMessages />
-      </Route>
+      {/* Most specific routes first - with parameters */}
+      {/* Payment route MUST come before psychologists/:id to avoid conflicts */}
       <Route path="/dashboard/payment/:id">
         <PaymentPage />
+      </Route>
+      <Route path="/dashboard/psychologists/:id">
+        <PsychologistDetailPage />
       </Route>
       <Route path="/dashboard/session/:id">
         <SessionPage />
       </Route>
+      <Route path="/dashboard/video-call/:appointmentId">
+        <VideoCallPage />
+      </Route>
+      <Route path="/dashboard/bank-transfer-checkout">
+        <BankTransferCheckout />
+      </Route>
+      <Route path="/dashboard/promptpay-checkout">
+        <PromptPayCheckout />
+      </Route>
+      <Route path="/dashboard/booking-success">
+        <BookingSuccess />
+      </Route>
 
+      {/* Then specific paths without parameters */}
+      <Route path="/dashboard/psychologists">
+        <PsychologistDiscovery />
+      </Route>
+      <Route path="/dashboard/appointments">
+        {role === "psychologist" && <PsychologistAppointments />}
+        {role === "patient" && <PatientAppointments />}
+        {role === "admin" && <PatientAppointments />}
+      </Route>
+      <Route path="/dashboard/messages">
+        {role === "psychologist" && <PsychologistMessages />}
+        {role === "patient" && <PatientMessages />}
+      </Route>
       <Route path="/dashboard/availability">
         <AvailabilitySettings />
       </Route>
@@ -116,26 +149,20 @@ function AuthenticatedRouter() {
         <PatientPaymentHistory />
       </Route>
 
-      <Route path="/dashboard/users">
-        <AdminUsers />
-      </Route>
-      <Route path="/dashboard/verify">
-        <AdminVerify />
-      </Route>
-      <Route path="/dashboard/payments">
-        <AdminPayments />
-      </Route>
-      <Route path="/dashboard/reports">
-        <AdminDashboard />
-      </Route>
-      <Route path="/dashboard/audit">
-        <AdminDashboard />
-      </Route>
       <Route path="/dashboard/settings">
-        <AdminDashboard />
+        <SettingsPage />
       </Route>
       <Route path="/dashboard/profile">
         <ProfilePage />
+      </Route>
+
+      {/* Dashboard home - must be LAST among dashboard routes */}
+      <Route path="/dashboard">
+        {role === "psychologist" ? (
+          <PsychologistDashboardPage />
+        ) : (
+          <PatientDashboard />
+        )}
       </Route>
 
       <Route path="/">
@@ -152,13 +179,120 @@ function AuthenticatedRouter() {
 
 function PublicPsychologistDiscovery() {
   const { user } = useAuth();
-  
+
   if (user) {
     window.location.href = "/dashboard/psychologists";
     return null;
   }
-  
+
   return <PsychologistDiscovery isPublic />;
+}
+
+// Wrapper for authenticated psychologist detail page
+function AuthenticatedPsychologistDetail() {
+  const { user, isLoading: authLoading } = useAuth();
+  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+    queryKey: ["/api/profile"],
+    enabled: !!user,
+  });
+
+  if (authLoading || profileLoading) return <LoadingScreen />;
+  if (!user) return <Landing />;
+  if (!profile?.role) return <RoleSelect />;
+
+  return <PsychologistDetailPage />;
+}
+
+// Wrapper for authenticated psychologist discovery page
+function AuthenticatedPsychologistDiscovery() {
+  const { user, isLoading: authLoading } = useAuth();
+  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+    queryKey: ["/api/profile"],
+    enabled: !!user,
+  });
+
+  if (authLoading || profileLoading) return <LoadingScreen />;
+  if (!user) return <Landing />;
+  if (!profile?.role) return <RoleSelect />;
+
+  return <PsychologistDiscovery />;
+}
+
+// Wrapper for authenticated video call page
+function AuthenticatedVideoCall() {
+  const { user, isLoading: authLoading } = useAuth();
+  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+    queryKey: ["/api/profile"],
+    enabled: !!user,
+  });
+
+  if (authLoading || profileLoading) return <LoadingScreen />;
+  if (!user) return <Landing />;
+  if (!profile?.role) return <RoleSelect />;
+
+  return <VideoCallPage />;
+}
+
+function AdminRouter() {
+  const { user, isLoading: authLoading } = useAuth();
+
+  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+    queryKey: ["/api/profile"],
+    enabled: !!user,
+  });
+
+  if (authLoading || profileLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!user) {
+    window.location.href = "/admin/login";
+    return null;
+  }
+
+  if (profile?.role !== "admin") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl font-bold">Erişim Reddedildi</h1>
+          <p className="text-muted-foreground">Bu alana erişim izniniz bulunmamaktadır.</p>
+          <Button onClick={() => window.location.href = "/dashboard"}>
+            Ana Sayfaya Dön
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Switch>
+      <Route path="/admin">
+        <AdminDashboard />
+      </Route>
+      <Route path="/admin/users">
+        <AdminUsers />
+      </Route>
+      <Route path="/admin/verify">
+        <AdminVerify />
+      </Route>
+      <Route path="/admin/appointments">
+        <AdminAppointments />
+      </Route>
+      <Route path="/admin/payments">
+        <AdminPayments />
+      </Route>
+      <Route path="/admin/reports">
+        <AdminDashboard />
+      </Route>
+      <Route path="/admin/audit">
+        <AuditLogsPage />
+      </Route>
+      <Route path="/admin/settings">
+        <AdminSettingsPage />
+      </Route>
+      <Route component={NotFound} />
+    </Switch>
+  );
 }
 
 function RoleRedirect({ targetRole }: { targetRole: "admin" | "patient" | "psychologist" }) {
@@ -189,7 +323,7 @@ function RoleRedirect({ targetRole }: { targetRole: "admin" | "patient" | "psych
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="light" storageKey="mindwell-theme">
+      <ThemeProvider defaultTheme="light" storageKey="khunjit-theme">
         <TooltipProvider>
           <Toaster />
           <Switch>
@@ -211,11 +345,29 @@ function App() {
             <Route path="/legal">
               <LegalPage />
             </Route>
+            <Route path="/admin/login">
+              <AdminLoginPage />
+            </Route>
             <Route path="/admin/:rest*">
-              <RoleRedirect targetRole="admin" />
+              <AdminRouter />
             </Route>
             <Route path="/admin">
-              <RoleRedirect targetRole="admin" />
+              <AdminRouter />
+            </Route>
+            <Route path="/patient/booking-success">
+              {() => {
+                const { user, isLoading } = useAuth();
+                const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+                  queryKey: ["/api/profile"],
+                  enabled: !!user,
+                });
+
+                if (isLoading || profileLoading) return <LoadingScreen />;
+                if (!user) return <Landing />;
+                if (!profile?.role) return <RoleSelect />;
+
+                return <BookingSuccess />;
+              }}
             </Route>
             <Route path="/patient/:rest*">
               <RoleRedirect targetRole="patient" />
@@ -228,6 +380,47 @@ function App() {
             </Route>
             <Route path="/psychologist">
               <RoleRedirect targetRole="psychologist" />
+            </Route>
+
+            {/* Dashboard routes - most specific first */}
+            <Route path="/dashboard/payment/:id">
+              {() => {
+                const { user, isLoading } = useAuth();
+                const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+                  queryKey: ["/api/profile"],
+                  enabled: !!user,
+                });
+
+                if (isLoading || profileLoading) return <LoadingScreen />;
+                if (!user) return <Landing />;
+                if (!profile?.role) return <RoleSelect />;
+
+                return <PaymentPage />;
+              }}
+            </Route>
+            <Route path="/dashboard/video-call/:appointmentId">
+              <AuthenticatedVideoCall />
+            </Route>
+            <Route path="/dashboard/psychologists/:id">
+              <AuthenticatedPsychologistDetail />
+            </Route>
+            <Route path="/dashboard/psychologists">
+              <AuthenticatedPsychologistDiscovery />
+            </Route>
+            <Route path="/dashboard/booking-success">
+              {() => {
+                const { user, isLoading } = useAuth();
+                const { data: profile, isLoading: profileLoading } = useQuery<UserProfile>({
+                  queryKey: ["/api/profile"],
+                  enabled: !!user,
+                });
+
+                if (isLoading || profileLoading) return <LoadingScreen />;
+                if (!user) return <Landing />;
+                if (!profile?.role) return <RoleSelect />;
+
+                return <BookingSuccess />;
+              }}
             </Route>
             <Route path="/dashboard/:rest*">
               <AuthenticatedRouter />

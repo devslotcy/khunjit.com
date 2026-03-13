@@ -14,7 +14,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { format } from "date-fns";
-import { tr } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 
 interface VideoSessionProps {
   roomName: string;
@@ -81,7 +81,7 @@ export function VideoSession({
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <span>
-            {format(startTime, "HH:mm", { locale: tr })} - {format(endTime, "HH:mm", { locale: tr })}
+            {format(startTime, "HH:mm", { locale: enUS })} - {format(endTime, "HH:mm", { locale: enUS })}
           </span>
         </div>
       </header>
@@ -202,7 +202,7 @@ export function VideoSessionPreJoin({
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Tarih:</span>
               <span className="font-medium">
-                {format(appointmentInfo.startTime, "d MMMM yyyy", { locale: tr })}
+                {format(appointmentInfo.startTime, "d MMMM yyyy", { locale: enUS })}
               </span>
             </div>
             <div className="flex justify-between text-sm">

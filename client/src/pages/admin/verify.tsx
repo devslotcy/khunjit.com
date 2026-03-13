@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useTranslation } from "react-i18next";
 import { 
   CheckCircle2, 
   XCircle, 
@@ -17,10 +18,11 @@ import {
   Languages,
   Star
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { PsychologistProfile } from "@shared/schema";
 
 export default function AdminVerify() {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
@@ -29,31 +31,146 @@ export default function AdminVerify() {
     queryKey: ["/api/admin/psychologists/pending"],
   });
 
-  const verifyMutation = useMutation({
-    mutationFn: async ({ id, verified, notes }: { id: string; verified: boolean; notes: string }) => {
-      return apiRequest("POST", `/api/admin/psychologists/${id}/verify`, { verified, notes });
+  useEffect(() => {
+    console.log("[DEBUG] Pending psychologists fetched:", pendingPsychologists?.length || 0, pendingPsychologists);
+  }, [pendingPsychologists]);
+
+  const approveMutation = useMutation({
+    mutationFn: async ({ id, notes }: { id: string; notes: string }) => {
+      const response = await apiRequest("POST", `/api/admin/psychologists/${id}/approve`, { notes });
+      const data = await response.json();
+      console.log("[DEBUG] Approve response:", data);
+
+      // Validate the response
+      if (!data.ok || !data.updatedProfile) {
+        throw new Error("Invalid response from server");
+      }
+
+      if (!data.updatedProfile.verified ||
+          data.updatedProfile.verificationStatus !== "approved" ||
+          data.updatedProfile.status !== "active") {
+        throw new Error("Database update failed - profile not properly approved");
+      }
+
+      return data;
     },
-    onSuccess: (_, variables) => {
+    onMutate: async ({ id }) => {
+      console.log("[DEBUG] Approve onMutate - removing ID:", id);
+
+      // Cancel outgoing refetches
+      await queryClient.cancelQueries({ queryKey: ["/api/admin/psychologists/pending"] });
+
+      // Snapshot previous value
+      const previousPending = queryClient.getQueryData<PsychologistProfile[]>(["/api/admin/psychologists/pending"]);
+      console.log("[DEBUG] Previous pending count:", previousPending?.length || 0);
+
+      // Optimistically update UI - remove the card immediately
+      queryClient.setQueryData<PsychologistProfile[]>(
+        ["/api/admin/psychologists/pending"],
+        (old) => {
+          const filtered = old?.filter((p) => {
+            console.log("[DEBUG] Comparing:", p.id, "!==", id, "=>", p.id !== id);
+            return p.id !== id;
+          }) || [];
+          console.log("[DEBUG] After filter count:", filtered.length);
+          return filtered;
+        }
+      );
+
+      return { previousPending };
+    },
+    onSuccess: () => {
+      console.log("[DEBUG] Approve successful - invalidating queries");
       toast({
-        title: variables.verified ? "Onaylandı" : "Reddedildi",
-        description: variables.verified 
-          ? "Psikolog başarıyla doğrulandı" 
-          : "Psikolog başvurusu reddedildi",
+        title: "Onaylandı",
+        description: "Psikolog başarıyla doğrulandı ve danışan listesinde görünür olacak",
       });
+      // Invalidate to sync with server
       queryClient.invalidateQueries({ queryKey: ["/api/admin/psychologists/pending"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/psychologists"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/psychologist/profile"] }); // For psychologist dashboard banner
       setSelectedId(null);
       setNotes("");
     },
-    onError: (error: Error) => {
+    onError: (error: Error, variables, context) => {
+      // Rollback on error
+      if (context?.previousPending) {
+        queryClient.setQueryData(["/api/admin/psychologists/pending"], context.previousPending);
+      }
+      toast({ title: "Hata", description: error.message, variant: "destructive" });
+    },
+  });
+
+  const rejectMutation = useMutation({
+    mutationFn: async ({ id, reason }: { id: string; reason: string }) => {
+      const response = await apiRequest("POST", `/api/admin/psychologists/${id}/reject`, { reason });
+      const data = await response.json();
+      console.log("[DEBUG] Reject response:", data);
+
+      // Validate the response
+      if (!data.ok || !data.updatedProfile) {
+        throw new Error("Invalid response from server");
+      }
+
+      if (data.updatedProfile.verified !== false ||
+          data.updatedProfile.verificationStatus !== "rejected" ||
+          data.updatedProfile.status !== "rejected") {
+        throw new Error("Database update failed - profile not properly rejected");
+      }
+
+      return data;
+    },
+    onMutate: async ({ id }) => {
+      console.log("[DEBUG] Reject onMutate - removing ID:", id);
+
+      // Cancel outgoing refetches
+      await queryClient.cancelQueries({ queryKey: ["/api/admin/psychologists/pending"] });
+
+      // Snapshot previous value
+      const previousPending = queryClient.getQueryData<PsychologistProfile[]>(["/api/admin/psychologists/pending"]);
+      console.log("[DEBUG] Previous pending count:", previousPending?.length || 0);
+
+      // Optimistically update UI - remove the card immediately
+      queryClient.setQueryData<PsychologistProfile[]>(
+        ["/api/admin/psychologists/pending"],
+        (old) => {
+          const filtered = old?.filter((p) => {
+            console.log("[DEBUG] Comparing:", p.id, "!==", id, "=>", p.id !== id);
+            return p.id !== id;
+          }) || [];
+          console.log("[DEBUG] After filter count:", filtered.length);
+          return filtered;
+        }
+      );
+
+      return { previousPending };
+    },
+    onSuccess: () => {
+      toast({
+        title: "Reddedildi",
+        description: "Psikolog başvurusu reddedildi",
+        variant: "destructive",
+      });
+      // Invalidate to sync with server
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/psychologists/pending"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/psychologist/profile"] }); // For psychologist dashboard banner
+      setSelectedId(null);
+      setNotes("");
+    },
+    onError: (error: Error, variables, context) => {
+      // Rollback on error
+      if (context?.previousPending) {
+        queryClient.setQueryData(["/api/admin/psychologists/pending"], context.previousPending);
+      }
       toast({ title: "Hata", description: error.message, variant: "destructive" });
     },
   });
 
   const formatPrice = (price: string | null) => {
     if (!price) return "Belirtilmemiş";
-    return new Intl.NumberFormat("tr-TR", {
+    return new Intl.NumberFormat("th-TH", {
       style: "currency",
-      currency: "TRY",
+      currency: "THB",
     }).format(parseFloat(price));
   };
 
@@ -122,7 +239,7 @@ export default function AdminVerify() {
                             </Badge>
                           </div>
                           <p className="text-muted-foreground">
-                            {psychologist.title || "Klinik Psikolog"}
+                            {psychologist.title ? t(`titles.${psychologist.title}`, psychologist.title) : t("titles.clinicalPsychologist")}
                           </p>
                         </div>
 
@@ -197,12 +314,11 @@ export default function AdminVerify() {
                       <div className="flex gap-2">
                         <Button
                           className="flex-1 gap-2"
-                          onClick={() => verifyMutation.mutate({ 
-                            id: psychologist.id, 
-                            verified: true, 
-                            notes: selectedId === psychologist.id ? notes : "" 
+                          onClick={() => approveMutation.mutate({
+                            id: psychologist.id,
+                            notes: selectedId === psychologist.id ? notes : ""
                           })}
-                          disabled={verifyMutation.isPending}
+                          disabled={approveMutation.isPending || rejectMutation.isPending}
                           data-testid={`approve-${psychologist.id}`}
                         >
                           <CheckCircle2 className="w-4 h-4" />
@@ -211,12 +327,16 @@ export default function AdminVerify() {
                         <Button
                           variant="destructive"
                           className="flex-1 gap-2"
-                          onClick={() => verifyMutation.mutate({ 
-                            id: psychologist.id, 
-                            verified: false, 
-                            notes: selectedId === psychologist.id ? notes : "" 
-                          })}
-                          disabled={verifyMutation.isPending}
+                          onClick={() => {
+                            const reason = selectedId === psychologist.id && notes
+                              ? notes
+                              : "Admin tarafından reddedildi";
+                            rejectMutation.mutate({
+                              id: psychologist.id,
+                              reason
+                            });
+                          }}
+                          disabled={approveMutation.isPending || rejectMutation.isPending}
                           data-testid={`reject-${psychologist.id}`}
                         >
                           <XCircle className="w-4 h-4" />

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Cancelled - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">❌ Appointment Cancelled</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.95); font-size: 15px;">Your session has been cancelled</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #111827; font-size: 22px; font-weight: 600;">
+                Hi {{firstName}},
+              </h2>
+
+              <p style="margin: 0 0 25px; color: #4b5563; font-size: 16px; line-height: 1.7;">
+                We wanted to let you know that your appointment has been cancelled.
+              </p>
+
+              <!-- Cancelled Appointment Details -->
+              <div style="background-color: #fef2f2; border-radius: 12px; padding: 28px; margin: 28px 0; border-left: 5px solid #ef4444;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">👨‍⚕️ {{psychologistName}}{{patientName}}</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{psychologistName}}{{patientName}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">📅 Original Date</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🕐 Original Time</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentTime}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🔴 Status</span>
+                      <p style="margin: 6px 0 0; color: #ef4444; font-size: 19px; font-weight: 700;">Cancelled</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Refund Info -->
+              <div style="background-color: #ecfdf5; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #10b981;">
+                <h4 style="margin: 0 0 12px; color: #065f46; font-size: 16px; font-weight: 600;">💳 Refund Information</h4>
+                <p style="margin: 0; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  If you paid for this appointment, you will receive a full refund within 5-7 business days. The refund will be credited to your original payment method.
+                </p>
+              </div>
+
+              <!-- Next Steps -->
+              <div style="background-color: #eff6ff; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px; font-weight: 600;">📋 What's Next?</h4>
+                <ul style="margin: 0; padding: 0 0 0 22px; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  <li>Book a new appointment with the same or a different psychologist</li>
+                  <li>Check your psychologist's updated availability</li>
+                  <li>Explore other qualified psychologists on our platform</li>
+                  <li>Contact support if you have questions about the cancellation</li>
+                </ul>
+              </div>
+
+              <div style="text-align: center; margin: 35px 0;">
+                <a href="{{dashboardLink}}/psychologists" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); margin-right: 10px;">
+                  Book New Appointment
+                </a>
+                <a href="{{dashboardLink}}/appointments" style="display: inline-block; padding: 16px 40px; background: #ffffff; color: #3b82f6; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; border: 2px solid #3b82f6;">
+                  View Appointments
+                </a>
+              </div>
+
+              <!-- Support Info -->
+              <div style="background-color: #f9fafb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <p style="margin: 0; color: #6b7280; font-size: 14px; line-height: 1.6; text-align: center;">
+                  <strong style="color: #374151;">Have questions about this cancellation?</strong><br>
+                  Our support team is here to help. We're available 24/7 to assist you with booking or any concerns.
+                </p>
+              </div>
+
+              <p style="margin: 30px 0 0; color: #6b7280; font-size: 15px; line-height: 1.7; text-align: center;">
+                We apologize for any inconvenience. We're here to support you on your mental health journey.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
+                Questions? We're here to help: <a href="mailto:support@khunjit.com" style="color: #3b82f6; text-decoration: none; font-weight: 600;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                © 2026 KhunJit - Your Mental Health Platform
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

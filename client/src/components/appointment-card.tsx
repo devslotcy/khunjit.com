@@ -2,76 +2,106 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Video, MessageCircle, X, Clock, CheckCircle2 } from "lucide-react";
-import { format, formatDistanceToNow, isAfter, isBefore, addMinutes, subMinutes } from "date-fns";
-import { tr } from "date-fns/locale";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Video, MessageCircle, X, Clock } from "lucide-react";
+import { isBefore, subMinutes } from "date-fns";
+import { canJoinVideoCall, getJoinTooltip } from "@/lib/video-call-utils";
+import { formatAppointmentTime, getRelativeAppointmentTimeKey } from "@/lib/datetime";
+import { useTranslation } from "react-i18next";
 import type { Appointment, PsychologistProfile } from "@shared/schema";
 
 interface AppointmentCardProps {
-  appointment: Appointment & { psychologist?: PsychologistProfile };
+  appointment: Appointment & {
+    psychologist?: PsychologistProfile;
+    patientName?: string;
+  };
   userRole: "patient" | "psychologist";
-  onJoin?: () => void;
   onCancel?: () => void;
   onMessage?: () => void;
+  onVideoCall?: () => void;
 }
 
-const statusLabels: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
-  reserved: { label: "Rezerve", variant: "outline" },
-  payment_pending: { label: "Ödeme Bekleniyor", variant: "secondary" },
-  confirmed: { label: "Onaylandı", variant: "default" },
-  ready: { label: "Hazır", variant: "default" },
-  in_session: { label: "Seansta", variant: "default" },
-  completed: { label: "Tamamlandı", variant: "secondary" },
-  cancelled: { label: "İptal Edildi", variant: "destructive" },
-  expired: { label: "Süresi Doldu", variant: "destructive" },
-  refunded: { label: "İade Edildi", variant: "outline" },
-  no_show: { label: "Katılmadı", variant: "destructive" },
+// Status variants for styling
+const statusVariants: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
+  reserved: "outline",
+  payment_pending: "secondary",
+  payment_review: "secondary",
+  confirmed: "default",
+  ready: "default",
+  in_session: "default",
+  completed: "secondary",
+  cancelled: "destructive",
+  expired: "destructive",
+  refunded: "outline",
+  no_show: "destructive",
+  rejected: "destructive",
 };
 
-export function AppointmentCard({ 
-  appointment, 
-  userRole, 
-  onJoin, 
-  onCancel, 
-  onMessage 
+export function AppointmentCard({
+  appointment,
+  userRole,
+  onCancel,
+  onMessage,
+  onVideoCall
 }: AppointmentCardProps) {
+  const { t } = useTranslation();
   const now = new Date();
   const startTime = new Date(appointment.startAt);
-  const endTime = new Date(appointment.endAt);
-  
-  const canJoin = appointment.status === "confirmed" && 
-    isAfter(now, subMinutes(startTime, 10)) && 
-    isBefore(now, addMinutes(endTime, 15));
-  
+
+  // Format appointment times - always display in Thailand timezone (TH)
+  const formattedTime = formatAppointmentTime(appointment.startAt, appointment.endAt);
+
+  // Get translated weekday name
+  const weekdayLabel = t(`weekdays.${formattedTime.weekdayKey}`);
+
+  // Get relative time with i18n
+  const relativeTimeInfo = getRelativeAppointmentTimeKey(appointment.startAt);
+  const relativeTimeLabel = t(relativeTimeInfo.key, relativeTimeInfo.values);
+
+  // Check if user can join video call (uses UTC comparison internally)
+  const videoCallResult = canJoinVideoCall(appointment, now);
+
+  // Translate video call messages
+  const videoCallMessage = t(videoCallResult.message);
+  const videoCallTooltip = getJoinTooltip(videoCallResult, startTime, t);
+
+  // Cancel check: can cancel if more than 60 minutes before start (UTC comparison)
   const canCancel = ["reserved", "payment_pending", "confirmed"].includes(appointment.status) &&
     isBefore(now, subMinutes(startTime, 60));
 
-  const statusInfo = statusLabels[appointment.status] || { label: appointment.status, variant: "secondary" as const };
+  // Get status variant and translated label
+  const statusVariant = statusVariants[appointment.status] || "secondary";
+  const statusLabel = t(`appointments.status.${appointment.status}`, appointment.status);
 
   const getBorderColor = () => {
     switch (appointment.status) {
       case "reserved":
-      case "payment_pending":
         return "border-l-amber-500";
+      case "payment_pending":
+      case "payment_review":
+        return "border-l-orange-500";
       case "confirmed":
       case "ready":
-        return "border-l-primary";
+        return "border-l-emerald-500";
       case "in_session":
-        return "border-l-chart-2";
+        return "border-l-blue-500";
       case "completed":
-        return "border-l-muted-foreground";
+        return "border-l-slate-400";
       case "cancelled":
       case "expired":
       case "no_show":
-        return "border-l-destructive";
+        return "border-l-red-500";
       default:
         return "border-l-border";
     }
   };
 
+  // Show video call section only for confirmed appointments (payment completed)
+  const showVideoCallSection = onVideoCall && ["confirmed", "ready", "in_session"].includes(appointment.status);
+
   return (
-    <Card 
-      className={`overflow-hidden border-l-4 ${getBorderColor()}`}
+    <Card
+      className={`overflow-hidden border-l-[6px] ${getBorderColor()} hover:shadow-md transition-shadow`}
       data-testid={`appointment-card-${appointment.id}`}
     >
       <CardContent className="p-4">
@@ -86,18 +116,34 @@ export function AppointmentCard({
               </Avatar>
             )}
             <div>
-              <h4 className="font-medium">
-                {userRole === "patient" 
-                  ? appointment.psychologist?.fullName || "Psikolog"
-                  : "Hasta"}
-              </h4>
-              <p className="text-sm text-muted-foreground">
-                {appointment.psychologist?.title || "Klinik Psikolog"}
-              </p>
+              {userRole === "patient" ? (
+                <>
+                  {/* Title first (top line) - secondary/lighter style */}
+                  {appointment.psychologist?.title && (
+                    <p className="text-sm text-muted-foreground">
+                      {t(`titles.${appointment.psychologist.title}`, appointment.psychologist.title)}
+                    </p>
+                  )}
+                  {/* Name second (bottom line) - primary/bolder style */}
+                  <h4 className="font-medium">
+                    {appointment.psychologist?.fullName || t("titles.psychologist")}
+                  </h4>
+                </>
+              ) : (
+                <>
+                  {/* For psychologist view: show "Danışan" on top, patient name on bottom */}
+                  <p className="text-sm text-muted-foreground">
+                    {t("appointments.patientFallback")}
+                  </p>
+                  <h4 className="font-medium">
+                    {appointment.patientName || t("appointments.patientFallback")}
+                  </h4>
+                </>
+              )}
             </div>
           </div>
-          <Badge variant={statusInfo.variant}>
-            {statusInfo.label}
+          <Badge variant={statusVariant}>
+            {statusLabel}
           </Badge>
         </div>
 
@@ -105,52 +151,56 @@ export function AppointmentCard({
           <div className="flex items-center gap-2 text-sm">
             <Clock className="w-4 h-4 text-muted-foreground" />
             <span className="font-medium">
-              {format(startTime, "d MMMM yyyy, EEEE", { locale: tr })}
+              {formattedTime.date}, {weekdayLabel}
             </span>
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span className="ml-6">
-              {format(startTime, "HH:mm")} - {format(endTime, "HH:mm")}
+              {formattedTime.timeWithLabel}
             </span>
           </div>
-          {isBefore(now, startTime) && ["confirmed", "ready"].includes(appointment.status) && (
-            <p className="text-sm text-primary ml-6">
-              {formatDistanceToNow(startTime, { addSuffix: true, locale: tr })}
-            </p>
+          {/* Relative time badge - shows for all non-past appointments */}
+          {isBefore(now, startTime) && !["completed", "cancelled", "expired", "refunded", "no_show", "rejected"].includes(appointment.status) && (
+            <span className="inline-flex ml-6 px-2 py-0.5 text-xs font-medium rounded-md bg-primary/10 text-primary">
+              {relativeTimeLabel}
+            </span>
           )}
         </div>
 
-        {appointment.status === "payment_pending" && (
-          <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-4">
-            <p className="text-sm text-amber-600 dark:text-amber-400 flex items-center gap-2">
-              <Clock className="w-4 h-4" />
-              Seansa katılmak için ödeme yapmanız gerekmektedir
-            </p>
-          </div>
-        )}
-
         <div className="flex items-center gap-2 flex-wrap">
-          {canJoin && (
-            <Button onClick={onJoin} className="gap-2" data-testid="button-join-session">
-              <Video className="w-4 h-4" />
-              Seansa Katıl
-            </Button>
-          )}
-          
-          {!canJoin && ["confirmed", "ready"].includes(appointment.status) && (
-            <Button disabled className="gap-2" data-testid="button-join-disabled">
-              <Video className="w-4 h-4" />
-              {isBefore(now, subMinutes(startTime, 10)) 
-                ? "Seans henüz başlamadı" 
-                : "Seans süresi geçti"}
-            </Button>
-          )}
 
-          {appointment.status === "payment_pending" && (
-            <Button variant="default" className="gap-2" data-testid="button-pay-now">
-              <CheckCircle2 className="w-4 h-4" />
-              Şimdi Öde
-            </Button>
+          {/* Video Call Button */}
+          {showVideoCallSection && (
+            <>
+              {videoCallResult.canJoin ? (
+                <Button
+                  variant="default"
+                  onClick={onVideoCall}
+                  className="gap-2 bg-green-600 hover:bg-green-700"
+                  data-testid="button-video-call"
+                >
+                  <Video className="w-4 h-4" />
+                  {t("appointments.joinSession")}
+                </Button>
+              ) : (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      disabled
+                      className="gap-2 border-muted-foreground/30 text-muted-foreground disabled:opacity-100"
+                      data-testid="button-video-call-disabled"
+                    >
+                      <Video className="w-4 h-4" />
+                      {videoCallMessage}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{videoCallTooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </>
           )}
 
           {onMessage && (
@@ -160,11 +210,11 @@ export function AppointmentCard({
           )}
 
           {canCancel && (
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={onCancel}
-              className="text-destructive hover:text-destructive"
+              className="text-destructive hover:text-destructive hidden sm:flex"
               data-testid="button-cancel-appointment"
             >
               <X className="w-4 h-4" />

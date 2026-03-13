@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新規予約 - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">📅 新規予約が確定しました</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.95); font-size: 15px;">新しいクライアントがセッションを予約しました</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #111827; font-size: 22px; font-weight: 600;">
+                {{firstName}}先生、
+              </h2>
+
+              <p style="margin: 0 0 25px; color: #4b5563; font-size: 16px; line-height: 1.7;">
+                良いお知らせです！新しいクライアント、<strong style="color: #111827;">{{patientName}}</strong>様があなたとの予約を確定しました。セッション詳細は以下の通りです：
+              </p>
+
+              <!-- Appointment Details Card -->
+              <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 12px; padding: 28px; margin: 28px 0; border-left: 5px solid #8b5cf6;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">👤 クライアント</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{patientName}}</p>
+                      <p style="margin: 4px 0 0; color: #6b7280; font-size: 14px;">新規クライアント - 初回セッション</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">📅 日付</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">🕐 時間</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">{{appointmentTime}}（50分）</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0;">
+                      <span style="color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">💻 セッション形式</span>
+                      <p style="margin: 6px 0 0; color: #111827; font-size: 19px; font-weight: 700;">オンラインビデオ通話</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Psychologist Reminders -->
+              <div style="background-color: #eff6ff; border-radius: 10px; padding: 22px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px; font-weight: 600;">📋 セッションの準備</h4>
+                <ul style="margin: 0; padding: 0 0 0 22px; color: #4b5563; font-size: 15px; line-height: 1.8;">
+                  <li>ダッシュボードでクライアント情報を確認してください</li>
+                  <li>セッションノートのテンプレートを準備してください</li>
+                  <li>セッション前にビデオ・オーディオ設定をテストしてください</li>
+                  <li>5分前にセッションルームに入室してください</li>
+                  <li>セッション資料を準備してください</li>
+                </ul>
+              </div>
+
+              <!-- Reminders Info -->
+              <div style="background-color: #fef3c7; border-radius: 10px; padding: 18px; margin: 25px 0; border-left: 4px solid #f59e0b;">
+                <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
+                  <strong>⏰ リマインダー：</strong>このセッションの24時間前と1時間前にメールリマインダーが届きます。設定で通知の設定を管理できます。
+                </p>
+              </div>
+
+              <div style="text-align: center; margin: 35px 0;">
+                <a href="{{dashboardLink}}/appointments" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); margin-right: 10px;">
+                  予約を表示
+                </a>
+                <a href="{{dashboardLink}}/session-notes" style="display: inline-block; padding: 16px 40px; background: #ffffff; color: #8b5cf6; text-decoration: none; border-radius: 10px; font-size: 16px; font-weight: 600; border: 2px solid #8b5cf6;">
+                  セッションノート
+                </a>
+              </div>
+
+              <!-- Quick Actions -->
+              <div style="background-color: #f9fafb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <h4 style="margin: 0 0 12px; color: #374151; font-size: 15px; font-weight: 600;">クイックアクション：</h4>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 6px 0;">
+                      <a href="{{dashboardLink}}/messages" style="color: #8b5cf6; text-decoration: none; font-size: 14px;">💬 クライアントにメッセージを送る</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 0;">
+                      <a href="{{dashboardLink}}/availability" style="color: #8b5cf6; text-decoration: none; font-size: 14px;">📆 空き状況を管理</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 0;">
+                      <a href="{{dashboardLink}}/settings" style="color: #8b5cf6; text-decoration: none; font-size: 14px;">⚙️ 通知設定</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <p style="margin: 30px 0 0; color: #6b7280; font-size: 15px; line-height: 1.7; text-align: center;">
+                プラットフォームの一員として、人々のメンタルヘルスをサポートしていただきありがとうございます。
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #6b7280; font-size: 14px;">
+                サポートが必要ですか？<a href="mailto:support@khunjit.com" style="color: #8b5cf6; text-decoration: none; font-weight: 600;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                © 2026 KhunJit - プロフェッショナルメンタルヘルスプラットフォーム
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -4,3 +4,19 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+.env
+.env.local
+
+# Local SSL certificates
+.local/
+
+# Uploaded files
+uploads/.env.production
+*.sql
+mendly_backup.sql
+ngrok.log
+ngrok.pid
+dev.log
+dev.pid
+server.log
+server.pid

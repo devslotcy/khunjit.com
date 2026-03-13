@@ -1,0 +1,840 @@
+{
+  "common": {
+    "save": "I-save",
+    "saving": "Nag-se-save...",
+    "cancel": "Kanselahin",
+    "back": "Bumalik",
+    "next": "Susunod",
+    "submit": "Isumite",
+    "continue": "Magpatuloy",
+    "close": "Isara",
+    "loading": "Naglo-load...",
+    "search": "Maghanap",
+    "filter": "I-filter",
+    "viewAll": "Tingnan Lahat",
+    "noResults": "Walang nahanap na resulta",
+    "error": "May error",
+    "success": "Tagumpay",
+    "yes": "Oo",
+    "no": "Hindi",
+    "or": "o",
+    "and": "at",
+    "selected": "napili",
+    "selectedCount": "{{count}} napili",
+    "copied": "Nakopya!",
+    "copyFailed": "Hindi nakopya",
+    "minuteShort": "min"
+  },
+  "auth": {
+    "login": {
+      "title": "Mag-login",
+      "description": "Mag-login para pamahalaan ang iyong mga session at mensahe.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "iyong@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Ilagay ang password",
+      "loginButton": "Mag-login",
+      "noAccount": "Wala pang account?",
+      "registerLink": "Mag-rehistro",
+      "successTitle": "Maligayang pagbabalik!",
+      "successDescription": "Matagumpay kang nakalog-in.",
+      "errorTitle": "Hindi matagumpay ang login",
+      "errorDescription": "Mali ang email o password. Subukan ulit."
+    },
+    "register": {
+      "titlePatient": "Mag-rehistro bilang Client",
+      "titlePsychologist": "Mag-rehistro bilang Therapist",
+      "stepIndicator": "Hakbang {current} ng {total}",
+      "step1": {
+        "languageLabelPsychologist": "Anong mga wika ang kaya mong gamitin sa therapy?",
+        "languageLabelPatient": "Sa anong wika mo gustong magpa-therapy?",
+        "languageHelperPsychologist": "Piliin lahat ng wika na kaya mong gamitin sa session.",
+        "languageHelperPatient": "Piliin lahat ng wika na komportable ka.",
+        "languagesSelectedCount": "{{count}} wika ang napili",
+        "languageSelected": "wika ang napili",
+        "errorNoLanguage": "Pumili ng kahit isang wika",
+        "errorNoTherapyLanguage": "Pumili ng kahit isang wika para sa therapy",
+        "emailLabel": "Email Address",
+        "usernameLabel": "Username",
+        "usernamePlaceholder": "Username (min. 4 characters)",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Gumawa ng malakas na password",
+        "passwordConfirmLabel": "Kumpirmahin ang Password",
+        "passwordConfirmPlaceholder": "I-type ulit ang password",
+        "errorAllFields": "Punan lahat ng field",
+        "errorInvalidEmail": "Hindi balido ang email",
+        "errorEmailFormat": "Ilagay ang tamang format ng email",
+        "validEmail": "Mukhang tama ang email",
+        "errorUsernameLength": "Dapat hindi bababa sa 4 na character ang username",
+        "usernameRequirement1": "Mga letra, numero at underscore lang",
+        "usernameRequirement2": "Walang iba pang special character maliban sa _",
+        "errorPasswordFormat": "Hindi sumusunod ang password sa requirements",
+        "passwordRequirement1": "Hindi bababa sa 8 character",
+        "passwordRequirement2": "May hindi bababa sa 1 malaking letra",
+        "passwordRequirement3": "May hindi bababa sa 1 maliit na letra",
+        "passwordRequirement4": "May hindi bababa sa 1 numero o special character",
+        "passwordMatch": "Magkatugma ang password",
+        "passwordMismatch": "Hindi magkatugma ang password",
+        "emailPlaceholder": ""
+      },
+      "title": "Professional Title",
+      "selectTitle": "Select title",
+      "titleSelected": "Title selected",
+      "step2": {
+        "firstNameLabel": "Pangalan",
+        "firstNamePlaceholder": "Unang pangalan",
+        "firstNameHelper": "Paano mo gustong tawagin sa therapy",
+        "lastNameLabel": "Apelyido",
+        "lastNamePlaceholder": "Apelyido",
+        "lastNameHelper": "Buong apelyido mo",
+        "phoneLabel": "Numero ng Telepono",
+        "phonePlaceholder": "+63 912 345 6789",
+        "phoneHelper": "Para sa appointment reminder at emergency",
+        "birthDateLabel": "Petsa ng Kapanganakan",
+        "birthDateErrorTitle": "Hindi balido ang petsa",
+        "birthDateErrorDescription": "Ilagay ang tamang petsa",
+        "birthDateHelper": "Format: DD.MM.YYYY",
+        "birthDateErrorAge": "Dapat hindi bababa sa 16 taong gulang",
+        "genderLabel": "Kasarian",
+        "genderMale": "Lalaki",
+        "genderFemale": "Babae",
+        "cityLabel": "Lungsod",
+        "cityPlaceholder": "hal. Manila",
+        "professionLabel": "Trabaho",
+        "professionPlaceholder": "Kasalukuyang trabaho (opsyonal)",
+        "bioLabel": "Tungkol sa Akin",
+        "bioPlaceholder": "Magkwento tungkol sa sarili mo (max 500 character)",
+        "errorNameRequired": "Kailangan ang pangalan at apelyido"
+      },
+      "step3Psychologist": {
+        "titleLabel": "Propesyonal na Titulo / Degree",
+        "titlePlaceholder": "hal. MA, MSc, PhD, Specialist",
+        "titleSelected": "Napili",
+        "licenseLabel": "Numero ng Lisensya / Rehistro",
+        "licensePlaceholder": "Opisyal na numero ng lisensya",
+        "licenseHelper": "Mula sa iyong board/chamber",
+        "licenseError": "Ilagay ang balidong numero ng lisensya",
+        "experienceLabel": "Taon ng Karanasan",
+        "experiencePlaceholder": "hal. 7",
+        "educationLabel": "Edukasyon / Training",
+        "educationPlaceholder": "hal. Psychology, UP Diliman",
+        "specialtiesLabel": "Espesyalisasyon",
+        "approachesLabel": "Paraan ng Therapy",
+        "priceLabel": "Presyo ng Session (50 min)",
+        "pricePlaceholder": "hal. ₱1,500",
+        "priceHelper": "Kasama na ang buwis",
+        "aboutLabel": "Tungkol sa Akin (nakikita ng client)",
+        "aboutPlaceholder": "Ilarawan ang iyong approach, karanasan at focus",
+        "errorProfessionalInfo": "Kumpletuhin ang lahat ng impormasyong propesyonal"
+      },
+      "registerButton": "Gumawa ng Account",
+      "successTitle": "Matagumpay ang Rehistro!",
+      "successDescription": "Suriin ang email mo para i-verify ang account.",
+      "errorTitle": "May error sa pagrehistro",
+      "errorDescription": "May nangyaring mali. Subukan ulit.",
+      "hasAccount": "May account na?",
+      "loginLink": "Mag-login"
+    },
+    "roleSelect": {
+      "title": "Sino ka?",
+      "description": "Piliin ang iyong role para magpatuloy.",
+      "patientTitle": "Client",
+      "patientDescription": "Naghahanap ako ng suporta sa therapy",
+      "psychologistTitle": "Therapist",
+      "psychologistDescription": "Nagbibigay ako ng therapy sessions",
+      "continueButton": "Magpatuloy",
+      "hasAccount": "Nakarehistro na?",
+      "loginLink": "Mag-login na"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Mga Tampok",
+      "howItWorks": "Paano Ito Gumagana",
+      "psychologists": "Mga Therapist",
+      "goToDashboard": "Pumunta sa Dashboard",
+      "login": "Mag-login",
+      "register": "Mag-rehistro",
+      "openMenu": "Buksan ang Menu"
+    },
+    "hero": {
+      "badge": "Online Therapy",
+      "title1": "Propesyonal na",
+      "titleHighlight": "Online Psychotherapy",
+      "title2": "– Ligtas at Pribado",
+      "description": "Maghanap ng tamang therapist sa ilang minuto – kahit saan.",
+      "ctaStart": "Magsimula nang Libre",
+      "ctaExplore": "Tingnan ang Mga Therapist",
+      "feature1": "Beripikadong Propesyonal",
+      "feature2": "Ligtas na Video Call",
+      "feature3": "Flexible na Oras"
+    },
+    "features": {
+      "title": "Bakit Online Therapy?",
+      "description": "Makabagong psychotherapy – komportable mula sa bahay.",
+      "videoCall": {
+        "title": "Video Sessions",
+        "description": "Ligtas na video call na may end-to-end encryption"
+      },
+      "privacy": {
+        "title": "Pinakamataas na Privacy",
+        "description": "Protektado ang data mo ayon sa batas"
+      },
+      "easyBooking": {
+        "title": "Madaling Pag-book",
+        "description": "Mag-book ng appointment kahit kailan mo gusto"
+      },
+      "messaging": {
+        "title": "Ligtas na Mensahe",
+        "description": "Mag-usap sa pagitan ng sessions"
+      },
+      "flexible": {
+        "title": "Flexible na Oras",
+        "description": "Pwede rin sa gabi at weekend"
+      },
+      "experts": {
+        "title": "Kwalipikadong Eksperto",
+        "description": "Mga lisensyadong therapist lang"
+      }
+    },
+    "howItWorks": {
+      "title": "Paano Ito Gumagana",
+      "description": "Simulan sa 3 simpleng hakbang",
+      "step1": {
+        "title": "Hanapin ang Tamang Therapist",
+        "description": "I-filter ayon sa espesyalidad, wika, presyo at availability"
+      },
+      "step2": {
+        "title": "Mag-book at Magbayad",
+        "description": "Ligtas na bayad – agad na nakumpirma ang appointment"
+      },
+      "step3": {
+        "title": "Simulan ang Session",
+        "description": "Sumali sa video call – diretso mula sa bahay"
+      }
+    },
+    "cta": {
+      "title": "Handa ka na ba sa Unang Hakbang?",
+      "description": "Simulan ang iyong paglalakbay tungo sa mas magandang kalusugang pangkaisipan ngayon.",
+      "button": "Mag-rehistro nang Libre"
+    },
+    "footer": {
+      "privacy": "Patakaran sa Privacy",
+      "terms": "Mga Tuntunin ng Serbisyo",
+      "kvkk": "KVKK (Personal Data Protection)",
+      "copyright": "© {year} Lahat ng karapatan ay nakalaan."
+    }
+  },
+  "dashboard": {
+    "patient": {
+      "welcome": "Maligayang pagbabalik, {{firstName}}",
+      "subtitle": "Narito ang overview ng iyong mga paparating na session at mensahe",
+      "stats": {
+        "upcomingSessions": "Paparating na Session",
+        "totalSessions": "Kabuuang Session",
+        "unreadMessages": "Hindi pa nababasang Mensahe"
+      },
+      "upcomingAppointments": {
+        "title": "Paparating na Appointment",
+        "viewAll": "Tingnan Lahat",
+        "emptyTitle": "Walang paparating na appointment",
+        "emptyDescription": "Maghanap ng therapist at mag-book ng unang session mo ngayon"
+      },
+      "quickActions": {
+        "title": "Mabilis na Aksyon",
+        "findPsychologist": {
+          "title": "Maghanap ng Therapist",
+          "description": "Hanapin ang tamang espesyalista"
+        },
+        "messages": {
+          "title": "Mensahe",
+          "description": "Mag-chat sa iyong therapist"
+        },
+        "appointments": {
+          "title": "Appointment",
+          "description": "Pamahalaan ang lahat ng booking"
+        }
+      }
+    },
+    "psychologist": {
+      "welcome": "TEMP_REPLACE",
+      "pendingApproval": {
+        "title": "Nire-review pa ang profile mo",
+        "description": "Sinasuri pa ng team namin ang credentials mo. Karaniwang tumatagal ito ng 1–3 araw ng trabaho."
+      },
+      "stats": {
+        "todaySessions": "Session Ngayon",
+        "weeklyEarnings": "Kita sa Linggo",
+        "totalClients": "Kabuuang Client",
+        "pendingAppointments": "Pending na Request"
+      },
+      "upcomingSessions": {
+        "title": "Paparating na Session",
+        "viewAll": "Tingnan Lahat",
+        "emptyTitle": "Walang paparating na session",
+        "emptyDescription": "Hindi pa na-book ang iyong availability"
+      },
+      "quickActions": {
+        "title": "Mabilis na Aksyon",
+        "availability": {
+          "title": "Availability",
+          "description": "I-update ang kalendaryo"
+        },
+        "earnings": {
+          "title": "Kita",
+          "description": "Tingnan ang payout at stats"
+        },
+        "profile": {
+          "title": "Profile",
+          "description": "I-edit ang profile"
+        }
+      }
+    },
+    "admin": {
+      "title": "Admin Dashboard",
+      "description": "Overview at Pamamahala",
+      "stats": {
+        "totalUsers": "Kabuuang User",
+        "todaySessions": "Session Ngayon",
+        "monthlyRevenue": "Kita sa Buwan",
+        "pendingVerification": "Pending na Veripikasyon"
+      },
+      "pendingAlert": {
+        "text": "May {count} pending na veripikasyon",
+        "button": "Suriin Ngayon"
+      },
+      "financialSummary": {
+        "title": "Buod ng Pinansyal",
+        "grossRevenue": "Gross Revenue",
+        "vat": "VAT",
+        "platformCommission": "Bayad sa Platform",
+        "psychologistPayments": "Bayad sa Therapist"
+      },
+      "recentActivities": {
+        "title": "Kamakailang Aktibidad",
+        "empty": "Walang kamakailang aktibidad"
+      },
+      "quickActions": {
+        "title": "Mabilis na Aksyon",
+        "verification": {
+          "title": "Veripikasyon",
+          "description": "Suriin ang bagong aplikasyon"
+        },
+        "users": {
+          "title": "Mga User",
+          "description": "Pamahalaan ang lahat ng account"
+        },
+        "appointments": {
+          "title": "Appointment",
+          "description": "Tingnan ang lahat ng booking"
+        },
+        "payments": {
+          "title": "Bayad",
+          "description": "Subaybayan ang transaksyon"
+        },
+        "bankTransfers": {
+          "title": "Transfer",
+          "description": "Pamahalaan ang payout"
+        }
+      },
+      "verificationSuccess": {
+        "title": "Matagumpay ang Veripikasyon",
+        "description": "Naaprubahan na ang account"
+      }
+    }
+  },
+  "appointments": {
+    "title": "Mga Appointment",
+    "description": "Pamahalaan ang iyong paparating at nakaraang session",
+    "tabs": {
+      "upcoming": "Paparating",
+      "past": "Nakaraan"
+    },
+    "empty": {
+      "upcomingTitle": "Walang paparating na appointment",
+      "upcomingDescription": "Mag-book ng susunod na session mo ngayon",
+      "pastTitle": "Wala pang nakaraang session",
+      "pastDescription": "Dito lalabas ang mga natapos na session mo"
+    },
+    "cancelDialog": {
+      "title": "Kanselahin ang Appointment?",
+      "description": "Sigurado ka bang kanselahin ito? Hindi na ito mababawi.",
+      "cancelButton": "Bumalik",
+      "confirmButton": "Kanselahin",
+      "confirmButtonLoading": "Kinakansela..."
+    },
+    "cancelSuccess": {
+      "title": "Matagumpay na Nakansela",
+      "description": "Matagumpay na nakansela ang appointment."
+    },
+    "status": {
+      "reserved": "Nireserba",
+      "pending_payment": "Naghihintay ng Bayad",
+      "payment_review": "Nire-review ang Bayad",
+      "confirmed": "Nakumpirma",
+      "ready": "Handa na",
+      "in_session": "Nagsisimula na",
+      "completed": "Natapos na",
+      "cancelled": "Nakansela",
+      "expired": "Nag-expire",
+      "refunded": "Na-refund",
+      "no_show": "Hindi Dumating",
+      "rejected": "Tinanggihan"
+    },
+    "joinSession": "Sumali sa Session",
+    "joinDisabled": "Magsisimula ang session sa {minutes} minuto",
+    "patientFallback": "Hindi available ang client",
+    "relative": {
+      "past": "nakaraan",
+      "now": "ngayon",
+      "inMinutes": "sa {{count}} minuto",
+      "inHours": "sa {{count}} oras",
+      "inDays": "sa {{count}} araw",
+      "tomorrow": "bukas"
+    },
+    "videoCall": {
+      "sessionNotStarted": "Hindi pa nagsisimula ang session",
+      "sessionEnded": "Tapos na ang session",
+      "canJoin": "Maaari kang sumali sa session",
+      "invalidAppointment": "Hindi natagpuan ang impormasyon ng appointment",
+      "invalidDate": "Hindi wastong petsa ng appointment",
+      "notConfirmed": "Hindi pa nakumpirma ang appointment",
+      "paymentPending": "Naghihintay ng bayad",
+      "paymentReview": "Sinusuri ang bayad",
+      "pendingApproval": "Naghihintay ng approval",
+      "cancelled": "Kinansela ang appointment",
+      "expired": "Nag-expire ang appointment",
+      "completed": "Tapos na ang session",
+      "noShow": "Hindi dumating",
+      "rejected": "Tinanggihan ang appointment",
+      "refunded": "Naibalik na",
+      "notEligible": "Hindi karapat-dapat sa session",
+      "clickToJoin": "I-click para sumali sa session",
+      "startsInDays": "Magsisimula ang session sa {{count}} araw",
+      "startsInHours": "Magsisimula ang session sa {{count}} oras",
+      "startsInMinutes": "Magsisimula ang session sa {{count}} minuto",
+      "activeBeforeStart": "Pwede sumali {{minutes}} min bago magsimula",
+      "cannotJoinEnded": "Hindi na pwede sumali, tapos na ang oras",
+      "cannotJoin": "Hindi pwede sumali sa session",
+      "now": "Ngayon",
+      "inDays": "sa {{count}} araw",
+      "inHours": "sa {{count}} oras",
+      "inMinutes": "sa {{count}} minuto"
+    }
+  },
+  "weekdays": {
+    "sunday": "Linggo",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miyerkules",
+    "thursday": "Huwebes",
+    "friday": "Biyernes",
+    "saturday": "Sabado"
+  },
+  "messages": {
+    "title": "Mga Mensahe",
+    "searchPlaceholder": "Maghanap ng mensahe o tao...",
+    "empty": "Wala pang usapan",
+    "noResults": "Walang tumugma na usapan",
+    "selectConversation": {
+      "title": "Pumili ng usapan",
+      "description": "I-click ang isang usapan para magsimulang mag-chat"
+    },
+    "noMessages": "Wala pang mensahe sa usapang ito",
+    "yesterday": "Kahapon",
+    "today": "Ngayon",
+    "yesterdayLabel": "Kahapon",
+    "inputPlaceholder": "Mag-type ng mensahe...",
+    "reportAction": "I-report ang Usapan"
+  },
+  "payment": {
+    "backButton": "Bumalik",
+    "title": "Bayad",
+    "description": "Ligtas na bayad para sa session mo",
+    "orderSummary": {
+      "title": "Buod ng Order",
+      "description": "Ang session mo kasama si",
+      "psychologist": "Therapist",
+      "dateTime": "Petsa at Oras",
+      "duration": "Tagal",
+      "durationValue": "{minutes} minuto",
+      "total": "Kabuuan"
+    },
+    "paymentInfo": {
+      "title": "Detalye ng Bayad",
+      "description": "I-scan ang QR code gamit ang banking app mo",
+      "qrGenerating": "Gumagawa ng QR code...",
+      "qrTimer": "Mag-e-expire ang code na ito sa {seconds} segundo",
+      "waitingConfirmation": "Naghihintay ng kumpirmasyon ng bayad...",
+      "completeButton": "Natapos ko na ang Bayad",
+      "testHelper": "Test Mode: Gumamit ng test credentials",
+      "referenceCode": "Reference Code",
+      "referenceCodeLabel": "Layunin ng Bayad",
+      "amount": "Halaga"
+    },
+    "instructions": {
+      "title": "Paano Magbayad sa Bank Transfer",
+      "step1": "Buksan ang banking app mo",
+      "step2": "I-scan ang QR o kopyahin ang detalye",
+      "step3": "Gawin ang transfer",
+      "step4": "Kumpirmahin ang bayad",
+      "step5": "Awtomatikong mai-activate ang session mo"
+    },
+    "success": {
+      "title": "Matagumpay ang Bayad!",
+      "confirmed": "Nakumpirma na ang bayad mo",
+      "redirecting": "Dinidirekta sa dashboard...",
+      "toastTitle": "Nakumpirma ang Bayad",
+      "toastDescription": "Na-book na ang session mo!"
+    },
+    "error": {
+      "notFound": "Hindi Natagpuan ang Bayad",
+      "notFoundDescription": "Hindi umiiral o nag-expire na ang pahinang ito",
+      "backLink": "Bumalik sa Mga Appointment",
+      "noPaymentInfo": "Walang available na impormasyon ng bayad",
+      "paymentFailed": "Nabigo ang Bayad"
+    },
+    "clipboard": {
+      "copied": "Nakopya!",
+      "copiedDescription": "Nakopya sa clipboard",
+      "copyFailed": "Hindi nakopya",
+      "copyFailedDescription": "Kopyahin nang manu-mano"
+    }
+  },
+  "availability": {
+    "title": "Availability",
+    "description": "Itakda kung kailan ka available para sa session",
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miyerkules",
+      "thursday": "Huwebes",
+      "friday": "Biyernes",
+      "saturday": "Sabado",
+      "sunday": "Linggo"
+    },
+    "saveSuccess": {
+      "title": "Na-save ang Availability",
+      "description": "Aktibo na ang bagong schedule mo"
+    },
+    "saveError": "May error sa pag-save ng availability"
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Pamahalaan ang personal at propesyonal na impormasyon mo",
+    "personalInfo": {
+      "title": "Personal na Impormasyon",
+      "description": "Makikita lang ito sa'yo at sa support team",
+      "firstName": "Pangalan",
+      "lastName": "Apelyido",
+      "email": "Email",
+      "phone": "Telepono",
+      "phonePlaceholder": "+63 ...",
+      "birthDate": "Petsa ng Kapanganakan",
+      "city": "Lungsod",
+      "about": "Tungkol sa Akin",
+      "aboutPlaceholder": "Maikling deskripsyon (nakikita ng client)",
+      "saveButton": "I-save ang Mga Pagbabago"
+    },
+    "professionalInfo": {
+      "title": "Propesyonal na Impormasyon",
+      "description": "Makikita ito ng mga potensyal na client",
+      "photo": "Profile Picture",
+      "uploadButton": "Mag-upload ng Larawan",
+      "uploadHelper": "JPG, PNG • max 5 MB",
+      "specialties": "Mga Espesyalisasyon",
+      "specialtiesCount": "{{count}} napili",
+      "approaches": "Mga Paraan",
+      "approachesCount": "{{count}} napili",
+      "saveButton": "I-save ang Propesyonal na Impo"
+    },
+    "languageManagement": {
+      "title": "Pamahalaan ang Mga Wika",
+      "description": "I-update ang mga wika na ginagamit mo sa therapy",
+      "label": "Mga Wika sa Therapy",
+      "selectedCount": "{{count}} wika ang napili",
+      "saveButton": "I-save ang Mga Wika",
+      "errorMinLanguage": "Kailangan ng kahit isang wika",
+      "saveError": "May error sa pag-save",
+      "saveSuccess": "Matagumpay na na-update ang mga wika"
+    },
+    "saveSuccess": {
+      "title": "Na-update ang Profile",
+      "description": "Na-save na ang mga pagbabago mo"
+    },
+    "saveError": "May error sa pag-save ng profile",
+    "professionalSaveError": "May error sa pag-save ng propesyonal na impormasyon",
+    "uploadError": {
+      "sizeTooLarge": "Masyadong malaki ang file (max 5 MB)",
+      "invalidType": "JPG o PNG lang ang pwede",
+      "uploadFailed": "Nabigo ang pag-upload"
+    },
+    "experience": "Karanasan",
+    "sessionDuration": "Tagal ng session",
+    "languages": "Mga wika",
+    "about": "Tungkol",
+    "education": "Edukasyon",
+    "certifications": "Mga sertipiko"
+  },
+  "navigation": {
+    "patient": {
+      "home": "Home",
+      "findPsychologist": "Maghanap ng Therapist",
+      "appointments": "Appointment",
+      "messages": "Mensahe",
+      "paymentHistory": "Kasaysayan ng Bayad",
+      "profile": "Profile",
+      "settings": "Mga Setting",
+      "logout": "Mag-logout"
+    },
+    "psychologist": {
+      "home": "Dashboard",
+      "appointments": "Appointment",
+      "availability": "Availability",
+      "messages": "Mensahe",
+      "sessionNotes": "Mga Tala sa Session",
+      "earnings": "Kita",
+      "profile": "Profile",
+      "settings": "Mga Setting",
+      "logout": "Mag-logout"
+    },
+    "admin": {
+      "overview": "Overview",
+      "users": "Mga User",
+      "verification": "Veripikasyon",
+      "appointments": "Appointment",
+      "payments": "Bayad",
+      "auditLog": "Audit Log",
+      "settings": "Mga Setting",
+      "profile": "Profile",
+      "logout": "Mag-logout"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "psychologist": "Therapist",
+      "patient": "Client"
+    },
+    "sidebarTitle": "Menu",
+    "menuLabel": "Menu"
+  },
+  "cities": {
+    "adana": "Adana",
+    "ankara": "Ankara",
+    "antalya": "Antalya",
+    "bursa": "Bursa",
+    "denizli": "Denizli",
+    "diyarbakir": "Diyarbakır",
+    "eskisehir": "Eskişehir",
+    "gaziantep": "Gaziantep",
+    "istanbul": "Istanbul",
+    "izmir": "İzmir",
+    "kayseri": "Kayseri",
+    "kocaeli": "Kocaeli",
+    "konya": "Konya",
+    "mersin": "Mersin",
+    "mugla": "Muğla",
+    "samsun": "Samsun",
+    "trabzon": "Trabzon",
+    "other": "Iba pa"
+  },
+  "specialties": {
+    "individual": "Indibidwal na Therapy",
+    "couples": "Therapy para sa Mag-asawa",
+    "family": "Family Therapy",
+    "childAdolescent": "Therapy para sa Bata at Kabataan",
+    "depression": "Depresyon",
+    "anxiety": "Pagkabalisa / Anxiety",
+    "trauma": "Trauma at PTSD",
+    "ocd": "OCD (Obsessive-Compulsive Disorder)",
+    "eatingDisorders": "Mga Sakit sa Pagkain",
+    "addiction": "Adiksyon at Paggamit ng Substance",
+    "careerCounseling": "Payo sa Karera",
+    "stressManagement": "Pamamahala ng Stress",
+    "angerManagement": "Pamamahala ng Galit"
+  },
+  "therapyApproaches": {
+    "cbt": "Cognitive Behavioral Therapy (CBT)",
+    "psychodynamic": "Psychodynamic Therapy",
+    "emdr": "EMDR (Eye Movement Desensitization and Reprocessing)",
+    "schema": "Schema Therapy",
+    "act": "Acceptance and Commitment Therapy (ACT)",
+    "gestalt": "Gestalt Therapy",
+    "solutionFocused": "Solution-Focused Brief Therapy",
+    "existential": "Existential Therapy",
+    "mindfulness": "Mindfulness-Based Therapy"
+  },
+  "card": {
+    "sessionFee": "Bayad sa session",
+    "fee": "Bayad",
+    "bookAppointment": "Mag-book",
+    "priceNotSpecified": "Hindi nakatukoy",
+    "experience": {
+      "yearsLong": "{{count}} taon ng karanasan",
+      "yearsShort": "{{count}} taon"
+    },
+    "selectedAppointment": "Napiling appointment",
+    "reservationWarning": "Ang appointment ay makakansela kung hindi mababayaran sa loob ng 10 minuto"
+  },
+  "duration": {
+    "minutesShort": "min",
+    "minutesLong": "{{count}} minuto"
+  },
+  "titles": {
+    "psychologist": "Psychologist",
+    "clinicalPsychologist": "Clinical Psychologist",
+    "expertPsychologist": "Specialist Psychologist",
+    "expertClinicalPsychologist": "Expert Clinical Psychologist",
+    "psychologicalCounselor": "Psychological Counselor",
+    "psychotherapist": "Psychotherapist",
+    "dr": "Dr.",
+    "assocProf": "Assoc. Prof. Dr.",
+    "prof": "Prof. Dr."
+  },
+  "legal": {
+    "kvkk": {
+      "title": "KVKK (Personal Data Protection Law)"
+    },
+    "privacy": {
+      "title": "Patakaran sa Privacy"
+    },
+    "terms": {
+      "title": "Mga Tuntunin ng Serbisyo"
+    },
+    "refund": {
+      "title": "Patakaran sa Refund"
+    }
+  },
+  "psychologists": {
+    "title": "Maghanap ng Therapist",
+    "subtitle": "Maghanap ng tamang espesyalista at mag-book ng appointment",
+    "searchPlaceholder": "Maghanap sa pangalan o specialty...",
+    "specialtyPlaceholder": "Specialty",
+    "priceRangePlaceholder": "Hanay ng Presyo",
+    "priceRanges": {
+      "low": "0 - 500 TL",
+      "medium": "500 - 1000 TL",
+      "high": "1000 - 2000 TL",
+      "veryHigh": "2000 TL +"
+    },
+    "clearFilters": "I-clear ang Filters",
+    "filters": {
+      "search": "Paghahanap: {query}",
+      "specialty": "{specialty}",
+      "price": "{range} TL"
+    },
+    "empty": {
+      "title": "Walang nahanap na therapist",
+      "description": "Subukan baguhin ang iyong pamantayan sa paghahanap",
+      "buttonText": "I-clear ang Filters"
+    },
+    "loginButton": "Mag-sign In"
+  },
+  "paymentHistory": {
+    "title": "Kasaysayan ng Pagbabayad",
+    "subtitle": "Tingnan ang lahat ng iyong mga reserbasyon at transaksyon",
+    "table": {
+      "psychologist": "Therapist",
+      "appointmentDate": "Petsa ng Appointment",
+      "amount": "Halaga",
+      "vat": "VAT",
+      "total": "Kabuuan",
+      "status": "Katayuan",
+      "netAmount": "Net na Halaga",
+      "totalAmount": "Kabuuang Halaga"
+    },
+    "reservedUntil": "Nakalaan hanggang {time}",
+    "paymentPending": "Naghihintay ng pagbabayad",
+    "paymentReview": "Sinusuri ang pagbabayad",
+    "empty": "Wala ka pang kasaysayan ng pagbabayad",
+    "statuses": {
+      "reserved": "Nakalaan",
+      "payment_pending": "Naghihintay ng Pagbabayad",
+      "payment_review": "Sinusuri ang Pagbabayad",
+      "completed": "Nakumpleto",
+      "pending": "Nakabinbin",
+      "failed": "Nabigo",
+      "refunded": "Nabalik ang Bayad",
+      "refund_pending": "Naghihintay ng Refund",
+      "refund_approved": "Naaprubahan ang Refund",
+      "refund_processed": "Nabalik ang Bayad",
+      "refund_rejected": "Tinanggihan ang Refund"
+    }
+  },
+  "settings": {
+    "title": "Mga Setting",
+    "subtitle": "Pamahalaan ang iyong account settings at preferences",
+    "language": "Wika ng Display",
+    "languageDesc": "Piliin ang wika para sa interface ng application",
+    "selectLanguage": "Pumili ng Wika",
+    "languageChanged": "Nabago ang wika",
+    "languageChangedDesc": "Matagumpay na nabago ang wika ng interface",
+    "confirmLanguageChange": "Gusto mo bang i-save ang mga pagbabago?",
+    "confirmLanguageChangeDesc": "Ang wika ng site ay isasalin sa iyong piniling wika. Kinukumpirma mo ba ang aksyon na ito?",
+    "notifications": "Mga Notification",
+    "notificationsDesc": "Pamahalaan ang iyong mga notification preferences",
+    "emailNotifications": "Mga Email Notification",
+    "emailNotificationsDesc": "Tumanggap ng mga email para sa mahahalagang update",
+    "appointmentReminders": "Mga Paalala sa Appointment",
+    "appointmentRemindersDesc": "Tumanggap ng notification tungkol sa paparating na appointments",
+    "messageNotifications": "Mga Notification sa Mensahe",
+    "messageNotificationsDesc": "Tumanggap ng notification para sa mga bagong mensahe",
+    "newAppointmentRequests": "Mga Bagong Kahilingan sa Appointment",
+    "newAppointmentRequestsDesc": "Tumanggap ng notification tungkol sa mga bagong kahilingan sa appointment",
+    "privacy": "Privacy",
+    "privacyDesc": "Kontrolin ang iyong mga privacy settings",
+    "showProfile": "Ipakita ang Profile",
+    "showProfileDesc": "Gawin ang iyong profile na makikita ng mga pasyente",
+    "showOnlineStatus": "Ipakita ang Online Status",
+    "showOnlineStatusDesc": "Ipakita ang iyong online status sa ibang users",
+    "showLastSeen": "Ipakita ang Last Seen",
+    "showLastSeenDesc": "Ibahagi ang iyong last seen time",
+    "security": "Seguridad",
+    "securityDesc": "Mga setting ng account security",
+    "twoFactor": "Two-Factor Authentication",
+    "twoFactorDesc": "Magdagdag ng extra layer ng seguridad sa iyong account",
+    "changePassword": "Baguhin ang Password",
+    "changePasswordDesc": "Ilagay ang iyong kasalukuyang password at pumili ng bago para sa iyong seguridad",
+    "currentPassword": "Kasalukuyang Password",
+    "enterCurrentPassword": "Ilagay ang iyong kasalukuyang password",
+    "newPassword": "Bagong Password",
+    "enterNewPassword": "Ilagay ang iyong bagong password",
+    "confirmNewPassword": "Kumpirmahin ang Bagong Password",
+    "enterNewPasswordAgain": "Ilagay muli ang iyong bagong password",
+    "passwordMinLength": "Ang password ay dapat na hindi bababa sa 6 characters",
+    "passwordMinLengthHint": "Hindi bababa sa 6 characters",
+    "passwordsDoNotMatch": "Hindi tugma ang mga password",
+    "newPasswordMustBeDifferent": "Ang bagong password ay dapat na iba sa kasalukuyang password",
+    "allPasswordFieldsRequired": "Lahat ng field ay kinakailangan",
+    "passwordChanged": "Nabago ang password",
+    "passwordChangedDesc": "Matagumpay na na-update ang iyong password",
+    "passwordChangeError": "Nabigong baguhin ang password",
+    "saveChanges": "I-save ang mga Pagbabago",
+    "savedTitle": "Na-save ang settings",
+    "savedDesc": "Matagumpay na na-update ang iyong mga preferences",
+    "notificationsSaved": "Na-save ang mga notification preferences",
+    "saveError": "Nabigong i-save ang settings"
+  },
+  "twoFactor": {
+    "title": "Two-Factor Authentication",
+    "description": "Protektahan ang iyong account gamit ang Google Authenticator",
+    "enable": "I-enable",
+    "disable": "I-disable",
+    "setupTitle": "Two-Factor Authentication Setup",
+    "scanQR": "I-scan ang QR code gamit ang Google Authenticator o Authy app",
+    "cantScanQR": "Hindi ma-scan ang QR code? I-enter nang manu-mano:",
+    "verificationCode": "Verification Code",
+    "enter6DigitFromApp": "I-enter ang 6-digit code na nakikita sa iyong app",
+    "verifyAndEnable": "I-verify at I-enable",
+    "disableTitle": "I-disable ang Two-Factor Authentication",
+    "disableDescription": "I-enter ang iyong password at verification code para sa aksyon na ito",
+    "password": "Password",
+    "setupError": "Nabigo ang pag-setup ng 2FA",
+    "enableSuccess": "Matagumpay na na-enable ang two-factor authentication",
+    "invalidCode": "Hindi valid ang verification code",
+    "disableSuccess": "Matagumpay na na-disable ang two-factor authentication",
+    "disableError": "Nabigo ang pag-disable ng 2FA",
+    "enter6Digit": "Mangyaring mag-enter ng valid na 6-digit code",
+    "enterPasswordAnd6Digit": "Mangyaring i-enter ang iyong password at 6-digit code",
+    "secretCopied": "Nakopya ang secret sa clipboard"
+  }
+}

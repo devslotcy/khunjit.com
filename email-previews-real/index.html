@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Previews - Real Data</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #111827;
+      border-bottom: 3px solid #8b5cf6;
+      padding-bottom: 10px;
+    }
+    .info-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .info-box h3 {
+      margin: 0 0 10px;
+      color: #8b5cf6;
+    }
+    .info-box p {
+      margin: 5px 0;
+      color: #6b7280;
+    }
+    .preview-list {
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .preview-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .preview-item a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .preview-item a:hover {
+      text-decoration: underline;
+    }
+    .preview-item p {
+      margin: 8px 0 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    .badge-patient {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .badge-psychologist {
+      background: #fae8ff;
+      color: #6d28d9;
+    }
+  </style>
+</head>
+<body>
+  <h1>📧 Email Previews - Real User Data</h1>
+
+  <div class="info-box">
+    <h3>📋 Appointment Details</h3>
+    <p><strong>Patient:</strong> hasta1 hs (Language: en)</p>
+    <p><strong>Psychologist:</strong> ps1 doctor (Language: en)</p>
+    <p><strong>Date:</strong> Saturday, January 17, 2026</p>
+    <p><strong>Time:</strong> 12:00 PM</p>
+  </div>
+
+  <div class="info-box">
+    <h3>🔍 What to Check</h3>
+    <p>✅ Patient email shows psychologist name: <strong>ps1 doctor</strong></p>
+    <p>✅ Psychologist email shows patient name: <strong>hasta1 hs</strong></p>
+    <p>✅ All dynamic variables are rendered correctly</p>
+  </div>
+
+  <div class="preview-list">
+    <div class="preview-item">
+      <a href="patient-en.html" target="_blank">
+        Patient Email
+        <span class="badge badge-patient">en</span>
+      </a>
+      <p>Shows: "Your appointment with <strong>ps1 doctor</strong>"</p>
+      <p>Uses: {{psychologistName}} variable</p>
+    </div>
+
+    <div class="preview-item">
+      <a href="psychologist-en.html" target="_blank">
+        Psychologist Email
+        <span class="badge badge-psychologist">en</span>
+      </a>
+      <p>Shows: "New appointment with <strong>hasta1 hs</strong>"</p>
+      <p>Uses: {{patientName}} variable 🔑 (NEW)</p>
+    </div>
+  </div>
+</body>
+</html>

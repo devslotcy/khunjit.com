@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>세션 완료 - KhunJit</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border-radius: 12px 12px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">KhunJit</h1>
+              <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px;">세션 완료</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #333333; font-size: 24px; font-weight: 600;">
+                {{firstName}}님, 세션이 완료되었습니다! ✨
+              </h2>
+
+              <p style="margin: 0 0 20px; color: #666666; font-size: 16px; line-height: 1.6;">
+                오늘 세션이 성공적으로 완료되었습니다. 자신을 위한 시간을 가져주셔서 감사합니다.
+              </p>
+
+              <!-- Session Summary Card -->
+              <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%); border-radius: 12px; padding: 25px; margin: 25px 0; border-left: 4px solid #11998e;">
+                <h3 style="margin: 0 0 15px; color: #333333; font-size: 18px;">세션 요약</h3>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">심리사</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 16px; font-weight: 600;">{{psychologistName}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">날짜</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 16px; font-weight: 600;">{{appointmentDate}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0;">
+                      <span style="color: #999999; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">시간</span>
+                      <p style="margin: 5px 0 0; color: #333333; font-size: 16px; font-weight: 600;">{{appointmentTime}}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div style="background-color: #e8f5e9; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h4 style="margin: 0 0 10px; color: #2e7d32; font-size: 16px;">💡 권장사항</h4>
+                <ul style="margin: 0; padding: 0 0 0 20px; color: #666666; font-size: 14px; line-height: 1.8;">
+                  <li>세션에서 나눈 대화를 되새길 시간을 가지세요</li>
+                  <li>자신에게 친절하게 시간을 주세요</li>
+                  <li>다음 세션 예약을 잊지 마세요</li>
+                </ul>
+              </div>
+
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="{{dashboardLink}}" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 600;">
+                  새 예약하기
+                </a>
+              </div>
+
+              <p style="margin: 20px 0; color: #666666; font-size: 16px; line-height: 1.6; text-align: center;">
+                도움을 드릴 수 있어 기뻤습니다. 다음 세션에서 뵙겠습니다!
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
+              <p style="margin: 0 0 10px; color: #999999; font-size: 14px;">
+                문의사항: <a href="mailto:support@khunjit.com" style="color: #667eea; text-decoration: none;">support@khunjit.com</a>
+              </p>
+              <p style="margin: 0; color: #cccccc; font-size: 12px;">
+                © 2026 KhunJit. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
